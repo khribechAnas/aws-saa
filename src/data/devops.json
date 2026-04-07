@@ -1,0 +1,9 @@
+{
+  "id": "devops",
+  "name": "DevOps",
+  "description": "CI/CD, containers, infrastructure as code",
+  "icon": "GitBranch",
+  "questions": [
+    
+  ]
+}

@@ -1,0 +1,9 @@
+{
+    "id":  "compute",
+    "name":  "Compute \u0026 Services",
+    "description":  "Cloud computing, virtual machines",
+    "icon":  "Cpu",
+    "questions": [
+        
+    ]
+}

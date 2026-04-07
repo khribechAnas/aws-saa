@@ -1,0 +1,9 @@
+{
+    "id": "github",
+    "name": "Personalized 2",
+    "description": "Personalized questions based on GitHub repositories",
+    "icon": "Github",
+    "questions": [
+      
+    ]
+}

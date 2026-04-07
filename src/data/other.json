@@ -1,0 +1,9 @@
+{
+    "id":  "other",
+    "name":  "Other",
+    "description":  "General tech knowledge and miscellaneous topics",
+    "icon":  "Sparkles",
+    "questions":  [
+        
+    ]
+}

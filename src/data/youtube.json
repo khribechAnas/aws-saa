@@ -1,0 +1,1664 @@
+{
+  "id": "youtube",
+  "name": "S3 & EC2",
+  "description": "personalized questions based on YouTube content",
+  "icon": "Youtube",
+  "questions": [
+    {
+  "id": 1,
+  "question": "Which statement about AWS Identity and Access Management (IAM) policies is accurate?",
+  "type": "single",
+  "choices": [
+    "Identity-based policies are attached to a user, group, or role.",
+    "Resource-based policies allow access by default.",
+    "Resource-based policies are attached to a user, group, or role.",
+    "Identity-based policies can only be attached to a single entity."
+  ],
+  "correctAnswers": [
+    0
+  ],
+  "explanation": "Identity-based policies are attached directly to IAM users, groups, or roles to define their permissions."
+},
+{
+  "id": 2,
+  "question": "Which AWS Identity and Access Management (IAM) policy element includes information about whether to allow or deny a request?",
+  "type": "single",
+  "choices": [
+    "Principal",
+    "Condition",
+    "Effect",
+    "Action"
+  ],
+  "correctAnswers": [
+    2
+  ],
+  "explanation": "The Effect element specifies whether the request is allowed (Allow) or denied (Deny)."
+},
+  {
+    "id": 3,
+    "question": "Which option accurately describes the statement element in an AWS Identity and Access Management (IAM) policy?",
+    "type": "single",
+    "choices": [
+      "The statement element contains other elements that together define what is allowed or denied.",
+      "A policy can only have one statement element.",
+      "The statement element is an optional part of an IAM policy.",
+      "The statement element does not apply to identity-based policies."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "The statement element contains other elements (Effect, Action, Resource, Condition) that together define what is allowed or denied."
+  },
+  {
+    "id": 4,
+    "question": "A company is interested in using Amazon S3 to host their website instead of a traditional web server. Which types of content does Amazon S3 support for static web hosting? (Select THREE.)",
+    "type": "multiple",
+    "choices": [
+      "Dynamic HTML files",
+      "Video and sound files",
+      "Database engine",
+      "Server-side scripts",
+      "HTML files and image files",
+      "Client-side scripts"
+    ],
+    "correctAnswers": [
+      1,
+      4,
+      5
+    ],
+    "explanation": "S3 supports static content such as HTML, images, video, audio, and client-side scripts. It does not support dynamic HTML, server-side scripts, or databases."
+  },
+  {
+    "id": 5,
+    "question": "A company wants to use an S3 bucket to store sensitive data. Which actions can they take to protect their data? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "Uploading unencrypted files to Amazon S3 because Amazon S3 encrypts the files by default",
+      "Using Secure File Transfer Protocol (SFTP) to connect directly to Amazon S3",
+      "Using client-side encryption to protect data in transit before it is sent to Amazon S3",
+      "Enabling server-side encryption on the S3 bucket after uploading sensitive data",
+      "Enabling server-side encryption on the S3 bucket before uploading sensitive data"
+    ],
+    "correctAnswers": [
+      2,
+      4
+    ],
+    "explanation": "Sensitive data should be encrypted before upload (client-side) or at rest (server-side). Uploading unencrypted files or relying on SFTP alone is not secure."
+  },
+  {
+    "id": 6,
+    "question": "A customer service team accesses case data daily for up to 30 days. Cases can be reopened and require immediate access for 1 year after they are closed. Reopened cases require 2 days to process. Which solution meets the requirements and is the most cost efficient?",
+    "type": "single",
+    "choices": [
+      "Store all case data in S3 Standard so that it is available whenever it is needed.",
+      "Store case data in S3 Standard. Use a lifecycle policy to move the data into Amazon S3 Glacier Flexible Retrieval after 30 days.",
+      "Store case data in S3 Intelligent-Tiering to automatically move data between tiers based on access frequency.",
+      "Store case data in S3 Standard. Use a lifecycle policy to move the data into S3 Standard-Infrequent Access (S3 Standard-IA) after 30 days."
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "explanation": "S3 Standard for frequent access (first 30 days), then S3 Standard-IA for cost efficiency with immediate retrieval for up to 1 year. Glacier would add retrieval delay."
+  },
+  {
+    "id": 7,
+    "question": "Which option takes advantage of edge locations in Amazon CloudFront to transfer files over long distances to an S3 bucket?",
+    "type": "single",
+    "choices": [
+      "AWS Transfer Family",
+      "Amazon S3 Transfer Acceleration",
+      "Amazon S3 REST API",
+      "AWS SDKs"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Transfer Acceleration uses CloudFront edge locations to speed up uploads to S3 over long distances."
+  },
+  {
+    "id": 8,
+    "question": "A video producer must regularly transfer several video files to Amazon S3. The files range from 100–700 MB. The internet connection has been unreliable, causing some uploads to fail. Which solution provides the fastest, most reliable, and most cost-effective way to transfer these files to Amazon S3?",
+    "type": "single",
+    "choices": [
+      "AWS Management Console",
+      "AWS Transfer Family",
+      "Amazon S3 Transfer Acceleration",
+      "Amazon S3 multipart uploads"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "explanation": "Multipart uploads split large files into parts, retry failed parts, and ensure faster, more reliable transfers over unstable connections."
+  },
+  {
+    "id": 9,
+    "question": "Which Amazon S3 storage class is designed for backup copies of on-premises data or easily re-creatable data?",
+    "type": "single",
+    "choices": [
+      "S3 Standard",
+      "S3 Standard-IA (Infrequent Access)",
+      "S3 One Zone-IA",
+      "S3 Glacier Deep Archive"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "One Zone-IA is low-cost, stores data in a single Availability Zone, and is ideal for backups or data that can be easily re-created."
+  },
+  {
+    "id": 10,
+    "question": "A mobile application allows users worldwide to upload videos to an Amazon S3 bucket. The company enables S3 Transfer Acceleration. Which statement best explains why upload performance improves?",
+    "type": "single",
+    "choices": [
+      "Data is cached at edge locations before being stored in S3",
+      "Uploads are routed through the nearest edge location and then transferred over AWS’s private backbone network",
+      "Amazon S3 replicates the data across multiple Regions automatically",
+      "Transfer Acceleration converts uploads into multipart uploads"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Transfer Acceleration improves performance by routing uploads through the nearest CloudFront edge location and then over AWS's optimized network."
+  },
+  {
+    "id": 11,
+    "question": "A company has users in Africa uploading large media files to an Amazon S3 bucket located in the us-east-1 Region. Uploads are slow due to long network distances. Which solution will MOST effectively improve upload performance?",
+    "type": "single",
+    "choices": [
+      "Enable Amazon CloudFront with the S3 bucket as the origin",
+      "Enable S3 Transfer Acceleration on the bucket",
+      "Use multipart uploads without enabling Transfer Acceleration",
+      "Move the S3 bucket to the eu-west-1 Region"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "S3 Transfer Acceleration improves upload performance by using the nearest edge location and AWS's global network, which is faster than direct uploads or moving the bucket."
+  },
+  {
+    "id": 12,
+    "question": "A company needs to store millions of objects in Amazon S3. The application frequently lists objects using prefixes (for example: logs/2026/04/). The company wants maximum performance with no manual capacity planning. Which statement is TRUE about Amazon S3 in this scenario?",
+    "type": "single",
+    "choices": [
+      "You must distribute objects across multiple buckets to avoid performance bottlenecks",
+      "Amazon S3 automatically scales request rates per prefix without user intervention",
+      "You must randomize object key names to achieve high performance",
+      "Amazon S3 limits read and write throughput per bucket"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon S3 automatically scales request rates per prefix, so no manual capacity planning or bucket distribution is needed."
+  },
+  {
+    "id": 13,
+    "question": "A solutions architect needs to grant temporary access to upload a file directly to an S3 bucket without using IAM credentials. The access must automatically expire after 10 minutes. Which solution meets this requirement with least operational overhead?",
+    "type": "single",
+    "choices": [
+      "Create an IAM user and delete it after 10 minutes",
+      "Use an S3 bucket policy with a time-based condition",
+      "Generate a pre-signed URL with a 10-minute expiration",
+      "Use AWS STS AssumeRole with a session duration of 10 minutes"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Pre-signed URLs allow temporary access to specific objects with an expiration, requiring minimal operational overhead."
+  },
+  {
+    "id": 14,
+    "question": "You need to upload a 50 GB file to S3. You want maximum throughput and resumable uploads in case of network failure. Which combination of S3 features should you use?",
+    "type": "single",
+    "choices": [
+      "Standard PUT operation",
+      "Multipart upload",
+      "S3 Transfer Acceleration + Multipart upload",
+      "Pre-signed URL only"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Multipart uploads allow large files to be uploaded in parts and retried if failures occur, and combining with Transfer Acceleration improves performance over long distances."
+  },
+  {
+    "id": 15,
+    "question": "A company wants to allow multiple applications in different AWS accounts to access the same S3 bucket securely. Which approach is the most scalable and secure?",
+    "type": "single",
+    "choices": [
+      "Create IAM users in each account and share credentials",
+      "Use bucket policies with cross-account IAM roles",
+      "Copy objects to each account’s bucket",
+      "Share the root account credentials"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Bucket policies with cross-account IAM roles allow secure and scalable access without sharing credentials."
+  },
+  {
+    "id": 16,
+    "question": "You have an S3 bucket configured with a CORS policy to allow web applications from https://example.com to upload files. After deployment, browser uploads fail with a CORS error. What is the most likely cause?",
+    "type": "single",
+    "choices": [
+      "S3 bucket doesn’t have versioning enabled",
+      "The browser doesn’t support HTTPS",
+      "The CORS policy doesn’t include the PUT method or correct headers",
+      "The bucket is encrypted with SSE-S3"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "S3 CORS policies must explicitly allow the HTTP methods (PUT, GET, POST) used by the web app and any custom headers sent by the client."
+  },
+  {
+    "id": 17,
+    "question": "A company wants to restrict access to objects in a bucket by IP address and still allow IAM users full access. Which is the best approach?",
+    "type": "single",
+    "choices": [
+      "Use a bucket policy with an IpAddress condition",
+      "Use IAM policies with IpAddress condition only",
+      "Enable S3 Transfer Acceleration",
+      "Generate pre-signed URLs for all objects"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Bucket policies with an IpAddress condition allow restricting access by IP while still granting IAM users full access."
+  },
+  {
+    "id": 18,
+    "question": "You are designing a system where thousands of clients upload files concurrently to the same S3 bucket. Some uploads fail occasionally due to request throttling. Which combination of AWS features minimizes throttling for high request rates?",
+    "type": "single",
+    "choices": [
+      "Randomize object key names + Multipart upload",
+      "Use multiple buckets + Transfer Acceleration",
+      "Pre-signed URLs only",
+      "Enable S3 Versioning"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Randomizing object key names spreads writes across partitions, reducing throttling, and Multipart upload allows large files to upload reliably in parts."
+  },
+  {
+    "id": 19,
+    "question": "A company uploads thousands of logs per second to a single S3 bucket. Most objects use the prefix logs/2026/04/07/. What is the potential problem?",
+    "type": "single",
+    "choices": [
+      "Objects may be deleted automatically",
+      "Requests may hit a hot partition and throttle",
+      "Files will not be visible in S3",
+      "Cost will increase"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Using the same prefix for many objects may create hot partitions, which can throttle requests. Distributing keys reduces this risk."
+  },
+  {
+    "id": 20,
+    "question": "You want to maximize S3 write throughput for a high-frequency upload application. Which approach is recommended?",
+    "type": "single",
+    "choices": [
+      "Randomize object key names or prefixes",
+      "Store all objects in the same prefix",
+      "Use smaller files only",
+      "Enable versioning"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Randomizing object keys or prefixes spreads requests across partitions, maximizing throughput."
+  },
+  {
+    "id": 21,
+    "question": "A company wants to grant temporary S3 access to an external partner without creating IAM users. The access should allow them to list the bucket and upload objects, but not delete anything. Which is the most secure solution?",
+    "type": "single",
+    "choices": [
+      "Pre-signed URLs for each object they need to upload",
+      "Create an IAM role with limited S3 permissions and let the partner assume it via AWS STS",
+      "Share AWS access keys with the partner",
+      "Enable S3 Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Using an IAM role with limited permissions and AWS STS allows temporary, secure access without sharing credentials."
+  },
+  {
+    "id": 22,
+    "question": "You want a temporary user to access multiple objects in an S3 bucket for 1 hour. Which AWS feature is the best choice?",
+    "type": "single",
+    "choices": [
+      "Pre-signed URL",
+      "AWS STS temporary credentials",
+      "S3 Transfer Acceleration",
+      "S3 CORS"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "AWS STS temporary credentials allow a user to access multiple objects with temporary permissions for a defined duration."
+  },
+  {
+    "id": 23,
+    "question": "You need to let a user download a single object from S3 without giving them IAM credentials. What should you use?",
+    "type": "single",
+    "choices": [
+      "AWS STS temporary credentials",
+      "Pre-signed URL",
+      "S3 bucket policy",
+      "S3 Lifecycle rule"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Pre-signed URLs allow a user to download a specific object without requiring IAM credentials."
+  },
+  {
+    "id": 24,
+    "question": "A company wants to audit all S3 object-level API activity, including GET, PUT, DELETE, across multiple accounts. Which service combination is the most appropriate?",
+    "type": "single",
+    "choices": [
+      "S3 Server Access Logs",
+      "AWS CloudTrail + S3 Data Events",
+      "Enable S3 Versioning",
+      "Pre-signed URLs"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "CloudTrail Data Events capture S3 object-level API activity across accounts, providing detailed audit logs."
+  },
+  {
+    "id": 25,
+    "question": "A company stores sensitive files in S3 and wants to restrict download to corporate network IPs, but allow Lambda functions in the same account to access them. Which is the best approach?",
+    "type": "single",
+    "choices": [
+      "Use a bucket policy with IpAddress condition for the corporate network and allow the Lambda IAM role",
+      "Enable S3 Transfer Acceleration",
+      "Use pre-signed URLs for Lambda",
+      "Enable S3 Versioning"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "A bucket policy can restrict access by IP while allowing specific IAM roles, like Lambda, to access objects."
+  },
+  {
+    "id": 26,
+    "question": "A company wants to share the same S3 bucket with multiple AWS accounts, each with different permissions. Which feature simplifies managing access at scale?",
+    "type": "single",
+    "choices": [
+      "S3 Access Points",
+      "Pre-signed URLs",
+      "Bucket policy only",
+      "S3 Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "S3 Access Points allow you to create unique hostnames and policies for different applications, VPCs, or accounts, simplifying access management at scale."
+  },
+  {
+    "id": 27,
+    "question": "A company wants to upload large files (100 GB) from multiple global clients. Requirements: high throughput, resume on failure, optimize latency. Which combination of features achieves this?",
+    "type": "single",
+    "choices": [
+      "Multipart upload + Transfer Acceleration",
+      "Pre-signed URLs only",
+      "Single PUT requests only",
+      "Enable S3 Versioning"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Multipart upload allows resuming failed transfers, and Transfer Acceleration improves upload latency for global clients."
+  },
+  {
+    "id": 28,
+    "question": "A company wants to share read-only access to an S3 bucket publicly, but only to users coming from a specific website. Which feature should you use?",
+    "type": "single",
+    "choices": [
+      "S3 Bucket Policy with Referer condition",
+      "Pre-signed URLs",
+      "IAM policy with IpAddress condition",
+      "S3 Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Bucket policies with a Referer condition restrict access to users coming from a specific website."
+  },
+  {
+    "id": 29,
+    "question": "A company wants to copy objects from one bucket to another in different regions while encrypting objects with KMS and maintaining metadata. Which AWS feature best fits this requirement?",
+    "type": "single",
+    "choices": [
+      "S3 Cross-Region Replication (CRR)",
+      "S3 Transfer Acceleration",
+      "Pre-signed URLs",
+      "S3 Lifecycle rules"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CRR replicates objects across regions, maintaining metadata and allowing KMS encryption."
+  },
+  {
+    "id": 30,
+    "question": "A company wants to audit all S3 object-level reads by employees in near real-time. Which solution is most appropriate?",
+    "type": "single",
+    "choices": [
+      "S3 Server Access Logs",
+      "CloudTrail Data Events",
+      "S3 Versioning",
+      "Pre-signed URLs"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "CloudTrail Data Events provide near real-time logging of object-level API activity, including reads."
+  },
+  {
+    "id": 31,
+    "question": "You want to stream large objects from S3 to clients while minimizing memory usage on your server. Which approach is best?",
+    "type": "single",
+    "choices": [
+      "Download the full object to the server, then send it",
+      "Use S3 byte-range GET requests and stream directly to clients",
+      "Use pre-signed URLs for the client to download the full object",
+      "Enable S3 Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Byte-range GET requests allow streaming only the needed portions of an object to clients, reducing server memory usage."
+  },
+  {
+    "id": 32,
+    "question": "You have a 10 GB video in S3. Users only need to watch the first 5 minutes. Which S3 feature allows downloading only part of the object?",
+    "type": "single",
+    "choices": [
+      "Multipart upload",
+      "Byte-range GET",
+      "S3 Transfer Acceleration",
+      "Pre-signed URL"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Byte-range GET allows downloading a specific portion of an object without retrieving the entire file."
+  },
+  {
+    "id": 33,
+    "question": "Which scenario is the best use of S3 byte-range requests?",
+    "type": "single",
+    "choices": [
+      "Uploading large files faster",
+      "Reading a portion of a large file without downloading the entire object",
+      "Granting temporary access to a file",
+      "Automatically replicating files across regions"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Byte-range requests are used to read specific parts of a large object without downloading the whole file."
+  },
+  {
+    "id": 34,
+    "question": "Which statement correctly differentiates S3 byte-range requests from multipart uploads?",
+    "type": "single",
+    "choices": [
+      "Byte-range is for uploading large files in parts; multipart upload is for downloading part of a file",
+      "Byte-range is for downloading a portion of an object; multipart upload is for uploading large objects in parts",
+      "Both are used only for uploading large files",
+      "Both are used only for downloading objects"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Byte-range requests are for downloading parts of an object; multipart uploads are for uploading large objects in multiple parts."
+  },
+  {
+    "id": 35,
+    "question": "You want to grant a partner read-only access to objects in S3, without using IAM users and limit access to specific object prefixes. Which approach is best?",
+    "type": "single",
+    "choices": [
+      "Pre-signed URLs for each object",
+      "S3 Access Point with policy restricting prefixes",
+      "Share root account credentials",
+      "Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "S3 Access Points allow you to create a policy restricting access to specific prefixes for partners, without sharing IAM users or credentials."
+  },
+  {
+    "id": 36,
+    "question": "A company wants to control how their S3 objects are cached by clients using pre-signed URLs. Which HTTP header should they set when generating the URL?",
+    "type": "single",
+    "choices": [
+      "Cache-Control",
+      "Content-Type",
+      "x-amz-server-side-encryption",
+      "Content-Disposition"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "The Cache-Control header allows controlling client-side caching behavior for objects accessed via pre-signed URLs."
+  },
+  {
+    "id": 37,
+    "question": "You need to track all changes to objects in an S3 bucket, including overwrites and deletions, for auditing. Which combination is most appropriate?",
+    "type": "single",
+    "choices": [
+      "Enable S3 Versioning + CloudTrail Data Events",
+      "Enable S3 Server Access Logs only",
+      "Pre-signed URLs for all objects",
+      "S3 Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Versioning preserves all object versions, and CloudTrail Data Events log object-level API actions, providing full auditing."
+  },
+  {
+    "id": 38,
+    "question": "A developer wants to upload files from a web application directly to S3 from the browser. They want to avoid exposing AWS credentials and allow uploads to a specific folder/prefix. Which is the best solution?",
+    "type": "single",
+    "choices": [
+      "Generate pre-signed URLs for the prefix",
+      "Share IAM keys with the browser",
+      "Enable Transfer Acceleration",
+      "Use S3 Access Points without policies"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Pre-signed URLs allow clients to upload directly to a specific S3 prefix without exposing AWS credentials."
+  },
+  {
+    "id": 39,
+    "question": "A company uses S3 to store logs from multiple sources. They need to analyze logs in near real-time without moving data out of S3. Which solution is most appropriate?",
+    "type": "single",
+    "choices": [
+      "Use S3 Select",
+      "Copy logs to EC2 and process",
+      "Enable Transfer Acceleration",
+      "Pre-signed URLs"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "S3 Select allows querying and retrieving specific data from objects directly in S3, avoiding data movement."
+  },
+  {
+    "id": 40,
+    "question": "A company wants to analyze only specific columns in CSV objects stored in S3 without moving the data. Which feature should they use?",
+    "type": "single",
+    "choices": [
+      "S3 Select",
+      "S3 Transfer Acceleration",
+      "Pre-signed URLs",
+      "S3 Access Points"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "S3 Select enables retrieving only selected columns or rows from CSV or JSON objects in S3."
+  },
+  {
+    "id": 41,
+    "question": "A company needs to transfer 5 TB of on-premises data to S3. They want high reliability and avoid manual scripting. Which AWS service is most appropriate?",
+    "type": "single",
+    "choices": [
+      "AWS Snowball",
+      "S3 Transfer Acceleration",
+      "Multipart upload only",
+      "Pre-signed URLs"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "AWS Snowball provides reliable, high-volume physical data transfer from on-premises to S3 without manual scripting."
+  },
+  {
+    "id": 42,
+    "question": "A developer wants to upload large files (200 GB) directly from a browser using a pre-signed URL. What is a limitation of using pre-signed URLs for such large files?",
+    "type": "single",
+    "choices": [
+      "Cannot resume uploads if network fails",
+      "Cannot restrict access by IP",
+      "Cannot specify expiration",
+      "Cannot encrypt objects"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Pre-signed URLs do not support resumable uploads, so if the network fails, the upload must restart from the beginning."
+  },
+  {
+    "id": 43,
+    "question": "A company wants to serve content to end users worldwide from S3 with low latency, but keep the data private. Which combination is best?",
+    "type": "single",
+    "choices": [
+      "CloudFront with Origin Access Control + S3",
+      "Enable Transfer Acceleration only",
+      "Pre-signed URLs only",
+      "Make bucket public"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "CloudFront with Origin Access Control allows private S3 content to be served globally with low latency while maintaining security."
+  },
+  {
+    "id": 44,
+    "question": "A company has users worldwide uploading large files to an S3 bucket. Which service optimizes upload speed over long distances?",
+    "type": "single",
+    "choices": [
+      "CloudFront",
+      "S3 Transfer Acceleration",
+      "Byte-range GET",
+      "Pre-signed URL"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "S3 Transfer Acceleration uses CloudFront edge locations to speed up uploads over long distances."
+  },
+  {
+    "id": 45,
+    "question": "A website serves large images stored in S3 to global users. Which AWS service improves download performance?",
+    "type": "single",
+    "choices": [
+      "S3 Transfer Acceleration",
+      "CloudFront",
+      "Multipart upload",
+      "AWS STS"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon CloudFront caches content at edge locations worldwide, improving download performance for global users."
+  },
+  {
+    "id": 46,
+    "question": "What are the benefits of using an Amazon Machine Image (AMI)? (Select THREE.)",
+    "type": "multiple",
+    "choices": [
+      "Updating systems by patching their AMI",
+      "Selling or sharing software solutions packaged as an AMI",
+      "Using an AMI as a server backup for Amazon EC2 instances",
+      "Migrating data from on premises to Amazon EC2 instances",
+      "Launching instances with the same configuration",
+      "Automating security group settings for instances"
+    ],
+    "correctAnswers": [
+      1,
+      2,
+      4
+    ],
+    "explanation": "AMIs let you share solutions, backup EC2 servers, and launch consistent instances quickly."
+  },
+  {
+    "id": 47,
+    "question": "A system administrator must change the instance types of multiple running Amazon EC2 instances. The instances were launched with a mix of Amazon Elastic Block Store (Amazon EBS) backed AMIs and instance store backed AMIs. Which method is a valid way to change the instance type?",
+    "type": "single",
+    "choices": [
+      "Stop an instance store backed instance, change its instance type, and start the instance.",
+      "Change the instance type of an instance store backed instance without stopping it.",
+      "Stop an Amazon EBS backed instance, change its instance type, and start the instance.",
+      "Change the instance type of an Amazon EBS backed instance without stopping it."
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Only EBS backed instances support stopping, changing type, and restarting. Instance store backed instances cannot be stopped without losing data."
+  },
+  {
+    "id": 48,
+    "question": "A workload requires high read/write access to large local datasets. Which instance types would perform BEST for this workload? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "Accelerated computing",
+      "Storage optimized",
+      "General purpose",
+      "Memory optimized",
+      "Compute optimized"
+    ],
+    "correctAnswers": [
+      1,
+      4
+    ],
+    "explanation": "Storage optimized = best for high I/O on large datasets. Compute optimized = adds strong processing power for intensive workloads."
+  },
+  {
+    "id": 49,
+    "question": "An application requires the media access control (MAC) address of the host Amazon EC2 instance. The architecture uses an AWS Auto Scaling group to dynamically launch and terminate instances. What is the BEST way for the application to obtain the MAC address?",
+    "type": "single",
+    "choices": [
+      "Include the MAC address in a custom AMI for each instance in the AWS Auto Scaling group.",
+      "Use the user data of each instance to access the MAC address through the instance metadata.",
+      "Write the MAC address in the application configuration file of each instance.",
+      "Include the MAC address in the Amazon Machine Image (AMI) that is used to launch all of the instances in the AWS Auto Scaling group."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "The instance metadata service provides dynamic details like the MAC address, making it the most reliable method in Auto Scaling environments."
+  },
+  {
+    "id": 50,
+    "question": "Which statements about user data are correct? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "By default, user data runs only once, when an instance is launched.",
+      "The cloud architect must remove the config_user_scripts file to rerun the user data scripts.",
+      "By default, user data runs after every instance restart.",
+      "User data cannot be run while the instance is stopped.",
+      "The cloud architect must run the /var/lib/cloud/instance/scripts/part-001 command for the user data script to run again."
+    ],
+    "correctAnswers": [
+      0,
+      4
+    ],
+    "explanation": "User data executes once at launch. To rerun, you must manually trigger the script (e.g., via /var/lib/cloud/...). It does not automatically run on restarts."
+  },
+  {
+    "id": 51,
+    "question": "A transactional workload on an Amazon EC2 instance performs high amounts of frequent read and write operations. Which Amazon Elastic Block Store (Amazon EBS) volume type is BEST for this workload?",
+    "type": "single",
+    "choices": [
+      "Provisioned IOPS solid state drive (SSD)",
+      "Throughput Optimized hard disk drive (HDD)",
+      "Cold hard disk drive (HDD)",
+      "General Purpose solid state drive (SSD)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Provisioned IOPS SSD (io1/io2) is designed for transactional workloads requiring high performance and consistent low-latency read/write operations. HDD options are better for throughput, not frequent transactions."
+  },
+  {
+    "id": 52,
+    "question": "It is possible to create an NFS share on an Amazon Elastic Block Store (Amazon EBS) backed Linux instance by installing and configuring an NFS server on the instance. In this way, multiple Linux systems can share the file system of that instance. Which advantages does Amazon Elastic File System (Amazon EFS) provide compared to this solution? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "No need for backups",
+      "High availability",
+      "Automatic scaling",
+      "Strong consistency",
+      "File locking"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "explanation": "Amazon EFS is a fully managed, highly available, and automatically scalable file system service. Unlike a self-managed NFS on EBS, EFS grows/shrinks with demand and is designed for durability across multiple AZs."
+  },
+  {
+    "id": 53,
+    "question": "Which feature does Amazon FSx for Windows File Server provide?",
+    "type": "single",
+    "choices": [
+      "Amazon management agent for Windows file servers",
+      "Microsoft Active Directory server for Windows file servers",
+      "Backup solution for on-premises Windows file servers",
+      "Fully managed Windows file servers"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "explanation": "Amazon FSx for Windows File Server delivers fully managed, highly available Windows file servers in the cloud, integrated with Active Directory and supporting SMB protocol."
+  },
+  {
+    "id": 54,
+    "question": "Which descriptions of Amazon EC2 pricing options are correct? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "Spot Instances offer spare compute capacity at discounted prices and can be interrupted.",
+      "Dedicated Hosts are servers that are dedicated to one purpose, such as a firewall.",
+      "Reserved Instances are physical servers that are reserved exclusively for customer use.",
+      "Savings Plans are budgeting tools that help customers manage Amazon EC2 costs.",
+      "With On-Demand Instances, customers can pay for compute capacity by usage time with no long-term commitments."
+    ],
+    "correctAnswers": [
+      0,
+      4
+    ],
+    "explanation": "Spot = cheapest, but interruptible. On-Demand = flexible, pay-as-you-go with no commitments."
+  },
+  {
+    "id": 55,
+    "question": "You want all new EC2 instances in an Auto Scaling group to have the latest OS patches and pre-installed software automatically. Which solution is best?",
+    "type": "single",
+    "choices": [
+      "Launch instances from a manually created AMI",
+      "Use EC2 Image Builder to create updated AMIs",
+      "Use S3 Transfer Acceleration",
+      "Use pre-signed URLs"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "EC2 Image Builder automates creating, patching, and distributing updated AMIs for Auto Scaling groups."
+  },
+  {
+    "id": 56,
+    "question": "A developer creates an AMI from a running EC2 instance with custom software. Later, security patches are released. What must be done to update the Auto Scaling group?",
+    "type": "single",
+    "choices": [
+      "Nothing, instances update automatically",
+      "Create a new AMI with patches and update the ASG",
+      "Enable S3 Transfer Acceleration",
+      "Use CloudFront"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Auto Scaling groups launch instances from a specified AMI. Updating the AMI and ASG ensures new instances have patches."
+  },
+  {
+    "id": 57,
+    "question": "You want to reduce EC2 costs and improve performance based on current usage patterns. Which AWS service provides recommendations for instance types and sizes?",
+    "type": "single",
+    "choices": [
+      "AWS Trusted Advisor",
+      "AWS Compute Optimizer",
+      "AWS Cost Explorer",
+      "AWS CloudWatch"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "AWS Compute Optimizer analyzes usage and recommends optimal EC2 instance types and sizes for cost and performance."
+  },
+  {
+    "id": 58,
+    "question": "Which statement about Amazon EBS and EBS-optimized instances is correct?",
+    "type": "single",
+    "choices": [
+      "An EBS volume can be attached to multiple EC2 instances at the same time.",
+      "EBS-optimized instances have a dedicated network connection to EBS for better throughput and lower latency.",
+      "EBS volumes do not need an EC2 instance to be accessed.",
+      "EBS-optimized only works for S3."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "EBS-optimized instances provide a dedicated network path to EBS for consistent throughput and low latency."
+  },
+  {
+    "id": 59,
+    "question": "Which statement is true about Amazon EBS volumes?",
+    "type": "single",
+    "choices": [
+      "A standard EBS volume can be attached to only one EC2 instance at a time.",
+      "EBS volumes can be attached to multiple EC2 instances simultaneously by default.",
+      "EBS volumes do not support snapshots.",
+      "EBS volumes automatically scale network throughput with any EC2 instance."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "By default, a standard EBS volume can only attach to a single EC2 instance at a time. Multi-attach is available only for specific volume types."
+  },
+  {
+    "id": 60,
+    "question": "Which statement correctly describes the difference between standard EBS and an EBS-optimized EC2 instance?",
+    "type": "single",
+    "choices": [
+      "Standard EBS uses a dedicated network; EBS-Optimized uses the shared AWS network.",
+      "Standard EBS uses the shared AWS network; EBS-Optimized has a dedicated network for consistent throughput.",
+      "Both use the same dedicated network automatically.",
+      "EBS-Optimized only works with S3."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Standard EBS shares network bandwidth with other traffic. EBS-Optimized instances provide dedicated bandwidth for consistent performance."
+  },
+  {
+    "id": 61,
+    "question": "Which scenario is the best use case for Amazon FSx for Windows File Server?",
+    "type": "single",
+    "choices": [
+      "Storing unstructured data only in S3",
+      "Providing a managed SMB file share for on-premises Windows users",
+      "Hosting a relational database",
+      "Creating EC2 snapshots"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "FSx for Windows File Server provides fully managed SMB file shares accessible by on-premises Windows clients."
+  },
+  {
+    "id": 62,
+    "question": "You need high-performance storage for ML workloads that also links to S3. Which FSx type should you use?",
+    "type": "single",
+    "choices": [
+      "FSx for Windows File Server",
+      "FSx for Lustre",
+      "FSx for NetApp ONTAP",
+      "FSx for EBS"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "FSx for Lustre is optimized for high-performance compute workloads and can integrate with S3 for fast data access."
+  },
+  {
+    "id": 63,
+    "question": "Which statement about FSx integration is correct?",
+    "type": "single",
+    "choices": [
+      "FSx cannot connect to on-premises Active Directory",
+      "FSx for Windows can be accessed by on-premises users via SMB",
+      "FSx automatically replicates data to Glacier",
+      "FSx is a replacement for S3"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "FSx for Windows integrates with on-premises AD and allows access via SMB to users in corporate networks."
+  },
+  {
+    "id": 64,
+    "question": "Which storage option can be used for the root volume of an EC2 instance?",
+    "type": "single",
+    "choices": [
+      "Amazon EBS SSD",
+      "Instance store",
+      "S3 bucket",
+      "Both A and B"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "explanation": "Root volumes can use either Amazon EBS (SSD/HDD) or instance store, depending on the AMI type."
+  },
+  {
+    "id": 65,
+    "question": "You need a data volume that will be attached to only one Linux instance. Which storage options are suitable?",
+    "type": "multiple",
+    "choices": [
+      "EFS",
+      "Instance store",
+      "Amazon EBS",
+      "FSx for Windows"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "explanation": "Instance store and Amazon EBS are designed for single-instance attachment. EFS is shared, and FSx for Windows is for Windows workloads."
+  },
+  {
+    "id": 66,
+    "question": "You want multiple Linux EC2 instances to share a data volume simultaneously. Which AWS service should you use?",
+    "type": "single",
+    "choices": [
+      "Amazon EBS",
+      "Instance store",
+      "Amazon EFS",
+      "FSx for Windows"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Amazon EFS is a managed NFS service that allows multiple Linux instances to share the same filesystem."
+  },
+  {
+    "id": 67,
+    "question": "Multiple Windows EC2 instances need shared file storage. Which service is recommended?",
+    "type": "single",
+    "choices": [
+      "Amazon EFS",
+      "FSx for Windows",
+      "Amazon EBS",
+      "Instance store"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "FSx for Windows provides fully managed shared SMB file storage for multiple Windows EC2 instances."
+  },
+  {
+    "id": 68,
+    "question": "You want an EC2 instance to rerun its user data script without restarting. What must you do?",
+    "type": "multiple",
+    "choices": [
+      "Modify the user data in the console → it runs automatically",
+      "Delete /var/lib/cloud/instances/INSTANCE_ID/config_script_user → then rerun the user data command",
+      "Stop and start the instance",
+      "Both B and manually running the cloud-init command"
+    ],
+    "correctAnswers": [
+      0,
+      3
+    ],
+    "explanation": "To rerun user data without a restart, you must either clean the previous execution flags and manually run the cloud-init script or modify user data carefully after cleanup."
+  },
+  {
+    "id": 69,
+    "question": "You need to rerun user data on a running EC2 instance, but user data only runs at first launch. Which steps are required?",
+    "type": "single",
+    "choices": [
+      "Stop the instance → modify user data → restart instance",
+      "Modify user data → it automatically reruns on running instance",
+      "Delete the instance → create a new one",
+      "Use S3 Transfer Acceleration"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "User data scripts run at launch. To update them for Auto Scaling or a running instance, you typically stop, modify the AMI or user data, and restart the instance."
+  },
+  {
+    "id": 70,
+    "question": "Which AMI type is typically used as a fully patched, ready-to-deploy image across multiple instances?",
+    "type": "single",
+    "choices": [
+      "Basic AMI",
+      "Silver AMI",
+      "Golden AMI",
+      "Custom EBS volume"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "A Golden AMI is a prebuilt, fully patched AMI used as a baseline for deployment across multiple instances."
+  },
+  {
+    "id": 71,
+    "question": "Which statement about Cluster Placement Groups is correct?",
+    "type": "single",
+    "choices": [
+      "Instances are spread across different racks for high availability",
+      "Instances are placed close together in a single AZ for low-latency network performance",
+      "Instances are automatically in multiple AZs",
+      "Placement groups are only for EBS volumes"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Cluster placement groups place instances close together within a single AZ to optimize network latency and throughput."
+  },
+  {
+    "id": 72,
+    "question": "Which placement group is best to reduce correlated failures by spreading instances across racks?",
+    "type": "multiple",
+    "choices": [
+      "Cluster",
+      "Partition",
+      "Spread",
+      "Auto Scaling"
+    ],
+    "correctAnswers": [
+      1,
+      2
+    ],
+    "explanation": "Spread and Partition placement groups distribute instances across hardware/racks to reduce correlated failures."
+  },
+  {
+    "id": 73,
+    "question": "Which statement correctly differentiates Reserved Instances from Savings Plans?",
+    "type": "single",
+    "choices": [
+      "Reserved Instances → commit to a specific instance type; Savings Plans → commit to a dollar amount of compute usage",
+      "Reserved Instances → commit to dollar spend; Savings Plans → commit to a specific instance",
+      "Both require a monthly payment only",
+      "Both automatically apply to S3 storage"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Reserved Instances commit to instance type and term, while Savings Plans provide flexibility to commit to a dollar amount of compute usage."
+  },
+  {
+    "id": 74,
+    "question": "You have a steady-state web application running 24/7. Which pricing model does AWS recommend to optimize cost?",
+    "type": "single",
+    "choices": [
+      "On-Demand",
+      "Spot",
+      "Reserved Instances or Savings Plans",
+      "Dedicated Hosts"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "For predictable, 24/7 workloads, Reserved Instances or Savings Plans provide cost optimization compared to On-Demand or Spot pricing."
+  },
+  {
+    "id": 75,
+    "question": "A company runs batch jobs that are flexible in timing and can be interrupted. Which EC2 pricing model is most cost-effective?",
+    "type": "single",
+    "choices": [
+      "Reserved Instances",
+      "Spot Instances",
+      "Savings Plans",
+      "On-Demand"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Spot Instances offer significant cost savings for workloads that can tolerate interruptions."
+  },
+  {
+    "id": 76,
+    "question": "You manage three workloads: 24/7 API servers, seasonal marketing traffic spikes, and batch data processing jobs. Which EC2 pricing models should you use for cost optimization?",
+    "type": "single",
+    "choices": [
+      "API servers → On-Demand; Marketing → Spot; Batch → Reserved",
+      "API servers → Reserved/Savings Plans; Marketing → On-Demand; Batch → Spot",
+      "API servers → Spot; Marketing → Reserved; Batch → On-Demand",
+      "All workloads → On-Demand"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Reserved/Savings Plans for steady 24/7 workloads, On-Demand for unpredictable seasonal spikes, Spot for flexible batch processing jobs."
+  },
+  {
+    "id": 77,
+    "question": "A workload requires very low network latency and high throughput between EC2 instances that must be placed close together. Which placement group should be used?",
+    "type": "single",
+    "choices": [
+      "Spread",
+      "Partition",
+      "Cluster",
+      "Dedicated Host"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Cluster placement groups place instances physically close in a single AZ, providing low-latency and high-throughput networking between them."
+  },
+  {
+    "id": 78,
+    "question": "A large distributed application (like HDFS or Cassandra) must be protected from hardware failure by spreading instances across logical partitions within a single AZ. Which placement group should you use?",
+    "type": "single",
+    "choices": [
+      "Cluster",
+      "Spread",
+      "Partition",
+      "Auto Scaling group"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Partition placement groups divide instances into logical partitions so that hardware failures affect only a subset of instances."
+  },
+  {
+    "id": 79,
+    "question": "Which Amazon EC2 pricing model is best suited for workloads that are flexible, can be interrupted, and require the lowest possible cost?",
+    "type": "single",
+    "choices": [
+      "On-Demand Instances",
+      "Reserved Instances",
+      "Spot Instances",
+      "Dedicated Hosts"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Spot Instances provide the lowest cost but can be interrupted; they are ideal for flexible, fault-tolerant workloads."
+  },
+  {
+    "id": 80,
+    "question": "Which EC2 pricing model is best for interruptible, fault-tolerant workloads that require the lowest cost?",
+    "type": "single",
+    "choices": [
+      "On-Demand",
+      "Reserved",
+      "Spot",
+      "Dedicated Hosts"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Spot Instances allow you to run workloads at steep discounts when they can tolerate interruptions."
+  },
+  {
+    "id": 81,
+    "question": "Which EC2 feature allows you to detach and reattach the same network interface to different EC2 instances?",
+    "type": "single",
+    "choices": [
+      "Elastic IP",
+      "Elastic Network Interface (ENI)",
+      "Placement Group",
+      "Auto Scaling Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Elastic Network Interfaces (ENIs) can be detached from one EC2 instance and attached to another, allowing flexible networking."
+  },
+  {
+    "id": 82,
+    "question": "An application requires very low network latency and high throughput between EC2 instances. Which placement group type should be used?",
+    "type": "single",
+    "choices": [
+      "Partition",
+      "Spread",
+      "Cluster",
+      "Dedicated"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Cluster placement groups optimize network performance by placing instances physically close together within a single AZ."
+  },
+  {
+    "id": 83,
+    "question": "Which EC2 instance type is most appropriate for workloads that require high IOPS and low-latency local storage?",
+    "type": "single",
+    "choices": [
+      "General Purpose",
+      "Compute Optimized",
+      "Storage Optimized",
+      "Memory Optimized"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Storage Optimized instances provide high IOPS and low-latency access to local storage, ideal for transactional databases and large datasets."
+  },
+  {
+    "id": 84,
+    "question": "What happens to data stored on instance store volumes when an EC2 instance is stopped?",
+    "type": "single",
+    "choices": [
+      "Data is preserved",
+      "Data is backed up to S3",
+      "Data is lost",
+      "Data is snapshotted automatically"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Instance store volumes are ephemeral; data is lost when the instance stops or terminates."
+  },
+  {
+    "id": 85,
+    "question": "Which feature allows an EC2 instance to automatically recover if it becomes impaired due to underlying hardware failure?",
+    "type": "single",
+    "choices": [
+      "EC2 Auto Scaling",
+      "Elastic Load Balancing",
+      "EC2 Instance Recovery",
+      "AWS Backup"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "EC2 Instance Recovery automatically recovers an instance impaired by hardware failure, restoring it on healthy hardware."
+  },
+  {
+    "id": 86,
+    "question": "Which EC2 purchase option provides capacity reservation in a specific Availability Zone?",
+    "type": "single",
+    "choices": [
+      "Standard Reserved Instances",
+      "Convertible Reserved Instances",
+      "Spot Instances",
+      "Zonal Reserved Instances"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "explanation": "Zonal Reserved Instances provide both a billing discount and capacity reservation in a specific AZ."
+  },
+  {
+    "id": 87,
+    "question": "An EC2 instance needs to access AWS services securely without storing access keys on the instance. Which solution should be used?",
+    "type": "single",
+    "choices": [
+      "Security Groups",
+      "IAM User",
+      "IAM Role attached to EC2",
+      "Network ACL"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Attaching an IAM Role to an EC2 instance allows secure, temporary credentials for AWS service access without hardcoding keys."
+  },
+  {
+    "id": 88,
+    "question": "Which EC2 feature allows you to save the state of an instance’s root volume for reuse later?",
+    "type": "single",
+    "choices": [
+      "AMI",
+      "Snapshot",
+      "Elastic IP",
+      "Placement Group"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "An AMI (Amazon Machine Image) captures the state of an EC2 instance's root volume and can be used to launch new instances with the same configuration."
+  },
+  {
+    "id": 89,
+    "question": "Which EC2 feature ensures that only one instance runs at a time for a critical workload?",
+    "type": "single",
+    "choices": [
+      "Spot Fleet",
+      "Auto Scaling Group with min=1 max=1",
+      "Placement Group",
+      "Elastic Load Balancer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Setting an Auto Scaling Group with min=1 and max=1 ensures that only one instance runs at a time for critical workloads."
+  },
+  {
+    "id": 90,
+    "question": "An application running on EC2 must be accessible via a static public IPv4 address, even if the instance is stopped and restarted. Which solution meets this requirement?",
+    "type": "single",
+    "choices": [
+      "Public IP",
+      "Elastic IP",
+      "Network Load Balancer",
+      "AMI"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Elastic IPs are static public IP addresses that remain associated with an instance even when it is stopped and restarted."
+  },
+  {
+    "id": 91,
+    "question": "Which EC2 placement group strategy is designed to minimize the impact of correlated hardware failures?",
+    "type": "single",
+    "choices": [
+      "Cluster",
+      "Partition",
+      "Spread",
+      "Dedicated"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Spread placement groups place instances on distinct hardware to reduce the risk of simultaneous failures affecting multiple instances."
+  },
+  {
+    "id": 92,
+    "question": "Which EC2 instance type family is best suited for in-memory databases such as Redis or Memcached?",
+    "type": "single",
+    "choices": [
+      "Compute Optimized",
+      "Memory Optimized",
+      "Storage Optimized",
+      "General Purpose"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Memory Optimized instances provide high memory capacity and performance, ideal for in-memory databases."
+  },
+  {
+    "id": 93,
+    "question": "An EC2 instance must scale automatically based on CPU utilization. Which AWS service enables this?",
+    "type": "single",
+    "choices": [
+      "Elastic Load Balancer",
+      "EC2 Auto Scaling",
+      "AWS CloudFormation",
+      "Placement Groups"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "EC2 Auto Scaling automatically adjusts the number of instances based on CPU utilization or other metrics."
+  },
+  {
+    "id": 94,
+    "question": "Which component controls inbound and outbound traffic at the instance level?",
+    "type": "single",
+    "choices": [
+      "Network ACL",
+      "Route Table",
+      "Security Group",
+      "Internet Gateway"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Security Groups act as virtual firewalls at the instance level, controlling inbound and outbound traffic."
+  },
+  {
+    "id": 95,
+    "question": "Which EC2 feature allows you to hibernate an instance, preserving RAM contents?",
+    "type": "single",
+    "choices": [
+      "Stop instance",
+      "Terminate instance",
+      "Instance hibernation",
+      "AMI backup"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Instance hibernation preserves the contents of the instance’s RAM to disk, allowing faster resume without losing in-memory data."
+  },
+  {
+    "id": 96,
+    "question": "Which EC2 pricing model allows you to change instance families during the term?",
+    "type": "single",
+    "choices": [
+      "Standard Reserved Instances",
+      "Spot Instances",
+      "Convertible Reserved Instances",
+      "Dedicated Instances"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Convertible Reserved Instances allow exchanging reservations for different instance families, sizes, or OS types during the term."
+  },
+  {
+    "id": 97,
+    "question": "An application requires high availability across Availability Zones. Which design is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "Single EC2 instance with Elastic IP",
+      "EC2 instances in one AZ with Auto Scaling",
+      "EC2 instances in multiple AZs behind a Load Balancer",
+      "EC2 instance with snapshot backups"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Deploying EC2 instances across multiple AZs behind a Load Balancer ensures high availability and fault tolerance."
+  },
+  {
+    "id": 98,
+    "question": "Which feature allows you to limit EC2 instance launch permissions within an AWS account?",
+    "type": "single",
+    "choices": [
+      "Security Groups",
+      "IAM policies",
+      "Network ACLs",
+      "Route Tables"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "IAM policies can control which users or roles have permissions to launch EC2 instances."
+  },
+  {
+    "id": 99,
+    "question": "An application requires millisecond-level latency between EC2 instances and 10+ Gbps network throughput. Which configuration is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "Spread Placement Group",
+      "Cluster Placement Group",
+      "Partition Placement Group",
+      "Auto Scaling Group"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Cluster Placement Groups place instances physically close in a single AZ to achieve low latency and high network throughput."
+  },
+  {
+    "id": 100,
+    "question": "You need to copy an EC2 instance to another AWS Region. Which process should you follow?",
+    "type": "single",
+    "choices": [
+      "Create an AMI and copy it to the target Region",
+      "Create an EBS snapshot and attach it cross-region",
+      "Use Elastic IP migration",
+      "Enable Multi-AZ on the instance"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Creating an AMI and copying it to another region allows you to launch instances in that region with the same configuration."
+  },
+  {
+    "id": 101,
+    "question": "Which EC2 feature ensures that an instance is automatically restarted on new hardware after an underlying hardware failure?",
+    "type": "single",
+    "choices": [
+      "Auto Scaling Group",
+      "EC2 Instance Recovery",
+      "Elastic Load Balancer",
+      "AWS Backup"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "EC2 Instance Recovery automatically recovers an instance on new hardware if the underlying host fails."
+  },
+  {
+    "id": 102,
+    "question": "An EC2 instance must call AWS APIs securely and rotate credentials automatically. What is the BEST solution?",
+    "type": "single",
+    "choices": [
+      "Store access keys in environment variables",
+      "Use IAM user credentials",
+      "Attach an IAM role to the EC2 instance",
+      "Use Security Groups"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Attaching an IAM role to an EC2 instance provides temporary credentials and automatic rotation, avoiding hard-coded keys."
+  },
+  {
+    "id": 103,
+    "question": "A workload must run continuously for 3 years, with predictable usage and lowest long-term cost, but instance family changes may be required. Which pricing model is BEST?",
+    "type": "single",
+    "choices": [
+      "On-Demand",
+      "Standard Reserved Instances",
+      "Convertible Reserved Instances",
+      "Spot Instances"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Convertible Reserved Instances allow long-term commitment with the flexibility to change instance families during the term."
+  },
+  {
+    "id": 104,
+    "question": "An application requires persistent shared storage accessible by multiple EC2 instances simultaneously. Which service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon EBS",
+      "Amazon S3",
+      "Amazon EFS",
+      "Instance Store"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Amazon EFS provides fully managed, shared file storage for multiple Linux EC2 instances simultaneously."
+  },
+  {
+    "id": 105,
+    "question": "You want to ensure EC2 instances in different Availability Zones do not share the same underlying hardware. Which placement strategy should you use?",
+    "type": "single",
+    "choices": [
+      "Cluster",
+      "Partition",
+      "Spread",
+      "Dedicated"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Spread placement groups place instances on separate hardware to reduce correlated failures, even across AZs."
+  },
+  {
+    "id": 106,
+    "question": "An EC2 instance must be stopped, patched, and restarted, while keeping its private IPv4 address. Which condition makes this possible?",
+    "type": "single",
+    "choices": [
+      "Instance is in a public subnet",
+      "Instance uses an Elastic IP",
+      "Instance is stopped (not terminated)",
+      "Instance uses instance store"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Stopping an instance preserves its private IPv4 address, while termination would release it. Public subnet or Elastic IP is not required for preserving private IP."
+  },
+  {
+    "id": 107,
+    "question": "Which EC2 storage option provides temporary, high-performance storage physically attached to the host?",
+    "type": "single",
+    "choices": [
+      "Amazon EBS",
+      "Amazon EFS",
+      "Instance Store",
+      "Amazon S3"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Instance Store provides temporary block-level storage physically attached to the host, ideal for high-performance temporary data. Data is lost when the instance stops or terminates."
+  },
+  {
+    "id": 108,
+    "question": "A company runs EC2 instances that must meet strict licensing requirements tied to physical cores. Which EC2 option should be used?",
+    "type": "single",
+    "choices": [
+      "On-Demand Instances",
+      "Reserved Instances",
+      "Dedicated Instances",
+      "Dedicated Hosts"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "explanation": "Dedicated Hosts provide physical servers with EC2 instance capacity fully dedicated to your use, allowing compliance with software licensing requirements tied to physical cores."
+  },
+  {
+    "id": 109,
+    "question": "An EC2 instance must send traffic to the internet, but must not accept inbound traffic from the internet. Which setup satisfies this requirement?",
+    "type": "single",
+    "choices": [
+      "Internet Gateway + Security Group allowing outbound only",
+      "NAT Gateway + private subnet",
+      "Public subnet + Elastic IP",
+      "Network Load Balancer"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "A NAT Gateway in a private subnet allows outbound internet access for instances without exposing them to inbound internet traffic."
+  }
+  ]
+}
