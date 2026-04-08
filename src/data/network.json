@@ -1201,7 +1201,7 @@
     "explanation": "CloudFormation StackSets allow you to deploy stacks across multiple accounts and Regions simultaneously."
   },
   {
-    "id": 111,
+    "id": 93,
     "question": "Which CloudFormation template format is generally more human-readable and easier to maintain?",
     "type": "single",
     "choices": [
@@ -1214,7 +1214,7 @@
     "explanation": "YAML is more concise and human-readable, while JSON is more strict and cross-compatible."
   },
   {
-    "id": 112,
+    "id": 94,
     "question": "You want to visualize the relationships between your AWS resources in a CloudFormation template before deployment. Which tool should you use?",
     "type": "single",
     "choices": [
@@ -1227,7 +1227,7 @@
     "explanation": "CloudFormation Designer provides a visual diagram of resources, dependencies, and stack layout."
   },
   {
-    "id": 113,
+    "id": 95,
     "question": "You updated a CloudFormation template and want to see the exact changes that will occur in your stack before applying them. What should you use?",
     "type": "single",
     "choices": [
@@ -1240,7 +1240,7 @@
     "explanation": "Change Sets allow previewing the effect of template changes before execution."
   },
   {
-    "id": 114,
+    "id": 96,
     "question": "After several manual modifications on a stack’s resources, you want to verify that the deployed stack still matches its template. Which feature helps you do this?",
     "type": "single",
     "choices": [
@@ -1253,7 +1253,7 @@
     "explanation": "Drift Detection identifies resources that differ from the original CloudFormation template."
   },
   {
-    "id": 115,
+    "id": 97,
     "question": "In a CloudFormation template, which section is mandatory and must contain all AWS resources to be created?",
     "type": "single",
     "choices": [
@@ -1266,7 +1266,7 @@
     "explanation": "The Resources section is mandatory; all AWS resources to be created are defined here."
   },
   {
-    "id": 116,
+    "id": 98,
     "question": "You want to create a single template that can deploy different resource configurations for dev, test, and prod environments. Which sections of the template help achieve this?",
     "type": "multiple",
     "choices": [
@@ -1279,7 +1279,7 @@
     "explanation": "Parameters allow dynamic input, and Conditions allow conditional creation of resources based on parameter values."
   },
   {
-    "id": 117,
+    "id": 99,
     "question": "Which CloudFormation feature allows you to provide optional descriptive information about resources for automation tools or documentation?",
     "type": "single",
     "choices": [
@@ -1292,7 +1292,7 @@
     "explanation": "Metadata is optional and can include descriptive info or configuration details for tools."
   },
   {
-    "id": 118,
+    "id": 100,
     "question": "A stack has Outputs exporting the VPC ID. Another stack in the same account needs to use this VPC ID. How should the second stack access it?",
     "type": "single",
     "choices": [
@@ -1305,7 +1305,7 @@
     "explanation": "ImportValue allows one stack to import outputs exported by another stack."
   },
   {
-    "id": 119,
+    "id": 101,
     "question": "Which statement is TRUE about manually modifying resources created by CloudFormation?",
     "type": "single",
     "choices": [
@@ -1318,7 +1318,7 @@
     "explanation": "Drift Detection identifies resources that differ from the deployed template, but manual changes are not automatically reverted."
   },
   {
-    "id": 120,
+    "id": 102,
     "question": "Which of the following is the recommended workflow for updating a production CloudFormation stack with minimal risk?",
     "type": "single",
     "choices": [
@@ -1331,7 +1331,7 @@
     "explanation": "Creating and reviewing a Change Set before execution helps prevent unintended modifications in production."
   },
   {
-    "id": 121,
+    "id": 103,
     "question": "What is the primary purpose of AWS Quick Starts?",
     "type": "single",
     "choices": [
@@ -1344,7 +1344,7 @@
     "explanation": "AWS Quick Starts are pre-built, ready-to-deploy templates for common architectures."
   },
   {
-    "id": 122,
+    "id": 104,
     "question": "You want to deploy a VPC, subnets, and NAT gateways before deploying an application stack. What best practice does this represent?",
     "type": "single",
     "choices": [
@@ -1357,7 +1357,7 @@
     "explanation": "Deploying infrastructure in layers (network → application → database) allows dependencies to be properly managed."
   },
   {
-    "id": 123,
+    "id": 105,
     "question": "In a layered deployment, you output the VPC ID and Subnet IDs from the network stack. How are these used in the application stack?",
     "type": "single",
     "choices": [
@@ -1370,7 +1370,7 @@
     "explanation": "Outputs from the network stack (VPC ID, Subnet IDs) are passed as parameters to the application stack to correctly place resources."
   },
   {
-    "id": 124,
+    "id": 106,
     "question": "Which tool allows you to graphically create, view, and modify CloudFormation templates?",
     "type": "single",
     "choices": [
@@ -1383,7 +1383,7 @@
     "explanation": "CloudFormation Designer or Infrastructure Composer is a visual tool for creating and editing templates."
   },
   {
-    "id": 125,
+    "id": 107,
     "question": "Why is it advantageous to deploy infrastructure stacks in layers?",
     "type": "multiple",
     "choices": [
@@ -1396,7 +1396,7 @@
     "explanation": "Layered deployment improves modularity, dependency management, and template clarity. Security scanning is a separate task."
   },
   {
-    "id": 126,
+    "id": 108,
     "question": "If the network stack outputs a VPC ID, how can the application stack consume it?",
     "type": "single",
     "choices": [
@@ -1409,7 +1409,7 @@
     "explanation": "ImportValue allows a stack to use outputs exported from another stack, enabling modular deployments."
   },
   {
-    "id": 127,
+    "id": 109,
     "question": "AWS Quick Starts can be used to:",
     "type": "single",
     "choices": [
@@ -1422,7 +1422,7 @@
     "explanation": "Quick Starts provide ready-to-deploy architectures to accelerate deployment of fully functional environments."
   },
   {
-    "id": 128,
+    "id": 110,
     "question": "Which statement is TRUE about outputs in CloudFormation?",
     "type": "single",
     "choices": [
@@ -1435,7 +1435,7 @@
     "explanation": "Outputs can be exported and used as inputs in other stacks to manage dependencies."
   },
   {
-    "id": 129,
+    "id": 111,
     "question": "When creating a multi-layer CloudFormation architecture, what is the recommended order of stack deployment?",
     "type": "single",
     "choices": [
@@ -1448,7 +1448,7 @@
     "explanation": "Start with network resources, then database, then application to ensure proper dependencies."
   },
   {
-    "id": 130,
+    "id": 112,
     "question": "Infrastructure Composer helps in CloudFormation by:",
     "type": "multiple",
     "choices": [
@@ -1461,7 +1461,7 @@
     "explanation": "Infrastructure Composer allows graphical visualization and modification of templates; it does not automatically scale EC2 or validate code syntax."
   },
   {
-    "id": 131,
+    "id": 113,
     "question": "You need to update a running CloudFormation stack with minimal downtime. Which feature should you use to preview the changes before executing them?",
     "type": "single",
     "choices": [
@@ -1474,7 +1474,7 @@
     "explanation": "Change Sets allow you to preview proposed updates to a stack before executing them."
   },
   {
-    "id": 132,
+    "id": 114,
     "question": "Drift detection in CloudFormation is used to:",
     "type": "single",
     "choices": [
@@ -1487,7 +1487,7 @@
     "explanation": "Drift detection identifies manual changes to stack resources that differ from the deployed template."
   },
   {
-    "id": 133,
+    "id": 115,
     "question": "Which CloudFormation section allows you to conditionally create resources based on parameter values?",
     "type": "single",
     "choices": [
@@ -1500,7 +1500,7 @@
     "explanation": "The Conditions section allows resources to be created only if certain conditions evaluate to true."
   },
   {
-    "id": 134,
+    "id": 116,
     "question": "You have a CloudFormation template that needs to be reused across multiple accounts and regions. Which feature helps achieve this?",
     "type": "single",
     "choices": [
@@ -1513,7 +1513,7 @@
     "explanation": "Nested stacks allow modular templates to be reused in multiple accounts or regions."
   },
   {
-    "id": 135,
+    "id": 117,
     "question": "A CloudFormation macro is used to:",
     "type": "single",
     "choices": [
@@ -1526,7 +1526,7 @@
     "explanation": "Macros allow you to transform or customize a template before creating resources."
   },
   {
-    "id": 136,
+    "id": 118,
     "question": "You want a parameter in your template to accept only certain predefined values. Which feature should you use?",
     "type": "single",
     "choices": [
@@ -1539,7 +1539,7 @@
     "explanation": "The AllowedValues property restricts a parameter to a predefined list of acceptable values."
   },
   {
-    "id": 137,
+    "id": 119,
     "question": "Which section of a CloudFormation template can store arbitrary information about the stack for tools or humans, without affecting stack deployment?",
     "type": "single",
     "choices": [
@@ -1552,7 +1552,7 @@
     "explanation": "The Metadata section allows storing non-functional information for documentation or tooling."
   },
   {
-    "id": 138,
+    "id": 120,
     "question": "You need to reference an output value from a network stack in an application stack running in a different account. Which mechanism should you use?",
     "type": "single",
     "choices": [
@@ -1565,7 +1565,7 @@
     "explanation": "Cross-stack references using Export/ImportValue allow stacks to share outputs, even across accounts if configured properly."
   },
   {
-    "id": 139,
+    "id": 121,
     "question": "During a stack update, you want to protect certain resources from being unintentionally replaced. What feature should you use?",
     "type": "single",
     "choices": [
@@ -1578,7 +1578,7 @@
     "explanation": "Stack Policies prevent specific resources from being updated or replaced during stack updates."
   },
   {
-    "id": 140,
+    "id": 122,
     "question": "You want to deploy an EC2 instance only if a particular VPC exists and a parameter value is true. Which CloudFormation features will help achieve this? (Choose TWO)",
     "type": "multiple",
     "choices": [
