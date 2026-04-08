@@ -1,9 +1,1594 @@
 {
     "id":  "network",
-    "name":  "Network \u0026 Security",
+    "name":  "Monitoring, elasticity, HA and IaC-CloudFormation",
     "description":  "Networking protocols, security, and infrastructure",
     "icon":  "Network",
     "questions":  [
-        
-    ]
+  {
+    "id": 1,
+    "question": "Why is an ALB generally slower than an NLB?",
+    "type": "single",
+    "choices": [
+      "ALB routes traffic randomly",
+      "ALB inspects HTTP headers, paths, and hostnames to determine the target, while NLB uses IP directly",
+      "ALB requires CloudWatch alarms to route",
+      "ALB cannot handle HTTPS traffic"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ALB performs layer 7 inspection of HTTP headers, paths, and hostnames to determine the target, which adds processing overhead. NLB works at layer 4 and routes directly based on IP."
+  },
+  {
+    "id": 2,
+    "question": "Which statement is TRUE about Simple Routing in Route 53?",
+    "type": "single",
+    "choices": [
+      "It allows routing traffic to multiple resources based on weighted values",
+      "It routes traffic to a single resource and returns the value for the DNS query",
+      "It routes traffic based on geographic location",
+      "It requires health checks to work"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Simple routing sends DNS queries to a single resource without additional logic. Weighted, latency, and geolocation policies provide more complex routing."
+  },
+  {
+    "id": 3,
+    "question": "You want 70% of traffic to go to Server A and 30% to Server B. Which routing policy should you use?",
+    "type": "single",
+    "choices": [
+      "Simple",
+      "Weighted",
+      "Failover",
+      "Latency"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Weighted routing allows distribution of traffic between resources based on assigned weights."
+  },
+  {
+    "id": 4,
+    "question": "Which routing policy directs users to the resource with the lowest network latency?",
+    "type": "single",
+    "choices": [
+      "Failover",
+      "Geolocation",
+      "Latency",
+      "Weighted"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Latency routing measures latency from the user to AWS regions and directs traffic to the lowest-latency endpoint."
+  },
+  {
+    "id": 5,
+    "question": "Which Route 53 routing policy is designed to send traffic to a backup resource when the primary is unhealthy?",
+    "type": "single",
+    "choices": [
+      "Failover",
+      "Latency",
+      "Weighted",
+      "Geoproximity"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Failover routing uses health checks to route traffic to a backup resource when the primary fails."
+  },
+  {
+    "id": 6,
+    "question": "Which routing policy is best to serve users based on their geographic location?",
+    "type": "single",
+    "choices": [
+      "Latency",
+      "Geolocation",
+      "Weighted",
+      "Simple"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Geolocation routing directs traffic based on the geographic location of users."
+  },
+  {
+    "id": 7,
+    "question": "What is the main difference between Geoproximity and Geolocation routing?",
+    "type": "single",
+    "choices": [
+      "Geoproximity can shift traffic using a bias value to increase or decrease traffic to a region",
+      "Geolocation uses weighted values to distribute traffic",
+      "Geoproximity only works with failover endpoints",
+      "Geolocation requires health checks"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Geoproximity routing allows adjusting traffic to regions using a bias value. Geolocation routing sends traffic strictly based on user location."
+  },
+  {
+    "id": 8,
+    "question": "Which statement about Multi-value Answer Routing is correct?",
+    "type": "single",
+    "choices": [
+      "It allows multiple values for a DNS name and returns multiple healthy IPs",
+      "It only sends traffic to the primary IP",
+      "It routes based on geographic location",
+      "It is identical to weighted routing"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Multi-value Answer routing returns multiple IP addresses for a DNS name and ensures only healthy endpoints are included."
+  },
+  {
+    "id": 9,
+    "question": "Which Route 53 routing policies can integrate with health checks to route traffic only to healthy resources?",
+    "type": "single",
+    "choices": [
+      "Simple, Weighted, Failover",
+      "Latency only",
+      "Geolocation only",
+      "None"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Simple, Weighted, and Failover routing policies can integrate with health checks to route traffic only to healthy endpoints."
+  },
+  {
+    "id": 10,
+    "question": "Which statement correctly differentiates a DNS record from a routing policy in Route 53?",
+    "type": "single",
+    "choices": [
+      "A DNS record defines the rule for traffic distribution; a routing policy maps domain names to IPs",
+      "A DNS record maps a domain name to a resource; a routing policy defines how Route 53 chooses which record to return",
+      "A DNS record is only used for health checks",
+      "Routing policies can exist without DNS records"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DNS records map domain names to resources. Routing policies define how Route 53 selects which record is returned."
+  },
+  {
+    "id": 11,
+    "question": "You have two IPs for the same domain: 3.10.20.30 and 54.12.44.21. Which routing policy returns one IP randomly per DNS query?",
+    "type": "single",
+    "choices": [
+      "Weighted",
+      "Simple",
+      "Failover",
+      "Latency"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Simple routing returns a single resource for DNS queries, effectively selecting randomly if multiple records exist."
+  },
+  {
+    "id": 12,
+    "question": "You define multiple DNS records for example.com and apply a weighted routing policy. Which is TRUE?",
+    "type": "single",
+    "choices": [
+      "DNS records store the weights for each IP",
+      "DNS records are the IP mappings; routing policy determines how traffic is split",
+      "Routing policy automatically changes the IP addresses",
+      "Multiple DNS records cannot exist for one domain"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DNS records store the actual IP mappings, while the routing policy determines how traffic is distributed across them."
+  },
+  {
+    "id": 13,
+    "question": "Which statement correctly matches the load balancer type with its OSI layer and protocol support?",
+    "type": "single",
+    "choices": [
+      "Application Load Balancer (ALB) → Layer 7, HTTP/HTTPS",
+      "Network Load Balancer (NLB) → Layer 7, HTTPS only",
+      "Classic Load Balancer (CLB) → Layer 4 only",
+      "Gateway Load Balancer → Layer 3, TCP/UDP"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ALB operates at Layer 7 and supports HTTP/HTTPS. NLB works at Layer 4, CLB supports both Layer 4 and 7, and GWLB operates at Layer 3 using GENEVE."
+  },
+  {
+    "id": 14,
+    "question": "Which load balancer type supports content-based routing (routing based on URL path or host)?",
+    "type": "single",
+    "choices": [
+      "Network Load Balancer",
+      "Application Load Balancer",
+      "Classic Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Only Application Load Balancers support content-based routing using hostnames and URL paths."
+  },
+  {
+    "id": 15,
+    "question": "You need ultra-low latency TCP traffic distribution and static IP support for millions of requests per second. Which load balancer should you choose?",
+    "type": "single",
+    "choices": [
+      "Application Load Balancer",
+      "Network Load Balancer",
+      "Classic Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Network Load Balancer is optimized for ultra-low latency, high throughput TCP/UDP traffic and supports static IPs."
+  },
+  {
+    "id": 16,
+    "question": "Which statement about health checks for load balancers is TRUE?",
+    "type": "single",
+    "choices": [
+      "ALB and NLB support EC2 instance health checks; CLB supports only TCP ping",
+      "ALB supports HTTP/HTTPS health checks, NLB supports TCP, CLB supports both",
+      "Gateway LB does not perform health checks",
+      "All load balancers require CloudWatch alarms for health checks"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ALB uses HTTP/HTTPS health checks, NLB uses TCP health checks, and CLB supports both TCP and HTTP/HTTPS."
+  },
+  {
+    "id": 17,
+    "question": "Which load balancer allows routing traffic directly to IP addresses instead of only EC2 instances?",
+    "type": "single",
+    "choices": [
+      "Classic Load Balancer",
+      "Network Load Balancer",
+      "Application Load Balancer",
+      "None of the above"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Network Load Balancers support IP-based targets, enabling routing to IP addresses inside or outside AWS."
+  },
+  {
+    "id": 18,
+    "question": "Which load balancer supports TLS termination at the load balancer for HTTPS traffic?",
+    "type": "multiple",
+    "choices": [
+      "Network Load Balancer",
+      "Application Load Balancer",
+      "Classic Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [1, 2],
+    "explanation": "ALB and CLB support TLS termination. NLB typically uses TLS passthrough (with optional TLS listeners), and GWLB does not terminate TLS."
+  },
+  {
+    "id": 19,
+    "question": "Which statement about cross-zone load balancing is correct?",
+    "type": "single",
+    "choices": [
+      "ALB and CLB can distribute traffic evenly across AZs with cross-zone enabled",
+      "NLB automatically balances evenly without cross-zone setting",
+      "Gateway LB does not support cross-zone balancing",
+      "CLB requires cross-zone disabled to work properly"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ALB and CLB support cross-zone load balancing to evenly distribute traffic across all registered targets in all AZs."
+  },
+  {
+    "id": 20,
+    "question": "A company needs UDP traffic load balancing, high throughput, low latency, and static IP support. Which load balancer should they choose?",
+    "type": "single",
+    "choices": [
+      "Application Load Balancer",
+      "Classic Load Balancer",
+      "Network Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Network Load Balancer supports UDP, provides high throughput, low latency, and static IP addresses."
+  },
+  {
+    "id": 21,
+    "question": "Which statement best describes the primary purpose of a Gateway Load Balancer (GWLB)?",
+    "type": "single",
+    "choices": [
+      "Distribute HTTP/HTTPS traffic with content-based routing",
+      "Provide ultra-low latency TCP traffic distribution",
+      "Enable security appliances and traffic inspection in a scalable, transparent way",
+      "Automatically scale DynamoDB tables"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Gateway Load Balancer is designed to deploy, scale, and manage third-party security appliances for traffic inspection."
+  },
+  {
+    "id": 22,
+    "question": "A client requests https://admin.example.com/login. Which ALB rule routes the request correctly?",
+    "type": "single",
+    "choices": [
+      "/api/* → Target Group A",
+      "/web/* → Target Group B",
+      "admin.* → Target Group C",
+      "/admin/* → Target Group C"
+    ],
+    "correctAnswers": [2],
+    "explanation": "ALB hostname-based routing matches the host header (admin.example.com) using a rule like admin.*."
+  },
+  {
+    "id": 23,
+    "question": "How does a Network Load Balancer determine which target receives TCP traffic?",
+    "type": "single",
+    "choices": [
+      "Randomly selects any target",
+      "Uses the client IP and port to forward traffic to the registered target port",
+      "Inspects HTTP headers to route traffic",
+      "Requires a CloudWatch alarm to route traffic"
+    ],
+    "correctAnswers": [1],
+    "explanation": "NLB uses a flow hash based on source/destination IP and ports to consistently route TCP traffic."
+  },
+  {
+    "id": 24,
+    "question": "Which load balancer is faster for high-performance TCP traffic?",
+    "type": "single",
+    "choices": [
+      "Application Load Balancer (ALB)",
+      "Network Load Balancer (NLB)",
+      "Classic Load Balancer (CLB)",
+      "Gateway Load Balancer (GWLB)"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Network Load Balancer is optimized for high-performance, low-latency TCP traffic."
+  },
+  {
+    "id": 25,
+    "question": "You have an app that needs to scale before predictable morning traffic spikes and respond to sudden traffic surges during the day. Which combination of Auto Scaling is ideal?",
+    "type": "single",
+    "choices": [
+      "Scheduled + Predictive",
+      "Dynamic + Scheduled",
+      "Predictive + Manual",
+      "Manual only"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Predictive scaling prepares capacity in advance for predictable patterns, while scheduled scaling handles known time-based changes."
+  },
+  {
+    "id": 26,
+    "question": "Which of the following AWS services automatically scale without manual intervention?",
+    "type": "single",
+    "choices": [
+      "Amazon S3, DynamoDB, Lambda",
+      "Amazon RDS, EC2, VPC",
+      "Amazon RDS, S3, EC2",
+      "EC2, DynamoDB, RDS"
+    ],
+    "correctAnswers": [0],
+    "explanation": "S3, DynamoDB, and Lambda are fully managed services that automatically scale based on demand."
+  },
+  {
+    "id": 27,
+    "question": "Which AWS service does NOT scale automatically and requires manual configuration for capacity?",
+    "type": "single",
+    "choices": [
+      "Amazon S3",
+      "Amazon DynamoDB",
+      "AWS Lambda",
+      "Amazon RDS"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Amazon RDS requires manual scaling for instance type or storage, although read replicas can be added for read scaling."
+  },
+  {
+    "id": 28,
+    "question": "What is the purpose of an Auto Scaling policy?",
+    "type": "single",
+    "choices": [
+      "It defines the EC2 instance type for the group",
+      "It sets the rules that control when and how scaling occurs",
+      "It automatically backs up instances",
+      "It monitors billing for Auto Scaling groups"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Auto Scaling policies define how and when an Auto Scaling Group adds or removes instances."
+  },
+  {
+    "id": 29,
+    "question": "You configure a Target Tracking Scaling Policy with average CPU target = 50%. Which behavior is correct?",
+    "type": "single",
+    "choices": [
+      "CPU > 50% → ASG removes instances automatically",
+      "CPU < 50% → ASG adds instances automatically",
+      "CPU > 50% → ASG adds instances automatically; CPU < 50% → ASG removes instances automatically",
+      "Scaling occurs only at scheduled times"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Target tracking scaling automatically adjusts capacity to maintain the target metric."
+  },
+  {
+    "id": 30,
+    "question": "Which statement about Target Tracking Scaling Policy is TRUE?",
+    "type": "single",
+    "choices": [
+      "It requires a CloudWatch alarm to trigger scaling",
+      "It automatically adjusts the number of instances to maintain a target metric without needing a CloudWatch alarm",
+      "It only works with scheduled scaling",
+      "It cannot scale based on CPU utilization"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Target tracking policies manage CloudWatch alarms internally and maintain the target metric automatically."
+  },
+  {
+    "id": 31,
+    "question": "Which statement correctly describes a Step Scaling Policy?",
+    "type": "single",
+    "choices": [
+      "It automatically maintains a target metric without CloudWatch alarms",
+      "You define thresholds and steps; each metric requires a CloudWatch alarm",
+      "It only works for scheduled scaling",
+      "It adds or removes instances randomly"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step scaling uses CloudWatch alarms and predefined scaling steps based on metric thresholds."
+  },
+  {
+    "id": 32,
+    "question": "If a Step Scaling Policy is configured so CPU at 55% adds 1 instance and CPU at 75% adds 2 instances, what happens if CPU rises to 80%?",
+    "type": "single",
+    "choices": [
+      "No scaling occurs",
+      "1 instance is added",
+      "2 instances are added",
+      "All instances are terminated"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Step scaling applies the rule matching the highest threshold crossed, resulting in adding 2 instances."
+  },
+  {
+    "id": 33,
+    "question": "Which statement about Amazon Aurora scaling is TRUE?",
+    "type": "single",
+    "choices": [
+      "Vertical scaling is automatic for Aurora clusters",
+      "Horizontal scaling can include up to 15 Aurora replicas for read-only workloads",
+      "Each Aurora replica has a separate cluster volume",
+      "Aurora Serverless does not scale horizontally"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Aurora supports up to 15 read replicas that share the same distributed storage volume."
+  },
+  {
+    "id": 34,
+    "question": "Which describes Amazon RDS scaling correctly?",
+    "type": "single",
+    "choices": [
+      "Vertical scaling is automatic based on CPU usage",
+      "Horizontal scaling is done by adding read replicas; vertical scaling requires manual changes",
+      "RDS cannot use read replicas",
+      "Read replicas share the same EBS volume as the source instance"
+    ],
+    "correctAnswers": [1],
+    "explanation": "RDS supports horizontal scaling via read replicas, while vertical scaling requires manual intervention."
+  },
+  {
+    "id": 35,
+    "question": "How does DynamoDB handle scaling for read and write operations?",
+    "type": "single",
+    "choices": [
+      "Automatically scales EC2 instances",
+      "Each table operates with provisioned RCUs and WCUs defining throughput capacity",
+      "Only vertical scaling is supported",
+      "Read replicas are required for horizontal scaling"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DynamoDB uses provisioned or on-demand capacity measured in RCUs and WCUs to handle read and write scaling."
+  },
+  {
+    "id": 36,
+    "question": "A software engineer wants to keep an AWS account within the Free Tier and avoid unexpected costs with the least effort. Which approach will work?",
+    "type": "single",
+    "choices": [
+      "Create an Amazon CloudWatch alarm to send an email message when the account billing exceeds $0",
+      "Create a service control policy (SCP) to restrict all services that are not included in the AWS Free Tier",
+      "Sign in to the AWS Management Console each month and check the billing dashboard",
+      "Create an Amazon CloudWatch metric to monitor account billing and limit it to $0"
+    ],
+    "correctAnswers": [0],
+    "explanation": "A billing alarm in CloudWatch provides automatic notification with minimal effort. SCPs cannot reliably restrict Free Tier usage, and CloudWatch cannot enforce spending limits."
+  },
+  {
+    "id": 37,
+    "question": "An application must react automatically when an EC2 instance changes state (stopped or terminated) without polling. Which service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon CloudWatch Logs",
+      "AWS EventBridge",
+      "AWS Config",
+      "Amazon SNS"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS EventBridge captures AWS service events in near real time and triggers actions based on rules."
+  },
+  {
+    "id": 38,
+    "question": "A company wants to route events from AWS services and a third-party SaaS application to multiple targets such as Lambda and SQS. Which service fits best?",
+    "type": "single",
+    "choices": [
+      "Amazon SQS",
+      "Amazon SNS",
+      "AWS EventBridge",
+      "AWS Step Functions"
+    ],
+    "correctAnswers": [2],
+    "explanation": "AWS EventBridge supports events from AWS services and SaaS partners and enables rule-based routing to multiple targets."
+  },
+  {
+    "id": 39,
+    "question": "Which statement about Amazon EventBridge is TRUE?",
+    "type": "single",
+    "choices": [
+      "It requires servers to manage",
+      "It polls resources every minute",
+      "It reacts to events in near real time using rules",
+      "It stores events permanently"
+    ],
+    "correctAnswers": [2],
+    "explanation": "EventBridge is serverless and reacts to events in near real time using rules and targets."
+  },
+  {
+    "id": 40,
+    "question": "Which statement about AWS EventBridge default behavior is correct?",
+    "type": "single",
+    "choices": [
+      "You must configure each AWS service to send events manually",
+      "Most AWS services automatically send events; you only need to create a rule and target",
+      "EventBridge only works with Lambda functions",
+      "EventBridge polls services every minute to check for events"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Most AWS services publish events to EventBridge by default; users only configure rules and targets."
+  },
+  {
+    "id": 41,
+    "question": "You want an Auto Scaling group to increase capacity every weekday at 8 AM automatically. Which scaling method should you use?",
+    "type": "single",
+    "choices": [
+      "Dynamic scaling",
+      "Scheduled scaling",
+      "Predictive scaling",
+      "Manual scaling"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Scheduled scaling is designed for time-based, predictable scaling actions."
+  },
+  {
+    "id": 42,
+    "question": "Which metric is commonly used to trigger dynamic scaling?",
+    "type": "single",
+    "choices": [
+      "EC2 instance type",
+      "CPU utilization",
+      "Predefined schedule",
+      "Launch template version"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Dynamic scaling reacts automatically to metrics such as CPU utilization, memory, or request count."
+  },
+  {
+    "id": 43,
+    "question": "You want your application to anticipate traffic spikes and scale before they happen. Which method should you use?",
+    "type": "single",
+    "choices": [
+      "Dynamic scaling",
+      "Scheduled scaling",
+      "Predictive scaling",
+      "Manual scaling"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Predictive scaling uses historical data and machine learning to forecast traffic and scale in advance."
+  },
+  {
+    "id": 44,
+    "question": "Which statement is TRUE about Auto Scaling types?",
+    "type": "single",
+    "choices": [
+      "Scheduled scaling reacts to sudden traffic changes",
+      "Dynamic scaling uses metrics to react automatically",
+      "Predictive scaling can only scale down",
+      "Scheduled scaling predicts traffic using machine learning"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Dynamic scaling responds automatically to real-time metrics, while scheduled and predictive scaling serve different purposes."
+  },
+  {
+    "id": 45,
+    "question": "A DevOps engineer detected that the demand on a fleet of Amazon EC2 instances in an Auto Scaling group increases by a set amount on weekend days. Which type of scaling is the MOST appropriate in this case?",
+    "type": "single",
+    "choices": [
+      "Predictive",
+      "Manual",
+      "Scheduled",
+      "Dynamic"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Scheduled scaling is ideal for predictable, time-based changes in demand such as regular weekend traffic increases."
+  },
+  {
+    "id": 46,
+    "question": "A DevOps engineer launches a fleet of Amazon EC2 instances in an Auto Scaling group behind an Application Load Balancer. The EC2 instances must maintain 50 percent average CPU utilization. Which type of scaling is appropriate?",
+    "type": "single",
+    "choices": [
+      "Step scaling",
+      "Manual scaling",
+      "Target tracking scaling",
+      "Simple scaling"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Target tracking scaling automatically adjusts capacity to maintain a specified metric value such as average CPU utilization."
+  },
+  {
+    "id": 47,
+    "question": "How can a user vertically scale an Amazon RDS database?",
+    "type": "single",
+    "choices": [
+      "By adding read replicas",
+      "By sharding the database",
+      "By changing the instance class or size",
+      "By creating dedicated read and write nodes"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Vertical scaling for RDS is done by modifying the DB instance class to provide more CPU, memory, or networking capacity."
+  },
+  {
+    "id": 48,
+    "question": "How can an AWS customer horizontally scale an Amazon Aurora database?",
+    "type": "single",
+    "choices": [
+      "By creating Amazon CloudWatch alarms",
+      "By creating a scaling policy",
+      "By adding Aurora Replica instances using Aurora Auto Scaling",
+      "By changing the instance type"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Aurora scales horizontally by adding read replicas, which can be managed automatically using Aurora Auto Scaling."
+  },
+  {
+    "id": 49,
+    "question": "How does Amazon DynamoDB perform automatic scaling?",
+    "type": "single",
+    "choices": [
+      "It adjusts the provisioned throughput capacity in response to traffic patterns",
+      "It changes the instance type in response to processing load",
+      "It adds read replicas automatically",
+      "It adds and removes database instances"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DynamoDB auto scaling adjusts read and write capacity units based on observed traffic patterns."
+  },
+  {
+    "id": 50,
+    "question": "A fleet of Amazon EC2 instances runs an application using a custom protocol on TCP port 42000. Internet clients must connect and balance traffic across the instances. Which load balancer is BEST?",
+    "type": "single",
+    "choices": [
+      "Classic Load Balancer",
+      "Application Load Balancer",
+      "Gateway Load Balancer",
+      "Network Load Balancer"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Network Load Balancer operates at Layer 4 and is ideal for TCP-based traffic with high performance and low latency."
+  },
+  {
+    "id": 51,
+    "question": "A company must build a highly available website that uses server-side scripts to serve dynamic HTML. Which solution provides the HIGHEST availability for the LEAST cost and complexity?",
+    "type": "single",
+    "choices": [
+      "Auto Scaling with EC2 behind a Network Load Balancer and Route 53 latency routing",
+      "Auto Scaling with EC2 behind an Application Load Balancer",
+      "A second web server in another Region with Route 53 failover routing",
+      "Static website hosting on Amazon S3"
+    ],
+    "correctAnswers": [1],
+    "explanation": "An Application Load Balancer with Auto Scaling provides high availability for dynamic workloads with minimal operational complexity."
+  },
+  {
+    "id": 52,
+    "question": "Users in location A connect to an application in Region A, and users in location B connect to Region B. If Region A becomes unhealthy, traffic from location A must be redirected to Region B. Which solution meets this requirement?",
+    "type": "single",
+    "choices": [
+      "Use geolocation routing with failover records in Amazon Route 53",
+      "Use geoproximity routing with a Network Load Balancer across Regions",
+      "Use latency-based routing with CloudWatch alarms",
+      "Use an Application Load Balancer with CloudWatch alarms"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Geolocation routing with failover allows traffic from a specific location to be redirected to a healthy Region if the primary becomes unavailable."
+  },
+  {
+    "id": 53,
+    "question": "An Auto Scaling group uses target tracking scaling on CPU utilization set to 50%. During a traffic spike, instances scale out correctly but never scale back in. What is the MOST likely cause?",
+    "type": "single",
+    "choices": [
+      "Cooldown period is too short",
+      "Scale-in is disabled by a scale-in protection setting",
+      "Target tracking does not support scale-in",
+      "The load balancer health checks are failing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "If scale-in protection is enabled on instances, Auto Scaling will not terminate them even if the metric drops below the target."
+  },
+  {
+    "id": 54,
+    "question": "An Auto Scaling group uses step scaling with CloudWatch alarms. Scaling actions are delayed even though alarms are triggered. What is the MOST likely reason?",
+    "type": "single",
+    "choices": [
+      "Instance warm-up time is configured",
+      "Target tracking is enabled simultaneously",
+      "ALB health checks are unhealthy",
+      "The Auto Scaling group is suspended"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Instance warm-up time delays additional scaling actions until new instances are fully operational."
+  },
+  {
+    "id": 55,
+    "question": "Which Auto Scaling feature predicts future traffic and automatically schedules capacity ahead of time?",
+    "type": "single",
+    "choices": [
+      "Dynamic scaling",
+      "Scheduled scaling",
+      "Predictive scaling",
+      "Target tracking scaling"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Predictive scaling uses machine learning to forecast demand and proactively scale capacity."
+  },
+  {
+    "id": 56,
+    "question": "An application requires ultra-low latency, static IPs, and TCP traffic handling. Which load balancer should be used?",
+    "type": "single",
+    "choices": [
+      "Application Load Balancer",
+      "Classic Load Balancer",
+      "Network Load Balancer",
+      "Gateway Load Balancer"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Network Load Balancer operates at Layer 4, supports static IPs, and provides very low latency."
+  },
+  {
+    "id": 57,
+    "question": "Which load balancer supports routing decisions based on HTTP headers, paths, and hostnames?",
+    "type": "single",
+    "choices": [
+      "Network Load Balancer",
+      "Gateway Load Balancer",
+      "Application Load Balancer",
+      "Classic Load Balancer"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Application Load Balancer operates at Layer 7 and supports advanced HTTP routing features."
+  },
+  {
+    "id": 58,
+    "question": "You need to route users to the closest AWS Region based on latency. Which Route 53 routing policy should you use?",
+    "type": "single",
+    "choices": [
+      "Geolocation routing",
+      "Latency-based routing",
+      "Failover routing",
+      "Weighted routing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Latency-based routing directs users to the Region with the lowest network latency."
+  },
+  {
+    "id": 59,
+    "question": "A company wants users from Europe to always go to eu-west-1 unless that Region is unhealthy. Which Route 53 configuration is BEST?",
+    "type": "single",
+    "choices": [
+      "Latency-based routing only",
+      "Weighted routing with health checks",
+      "Geolocation routing with failover",
+      "Geoproximity routing with bias"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Geolocation routing with failover ensures users from a specific location are redirected only if the primary endpoint fails."
+  },
+  {
+    "id": 60,
+    "question": "Which Route 53 routing policy is MOST appropriate for gradually shifting 10% of traffic to a new application version?",
+    "type": "single",
+    "choices": [
+      "Latency-based routing",
+      "Failover routing",
+      "Weighted routing",
+      "Geolocation routing"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Weighted routing allows controlled traffic distribution between multiple endpoints."
+  },
+  {
+    "id": 61,
+    "question": "A Multi-AZ application must survive AZ failures and automatically remove unhealthy targets from traffic. Which combination is BEST?",
+    "type": "single",
+    "choices": [
+      "Auto Scaling group + Application Load Balancer",
+      "Single EC2 instance + Route 53",
+      "Network Load Balancer only",
+      "EC2 instances with Elastic IPs"
+    ],
+    "correctAnswers": [0],
+    "explanation": "An ALB integrates with Auto Scaling and health checks to remove unhealthy instances automatically."
+  },
+  {
+    "id": 62,
+    "question": "An SAA exam question asks for the LEAST operational overhead solution for scaling web traffic globally with automatic failover. Which architecture is BEST?",
+    "type": "single",
+    "choices": [
+      "EC2 Auto Scaling + ALB in one Region",
+      "Multi-Region EC2 with Route 53 latency-based routing and health checks",
+      "On-premises load balancer with VPN",
+      "Manual DNS updates during outages"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Route 53 latency-based routing with health checks enables global traffic distribution and automatic failover with minimal management."
+  },
+  {
+    "id": 63,
+    "question": "An Auto Scaling group behind an ALB scales out correctly but new instances do not receive traffic for several minutes. What is the MOST likely cause?",
+    "type": "single",
+    "choices": [
+      "The Auto Scaling cooldown period is too long",
+      "The ALB health check grace period is misconfigured",
+      "Target tracking scaling does not support ALB",
+      "The instances are using Elastic IPs"
+    ],
+    "correctAnswers": [1],
+    "explanation": "If the health check grace period is too long or misaligned, instances remain in an initial state and do not receive traffic."
+  },
+  {
+    "id": 64,
+    "question": "Which scenario would REQUIRE a Network Load Balancer instead of an Application Load Balancer?",
+    "type": "single",
+    "choices": [
+      "Routing based on URL paths",
+      "WebSocket support",
+      "Preserving the client source IP address",
+      "Host-based routing"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Only Network Load Balancer preserves the client source IP by default at Layer 4."
+  },
+  {
+    "id": 65,
+    "question": "An Auto Scaling group uses multiple scaling policies. CPU-based target tracking and scheduled scaling are both configured. What happens if both policies trigger at the same time?",
+    "type": "single",
+    "choices": [
+      "Only scheduled scaling is applied",
+      "Only target tracking is applied",
+      "The policy with the highest desired capacity wins",
+      "Auto Scaling fails with a configuration error"
+    ],
+    "correctAnswers": [2],
+    "explanation": "When multiple policies apply, Auto Scaling chooses the action that results in the highest desired capacity."
+  },
+  {
+    "id": 66,
+    "question": "Which Route 53 routing policy can route traffic based on geographic location AND allow shifting traffic between regions gradually?",
+    "type": "single",
+    "choices": [
+      "Geolocation routing",
+      "Latency-based routing",
+      "Geoproximity routing with bias",
+      "Failover routing"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Geoproximity routing with bias allows traffic shifting while still considering geographic distance."
+  },
+  {
+    "id": 67,
+    "question": "A company uses Route 53 health checks with an ALB. What happens if the ALB endpoint becomes unhealthy?",
+    "type": "single",
+    "choices": [
+      "Route 53 stops responding to DNS queries",
+      "Traffic is routed to another healthy record automatically",
+      "The ALB automatically restarts",
+      "Auto Scaling terminates all instances"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Route 53 removes unhealthy endpoints from DNS responses and routes traffic to healthy records."
+  },
+  {
+    "id": 68,
+    "question": "An Auto Scaling group is configured across three AZs. One AZ becomes unavailable. What is the expected behavior?",
+    "type": "single",
+    "choices": [
+      "The Auto Scaling group stops launching instances",
+      "Instances are redistributed automatically across healthy AZs",
+      "Manual intervention is required",
+      "Traffic is dropped until the AZ recovers"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Auto Scaling automatically launches replacement instances in remaining healthy AZs."
+  },
+  {
+    "id": 69,
+    "question": "Which ALB feature helps protect backend instances from sudden traffic spikes?",
+    "type": "single",
+    "choices": [
+      "Sticky sessions",
+      "Connection draining",
+      "Request queuing",
+      "Cross-zone load balancing"
+    ],
+    "correctAnswers": [2],
+    "explanation": "ALB can queue requests when targets are busy, preventing overload."
+  },
+  {
+    "id": 70,
+    "question": "You need DNS-based active-active failover across two AWS Regions with minimal latency. Which Route 53 routing policy is BEST?",
+    "type": "single",
+    "choices": [
+      "Failover routing",
+      "Weighted routing",
+      "Latency-based routing with health checks",
+      "Geolocation routing"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Latency-based routing with health checks provides active-active routing and automatic failover."
+  },
+  {
+    "id": 71,
+    "question": "An SAA exam scenario asks for automatic scaling based on request count per target. Which metric should be used?",
+    "type": "single",
+    "choices": [
+      "CPUUtilization",
+      "NetworkIn",
+      "ALB RequestCountPerTarget",
+      "HealthyHostCount"
+    ],
+    "correctAnswers": [2],
+    "explanation": "RequestCountPerTarget is an ALB metric commonly used for scaling based on traffic volume."
+  },
+  {
+    "id": 72,
+    "question": "Which design provides the LOWEST operational overhead for high availability and scaling of a web application?",
+    "type": "single",
+    "choices": [
+      "Single EC2 instance with Elastic IP",
+      "EC2 Auto Scaling group with ALB across multiple AZs",
+      "Manual DNS updates with Route 53",
+      "On-premises load balancer with EC2 backup"
+    ],
+    "correctAnswers": [1],
+    "explanation": "An Auto Scaling group with an ALB across AZs is fully managed and highly available with minimal effort."
+  },
+  {
+    "id": 73,
+    "question": "An Auto Scaling group uses target tracking scaling based on CPU utilization. A scale-in protection is enabled on some instances. What is the expected behavior during scale-in?",
+    "type": "single",
+    "choices": [
+      "Scale-in is completely blocked",
+      "Only instances without scale-in protection can be terminated",
+      "All instances are terminated evenly across AZs",
+      "The Auto Scaling group fails the scaling activity"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Scale-in protection prevents specific instances from being terminated, but scaling continues using unprotected instances."
+  },
+  {
+    "id": 74,
+    "question": "An Application Load Balancer routes traffic to EC2 instances in multiple AZs. Cross-zone load balancing is disabled. What is the impact?",
+    "type": "single",
+    "choices": [
+      "Traffic is evenly distributed across all targets in all AZs",
+      "Traffic is routed only to targets in the same AZ as the client",
+      "Each load balancer node distributes traffic only to targets in its own AZ",
+      "The ALB becomes unavailable"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Without cross-zone load balancing, each ALB node sends traffic only to targets within its own AZ."
+  },
+  {
+    "id": 75,
+    "question": "Which Route 53 routing policy CANNOT use health checks directly?",
+    "type": "single",
+    "choices": [
+      "Failover routing",
+      "Latency-based routing",
+      "Geolocation routing",
+      "Simple routing"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Simple routing does not support health checks because it returns a single record without evaluation."
+  },
+  {
+    "id": 76,
+    "question": "A company wants to shift 10% of traffic to a new application version for testing, while keeping 90% on the old version. Which Route 53 routing policy is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "Latency-based routing",
+      "Weighted routing",
+      "Failover routing",
+      "Geoproximity routing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Weighted routing allows precise traffic distribution percentages, ideal for canary or blue/green deployments."
+  },
+  {
+    "id": 77,
+    "question": "An Auto Scaling group launches instances that fail ELB health checks immediately after launch. What is the BEST first configuration to review?",
+    "type": "single",
+    "choices": [
+      "Minimum capacity",
+      "Cooldown period",
+      "Health check grace period",
+      "Scaling policy type"
+    ],
+    "correctAnswers": [2],
+    "explanation": "The health check grace period allows instances time to initialize before ELB health checks are evaluated."
+  },
+  {
+    "id": 78,
+    "question": "Which scenario requires BOTH Route 53 latency-based routing AND health checks?",
+    "type": "single",
+    "choices": [
+      "Active-passive disaster recovery",
+      "Active-active multi-Region application with automatic failover",
+      "Gradual traffic shifting between Regions",
+      "Routing users based on country"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Latency-based routing with health checks enables active-active architectures and removes unhealthy endpoints automatically."
+  },
+  {
+    "id": 79,
+    "question": "Which scaling policy reacts FASTEST to sudden traffic spikes?",
+    "type": "single",
+    "choices": [
+      "Scheduled scaling",
+      "Predictive scaling",
+      "Step scaling",
+      "Target tracking scaling"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Step scaling allows aggressive scale-out actions based on threshold breaches, reacting quickly to spikes."
+  },
+  {
+    "id": 80,
+    "question": "A Network Load Balancer is chosen over an Application Load Balancer. Which feature is LOST?",
+    "type": "single",
+    "choices": [
+      "TLS termination",
+      "Static IP addresses",
+      "Ultra-low latency",
+      "Source IP preservation"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Application Load Balancers support advanced Layer 7 features like TLS termination and HTTP routing."
+  },
+  {
+    "id": 81,
+    "question": "An Auto Scaling group is configured with desired capacity 4, minimum 2, maximum 10. A scheduled action sets desired capacity to 6. Shortly after, target tracking scaling triggers scale-in. What is the final behavior?",
+    "type": "single",
+    "choices": [
+      "Capacity remains at 6",
+      "Capacity scales in below 6 immediately",
+      "Capacity scales in but not below minimum",
+      "Scheduled scaling is ignored"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Scheduled scaling sets desired capacity, but target tracking can later adjust it based on metrics."
+  },
+  {
+    "id": 82,
+    "question": "Which architecture BEST minimizes DNS caching issues during failover?",
+    "type": "single",
+    "choices": [
+      "Route 53 with long TTL values",
+      "Manual DNS updates",
+      "Route 53 with low TTL and health checks",
+      "Elastic IP reassignment"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Low TTL values combined with health checks reduce client-side DNS caching during failover events."
+  },
+  {
+    "id": 83,
+    "question": "You have a CloudFormation template that creates an S3 bucket. You want to prevent accidental deletion of the bucket if the stack is deleted. Which property should you use?",
+    "type": "single",
+    "choices": [
+      "DeletionPolicy: Retain",
+      "UpdatePolicy: Retain",
+      "DeletionPolicy: Snapshot",
+      "DependsOn: Retain"
+    ],
+    "correctAnswers": [0],
+    "explanation": "The DeletionPolicy attribute with value 'Retain' ensures that resources are not deleted when the stack is deleted."
+  },
+  {
+    "id": 84,
+    "question": "Which intrinsic function allows you to reference a resource’s attribute in a different stack?",
+    "type": "single",
+    "choices": [
+      "Fn::GetAtt",
+      "Ref",
+      "Fn::ImportValue",
+      "Fn::Join"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Fn::ImportValue allows you to import outputs exported from another stack."
+  },
+  {
+    "id": 85,
+    "question": "You need to deploy multiple identical EC2 instances with the same configuration. Which CloudFormation construct is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "Resource Type",
+      "Mapping",
+      "Parameter",
+      "AWS::CloudFormation::WaitCondition"
+    ],
+    "correctAnswers": [0],
+    "explanation": "You define multiple AWS::EC2::Instance resources or use a combination of Mappings and Parameters for identical instances."
+  },
+  {
+    "id": 86,
+    "question": "You are using an S3 bucket created via CloudFormation and want to trigger a Lambda function on object creation. Which resource property ensures CloudFormation can set up the notification properly?",
+    "type": "single",
+    "choices": [
+      "DependsOn",
+      "NotificationConfiguration",
+      "UpdatePolicy",
+      "CreationPolicy"
+    ],
+    "correctAnswers": [1],
+    "explanation": "NotificationConfiguration property is used to set up S3 event notifications within CloudFormation."
+  },
+  {
+    "id": 87,
+    "question": "You deploy a stack that includes an RDS instance. Later, you update the template to change the instance class. Which update behavior occurs by default?",
+    "type": "single",
+    "choices": [
+      "The instance is replaced with a new one",
+      "The instance is updated in place",
+      "CloudFormation fails",
+      "A snapshot is created, but the instance remains unchanged"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Changing the DBInstanceClass property in RDS allows in-place update; some changes require replacement, but instance class can usually be modified in place."
+  },
+  {
+    "id": 88,
+    "question": "Which method allows CloudFormation to wait until EC2 instances are ready before marking a stack creation complete?",
+    "type": "single",
+    "choices": [
+      "CreationPolicy with ResourceSignal",
+      "DependsOn",
+      "UpdatePolicy",
+      "WaitConditionHandle"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CreationPolicy with ResourceSignal allows CloudFormation to wait until instances send a signal indicating they are ready."
+  },
+  {
+    "id": 89,
+    "question": "You need to pass different configuration values for dev, test, and prod environments without modifying the template. Which feature is BEST suited?",
+    "type": "single",
+    "choices": [
+      "Mappings",
+      "Parameters",
+      "Conditions",
+      "Outputs"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Parameters allow you to input different values at stack creation time for environment-specific configurations."
+  },
+  {
+    "id": 90,
+    "question": "A CloudFormation template fails with a cyclic dependency error. Which property is MOST likely misconfigured?",
+    "type": "single",
+    "choices": [
+      "DependsOn",
+      "UpdatePolicy",
+      "DeletionPolicy",
+      "Metadata"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cyclic dependencies usually occur when DependsOn is configured such that resources depend on each other in a loop."
+  },
+  {
+    "id": 91,
+    "question": "Which feature allows CloudFormation to conditionally create resources based on input parameters?",
+    "type": "single",
+    "choices": [
+      "Conditions",
+      "Mappings",
+      "Outputs",
+      "StackSets"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Conditions allow the creation or configuration of resources based on parameter values."
+  },
+  {
+    "id": 92,
+    "question": "You want to automate deployment across multiple AWS accounts and Regions. Which CloudFormation feature is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "StackSets",
+      "Nested Stacks",
+      "Macros",
+      "Custom Resources"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CloudFormation StackSets allow you to deploy stacks across multiple accounts and Regions simultaneously."
+  },
+  {
+    "id": 111,
+    "question": "Which CloudFormation template format is generally more human-readable and easier to maintain?",
+    "type": "single",
+    "choices": [
+      "JSON",
+      "YAML",
+      "XML",
+      "INI"
+    ],
+    "correctAnswers": [1],
+    "explanation": "YAML is more concise and human-readable, while JSON is more strict and cross-compatible."
+  },
+  {
+    "id": 112,
+    "question": "You want to visualize the relationships between your AWS resources in a CloudFormation template before deployment. Which tool should you use?",
+    "type": "single",
+    "choices": [
+      "AWS CloudFormation Designer",
+      "AWS Config",
+      "AWS Inspector",
+      "AWS Systems Manager"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CloudFormation Designer provides a visual diagram of resources, dependencies, and stack layout."
+  },
+  {
+    "id": 113,
+    "question": "You updated a CloudFormation template and want to see the exact changes that will occur in your stack before applying them. What should you use?",
+    "type": "single",
+    "choices": [
+      "Stack Drift Detection",
+      "Change Sets",
+      "Stack Policies",
+      "Resource Metadata"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Change Sets allow previewing the effect of template changes before execution."
+  },
+  {
+    "id": 114,
+    "question": "After several manual modifications on a stack’s resources, you want to verify that the deployed stack still matches its template. Which feature helps you do this?",
+    "type": "single",
+    "choices": [
+      "Stack Sets",
+      "Drift Detection",
+      "Change Sets",
+      "CloudFormation Designer"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Drift Detection identifies resources that differ from the original CloudFormation template."
+  },
+  {
+    "id": 115,
+    "question": "In a CloudFormation template, which section is mandatory and must contain all AWS resources to be created?",
+    "type": "single",
+    "choices": [
+      "Resources",
+      "Parameters",
+      "Outputs",
+      "Metadata"
+    ],
+    "correctAnswers": [0],
+    "explanation": "The Resources section is mandatory; all AWS resources to be created are defined here."
+  },
+  {
+    "id": 116,
+    "question": "You want to create a single template that can deploy different resource configurations for dev, test, and prod environments. Which sections of the template help achieve this?",
+    "type": "multiple",
+    "choices": [
+      "Parameters",
+      "Conditions",
+      "Resources",
+      "Outputs"
+    ],
+    "correctAnswers": [0,1],
+    "explanation": "Parameters allow dynamic input, and Conditions allow conditional creation of resources based on parameter values."
+  },
+  {
+    "id": 117,
+    "question": "Which CloudFormation feature allows you to provide optional descriptive information about resources for automation tools or documentation?",
+    "type": "single",
+    "choices": [
+      "Metadata",
+      "Outputs",
+      "Stack Policy",
+      "Change Set"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Metadata is optional and can include descriptive info or configuration details for tools."
+  },
+  {
+    "id": 118,
+    "question": "A stack has Outputs exporting the VPC ID. Another stack in the same account needs to use this VPC ID. How should the second stack access it?",
+    "type": "single",
+    "choices": [
+      "Using Ref function directly on the first stack",
+      "Using ImportValue on the exported output",
+      "Using Fn::GetAtt on the second stack",
+      "Passing it manually via a parameter"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ImportValue allows one stack to import outputs exported by another stack."
+  },
+  {
+    "id": 119,
+    "question": "Which statement is TRUE about manually modifying resources created by CloudFormation?",
+    "type": "single",
+    "choices": [
+      "Manual changes are automatically reflected in the template",
+      "Drift Detection can identify resources that no longer match the template",
+      "Change Sets will revert the manual changes automatically",
+      "CloudFormation Designer blocks manual modifications"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Drift Detection identifies resources that differ from the deployed template, but manual changes are not automatically reverted."
+  },
+  {
+    "id": 120,
+    "question": "Which of the following is the recommended workflow for updating a production CloudFormation stack with minimal risk?",
+    "type": "single",
+    "choices": [
+      "Directly update the stack in the console",
+      "Edit resources manually and apply changes",
+      "Create a Change Set, review changes, and then execute it",
+      "Delete the stack and recreate it"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Creating and reviewing a Change Set before execution helps prevent unintended modifications in production."
+  },
+  {
+    "id": 121,
+    "question": "What is the primary purpose of AWS Quick Starts?",
+    "type": "single",
+    "choices": [
+      "To provide pre-built deployment architectures using CloudFormation templates",
+      "To scan EC2 instances for vulnerabilities",
+      "To automatically optimize AWS billing",
+      "To replace CloudFormation Designer"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AWS Quick Starts are pre-built, ready-to-deploy templates for common architectures."
+  },
+  {
+    "id": 122,
+    "question": "You want to deploy a VPC, subnets, and NAT gateways before deploying an application stack. What best practice does this represent?",
+    "type": "single",
+    "choices": [
+      "Deploy stacks in layers starting from network to application",
+      "Deploy all resources in a single stack",
+      "Deploy the application first and then create network resources",
+      "Use only JSON templates"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Deploying infrastructure in layers (network → application → database) allows dependencies to be properly managed."
+  },
+  {
+    "id": 123,
+    "question": "In a layered deployment, you output the VPC ID and Subnet IDs from the network stack. How are these used in the application stack?",
+    "type": "single",
+    "choices": [
+      "As input parameters to specify where EC2 instances will be launched",
+      "To automatically generate IAM policies",
+      "To configure CloudWatch alarms",
+      "To enable drift detection"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Outputs from the network stack (VPC ID, Subnet IDs) are passed as parameters to the application stack to correctly place resources."
+  },
+  {
+    "id": 124,
+    "question": "Which tool allows you to graphically create, view, and modify CloudFormation templates?",
+    "type": "single",
+    "choices": [
+      "CloudFormation Designer / Infrastructure Composer",
+      "AWS Quick Starts",
+      "AWS Inspector",
+      "AWS Config"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CloudFormation Designer or Infrastructure Composer is a visual tool for creating and editing templates."
+  },
+  {
+    "id": 125,
+    "question": "Why is it advantageous to deploy infrastructure stacks in layers?",
+    "type": "multiple",
+    "choices": [
+      "Allows easier reuse of outputs between stacks",
+      "Simplifies management of dependencies",
+      "Reduces CloudFormation template size and complexity",
+      "Automatically scans resources for vulnerabilities"
+    ],
+    "correctAnswers": [0,1,2],
+    "explanation": "Layered deployment improves modularity, dependency management, and template clarity. Security scanning is a separate task."
+  },
+  {
+    "id": 126,
+    "question": "If the network stack outputs a VPC ID, how can the application stack consume it?",
+    "type": "single",
+    "choices": [
+      "Using the ImportValue function in CloudFormation",
+      "Using Fn::GetAtt on an unrelated resource",
+      "Using drift detection",
+      "Passing a static value manually only"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ImportValue allows a stack to use outputs exported from another stack, enabling modular deployments."
+  },
+  {
+    "id": 127,
+    "question": "AWS Quick Starts can be used to:",
+    "type": "single",
+    "choices": [
+      "Deploy fully functional environments quickly",
+      "Automatically encrypt S3 buckets without CloudFormation",
+      "Monitor IAM permissions continuously",
+      "Replace manual drift detection"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Quick Starts provide ready-to-deploy architectures to accelerate deployment of fully functional environments."
+  },
+  {
+    "id": 128,
+    "question": "Which statement is TRUE about outputs in CloudFormation?",
+    "type": "single",
+    "choices": [
+      "They can be imported by other stacks using Export/ImportValue",
+      "They automatically create resources in other stacks",
+      "They are required for all resources",
+      "They can only contain static strings"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Outputs can be exported and used as inputs in other stacks to manage dependencies."
+  },
+  {
+    "id": 129,
+    "question": "When creating a multi-layer CloudFormation architecture, what is the recommended order of stack deployment?",
+    "type": "single",
+    "choices": [
+      "Network → Database → Application",
+      "Application → Network → Database",
+      "Database → Application → Network",
+      "All stacks simultaneously"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Start with network resources, then database, then application to ensure proper dependencies."
+  },
+  {
+    "id": 130,
+    "question": "Infrastructure Composer helps in CloudFormation by:",
+    "type": "multiple",
+    "choices": [
+      "Visualizing resource relationships",
+      "Modifying templates graphically",
+      "Automatically scaling EC2 instances",
+      "Providing code-level template validation"
+    ],
+    "correctAnswers": [0,1],
+    "explanation": "Infrastructure Composer allows graphical visualization and modification of templates; it does not automatically scale EC2 or validate code syntax."
+  },
+  {
+    "id": 131,
+    "question": "You need to update a running CloudFormation stack with minimal downtime. Which feature should you use to preview the changes before executing them?",
+    "type": "single",
+    "choices": [
+      "Stack Policies",
+      "Change Sets",
+      "Drift Detection",
+      "Export/ImportValue"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Change Sets allow you to preview proposed updates to a stack before executing them."
+  },
+  {
+    "id": 132,
+    "question": "Drift detection in CloudFormation is used to:",
+    "type": "single",
+    "choices": [
+      "Automatically revert manual changes to match the template",
+      "Detect whether stack resources have been modified outside of CloudFormation",
+      "Validate template syntax",
+      "Export outputs to other stacks"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Drift detection identifies manual changes to stack resources that differ from the deployed template."
+  },
+  {
+    "id": 133,
+    "question": "Which CloudFormation section allows you to conditionally create resources based on parameter values?",
+    "type": "single",
+    "choices": [
+      "Outputs",
+      "Conditions",
+      "Metadata",
+      "Mappings"
+    ],
+    "correctAnswers": [1],
+    "explanation": "The Conditions section allows resources to be created only if certain conditions evaluate to true."
+  },
+  {
+    "id": 134,
+    "question": "You have a CloudFormation template that needs to be reused across multiple accounts and regions. Which feature helps achieve this?",
+    "type": "single",
+    "choices": [
+      "Nested stacks",
+      "Change Sets",
+      "Macros",
+      "Stack Policies"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Nested stacks allow modular templates to be reused in multiple accounts or regions."
+  },
+  {
+    "id": 135,
+    "question": "A CloudFormation macro is used to:",
+    "type": "single",
+    "choices": [
+      "Modify templates dynamically during stack creation",
+      "Encrypt outputs automatically",
+      "Detect drift",
+      "Scale EC2 instances automatically"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Macros allow you to transform or customize a template before creating resources."
+  },
+  {
+    "id": 136,
+    "question": "You want a parameter in your template to accept only certain predefined values. Which feature should you use?",
+    "type": "single",
+    "choices": [
+      "Mappings",
+      "AllowedValues",
+      "Outputs",
+      "Conditions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "The AllowedValues property restricts a parameter to a predefined list of acceptable values."
+  },
+  {
+    "id": 137,
+    "question": "Which section of a CloudFormation template can store arbitrary information about the stack for tools or humans, without affecting stack deployment?",
+    "type": "single",
+    "choices": [
+      "Metadata",
+      "Mappings",
+      "Conditions",
+      "Outputs"
+    ],
+    "correctAnswers": [0],
+    "explanation": "The Metadata section allows storing non-functional information for documentation or tooling."
+  },
+  {
+    "id": 138,
+    "question": "You need to reference an output value from a network stack in an application stack running in a different account. Which mechanism should you use?",
+    "type": "single",
+    "choices": [
+      "Cross-stack references using Export/ImportValue across accounts",
+      "Stack policies",
+      "Drift detection",
+      "Macros"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cross-stack references using Export/ImportValue allow stacks to share outputs, even across accounts if configured properly."
+  },
+  {
+    "id": 139,
+    "question": "During a stack update, you want to protect certain resources from being unintentionally replaced. What feature should you use?",
+    "type": "single",
+    "choices": [
+      "Stack Policies",
+      "Change Sets",
+      "Conditions",
+      "Outputs"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Stack Policies prevent specific resources from being updated or replaced during stack updates."
+  },
+  {
+    "id": 140,
+    "question": "You want to deploy an EC2 instance only if a particular VPC exists and a parameter value is true. Which CloudFormation features will help achieve this? (Choose TWO)",
+    "type": "multiple",
+    "choices": [
+      "Conditions",
+      "Mappings",
+      "Metadata",
+      "Parameters"
+    ],
+    "correctAnswers": [0,3],
+    "explanation": "Parameters provide user input, and Conditions allow resources to be created only if the parameter and other conditions evaluate to true."
+  }
+]
 }

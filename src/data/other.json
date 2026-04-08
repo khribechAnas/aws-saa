@@ -1,9 +1,1796 @@
 {
     "id":  "other",
-    "name":  "Other",
+    "name":  "Database & Security",
     "description":  "General tech knowledge and miscellaneous topics",
     "icon":  "Sparkles",
     "questions":  [
+  {
+    "id": 1,
+    "question": "You want minimal code changes when migrating an on-prem Oracle DB to AWS. What should you use?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon RDS",
+      "Amazon ElastiCache",
+      "Amazon S3"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon RDS is a managed relational database service that supports Oracle with minimal code changes during migration."
+  },
+  {
+    "id": 2,
+    "question": "A web application experiences heavy read traffic on its relational database. The solutions architect needs to reduce database load while providing microsecond latency for frequently accessed data using an in-memory cache. The solution must require minimal application changes. Which solution meets these requirements?",
+    "type": "single",
+    "choices": [
+      "Migrate the database to Amazon Aurora Serverless",
+      "Enable read replicas on Amazon RDS",
+      "Deploy Amazon ElastiCache in front of the database",
+      "Store the data in Amazon DynamoDB with DAX"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Deploying Amazon ElastiCache (Redis or Memcached) in front of the database offloads read requests and provides microsecond latency with minimal changes to the application."
+  },
+  {
+    "id": 3,
+    "question": "An application stores user profile data in a fully managed NoSQL database. The data must be highly durable, persisted, and accessed with single-digit millisecond latency at any scale. Which solution best meets these requirements?",
+    "type": "single",
+    "choices": [
+      "Amazon ElastiCache (Redis)",
+      "Amazon DynamoDB",
+      "Amazon DynamoDB with DAX",
+      "Amazon Aurora Serverless"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon DynamoDB provides fully managed, highly durable NoSQL storage with predictable single-digit millisecond latency at scale."
+  },
+  {
+    "id": 4,
+    "question": "A gaming application uses Amazon DynamoDB as its primary datastore. The application now requires microsecond latency for read operations without changing the data model or application logic. Which solution should a solutions architect recommend?",
+    "type": "single",
+    "choices": [
+      "Add Amazon ElastiCache in front of DynamoDB",
+      "Enable DynamoDB Global Tables",
+      "Deploy Amazon DynamoDB Accelerator (DAX)",
+      "Migrate the data to Amazon Aurora"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "DAX is a fully managed, in-memory cache for DynamoDB that provides microsecond read latency without requiring changes to the application or data model."
+  },
+  {
+    "id": 5,
+    "question": "A company uses Amazon DynamoDB to store orders with the following attributes: order_id (partition key), customer_id, order_date, status. The application frequently needs to retrieve all orders for a given customer_id with predictable low latency as the table grows. Which solution should a solutions architect recommend?",
+    "type": "single",
+    "choices": [
+      "Use a Scan operation with a filter on customer_id",
+      "Create a Global Secondary Index (GSI) with customer_id as the partition key",
+      "Increase the table’s read capacity units (RCUs)",
+      "Export the table to Amazon S3 and query it using Amazon Athena"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Creating a GSI with customer_id as the partition key allows fast, predictable queries by customer_id without scanning the entire table."
+  },
+  {
+    "id": 6,
+    "question": "You have a DynamoDB table storing IoT sensor data: device_id (partition key), timestamp (sort key), temperature. Your application needs to retrieve the latest temperature for a given device_id with millisecond latency at scale. Which approach provides predictable low-latency reads?",
+    "type": "single",
+    "choices": [
+      "Perform a Scan filtering by device_id and pick the latest timestamp",
+      "Use a Query on device_id with sort key timestamp descending",
+      "Store data in S3 and use Athena to retrieve the latest temperature",
+      "Use DynamoDB Streams to read the latest item"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Querying by partition key and sorting by timestamp descending provides efficient, predictable low-latency retrieval of the latest item."
+  },
+  {
+    "id": 7,
+    "question": "You need to allow users to search orders by status in a large DynamoDB table. Which approach ensures fast, predictable reads?",
+    "type": "single",
+    "choices": [
+      "Use Scan with a filter on status",
+      "Create a Global Secondary Index (GSI) with status as the partition key",
+      "Create a Local Secondary Index (LSI) on status"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "A GSI with status as the partition key allows fast, scalable queries on the status attribute, unlike scanning which is inefficient."
+  },
+  {
+    "id": 8,
+    "question": "A solutions architect is designing a relational database for a critical application. The database must be fully managed, durable, and stored on persistent block storage. Which AWS service meets these requirements?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS using EBS volumes",
+      "Amazon Aurora using standard EBS volumes",
+      "Amazon DynamoDB with DAX",
+      "Amazon ElastiCache (Redis)"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Amazon RDS provides a fully managed relational database with durable EBS storage for critical applications."
+  },
+  {
+    "id": 9,
+    "question": "A company uses Amazon DynamoDB for its user sessions. The application now requires ultra-low latency reads (microseconds) for frequently accessed items. The solution should offload read requests from DynamoDB without changing the existing database or application logic. Which solution should a solutions architect implement?",
+    "type": "single",
+    "choices": [
+      "Add Amazon ElastiCache (Redis) in front of DynamoDB",
+      "Enable DynamoDB Accelerator (DAX)",
+      "Add a Global Secondary Index (GSI) on DynamoDB",
+      "Migrate the data to Amazon Aurora"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "DAX provides microsecond read latency for DynamoDB and offloads read requests without changing the database or application."
+  },
+  {
+    "id": 10,
+    "question": "A solutions architect is designing a relational database for a global application that requires: high read throughput, low-latency reads, up to 15 read replicas for scaling. Which AWS service meets these requirements?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS with Multi-AZ deployment",
+      "Amazon Aurora",
+      "Amazon DynamoDB with DAX",
+      "Amazon ElastiCache (Redis)"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon Aurora supports high read throughput with low-latency reads and allows up to 15 read replicas for scaling globally."
+  },
+  {
+    "id": 11,
+    "question": "A company wants a relational database that provides: point-in-time recovery, continuous backups to S3, automatic replication across 3 Availability Zones (AZs). Which AWS service should a solutions architect recommend?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS (single AZ)",
+      "Amazon Aurora",
+      "Amazon DynamoDB",
+      "Amazon ElastiCache (Redis)"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon Aurora provides continuous backups to S3, automatic Multi-AZ replication, and point-in-time recovery, making it ideal for critical relational workloads."
+  },
+  {
+    "id": 12,
+    "question": "A serverless application using AWS Lambda connects frequently to an Amazon RDS database. The developers notice many connection errors during traffic spikes because each Lambda invocation opens a new database connection. Which solution best addresses this problem?",
+    "type": "single",
+    "choices": [
+      "Add Amazon ElastiCache in front of RDS",
+      "Use RDS Proxy to pool connections",
+      "Increase RDS read replicas",
+      "Store credentials in AWS Secrets Manager"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "RDS Proxy pools and reuses connections for serverless workloads like Lambda, preventing connection exhaustion during traffic spikes."
+  },
+  {
+    "id": 13,
+    "question": "A company runs a Multi-AZ RDS instance for critical workloads. During a failover, applications experience connection errors and slow recovery times. Which service ensures applications can automatically reuse connections and continue operating during failover?",
+    "type": "single",
+    "choices": [
+      "Amazon Aurora Global Database",
+      "Amazon ElastiCache",
+      "RDS Proxy",
+      "DynamoDB Streams"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "RDS Proxy automatically reroutes connections during failover, allowing applications to reuse existing connections without errors."
+  },
+  {
+    "id": 14,
+    "question": "A company wants their applications to rotate RDS database credentials automatically without downtime or manual code changes. Which solution meets this requirement?",
+    "type": "single",
+    "choices": [
+      "Enable Multi-AZ on Amazon RDS",
+      "Use RDS Proxy with AWS Secrets Manager integration",
+      "Use DynamoDB with DAX",
+      "Store credentials in S3 and manually update applications"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "RDS Proxy integrated with Secrets Manager automatically rotates credentials and updates connections without application downtime."
+  },
+  {
+    "id": 15,
+    "question": "A solutions architect needs to ensure data durability and recovery for an Amazon RDS database. They are considering automated backups and manual snapshots. Which statement correctly describes the difference between RDS automated backups and manual snapshots?",
+    "type": "single",
+    "choices": [
+      "Automated backups can be deleted manually at any time, while snapshots are automatically deleted after retention period",
+      "Snapshots are manual and retained until deleted, while automated backups are managed by AWS and retained according to retention period",
+      "Snapshots provide point-in-time recovery, while automated backups do not"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Automated backups are managed by AWS and retained per the backup retention period. Manual snapshots are retained until explicitly deleted by the user."
+  },
+  {
+    "id": 16,
+    "question": "A company runs an Amazon RDS Multi-AZ MySQL database. The primary DB is serving all reads and writes. Which statement about the standby instance is correct while the primary is healthy?",
+    "type": "single",
+    "choices": [
+      "The standby instance can serve read requests to reduce load on the primary",
+      "The standby instance can serve write requests in parallel with the primary",
+      "The standby instance is a synchronous replica and does not serve application requests until failover",
+      "The standby instance is automatically promoted to primary every 24 hours"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "The standby instance is a synchronous replica in Multi-AZ deployments. It does not serve reads or writes while the primary is healthy and only becomes primary during failover."
+  },
+  {
+    "id": 17,
+    "question": "An Amazon RDS Multi-AZ PostgreSQL database experiences an AZ outage affecting the primary DB. What happens immediately after failover?",
+    "type": "single",
+    "choices": [
+      "Applications must reconnect manually to the standby",
+      "The standby is automatically promoted to primary and handles all reads and writes",
+      "All writes are lost, but reads continue on the standby",
+      "The standby serves only reads until a new primary is launched"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Multi-AZ failover is automatic. The standby is promoted to primary, handling both reads and writes with zero data loss due to synchronous replication."
+  },
+  {
+    "id": 18,
+    "question": "A company has an existing unencrypted Amazon RDS MySQL instance. They need to encrypt the database to meet compliance requirements. Which approach should a solutions architect recommend?",
+    "type": "single",
+    "choices": [
+      "Enable encryption directly on the existing RDS instance",
+      "Take a snapshot, copy it with encryption enabled, and restore a new encrypted RDS instance",
+      "Enable encryption in the RDS console without snapshots",
+      "Modify the existing DB to add encryption and reboot"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Existing RDS instances cannot be encrypted directly. To encrypt, take a snapshot, copy it with encryption enabled, and restore a new RDS instance."
+  },
+  {
+    "id": 19,
+    "question": "A company wants to ensure that all new objects uploaded to an existing S3 bucket are encrypted at rest using AWS KMS. Which action should a solutions architect take?",
+    "type": "single",
+    "choices": [
+      "Create a snapshot of the bucket and enable encryption",
+      "Enable default encryption on the S3 bucket using SSE-KMS",
+      "Manually copy each object to a new bucket with encryption enabled",
+      "Enable encryption in the AWS CLI only when uploading objects"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Enabling default encryption on the S3 bucket using SSE-KMS ensures that all new objects are automatically encrypted at rest without requiring manual intervention."
+  },
+  {
+    "id": 20,
+    "question": "A company runs an Amazon RDS MySQL database in production. They want automatic OS and DB engine updates to occur without impacting business hours. Which statement correctly describes the use of a maintenance window?",
+    "type": "single",
+    "choices": [
+      "AWS will apply updates immediately when available, ignoring the maintenance window",
+      "The maintenance window defines the weekly time range during which AWS can perform automatic updates or maintenance",
+      "You must manually stop the database to apply updates during the maintenance window",
+      "Maintenance windows are only used for backups, not patching"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "The maintenance window specifies the preferred time for AWS to apply software patching, updates, and maintenance without affecting business hours."
+  },
+  {
+    "id": 21,
+    "question": "A company stores customer data in Amazon DynamoDB. An application needs to retrieve all orders for a given customer ID. Which operation is the fastest and most efficient?",
+    "type": "single",
+    "choices": [
+      "Scan the entire table and filter by customer ID",
+      "Use a Query operation using the partition key (customer ID)",
+      "Use a Query operation without specifying any key",
+      "Export the table to S3 and filter with Athena"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Using a Query operation with the partition key is efficient and provides fast retrieval. Scan reads the entire table, which is slow and costly."
+  },
+  {
+    "id": 22,
+    "question": "A DynamoDB table has a composite primary key: CustomerID (partition key) + OrderDate (sort key). The application needs all orders for a customer in the last 30 days. Which operation is most efficient?",
+    "type": "single",
+    "choices": [
+      "Scan the table and filter by CustomerID and OrderDate",
+      "Query using CustomerID as partition key and sort key condition on OrderDate",
+      "Query without specifying CustomerID",
+      "Export table to S3 and run SQL query"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Querying with the partition key and a sort key condition allows fast retrieval without scanning the entire table."
+  },
+  {
+    "id": 23,
+    "question": "A company has a DynamoDB table with a primary key: CustomerID. They now want to query efficiently by Email, which is not the primary key. Which solution allows querying by a different attribute with its own partition and sort keys?",
+    "type": "single",
+    "choices": [
+      "Create a Local Secondary Index (LSI) on Email",
+      "Create a Global Secondary Index (GSI) on Email",
+      "Use a Scan operation with a filter on Email",
+      "Modify the existing primary key to Email"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "A Global Secondary Index (GSI) allows defining a new partition and sort key, enabling efficient queries on non-primary key attributes."
+  },
+  {
+    "id": 24,
+    "question": "A DynamoDB table has a composite primary key: CustomerID (partition) + OrderDate (sort). The application wants to query all orders for a customer but sort by OrderAmount instead of OrderDate. Which solution is correct?",
+    "type": "single",
+    "choices": [
+      "Create a Global Secondary Index (GSI) with new partition and sort keys",
+      "Create a Local Secondary Index (LSI) on CustomerID + OrderAmount",
+      "Scan the table and filter by CustomerID",
+      "Change the table’s sort key to OrderAmount"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "A Local Secondary Index (LSI) keeps the same partition key but allows a different sort key, enabling efficient queries sorted by OrderAmount."
+  },
+  {
+    "id": 25,
+    "question": "A company wants a MongoDB-compatible database on AWS that provides scalability, high availability, and automatic backups. Which service should a solutions architect recommend?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon DocumentDB (with MongoDB compatibility)",
+      "Amazon RDS MySQL",
+      "Amazon Keyspaces"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon DocumentDB is a fully managed, MongoDB-compatible database providing scalability, high availability, and automated backups."
+  },
+  {
+    "id": 26,
+    "question": "A company needs a fully managed, serverless Cassandra-compatible database with scalable throughput. Which AWS service fits this requirement?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon Keyspaces (for Apache Cassandra)",
+      "Amazon Timestream",
+      "Amazon Neptune"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon Keyspaces is a serverless, fully managed Cassandra-compatible database for scalable, managed throughput."
+  },
+  {
+    "id": 27,
+    "question": "An application needs microsecond latency and in-memory caching to reduce database load for frequently accessed data. Which service should a solutions architect recommend?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS",
+      "Amazon ElastiCache or MemoryDB for Redis",
+      "Amazon DocumentDB",
+      "Amazon Timestream"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "In-memory caching with microsecond latency is best provided by Redis-based services like Amazon ElastiCache or MemoryDB. RDS and DocumentDB are persistent databases with slower response times."
+  },
+  {
+    "id": 28,
+    "question": "A company needs a fully managed graph database to model social network relationships with fast graph traversal queries. Which service is most appropriate?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon Neptune",
+      "Amazon DocumentDB",
+      "Amazon Quantum Ledger Database (QLDB)"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon Neptune is a fully managed graph database optimized for fast traversal queries using Gremlin or SPARQL. QLDB is a ledger database, not graph-based."
+  },
+  {
+    "id": 29,
+    "question": "A company needs a database optimized for time-series data such as IoT sensor readings and financial metrics. Which AWS service should they choose?",
+    "type": "single",
+    "choices": [
+      "Amazon Timestream",
+      "Amazon DynamoDB",
+      "Amazon Keyspaces",
+      "Amazon Neptune"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Amazon Timestream is designed specifically for time-series data with fast ingestion and efficient queries by time."
+  },
+  {
+    "id": 30,
+    "question": "A company wants an immutable, cryptographically verifiable ledger database for financial transactions. Which service meets this requirement?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS",
+      "Amazon QLDB",
+      "Amazon Timestream",
+      "Amazon Neptune"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Amazon QLDB is a ledger database providing immutability and cryptographic verification for transactional data."
+  },
+  {
+    "id": 31,
+    "question": "A company wants to migrate data from an on-premises Oracle database to Amazon Aurora MySQL with minimal downtime. Which AWS service is best suited for this purpose?",
+    "type": "single",
+    "choices": [
+      "AWS Database Migration Service (DMS)",
+      "AWS Data Pipeline",
+      "AWS Glue",
+      "Amazon Kinesis"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "AWS DMS enables minimal-downtime migration from on-premises databases to AWS managed databases."
+  },
+  {
+    "id": 32,
+    "question": "A company needs to migrate an on-premises Oracle database to Amazon Aurora PostgreSQL. They want to convert the database schema and migrate data with minimal downtime. Which combination of services should a solutions architect use?",
+    "type": "single",
+    "choices": [
+      "AWS DMS for schema conversion and AWS SCT for data migration",
+      "AWS SCT for schema conversion and AWS DMS for data migration",
+      "AWS Glue for both schema conversion and data migration",
+      "AWS Database Migration Service (DMS) only, schema conversion not needed"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "AWS Schema Conversion Tool (SCT) converts schema, while AWS DMS migrates the data with minimal downtime."
+  },
+  {
+    "id": 33,
+    "question": "Which statement that compares a database service that AWS manages with a database on an Amazon EC2 instance is true?",
+    "type": "single",
+    "choices": [
+      "AWS manages database patches for a database on a managed database service.",
+      "AWS manages operating system (OS) patches for a database on an EC2 instance.",
+      "Configuring backups for a database on a managed database service isn’t needed.",
+      "Configuring backups for a database on an EC2 instance isn’t needed."
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Managed database services handle database patches automatically. On EC2, the user is responsible for both database and OS maintenance."
+  },
+  {
+    "id": 34,
+    "question": "A small startup company is deciding which database service to use for an enrollment system for their online training website. Which requirements might lead them to select Amazon RDS rather than Amazon DynamoDB? (Select TWO.)",
+    "type": "multi",
+    "choices": [
+      "Data and transactions must be encrypted to protect personal information.",
+      "Student, course, and registration data are stored in many different tables.",
+      "The enrollment system must be highly available.",
+      "Data must be backed up in case of disasters.",
+      "The data is highly structured."
+    ],
+    "correctAnswers": [
+      1,
+      4
+    ],
+    "explanation": "RDS is suitable for highly structured relational data stored across multiple tables. Encryption and high availability are supported by both services."
+  },
+  {
+    "id": 35,
+    "question": "A startup company is building an order inventory system with a web frontend and is looking for a real-time transactional database. Which service would best meet their needs?",
+    "type": "single",
+    "choices": [
+      "Amazon Redshift",
+      "Amazon DocumentDB (with MongoDB compatibility)",
+      "Amazon DynamoDB",
+      "Amazon Neptune"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Amazon DynamoDB is a NoSQL key-value store designed for real-time, high-throughput transactional workloads. Redshift is for analytics, DocumentDB for JSON-like data, and Neptune for graph workloads."
+  },
+  {
+    "id": 36,
+    "question": "A small game company is designing an online game, where thousands of players can create their own in-game objects. The current design uses a MySQL database in Amazon RDS to store data for player-created objects. Which proposed online game object features could make Amazon DynamoDB a better solution? (Select TWO.)",
+    "type": "multi",
+    "choices": [
+      "Game data items that include binary data and might exceed 700 MB",
+      "A high amount of read activity on player-created objects and a low amount of writes",
+      "A set of common object attributes for player-created objects",
+      "Game items that can be modified using data contained in other tables",
+      "Unpredictable object attributes for player-created objects"
+    ],
+    "correctAnswers": [
+      1,
+      4
+    ],
+    "explanation": "DynamoDB is better for workloads with unpredictable object attributes and high read/low write activity. RDS relational schema is less flexible for dynamic or sparse data structures."
+  },
+  {
+    "id": 37,
+    "question": "An organization is concerned about an increase in fraud. Which service could help with building real-time graph database queries for fraud detection?",
+    "type": "single",
+    "choices": [
+      "Amazon Redshift",
+      "Amazon RDS",
+      "Amazon DynamoDB",
+      "Amazon Neptune"
+    ],
+    "correctAnswers": [
+      3
+    ],
+    "explanation": "Amazon Neptune is a fully managed graph database ideal for detecting patterns and relationships in real-time, such as for fraud detection."
+  },
+  {
+    "id": 38,
+    "question": "A data engineer must host a new Microsoft SQL Server database in AWS for a project. Which service could they use to accomplish this task?",
+    "type": "single",
+    "choices": [
+      "Amazon DocumentDB (with MongoDB compatibility)",
+      "Amazon DynamoDB",
+      "Amazon RDS",
+      "Amazon Aurora"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Amazon RDS supports Microsoft SQL Server as a managed relational database service."
+  },
+  {
+    "id": 39,
+    "question": "Which techniques should be used to secure an Amazon RDS database? (Select THREE.)",
+    "type": "multi",
+    "choices": [
+      "A virtual private cloud (VPC) to provide instance isolation",
+      "AWS Identity and Access Management (IAM) policies to define access at the table, row, and column levels",
+      "An Amazon Virtual Private Cloud (Amazon VPC) gateway endpoint to prevent traffic from traversing the internet",
+      "Encryption both at rest and in transit to protect sensitive data",
+      "A virtual private gateway (VGW) to filter traffic from restricted networks",
+      "Security groups to control network access to individual RDS instances"
+    ],
+    "correctAnswers": [
+      0,
+      3,
+      5
+    ],
+    "explanation": "Security for RDS includes isolating instances in a VPC, encrypting data at rest and in transit, and controlling network access with security groups. IAM policies are typically used at the database level in DynamoDB, not RDS."
+  },
+  {
+    "id": 40,
+    "question": "Which techniques should be used to secure Amazon DynamoDB? (Select THREE.)",
+    "type": "multi",
+    "choices": [
+      "A virtual private gateway (VGW) to filter traffic from restricted networks",
+      "An Amazon VPC gateway endpoint to prevent traffic from traversing the internet",
+      "A virtual private cloud (VPC) to provide instance isolation and firewall protection",
+      "Encryption to protect sensitive data",
+      "Security groups to control network access to individual instances",
+      "AWS Identity and Access Management (IAM) policies to define access at the table, item, or attribute level"
+    ],
+    "correctAnswers": [
+      1,
+      3,
+      5
+    ],
+    "explanation": "DynamoDB security includes encrypting data, using VPC endpoints to avoid traffic going over the public internet, and IAM policies to control access at the table, item, or attribute level."
+  },
+  {
+    "id": 41,
+    "question": "A company wants to migrate their on-premises Oracle database to Amazon Aurora MySQL. Which process describes the high-level steps most accurately?",
+    "type": "single",
+    "choices": [
+      "Use AWS Database Migration Service (AWS DMS) to directly migrate from the Oracle database to Amazon Aurora MySQL.",
+      "Use AWS Schema Conversion Tool (AWS SCT) to convert the schema, and then use AWS Database Migration Service (AWS DMS) to migrate the data.",
+      "Use AWS Schema Conversion Tool (AWS SCT) to synchronously convert the schema and migrate the data.",
+      "Use AWS Database Migration Service (AWS DMS) to migrate the data, and then use AWS Schema Conversion Tool (AWS SCT) to convert the schema."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "The correct sequence is to convert the database schema using SCT first, then migrate data with DMS. Direct migration without schema conversion could fail if there are differences between Oracle and Aurora MySQL."
+  },
+  {
+    "id": 42,
+    "question": "A cloud architect is setting up an application to use an Amazon RDS MySQL DB instance. The database must be architected for high availability across Availability Zones and AWS Regions with minimal downtime. How should they meet this requirement?",
+    "type": "single",
+    "choices": [
+      "Set up an RDS MySQL Single-AZ DB instance. Copy automated snapshots to at least one other Region.",
+      "Set up an RDS MySQL Multi-AZ DB instance. Configure a read replica in a different Region.",
+      "Set up an RDS MySQL Multi-AZ DB instance. Configure an appropriate backup window.",
+      "Set up an RDS MySQL Single-AZ DB instance. Configure a read replica in a different Region."
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Multi-AZ deployment provides high availability within a region, and a cross-Region read replica ensures disaster recovery across regions with minimal downtime."
+  },
+  {
+    "id": 43,
+    "question": "A company wants to run a highly available, relational database with automatic failover, read replicas, and multi-region disaster recovery. Which AWS service should they use?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS Single-AZ",
+      "Amazon RDS Multi-AZ with cross-region read replica",
+      "Amazon DynamoDB",
+      "Amazon Aurora Serverless"
+    ],
+    "correctAnswers": [1],
+    "explanation": "RDS Multi-AZ provides high availability and automatic failover. Cross-region read replicas allow disaster recovery across regions."
+  },
+  {
+    "id": 44,
+    "question": "A company wants to store semi-structured JSON documents and run queries efficiently on them. Which AWS service should be recommended?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS MySQL",
+      "Amazon DynamoDB",
+      "Amazon DocumentDB",
+      "Amazon Aurora PostgreSQL"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon DocumentDB is a managed MongoDB-compatible database optimized for storing and querying JSON documents."
+  },
+  {
+    "id": 45,
+    "question": "An application requires millisecond read/write performance for highly variable data attributes and dynamic schema. Which service is most suitable?",
+    "type": "single",
+    "choices": [
+      "Amazon Aurora",
+      "Amazon RDS PostgreSQL",
+      "Amazon DynamoDB",
+      "Amazon DocumentDB"
+    ],
+    "correctAnswers": [2],
+    "explanation": "DynamoDB is a NoSQL key-value database that handles variable attributes and dynamic schema with high throughput and low latency."
+  },
+  {
+    "id": 46,
+    "question": "A company needs a fully managed ledger database to track financial transactions, maintain immutability, and provide cryptographic verification. Which AWS service should they use?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS",
+      "Amazon QLDB",
+      "Amazon DynamoDB",
+      "Amazon Timestream"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon QLDB provides an immutable, cryptographically verifiable ledger database suitable for financial or audit tracking."
+  },
+  {
+    "id": 47,
+    "question": "A company is designing an IoT application storing time-series data like sensor readings. They want a managed database optimized for fast ingestion and queries by time. Which service should they use?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon Timestream",
+      "Amazon RDS MySQL",
+      "Amazon DocumentDB"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon Timestream is purpose-built for time-series data, providing fast ingestion and efficient time-based queries."
+  },
+  {
+    "id": 48,
+    "question": "A company needs to reduce read load on their DynamoDB table for hot items without changing the application code. Which service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon ElastiCache",
+      "DynamoDB Accelerator (DAX)",
+      "Amazon RDS read replicas",
+      "Amazon S3"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DAX provides an in-memory cache for DynamoDB, giving microsecond latency reads without changing application logic."
+  },
+  {
+    "id": 49,
+    "question": "Which database service supports ACID transactions across multiple tables and items with minimal latency?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon Aurora",
+      "Amazon Timestream",
+      "Amazon DocumentDB"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon Aurora supports fully managed relational databases with ACID transactions across tables and low latency."
+  },
+  {
+    "id": 50,
+    "question": "A solutions architect needs to migrate a large on-premises Oracle database to AWS with minimal downtime and heterogeneous engine conversion. Which combination of services is recommended?",
+    "type": "single",
+    "choices": [
+      "AWS DMS only",
+      "AWS SCT only",
+      "AWS SCT for schema conversion + AWS DMS for data migration",
+      "AWS Glue for schema conversion and migration"
+    ],
+    "correctAnswers": [2],
+    "explanation": "AWS Schema Conversion Tool converts the schema first; AWS DMS then migrates data, allowing heterogeneous engine migration with minimal downtime."
+  },
+  {
+    "id": 51,
+    "question": "A web application needs high-throughput reads for frequently accessed data in DynamoDB with unpredictable schema. Which combination provides the fastest access with minimal development changes?",
+    "type": "multi",
+    "choices": [
+      "Use DynamoDB primary key queries",
+      "Use DynamoDB Accelerator (DAX)",
+      "Create Global Secondary Indexes",
+      "Move data to Amazon RDS"
+    ],
+    "correctAnswers": [0,1],
+    "explanation": "DynamoDB queries using the primary key are efficient. DAX adds microsecond in-memory caching without code changes, ideal for high-read workloads."
+  },
+  {
+    "id": 52,
+    "question": "Which AWS database service is fully serverless and automatically scales capacity based on demand, suitable for unpredictable workloads?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS Multi-AZ",
+      "Amazon DynamoDB",
+      "Amazon Aurora Serverless",
+      "Amazon ElastiCache"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Aurora Serverless automatically adjusts capacity for unpredictable workloads, removing the need to provision fixed database instances."
+  },
+  {
+    "id": 53,
+    "question": "A global e-commerce application requires a relational database with automatic scaling of read/write capacity, fault tolerance, and replication across multiple AWS Regions. Which service combination meets these requirements?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS Single-AZ with snapshots",
+      "Amazon Aurora Global Database",
+      "Amazon DynamoDB with DAX",
+      "Amazon RDS Multi-AZ with cross-region read replicas"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Aurora Global Database supports replication across multiple regions with low latency, high availability, and fast failover."
+  },
+  {
+    "id": 54,
+    "question": "A company wants to implement multi-master writes across multiple regions for their database with minimal conflict and latency. Which AWS database service is most suitable?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS MySQL Multi-AZ",
+      "Amazon DynamoDB Global Tables",
+      "Amazon Aurora Multi-AZ",
+      "Amazon DocumentDB"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DynamoDB Global Tables allow multi-region, multi-master writes with eventual consistency, suitable for low-latency global applications."
+  },
+  {
+    "id": 55,
+    "question": "An application stores millions of IoT sensor records per hour. The solution must allow querying data by device_id and timestamp efficiently while minimizing storage cost. Which database service is best suited?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS MySQL",
+      "Amazon DynamoDB",
+      "Amazon Timestream",
+      "Amazon Redshift"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Timestream is optimized for high-ingest, time-series data, allowing fast queries by time ranges and reducing storage cost with built-in data tiering."
+  },
+  {
+    "id": 56,
+    "question": "A company needs to implement fine-grained access control on a DynamoDB table, allowing permissions on individual items and attributes. Which techniques should be used? (Select TWO)",
+    "type": "multi",
+    "choices": [
+      "Use AWS IAM policies with condition keys",
+      "Enable encryption at rest using KMS",
+      "Use security groups to control access",
+      "Enable VPC endpoints for DynamoDB",
+      "Use IAM policies with attribute-level access"
+    ],
+    "correctAnswers": [0,4],
+    "explanation": "IAM policies can control access to specific items or attributes. Encryption and VPC endpoints help secure data but do not provide fine-grained access."
+  },
+  {
+    "id": 57,
+    "question": "A database must support ACID transactions across multiple tables while automatically scaling storage and compute. Which AWS service meets these requirements?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon Aurora",
+      "Amazon DocumentDB",
+      "Amazon RDS Single-AZ"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Aurora supports ACID transactions, scales storage automatically, and provides high availability with Multi-AZ deployments."
+  },
+  {
+    "id": 58,
+    "question": "A financial application needs to ensure data integrity and cryptographic verification for all transactions. The ledger must be immutable. Which database service is appropriate?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS",
+      "Amazon QLDB",
+      "Amazon DynamoDB with DAX",
+      "Amazon Aurora Serverless"
+    ],
+    "correctAnswers": [1],
+    "explanation": "QLDB provides an immutable, cryptographically verifiable ledger for financial and audit use cases."
+  },
+  {
+    "id": 59,
+    "question": "A company is migrating an on-premises Oracle database to AWS with minimal downtime. The database schema is complex. Which migration strategy is correct?",
+    "type": "single",
+    "choices": [
+      "Use AWS DMS only",
+      "Use AWS SCT to convert schema, then AWS DMS to migrate data",
+      "Use AWS Glue to migrate schema and data",
+      "Use AWS DMS first, then AWS SCT"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Schema conversion must occur first using SCT. Then DMS migrates the data with minimal downtime and handles heterogeneous migration."
+  },
+  {
+    "id": 60,
+    "question": "A web application requires microsecond latency for DynamoDB reads on hot items without changing the application. Which solution is recommended?",
+    "type": "single",
+    "choices": [
+      "Enable DynamoDB Global Tables",
+      "Deploy DynamoDB Accelerator (DAX)",
+      "Enable read replicas",
+      "Migrate data to Aurora"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DAX provides in-memory caching for DynamoDB with microsecond latency and does not require application code changes."
+  },
+  {
+    "id": 61,
+    "question": "A database needs point-in-time recovery, continuous backups to S3, and automatic failover across Availability Zones. Which service satisfies these requirements?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS Single-AZ",
+      "Amazon Aurora",
+      "Amazon DynamoDB",
+      "Amazon ElastiCache"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Aurora provides automated backups, point-in-time recovery, and Multi-AZ replication for high availability."
+  },
+  {
+    "id": 62,
+    "question": "An application requires a document database compatible with MongoDB that is fully managed, highly available, and supports automatic backups. Which service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon DynamoDB",
+      "Amazon DocumentDB",
+      "Amazon Aurora PostgreSQL",
+      "Amazon Keyspaces"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon DocumentDB is MongoDB-compatible, fully managed, highly available, and supports automated backups."
+  },
+  {
+    "id": 63,
+    "question": "Which are characteristics of an AWS Identity and Access Management (IAM) group? (Select TWO.)",
+    "type": "multi",
+    "choices": [
+      "A group can belong to another group",
+      "Permissions in a group policy always override permissions in a user policy",
+      "A user can belong to more than one group",
+      "New users added to a group inherit the group’s permissions",
+      "A group can have security credentials"
+    ],
+    "correctAnswers": [2,3],
+    "explanation": "Users can belong to multiple groups, and new users added to a group automatically inherit the group’s policies. Groups cannot contain other groups, and groups cannot have security credentials."
+  },
+  {
+    "id": 64,
+    "question": "What is an advantage of using attribute-based access control (ABAC) over role-based access control (RBAC)?",
+    "type": "single",
+    "choices": [
+      "ABAC permissions explicitly identify the resources that they protect",
+      "ABAC requires less testing than RBAC",
+      "ABAC will likely require fewer policies than RBAC",
+      "ABAC permissions are more secure than RBAC permissions"
+    ],
+    "correctAnswers": [2],
+    "explanation": "ABAC uses attributes (tags) to define permissions dynamically, often reducing the number of policies compared to RBAC where permissions are tied to static roles."
+  },
+  {
+    "id": 65,
+    "question": "What is a benefit of identity federation with the AWS Cloud?",
+    "type": "single",
+    "choices": [
+      "It centralizes the storage and management of user identities inside of the AWS Cloud",
+      "It enables the use of an external identity provider to authenticate workforce users and give them access to AWS resources",
+      "It eliminates the need for defining permissions in AWS IAM to secure the access to AWS resources",
+      "It assigns roles to authenticated users to control their access to AWS resources"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Identity federation allows users to authenticate using external identity providers like Active Directory, SAML, or OIDC, reducing the need to create IAM users for each individual."
+  },
+  {
+    "id": 66,
+    "question": "Which service enables identity federation for accessing a web application running in the AWS Cloud?",
+    "type": "single",
+    "choices": [
+      "Amazon Cognito",
+      "AWS Key Management Service (KMS)",
+      "AWS CloudHSM",
+      "AWS WAF"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon Cognito allows users to sign in with external identity providers (Google, Facebook, SAML, OIDC) and access AWS resources."
+  },
+  {
+    "id": 67,
+    "question": "Which service helps centrally manage billing, control access, compliance and security, and share resources across multiple AWS accounts?",
+    "type": "single",
+    "choices": [
+      "AWS Identity and Access Management (IAM)",
+      "AWS Organizations",
+      "AWS Systems Manager",
+      "Amazon Cognito"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS Organizations allows grouping multiple accounts, applying Service Control Policies (SCPs), consolidated billing, and resource sharing."
+  },
+  {
+    "id": 68,
+    "question": "A technology company has multiple production accounts grouped into a production organizational unit (OU) in AWS Organizations. The company wants to prevent all IAM users in the production accounts from deleting AWS CloudTrail logs. How can a system administrator enforce this restriction?",
+    "type": "single",
+    "choices": [
+      "Create an Amazon S3 bucket policy and associate with all buckets containing AWS CloudTrail logs",
+      "Create a service control policy (SCP), and attach it to the production OU",
+      "Create a tag policy and attach it to the production accounts",
+      "Create an IAM policy and attach it to each IAM user in the production accounts"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SCPs applied at the OU level restrict permissions for all accounts within that OU. IAM policies cannot override a restrictive SCP. This ensures users cannot delete CloudTrail logs."
+  },
+  {
+    "id": 69,
+    "question": "Which AWS feature allows users to log in to the AWS Management Console using their corporate credentials without creating IAM users?",
+    "type": "single",
+    "choices": [
+      "AWS IAM Roles",
+      "AWS Identity Federation with SAML",
+      "Amazon Cognito User Pools",
+      "AWS Organizations SCPs"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Identity federation with SAML enables single sign-on (SSO) using corporate credentials, avoiding the need to create individual IAM users."
+  },
+  {
+    "id": 70,
+    "question": "An application running in AWS needs temporary credentials to access S3 without embedding permanent keys. Which mechanism should be used?",
+    "type": "single",
+    "choices": [
+      "IAM User with access keys",
+      "IAM Role assumed by the application",
+      "AWS Organizations SCP",
+      "Amazon Cognito User Pool"
+    ],
+    "correctAnswers": [1],
+    "explanation": "IAM Roles provide temporary security credentials that applications can assume to access AWS resources without hardcoding access keys."
+  },
+  {
+    "id": 71,
+    "question": "Which policy type in AWS can be applied to multiple accounts in an AWS Organization to centrally enforce restrictions?",
+    "type": "single",
+    "choices": [
+      "IAM User Policy",
+      "IAM Role Policy",
+      "Service Control Policy (SCP)",
+      "Resource-based Policy"
+    ],
+    "correctAnswers": [2],
+    "explanation": "SCPs are applied to OUs or accounts in AWS Organizations and enforce maximum available permissions across accounts."
+  },
+  {
+    "id": 72,
+    "question": "A developer wants to allow a Lambda function to access an S3 bucket securely without hardcoding credentials. What is the recommended best practice?",
+    "type": "single",
+    "choices": [
+      "Create an IAM User and store access keys in Lambda environment variables",
+      "Attach an IAM Role to the Lambda function with S3 access permissions",
+      "Use AWS Secrets Manager to store S3 credentials",
+      "Use Amazon Cognito to generate S3 keys for Lambda"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Attaching an IAM Role to Lambda provides temporary credentials automatically, following AWS best practices for least privilege."
+  },
+  {
+    "id": 73,
+    "question": "A developer is writing a client application that encrypts sensitive data using a data key before sending it to a server application. The client application sends the data key to the server application so that the server application can decrypt the sensitive information. The developer is concerned that the confidentiality of the sensitive data might be compromised if the data key is stolen. Which type of encryption should the developer use to fully protect the sensitive information?",
+    "type": "single",
+    "choices": [
+      "Symmetric encryption",
+      "Envelope encryption",
+      "Asymmetric encryption",
+      "Server-side encryption"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Envelope encryption encrypts the data with a data key, and then encrypts the data key with a master key (KMS). Even if the data key is intercepted, it cannot be used without the master key."
+  },
+  {
+    "id": 74,
+    "question": "Which functions does the AWS Key Management Service (AWS KMS) provide? (Select TWO.)",
+    "type": "multi",
+    "choices": [
+      "Authenticate external users",
+      "Store encrypted data",
+      "Create symmetric and asymmetric keys",
+      "Create AWS Identity and Access Management (IAM) access keys",
+      "Rotate keys"
+    ],
+    "correctAnswers": [2,4],
+    "explanation": "AWS KMS is used to create symmetric and asymmetric keys and supports automatic key rotation. KMS does not authenticate external users or create IAM credentials."
+  },
+  {
+    "id": 75,
+    "question": "You have hundreds of AWS resources and many teams. You assign permissions directly to roles. What is a potential problem?",
+    "type": "single",
+    "choices": [
+      "Roles automatically scale with new resources",
+      "Policies must be updated when new services are added",
+      "Attributes are used to dynamically grant access",
+      "ABAC is not supported"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Assigning permissions directly to roles can become difficult to scale. Every time new resources or services are added, roles and policies must be updated manually."
+  },
+  {
+    "id": 76,
+    "question": "You want permissions to automatically apply to new EC2 instances or S3 buckets based on tags. Which model is best?",
+    "type": "single",
+    "choices": [
+      "RBAC",
+      "ABAC",
+      "Manual IAM policies only",
+      "Service Control Policies"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ABAC (Attribute-Based Access Control) uses resource tags and user attributes to dynamically evaluate permissions, allowing automatic application of policies to new resources."
+  },
+  {
+    "id": 77,
+    "question": "The difference between RBAC and ABAC is that RBAC assigns permissions directly to roles, which can become difficult to scale because roles often need to be updated whenever new services or resources are added. In contrast, ABAC uses attributes such as tags in its policies, allowing access to be evaluated dynamically. Which statement is correct?",
+    "type": "single",
+    "choices": [
+      "RBAC uses attributes like tags to dynamically evaluate access",
+      "ABAC assigns permissions directly to roles, which must be updated when new resources are added",
+      "RBAC assigns permissions directly to roles, which can be hard to scale, while ABAC uses attributes and is more scalable",
+      "ABAC requires manual role updates for every new resource"
+    ],
+    "correctAnswers": [2],
+    "explanation": "RBAC is static and scales poorly with dynamic environments. ABAC uses attributes (tags) to evaluate access dynamically, making it more scalable."
+  },
+  {
+    "id": 78,
+    "question": "A federated user is someone who:",
+    "type": "single",
+    "choices": [
+      "Has a permanent IAM user in AWS",
+      "Accesses resources via a trusted IdP without a separate IAM user",
+      "Must always create an IAM role manually",
+      "Cannot use SSO"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Federated users authenticate through an external identity provider (SAML, OIDC, or social login) and do not need a separate IAM user in AWS."
+  },
+  {
+    "id": 79,
+    "question": "AWS IAM Identity Center (AWS SSO) allows users to:",
+    "type": "single",
+    "choices": [
+      "Sign in once and access multiple AWS accounts and applications",
+      "Only access a single AWS account at a time",
+      "Replace IAM roles permanently",
+      "Automatically create S3 buckets for users"
+    ],
+    "correctAnswers": [0],
+    "explanation": "IAM Identity Center (AWS SSO) allows single sign-on across multiple AWS accounts and applications, simplifying credential management for users."
+  },
+  {
+    "id": 80,
+    "question": "Which statement correctly differentiates AWS Cognito and IAM Identity Center?",
+    "type": "single",
+    "choices": [
+      "AWS Cognito provides SSO for managing AWS accounts and resources",
+      "AWS IAM Identity Center authenticates users of applications",
+      "AWS Cognito authenticates application users, while IAM Identity Center provides SSO for AWS accounts",
+      "Both are used only for S3 access control"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Cognito is used for application-level authentication and authorization, while IAM Identity Center provides SSO for AWS accounts and cloud applications."
+  },
+  {
+    "id": 81,
+    "question": "Which encryption method allows the data to be encrypted with a data key, and the data key itself is encrypted with a master key in KMS?",
+    "type": "single",
+    "choices": [
+      "Symmetric encryption",
+      "Envelope encryption",
+      "Client-side encryption only",
+      "Server-side encryption"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Envelope encryption protects data using a data key that is itself encrypted by a KMS master key, combining performance and security."
+  },
+  {
+    "id": 82,
+    "question": "What is the primary purpose of AWS STS?",
+    "type": "single",
+    "choices": [
+      "To create permanent IAM users",
+      "To provide temporary access to AWS without long-term credentials",
+      "To encrypt data at rest in S3",
+      "To manage single sign-on for applications"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS Security Token Service (STS) issues temporary credentials to grant access to AWS resources without long-term IAM credentials."
+  },
+  {
+    "id": 83,
+    "question": "IAM roles and STS: Which statement is correct?",
+    "type": "single",
+    "choices": [
+      "IAM roles can be assumed without using STS",
+      "AWS STS generates temporary credentials whenever an IAM role is assumed",
+      "STS is only used if you call it manually",
+      "Roles never rely on STS"
+    ],
+    "correctAnswers": [1],
+    "explanation": "When an IAM role is assumed, STS generates temporary credentials that applications or users can use to access AWS resources."
+  },
+  {
+    "id": 84,
+    "question": "What is the main purpose of a Cognito User Pool?",
+    "type": "single",
+    "choices": [
+      "Manage temporary AWS credentials",
+      "Authenticate and manage users of an application",
+      "Provide SSO to multiple AWS accounts",
+      "Store S3 objects"
+    ],
+    "correctAnswers": [1],
+    "explanation": "User Pools are for user authentication and management (sign-up, sign-in, and user directory)."
+  },
+  {
+    "id": 85,
+    "question": "What does a Cognito Identity Pool do?",
+    "type": "single",
+    "choices": [
+      "Authenticates application users",
+      "Provides temporary AWS credentials to access AWS resources",
+      "Manages IAM roles permanently",
+      "Creates SSO for AWS accounts"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Identity Pools provide temporary AWS credentials for authorized users to access AWS services."
+  },
+  {
+    "id": 86,
+    "question": "You want users to log in via Google or Facebook and access AWS resources. Which Cognito setup should you use?",
+    "type": "single",
+    "choices": [
+      "User Pool only",
+      "Identity Pool with federation",
+      "IAM user only",
+      "S3 bucket policy"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Identity Pools allow federated users (from external IdPs like Google or Facebook) to obtain temporary AWS credentials."
+  },
+  {
+    "id": 87,
+    "question": "Which is the correct combination for authenticating users and allowing AWS access using Cognito?",
+    "type": "single",
+    "choices": [
+      "User Pool authenticates → Identity Pool provides temporary AWS credentials",
+      "Identity Pool authenticates → User Pool provides credentials",
+      "IAM user replaces both pools",
+      "S3 handles authentication directly"
+    ],
+    "correctAnswers": [0],
+    "explanation": "User Pools handle authentication (sign-in), and Identity Pools map the user to an IAM role to grant temporary credentials."
+  },
+  {
+    "id": 88,
+    "question": "A Cognito Identity Pool receives a token from a User Pool or IdP. What happens next?",
+    "type": "single",
+    "choices": [
+      "Authenticates users and stores passwords permanently",
+      "Maps the user to an IAM role and returns temporary AWS credentials via STS",
+      "Provides SSO to multiple AWS accounts without credentials",
+      "Only generates IAM users automatically"
+    ],
+    "correctAnswers": [1],
+    "explanation": "The Identity Pool exchanges the authentication token for temporary credentials using STS and IAM roles."
+  },
+  {
+    "id": 89,
+    "question": "Which statement about AWS Organizations is correct?",
+    "type": "single",
+    "choices": [
+      "It lets you manage multiple AWS accounts, apply policies, and consolidate billing, with a root and nested OUs hierarchy",
+      "It automatically creates IAM users in all accounts",
+      "It replaces S3 bucket policies for access control",
+      "It only works for a single AWS account"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AWS Organizations allows central management of multiple AWS accounts, including policy enforcement, consolidated billing, and organizational hierarchy."
+  },
+  {
+    "id": 90,
+    "question": "Which statement is correct about a Service Control Policy (SCP) in AWS Organizations?",
+    "type": "single",
+    "choices": [
+      "SCP grants permissions to IAM users directly",
+      "SCP sets the maximum permissions for accounts and only restricts actions",
+      "SCP automatically creates IAM roles in all accounts",
+      "SCP replaces bucket policies for S3 access"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SCPs define the maximum permissions an account or OU can have. Even if an IAM policy allows an action, the SCP can block it."
+  },
+  {
+    "id": 91,
+    "question": "What is the main purpose of an IAM permissions boundary?",
+    "type": "single",
+    "choices": [
+      "Grant all permissions automatically",
+      "Set the maximum permissions an IAM entity can have",
+      "Replace SCPs in AWS Organizations",
+      "Encrypt IAM policies"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Permissions boundaries limit the maximum permissions that an IAM user or role can have, providing an extra security control layer."
+  },
+  {
+    "id": 92,
+    "question": "If a permissions boundary allows only S3 and EC2, what can an IAM user do?",
+    "type": "single",
+    "choices": [
+      "Grant access to S3, EC2, and CloudWatch",
+      "Grant access only within S3 and EC2",
+      "Grant access to any AWS service without restriction",
+      "Permissions boundaries automatically deny all S3 access"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Permissions boundaries limit the maximum actions an IAM entity can perform. Here, the user can only access S3 and EC2, not other services."
+  },
+  {
+    "id": 93,
+    "question": "Which statement correctly describes how SCPs, IAM policies, and permissions boundaries work together?",
+    "type": "single",
+    "choices": [
+      "SCPs grant permissions, IAM policies limit them, and boundaries are optional",
+      "SCPs set maximum account-level permissions, IAM policies grant access, and permissions boundaries set limits on what an IAM entity can grant",
+      "IAM policies override SCPs and boundaries",
+      "Permissions boundaries automatically grant all permissions within an account"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SCPs define account-level maximum permissions, IAM policies grant permissions to entities, and boundaries limit what a specific IAM entity can do."
+  },
+  {
+    "id": 94,
+    "question": "You want to manage multiple AWS accounts and implement best practices for governance, security, and account setup. Which AWS service should you use?",
+    "type": "single",
+    "choices": [
+      "AWS Organizations only",
+      "AWS Control Tower",
+      "IAM Roles",
+      "AWS Config"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS Control Tower builds on AWS Organizations and automates account setup, applies security guardrails, and implements best practices."
+  },
+  {
+    "id": 95,
+    "question": "What is the main difference between AWS Control Tower and AWS Organizations?",
+    "type": "single",
+    "choices": [
+      "Organizations manages multiple accounts, while Control Tower automates account setup and applies best practices with guardrails",
+      "Control Tower replaces Organizations for account management",
+      "Organizations automatically enforces security guardrails",
+      "Control Tower is only for a single AWS account"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Organizations manages accounts and policy hierarchy; Control Tower automates account creation and enforces best-practice guardrails."
+  },
+  {
+    "id": 96,
+    "question": "Which statement correctly describes the difference between symmetric and asymmetric encryption?",
+    "type": "single",
+    "choices": [
+      "Symmetric uses a key pair (public/private), while asymmetric uses the same key for encrypt/decrypt",
+      "Symmetric uses the same key for encrypting and decrypting, is faster and cheaper for large data; asymmetric uses a public/private key pair",
+      "Asymmetric is always faster than symmetric",
+      "Symmetric cannot encrypt large data"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Symmetric encryption uses a single key for encryption/decryption and is efficient for large data. Asymmetric uses a public/private key pair and is more secure but slower."
+  },
+  {
+    "id": 97,
+    "question": "Which statement is correct about asymmetric encryption in AWS KMS?",
+    "type": "single",
+    "choices": [
+      "It uses the same key for encrypting and decrypting, faster but less secure",
+      "It encrypts with a public key stored in AWS and decrypts only with the associated private key, more secure but slower than symmetric",
+      "It is faster and cheaper than symmetric for large data",
+      "It cannot be used for secure data"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Asymmetric KMS keys use a public/private key pair. Encryption is done with the public key, decryption with the private key, providing strong security."
+  },
+  {
+    "id": 98,
+    "question": "Why is asymmetric encryption slower but more secure than symmetric encryption?",
+    "type": "single",
+    "choices": [
+      "Because symmetric uses complex math rules and asymmetric uses simple math",
+      "Because asymmetric uses complex math rules, while symmetric uses simpler math rules",
+      "Because symmetric cannot encrypt large data",
+      "Because asymmetric is only used for caching"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Asymmetric encryption relies on complex mathematical operations (e.g., RSA, ECC), which are slower than the simpler operations used by symmetric encryption."
+  },
+  {
+    "id": 99,
+    "question": "Which statement correctly describes envelope encryption in AWS KMS?",
+    "type": "single",
+    "choices": [
+      "Data is encrypted directly with a master KMS key",
+      "Data is encrypted with a temporary symmetric key (Data Key), which is then encrypted with a KMS master key",
+      "Only asymmetric keys are used for encrypting large data",
+      "Envelope encryption bypasses KMS entirely"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Envelope encryption encrypts the data with a data key (symmetric) and then encrypts the data key with a KMS customer master key. This is efficient and secure."
+  },
+  {
+    "id": 100,
+    "question": "Which AWS storage services are commonly integrated with KMS for encryption?",
+    "type": "single",
+    "choices": [
+      "S3 and EBS",
+      "IAM and Lambda",
+      "CloudFront and Route 53",
+      "EC2 and VPC"
+    ],
+    "correctAnswers": [0],
+    "explanation": "S3 and EBS natively integrate with KMS to provide server-side encryption for objects and volumes."
+  },
+  {
+    "id": 101,
+    "question": "What is the primary purpose of AWS WAF?",
+    "type": "single",
+    "choices": [
+      "Encrypt S3 buckets",
+      "Monitor and control HTTP/HTTPS requests to web applications based on rules",
+      "Manage IAM users and roles",
+      "Provide VPC network isolation"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS WAF inspects incoming HTTP/S requests and allows or blocks them based on user-defined rules to protect web applications."
+  },
+  {
+    "id": 102,
+    "question": "Which statement is correct about AWS Shield?",
+    "type": "single",
+    "choices": [
+      "It encrypts data at rest in S3",
+      "It protects web applications from DDoS attacks that aim to make servers unreachable",
+      "It manages IAM roles for users",
+      "It monitors HTTP requests like WAF"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS Shield is designed to protect AWS applications from distributed denial-of-service (DDoS) attacks."
+  },
+  {
+    "id": 103,
+    "question": "What is the primary function of Amazon Macie?",
+    "type": "single",
+    "choices": [
+      "Encrypt S3 objects automatically",
+      "Use machine learning to discover sensitive data in S3 and notify administrators",
+      "Protect against DDoS attacks",
+      "Manage IAM roles and permissions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon Macie uses ML to detect sensitive data like PII in S3 and generates alerts for security teams."
+  },
+  {
+    "id": 104,
+    "question": "What is the primary purpose of Amazon Inspector?",
+    "type": "single",
+    "choices": [
+      "Scan AWS workloads for software vulnerabilities, e.g., EC2 AMIs before use",
+      "Encrypt S3 buckets using KMS",
+      "Protect web apps from DDoS attacks",
+      "Manage IAM users and roles"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon Inspector evaluates AWS resources for security vulnerabilities and deviations from best practices."
+  },
+  {
+    "id": 105,
+    "question": "What is the primary function of Amazon Detective?",
+    "type": "single",
+    "choices": [
+      "Encrypt data in S3 and EBS",
+      "Automatically collect log data from AWS resources and use machine learning to support faster security investigations",
+      "Scan EC2 workloads for vulnerabilities",
+      "Block HTTP requests like WAF"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon Detective aggregates logs from AWS resources and uses ML to help security teams quickly analyze and investigate potential issues."
+  },
+  {
+    "id": 106,
+    "question": "What is the main purpose of AWS Security Hub?",
+    "type": "single",
+    "choices": [
+      "Encrypt data at rest in S3",
+      "Act as a central security dashboard that centralizes findings from multiple AWS services",
+      "Block DDoS attacks",
+      "Scan EC2 workloads for vulnerabilities"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS Security Hub centralizes findings from services like Inspector, Macie, and GuardDuty, providing a single dashboard for monitoring security posture."
+  },
+  {
+    "id": 107,
+    "question": "Which service automatically discovers sensitive data in S3 using machine learning?",
+    "type": "single",
+    "choices": [
+      "AWS WAF",
+      "Amazon Macie",
+      "Amazon Inspector",
+      "AWS Shield"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon Macie scans S3 buckets to identify sensitive information using ML."
+  },
+  {
+    "id": 108,
+    "question": "You want to scan EC2 AMIs for vulnerabilities before deployment. Which service should you use?",
+    "type": "single",
+    "choices": [
+      "Amazon Detective",
+      "Amazon Inspector",
+      "AWS Security Hub",
+      "AWS Shield"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon Inspector inspects EC2 instances and AMIs for known vulnerabilities and security deviations."
+  },
+  {
+    "id": 109,
+    "question": "Which service aggregates security findings from multiple AWS services into a central dashboard?",
+    "type": "single",
+    "choices": [
+      "AWS Security Hub",
+      "Amazon Macie",
+      "AWS WAF",
+      "Amazon Inspector"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AWS Security Hub centralizes findings and allows teams to view and respond to threats in one place."
+  },
+  {
+    "id": 110,
+    "question": "You need to triage a potential issue by automatically collecting logs and tracking all activity of an IAM entity. Which service is correct?",
+    "type": "single",
+    "choices": [
+      "Amazon Detective",
+      "AWS Security Hub",
+      "Amazon Macie",
+      "Amazon Inspector"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon Detective collects logs, visualizes relationships, and helps analyze IAM entity activity for investigations."
+  },
+  {
+    "id": 111,
+    "question": "Which of the following can be a source of security findings in AWS Security Hub?",
+    "type": "single",
+    "choices": [
+      "CloudTrail only",
+      "IAM Policies",
+      "S3 Lifecycle rules",
+      "GuardDuty, Inspector, Macie, Firewall Manager, 3rd-party tools"
+    ],
+    "correctAnswers": [3],
+    "explanation": "AWS Security Hub aggregates findings from services like GuardDuty, Inspector, Macie, Firewall Manager, and supported third-party tools."
+  },
+  {
+    "id": 112,
+    "question": "By default, how long does CloudTrail keep logs in the account?",
+    "type": "single",
+    "choices": [
+      "30 days",
+      "90 days",
+      "1 year",
+      "Indefinitely"
+    ],
+    "correctAnswers": [1],
+    "explanation": "CloudTrail event history is retained for 90 days by default."
+  },
+  {
+    "id": 113,
+    "question": "To which AWS entity can a Service Control Policy (SCP) be attached?",
+    "type": "single",
+    "choices": [
+      "IAM Role",
+      "IAM User",
+      "Organizational Unit (OU)",
+      "S3 Bucket"
+    ],
+    "correctAnswers": [2],
+    "explanation": "SCPs are attached to AWS Organizations roots, organizational units (OUs), or accounts—not IAM entities."
+  },
+  {
+    "id": 114,
+    "question": "Which entities can an IAM policy be directly attached to?",
+    "type": "single",
+    "choices": [
+      "Organizational Unit (OU)",
+      "IAM Role, User, or Group",
+      "AWS Account root",
+      "CloudTrail"
+    ],
+    "correctAnswers": [1],
+    "explanation": "IAM policies can be attached directly to IAM users, groups, and roles."
+  },
+  {
+    "id": 115,
+    "question": "Which statement is correct?",
+    "type": "single",
+    "choices": [
+      "SCPs grant permissions automatically",
+      "IAM policies can be attached to OUs",
+      "CloudTrail logs are permanent by default",
+      "SCPs can restrict permissions of an OU, IAM policies can grant permissions to users/roles/groups"
+    ],
+    "correctAnswers": [3],
+    "explanation": "SCPs define permission boundaries at the organization level, while IAM policies grant permissions to IAM entities."
+  },
+  {
+    "id": 116,
+    "question": "Which of the following statements about GuardDuty findings is correct?",
+    "type": "single",
+    "choices": [
+      "GuardDuty only analyzes CloudTrail logs",
+      "GuardDuty automatically blocks malicious traffic",
+      "GuardDuty findings can only be used in Security Hub",
+      "GuardDuty can analyze VPC Flow Logs, CloudTrail logs, and DNS logs"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Amazon GuardDuty analyzes CloudTrail events, VPC Flow Logs, and DNS logs to detect threats."
+  },
+  {
+    "id": 117,
+    "question": "Which scenario is most appropriate for Amazon Macie?",
+    "type": "single",
+    "choices": [
+      "Detecting software vulnerabilities on EC2 instances",
+      "Blocking DDoS attacks automatically",
+      "Generating temporary credentials for federated users",
+      "Monitoring sensitive data such as PII in S3 buckets"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Amazon Macie is designed to discover and protect sensitive data like PII in Amazon S3."
+  },
+  {
+    "id": 118,
+    "question": "In a multi-account setup with CloudTrail, what is true about a centralized trail?",
+    "type": "single",
+    "choices": [
+      "Each account must have a separate trail; centralized is not possible",
+      "Centralized trails automatically enforce SCPs",
+      "Only IAM user activity is logged",
+      "A single centralized trail can log events for multiple accounts"
+    ],
+    "correctAnswers": [3],
+    "explanation": "An organization-level CloudTrail can log events from multiple AWS accounts into a central S3 bucket."
+  },
+  {
+    "id": 119,
+    "question": "What is the key difference between AWS WAF and AWS Shield?",
+    "type": "single",
+    "choices": [
+      "WAF protects against DDoS attacks; Shield filters HTTP requests",
+      "Shield is only for CloudFront; WAF is only for ALB",
+      "WAF automatically blocks all malicious traffic",
+      "WAF filters HTTP requests to web apps; Shield protects against DDoS attacks"
+    ],
+    "correctAnswers": [3],
+    "explanation": "AWS WAF filters and controls HTTP/HTTPS requests, while AWS Shield provides protection against DDoS attacks."
+  },
+  {
+    "id": 120,
+    "question": "Which statement about IAM permission boundaries is true?",
+    "type": "single",
+    "choices": [
+      "They grant permissions beyond what IAM policies allow",
+      "They replace SCPs in multi-account environments",
+      "They automatically attach to all users in an OU",
+      "They limit the maximum permissions an IAM entity can have"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Permission boundaries define the maximum permissions an IAM role or user can receive."
+  },
+  {
+    "id": 121,
+    "question": "If an SCP allows s3:PutObject but the IAM policy denies it, what happens?",
+    "type": "single",
+    "choices": [
+      "The user can still put objects",
+      "Deny in IAM overrides SCP",
+      "SCP allow + IAM deny → denied",
+      "SCP allow automatically grants access"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Both SCPs and IAM policies must allow an action. An explicit deny in IAM results in denial."
+  },
+  {
+    "id": 122,
+    "question": "Which statement about AWS KMS keys is true?",
+    "type": "single",
+    "choices": [
+      "Symmetric keys use the same key for encryption and decryption",
+      "Asymmetric keys are always faster than symmetric",
+      "KMS does not support envelope encryption",
+      "Asymmetric keys cannot be used in digital signatures"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Symmetric KMS keys use the same key material for encryption and decryption and are the most commonly used."
+  },
+  {
+    "id": 123,
+    "question": "Which of the following is true about federated access with AWS STS?",
+    "type": "single",
+    "choices": [
+      "STS automatically creates IAM users in the target account",
+      "STS credentials are permanent",
+      "STS cannot be used with SAML or OIDC providers",
+      "STS temporary credentials require IAM credentials to request"
+    ],
+    "correctAnswers": [3],
+    "explanation": "AWS STS issues temporary credentials after a trusted entity (IAM user/role or federated identity) requests them. The credentials are temporary and commonly used with SAML or OIDC."
+  },
+  {
+    "id": 124,
+    "question": "AWS Security Hub aggregates findings from which sources?",
+    "type": "single",
+    "choices": [
+      "Only Macie and CloudTrail",
+      "Only WAF and Shield",
+      "Only IAM policies and roles",
+      "GuardDuty, Macie, Inspector, Firewall Manager, 3rd-party tools"
+    ],
+    "correctAnswers": [3],
+    "explanation": "AWS Security Hub centralizes security findings from multiple AWS security services and supported third-party tools."
+  },
+  {
+    "id": 125,
+    "question": "Which best describes Amazon Detective’s workflow?",
+    "type": "single",
+    "choices": [
+      "Detects vulnerabilities on EC2 instances",
+      "Only aggregates Macie findings",
+      "Provides a firewall for HTTP requests",
+      "Automatically collects logs, builds graphs, and helps trace activities related to IAM entities"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Amazon Detective automatically collects and analyzes logs to build visual graphs that help investigate security issues involving IAM entities and resources."
+  },
+  {
+    "id": 126,
+    "question": "An IAM role has a permissions boundary allowing only S3 and EC2 actions. The SCP allows all actions. The IAM policy allows CloudWatch actions. What is the result?",
+    "type": "single",
+    "choices": [
+      "The role can perform CloudWatch actions",
+      "The role can perform S3 and EC2 actions",
+      "The role can perform all actions because the SCP allows everything",
+      "The role is blocked from S3 actions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Permissions boundaries limit the maximum permissions an IAM role can have. Even though the SCP and IAM policy allow more, the boundary restricts actions to S3 and EC2 only."
+  },
+  {
+    "id": 127,
+    "question": "A GuardDuty finding shows suspicious API calls from an IAM role. You want to investigate all related activity. Which service combination is best?",
+    "type": "single",
+    "choices": [
+      "GuardDuty + Security Hub only",
+      "Amazon Inspector alone",
+      "AWS WAF + Shield",
+      "GuardDuty + Amazon Detective"
+    ],
+    "correctAnswers": [3],
+    "explanation": "GuardDuty detects the suspicious activity, while Amazon Detective analyzes related logs and builds activity graphs to support investigation."
+  },
+  {
+    "id": 128,
+    "question": "You store PII in an S3 bucket. CloudTrail logs API calls and Macie scans the bucket. If CloudTrail is deleted, what happens?",
+    "type": "single",
+    "choices": [
+      "Macie can no longer detect PII",
+      "CloudTrail deletion automatically triggers an SCP",
+      "GuardDuty stops working",
+      "Macie continues scanning the bucket normally"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Amazon Macie scans S3 objects directly for sensitive data and does not rely on CloudTrail to perform classification."
+  },
+  {
+    "id": 129,
+    "question": "An application is behind CloudFront using AWS WAF and AWS Shield Advanced. A volumetric DDoS attack occurs. Which statement is true?",
+    "type": "single",
+    "choices": [
+      "WAF automatically blocks all traffic",
+      "Security Hub prevents the attack",
+      "IAM policies determine if the attack succeeds",
+      "Shield Advanced mitigates the DDoS while WAF enforces custom HTTP rules"
+    ],
+    "correctAnswers": [3],
+    "explanation": "AWS Shield Advanced protects against DDoS attacks, while AWS WAF applies custom HTTP(S) filtering rules. Security Hub only aggregates findings."
+  },
+  {
+    "id": 130,
+    "question": "You encrypt data using envelope encryption with a KMS CMK in us-east-1 and replicate it to eu-west-1. Which is correct?",
+    "type": "single",
+    "choices": [
+      "The same CMK in us-east-1 can decrypt the data in eu-west-1",
+      "Envelope encryption does not require KMS for decryption",
+      "Data replication automatically re-encrypts without KMS",
+      "You must create a CMK in eu-west-1 or replicate the key"
+    ],
+    "correctAnswers": [3],
+    "explanation": "AWS KMS keys are region-specific. To decrypt data in another region, you must replicate the key or create a CMK in the target region."
+  }
         
     ]
 }
