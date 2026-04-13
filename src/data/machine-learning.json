@@ -1,9 +1,2143 @@
 {
     "id":  "machine-learning",
-    "name":  "Billing \u0026 Welll Architected Framework",
+    "name":  "Caching & Decoupled",
     "description":  "AI, neural networks, and data science",
     "icon":  "Brain",
     "questions":  [
-        
-    ]
+  {
+    "id": 1,
+    "question": "What is caching?",
+    "type": "single",
+    "choices": [
+      "A high-speed data storage layer",
+      "An in-memory database",
+      "A global network for content distribution",
+      "A way to store passwords"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Caching is a high-speed data storage layer used to store frequently accessed data to reduce latency and improve performance."
+  },
+  {
+    "id": 2,
+    "question": "Which type of data should you cache?",
+    "type": "single",
+    "choices": [
+      "Data that can be retrieved quickly with simple queries",
+      "Specialized data that is needed by a subset of users",
+      "Static data that is frequently accessed",
+      "Dynamically generated web content"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Static, frequently accessed data is ideal for caching because it reduces repeated backend processing."
+  },
+  {
+    "id": 3,
+    "question": "Which is a benefit of caching?",
+    "type": "single",
+    "choices": [
+      "Decreased costs",
+      "Increased application reliability",
+      "Load balancing the application",
+      "Reduced response latency"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Caching improves performance by reducing response time and latency for frequently accessed data."
+  },
+  {
+    "id": 4,
+    "question": "Which types of content on a web page can be cached using an edge cache? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Shopping cart filled with a user’s item",
+      "Dynamically generated content such as a user’s name",
+      "Web objects such as hyperlinks",
+      "Video files such as a product demo",
+      "User-generated data such as search terms"
+    ],
+    "correctAnswers": [2, 3],
+    "explanation": "Edge caches store static content like web objects (CSS, JS, images) and video files. Dynamic or personalized data should not be cached."
+  },
+  {
+    "id": 5,
+    "question": "What does Amazon CloudFront enable?",
+    "type": "single",
+    "choices": [
+      "Multi-tiered and regional caching of content",
+      "Automatic creation of a time to live (TTL) value",
+      "Transactional processing with an in-memory database",
+      "Bidirectional caching between users and an origin host"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon CloudFront is a CDN that provides multi-tier caching at edge locations globally."
+  },
+  {
+    "id": 6,
+    "question": "How does Amazon CloudFront use edge locations?",
+    "type": "single",
+    "choices": [
+      "It caches frequently accessed content at edge locations and delivers it through the lowest latency edge location",
+      "It caches all Regional data at regional edge locations only",
+      "It caches all origin data at every edge location regardless of demand",
+      "It caches only dynamic content closer to users"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CloudFront caches frequently accessed content at edge locations and serves it from the lowest-latency location."
+  },
+  {
+    "id": 7,
+    "question": "Which statement describes an efficient way to deliver on-demand video content?",
+    "type": "single",
+    "choices": [
+      "Use Amazon S3 to store and serve the content directly",
+      "Host video on EC2 without CDN",
+      "Use EC2 and manually replicate content globally",
+      "Store content in S3 and deliver it using Amazon CloudFront"
+    ],
+    "correctAnswers": [3],
+    "explanation": "S3 + CloudFront is the best practice for scalable and low-latency video delivery."
+  },
+  {
+    "id": 8,
+    "question": "Which role does Amazon CloudFront play in protecting against DDoS attacks?",
+    "type": "single",
+    "choices": [
+      "Routes traffic through edge locations to absorb large-scale traffic",
+      "Blocks traffic based on IP reputation rules only",
+      "Performs deep packet inspection on all requests",
+      "Restricts traffic by country automatically"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CloudFront helps mitigate DDoS by distributing traffic across global edge locations."
+  },
+  {
+    "id": 9,
+    "question": "How can an application use Amazon ElastiCache to improve database read performance? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Read data from database first, then cache frequently accessed data",
+      "Direct all reads to database and never use cache",
+      "Write data to ElastiCache when writing to database",
+      "Read from ElastiCache first and write to cache on cache miss",
+      "Replace the database entirely with ElastiCache"
+    ],
+    "correctAnswers": [0, 3],
+    "explanation": "Common caching patterns include cache-aside: read from cache first, and populate cache on miss."
+  },
+  {
+    "id": 10,
+    "question": "Which type of caching strategy should be used when there’s data that must be updated in real time?",
+    "type": "single",
+    "choices": [
+      "Cache-control headers",
+      "Time to live (TTL)",
+      "Write-through",
+      "Lazy loading"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Write-through caching ensures that data is written to both the cache and the database at the same time, keeping data always consistent and updated in real time."
+  },
+  {
+    "id": 11,
+    "question": "Which AWS services can be used for caching data to improve application performance? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Amazon CloudFront",
+      "Amazon S3 Glacier",
+      "Amazon ElastiCache",
+      "AWS CloudTrail",
+      "Amazon Route 53"
+    ],
+    "correctAnswers": [0, 2],
+    "explanation": "CloudFront provides edge caching for static content, while ElastiCache provides in-memory caching for application data."
+  },
+  {
+    "id": 12,
+    "question": "Which types of data should be cached to improve application performance? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Frequently accessed data",
+      "Static content (images, CSS, JS)",
+      "Long-term archival data",
+      "Highly encrypted cold backups",
+      "Rarely accessed historical logs"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "Caching is best for frequently accessed and static data, not archival or rarely accessed data."
+  },
+  {
+    "id": 13,
+    "question": "A company wants to reduce latency for users globally when accessing static website content. What is the BEST solution?",
+    "type": "single",
+    "choices": [
+      "Store the content in Amazon RDS",
+      "Use Amazon CloudFront with edge locations",
+      "Use Amazon DynamoDB global tables",
+      "Use AWS Lambda@Edge only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "CloudFront reduces latency by caching static content at edge locations close to users globally."
+  },
+  {
+    "id": 14,
+    "question": "What is the BEST strategy for improving performance of frequently read database data?",
+    "type": "single",
+    "choices": [
+      "Increase EC2 instance size",
+      "Use Amazon ElastiCache to store frequently accessed data",
+      "Store all data in Amazon S3",
+      "Use Amazon EBS snapshots"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ElastiCache reduces database load by serving frequently accessed data from in-memory storage."
+  },
+  {
+    "id": 15,
+    "question": "A company wants to reduce latency and database load for a web application with heavy read traffic. Which solution BEST achieves this goal?",
+    "type": "single",
+    "choices": [
+      "Use Amazon S3 to store query results",
+      "Use Amazon ElastiCache to cache frequently accessed data",
+      "Increase the size of the database instance only",
+      "Use Amazon EBS for faster storage"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ElastiCache provides in-memory caching that significantly reduces database read load and improves latency."
+  },
+  {
+    "id": 16,
+    "question": "Which architecture correctly represents a system using caching to improve performance?",
+    "type": "single",
+    "choices": [
+      "User → Database → EC2 → User",
+      "User → EC2 → Database → EC2 → User",
+      "User → EC2 → Cache → Database (on miss) → EC2 → User",
+      "User → S3 → EC2 → Database"
+    ],
+    "correctAnswers": [2],
+    "explanation": "The correct caching pattern is cache-aside: application checks cache first, then database on cache miss."
+  },
+  {
+    "id": 17,
+    "question": "What is the main difference between an architecture WITHOUT cache and WITH cache?",
+    "type": "single",
+    "choices": [
+      "Without cache improves scalability automatically",
+      "With cache reduces number of database reads",
+      "Without cache eliminates EC2 usage",
+      "With cache increases database workload"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Caching reduces database load by serving frequently requested data from a fast in-memory layer."
+  },
+  {
+    "id": 18,
+    "question": "What is the PRIMARY purpose of Amazon ElastiCache in a 3-tier architecture?",
+    "type": "single",
+    "choices": [
+      "Store permanent application data",
+      "Replace the database layer",
+      "Provide fast in-memory access to frequently used data",
+      "Handle static website hosting"
+    ],
+    "correctAnswers": [2],
+    "explanation": "ElastiCache is used as an in-memory layer to speed up access to frequently used data and is not a persistent storage system."
+  },
+  {
+    "id": 19,
+    "question": "What is a known trade-off of using Amazon ElastiCache in front of a database?",
+    "type": "single",
+    "choices": [
+      "Increased write latency due to encryption",
+      "Data in cache may become stale compared to the origin database",
+      "The database automatically becomes serverless",
+      "Cache guarantees stronger consistency than the database"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Caching introduces eventual consistency, meaning cached data may become stale compared to the source database."
+  },
+  {
+    "id": 20,
+    "question": "Why can cached data become outdated in a system using Amazon ElastiCache?",
+    "type": "single",
+    "choices": [
+      "Because ElastiCache encrypts data automatically",
+      "Because cache is always slower than the database",
+      "Because cached data is not always updated immediately when the origin changes",
+      "Because EC2 instances cannot access the cache"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Cache is not the source of truth, so updates in the database are not immediately reflected in the cache."
+  },
+  {
+    "id": 21,
+    "question": "Which consistency model is most commonly associated with caching systems like Amazon ElastiCache?",
+    "type": "single",
+    "choices": [
+      "Strong consistency",
+      "Immediate consistency",
+      "Eventual consistency",
+      "Strict ACID consistency"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Caching systems typically use eventual consistency because cached data may temporarily differ from the database."
+  },
+  {
+    "id": 22,
+    "question": "What is the purpose of TTL (Time To Live) in a caching system like ElastiCache?",
+    "type": "single",
+    "choices": [
+      "To permanently store cached data",
+      "To automatically delete or invalidate cached data after a certain time",
+      "To increase database storage capacity",
+      "To encrypt cached records"
+    ],
+    "correctAnswers": [1],
+    "explanation": "TTL ensures cached data expires after a defined period to prevent stale data and free memory."
+  },
+  {
+    "id": 23,
+    "question": "What are the main benefits of using Amazon CloudFront in front of an application? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Reduces latency by caching content closer to users",
+      "Eliminates the need for a backend database",
+      "Reduces origin server load and costs",
+      "Replaces Amazon VPC for networking",
+      "Provides unlimited storage for data backup"
+    ],
+    "correctAnswers": [0, 2],
+    "explanation": "CloudFront reduces latency via edge caching and decreases origin load by serving cached content closer to users."
+  },
+  {
+    "id": 24,
+    "question": "Which security benefit is provided by Amazon CloudFront when used in front of an application?",
+    "type": "single",
+    "choices": [
+      "Automatic database encryption",
+      "Built-in protection against DDoS attacks",
+      "IAM role-based database access control",
+      "Antivirus scanning of uploaded files"
+    ],
+    "correctAnswers": [1],
+    "explanation": "CloudFront integrates with AWS Shield Standard to provide protection against DDoS attacks at the edge."
+  },
+  {
+    "id": 25,
+    "question": "What is the PRIMARY purpose of CloudFront edge locations?",
+    "type": "single",
+    "choices": [
+      "Store primary application data permanently",
+      "Execute backend business logic",
+      "Cache content closer to users to improve delivery speed",
+      "Replace EC2 instances"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Edge locations cache content closer to users globally to reduce latency and improve performance."
+  },
+  {
+    "id": 26,
+    "question": "How does Amazon CloudFront help reduce origin server costs?",
+    "type": "single",
+    "choices": [
+      "By replacing the origin server entirely",
+      "By caching frequently requested content at edge locations",
+      "By increasing database storage efficiency",
+      "By compressing the operating system of EC2 instances"
+    ],
+    "correctAnswers": [1],
+    "explanation": "CloudFront reduces origin load by caching frequently accessed content at edge locations, which reduces compute, bandwidth, and operational costs."
+  },
+  {
+    "id": 27,
+    "question": "Which types of content are BEST suited for caching using Amazon CloudFront? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Static images (JPEG, PNG)",
+      "Frequently changing financial transactions",
+      "CSS and JavaScript files",
+      "Database write operations",
+      "User authentication tokens with high sensitivity"
+    ],
+    "correctAnswers": [0, 2],
+    "explanation": "CloudFront is optimized for static and cacheable assets such as images, CSS, and JavaScript files, not dynamic or sensitive data."
+  },
+  {
+    "id": 28,
+    "question": "A company wants to improve global delivery of a website that contains mostly static content such as HTML pages, images, and videos. Which AWS service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS",
+      "Amazon CloudFront",
+      "AWS Lambda",
+      "Amazon DynamoDB"
+    ],
+    "correctAnswers": [1],
+    "explanation": "CloudFront is a CDN that caches static content at edge locations, improving global delivery performance."
+  },
+  {
+    "id": 29,
+    "question": "Which type of data is LEAST suitable for caching?",
+    "type": "single",
+    "choices": [
+      "CSS files",
+      "Images",
+      "Frequently updated user account balances",
+      "HTML pages"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Highly dynamic and sensitive data such as account balances should not be cached because it can lead to stale or inconsistent results."
+  },
+  {
+    "id": 30,
+    "question": "Why is caching dynamic content more complex than caching static content?",
+    "type": "single",
+    "choices": [
+      "Because dynamic content cannot be stored in memory",
+      "Because it requires strict synchronization to avoid stale data",
+      "Because CloudFront does not support dynamic content",
+      "Because databases cannot handle dynamic data"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Dynamic content changes frequently, so caching requires synchronization strategies like TTL and invalidation to prevent stale data."
+  },
+  {
+    "id": 31,
+    "question": "Which strategy helps reduce stale data issues when caching dynamic content?",
+    "type": "single",
+    "choices": [
+      "Increase cache size indefinitely",
+      "Use TTL and cache invalidation mechanisms",
+      "Disable database updates",
+      "Store all data permanently in cache"
+    ],
+    "correctAnswers": [1],
+    "explanation": "TTL and cache invalidation help ensure cached data is refreshed and does not become stale."
+  },
+  {
+    "id": 32,
+    "question": "A company wants to cache API responses that change frequently while minimizing the risk of stale data. Which approaches are MOST appropriate? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Use a CDN with short TTL values",
+      "Cache data permanently in Amazon CloudFront",
+      "Use application-level caching with controlled invalidation",
+      "Disable caching entirely for all requests",
+      "Store dynamic data only in S3 Glacier"
+    ],
+    "correctAnswers": [0, 2],
+    "explanation": "Short TTL reduces stale cache duration, and application-level caching allows fine-grained control over updates and invalidation."
+  },
+  {
+    "id": 33,
+    "question": "What is the PRIMARY benefit of using a short TTL in a CDN like Amazon CloudFront for dynamic content?",
+    "type": "single",
+    "choices": [
+      "It eliminates the need for a database",
+      "It reduces the time stale data may be served to users",
+      "It increases storage capacity at edge locations",
+      "It guarantees strong consistency across all regions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Short TTL ensures cached content is refreshed more frequently, reducing the window during which stale data can be served."
+  },
+  {
+    "id": 34,
+    "question": "What is a key advantage of application-level caching for dynamic content?",
+    "type": "single",
+    "choices": [
+      "It removes the need for a backend database",
+      "It allows fine-grained control over cache updates and invalidation",
+      "It guarantees zero latency",
+      "It automatically encrypts all cached data"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Application-level caching allows developers to explicitly control what is cached and when it is invalidated or refreshed."
+  },
+  {
+    "id": 35,
+    "question": "Which methods can help reduce costs and improve caching efficiency in Amazon CloudFront? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Using minimum and maximum TTL values",
+      "Disabling edge locations globally",
+      "Using HTTP Cache-Control headers",
+      "Storing all content only in RDS",
+      "Increasing origin request frequency"
+    ],
+    "correctAnswers": [0, 2],
+    "explanation": "TTL settings and HTTP Cache-Control headers control caching behavior and help reduce unnecessary origin requests."
+  },
+  {
+    "id": 36,
+    "question": "How does content versioning help optimize caching in CloudFront?",
+    "type": "single",
+    "choices": [
+      "It forces all requests to bypass cache permanently",
+      "It ensures updated content is fetched without frequent cache invalidation",
+      "It disables caching for dynamic content",
+      "It reduces encryption overhead"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Versioning (e.g., app.v1.js → app.v2.js) creates a new cache object, avoiding the need for manual invalidation."
+  },
+  {
+    "id": 37,
+    "question": "What is a key drawback of using CloudFront invalidation requests frequently?",
+    "type": "single",
+    "choices": [
+      "It increases database storage cost",
+      "It increases operational cost and may impact performance",
+      "It disables edge caching permanently",
+      "It reduces security of HTTPS connections"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Frequent invalidations are costly and reduce caching efficiency across edge locations."
+  },
+  {
+    "id": 38,
+    "question": "What is the role of HTTP Cache-Control headers in CloudFront caching behavior?",
+    "type": "single",
+    "choices": [
+      "They define how long content is stored in browser and CDN cache",
+      "They replace the need for a database",
+      "They encrypt cached data automatically",
+      "They force all requests to bypass cache"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cache-Control headers define caching rules such as max-age, no-cache, and public directives for browsers and CDNs."
+  },
+  {
+    "id": 39,
+    "question": "A company needs a simple distributed cache with no advanced features like persistence or replication. Which AWS ElastiCache engine should be used?",
+    "type": "single",
+    "choices": [
+      "Redis",
+      "Memcached",
+      "Amazon RDS",
+      "Amazon DynamoDB"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Memcached is a simple, high-performance distributed cache with no persistence or advanced features."
+  },
+  {
+    "id": 40,
+    "question": "A company needs a caching solution that supports advanced data structures, persistence, and replication. Which option is BEST?",
+    "type": "single",
+    "choices": [
+      "Memcached",
+      "Redis (Amazon ElastiCache for Redis)",
+      "Amazon S3",
+      "Amazon EBS"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Redis supports persistence, replication, and advanced data structures such as lists, sets, and sorted sets."
+  },
+  {
+    "id": 41,
+    "question": "Which scenario is BEST suited for Amazon ElastiCache for Memcached?",
+    "type": "single",
+    "choices": [
+      "Session storage requiring durability",
+      "Simple caching of database query results",
+      "Financial transactions requiring strong consistency",
+      "Long-term data storage"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Memcached is ideal for simple, high-performance caching use cases without persistence or advanced data features."
+  },
+  {
+    "id": 42,
+    "question": "What is a key advantage of Redis over Memcached in Amazon ElastiCache?",
+    "type": "single",
+    "choices": [
+      "Redis is cheaper in all cases",
+      "Redis supports advanced data structures and persistence",
+      "Redis does not use memory",
+      "Redis cannot scale horizontally"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Redis supports persistence, replication, and advanced data structures such as lists, sets, and sorted sets."
+  },
+  {
+    "id": 43,
+    "question": "In a lazy loading (cache-aside) strategy, what happens when a requested item is not found in the cache?",
+    "type": "single",
+    "choices": [
+      "The request fails immediately",
+      "The system deletes the database entry",
+      "The application reads from the database and stores the result in the cache",
+      "The cache automatically preloads all data"
+    ],
+    "correctAnswers": [2],
+    "explanation": "In cache-aside (lazy loading), a cache miss triggers a database query and then stores the result in the cache."
+  },
+  {
+    "id": 44,
+    "question": "In a write-through caching strategy, what happens when data is updated?",
+    "type": "single",
+    "choices": [
+      "Data is written only to the database",
+      "Data is written to cache only",
+      "Data is written to both cache and database simultaneously",
+      "Data is deleted from cache and database"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Write-through caching ensures both cache and database are updated at the same time for consistency."
+  },
+  {
+    "id": 45,
+    "question": "What is a main disadvantage of lazy loading compared to write-through caching?",
+    "type": "single",
+    "choices": [
+      "Higher storage cost",
+      "Cache may contain stale data or cause cache miss latency",
+      "Requires no database",
+      "Always slower database writes"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lazy loading can result in cache misses and stale data until the cache is refreshed."
+  },
+  {
+    "id": 46,
+    "question": "Which statement is TRUE about write-through caching?",
+    "type": "single",
+    "choices": [
+      "Faster reads on first request compared to lazy loading",
+      "No database is required",
+      "Writes are slower because data is written twice",
+      "Cache is only filled on read operations"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Write-through caching updates both cache and database on every write, increasing write latency."
+  },
+  {
+    "id": 47,
+    "question": "In a cache-aside architecture using Amazon ElastiCache, when is the database queried?",
+    "type": "single",
+    "choices": [
+      "On every request",
+      "Only when the cache misses or data expires",
+      "Only when EC2 restarts",
+      "Only during writes"
+    ],
+    "correctAnswers": [1],
+    "explanation": "The database is queried only when the requested data is not found in cache or has expired."
+  },
+  {
+    "id": 48,
+    "question": "What is typically stored in Amazon ElastiCache in most common use cases?",
+    "type": "single",
+    "choices": [
+      "Entire relational database",
+      "Query results or frequently accessed data",
+      "Long-term backups",
+      "IAM policies"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ElastiCache is used to store frequently accessed data or query results to improve performance."
+  },
+  {
+    "id": 49,
+    "question": "What happens when a requested key is not found in Amazon ElastiCache?",
+    "type": "single",
+    "choices": [
+      "Request fails",
+      "Data is deleted from database",
+      "Application queries database and stores result in cache",
+      "Cache is rebuilt completely"
+    ],
+    "correctAnswers": [2],
+    "explanation": "On a cache miss, the application retrieves the data from the database and stores it in cache for future use."
+  },
+  {
+    "id": 50,
+    "question": "What is the main difference between Amazon CloudFront and Amazon ElastiCache?",
+    "type": "single",
+    "choices": [
+      "CloudFront caches database query results, ElastiCache caches static files",
+      "CloudFront caches content at edge locations, ElastiCache caches data in memory near applications",
+      "Both replace the database layer completely",
+      "Both only work inside a single Availability Zone"
+    ],
+    "correctAnswers": [1],
+    "explanation": "CloudFront is a CDN that caches content globally at edge locations close to users, while ElastiCache is an in-memory caching service (Redis/Memcached) placed near applications to reduce database load and latency."
+  },
+  {
+    "id": 51,
+    "question": "What is a common challenge when using both CloudFront and ElastiCache?",
+    "type": "single",
+    "choices": [
+      "Increased IAM complexity",
+      "Stale or outdated cached data",
+      "Loss of encryption",
+      "Inability to scale"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Both caching layers introduce the risk of stale data because cached content may not immediately reflect updates from the origin database or backend systems until TTL expiration or invalidation occurs."
+  },
+  {
+    "id": 52,
+    "question": "Why do architects use caching services like CloudFront and ElastiCache?",
+    "type": "single",
+    "choices": [
+      "To guarantee strong consistency",
+      "To reduce cost and improve performance at the expense of potential staleness",
+      "To eliminate the need for databases",
+      "To increase write latency"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Caching improves performance and reduces cost by serving frequently accessed data from fast layers (edge or memory), but it introduces trade-offs such as eventual consistency and possible stale data."
+  },
+  {
+    "id": 53,
+    "question": "Which statement describes the difference between tightly and loosely coupled architectures?",
+    "type": "single",
+    "choices": [
+      "Loosely coupled architectures must use managed services, and tightly coupled architectures don’t have this limitation.",
+      "Loose coupling increases the complexity of scaling. Tight coupling decreases it.",
+      "Components in a tightly coupled architecture are highly dependent on each other. In a loosely coupled architecture, components aren’t highly dependent on each other.",
+      "Tightly coupled architectures are more likely to fail than loosely coupled architectures."
+    ],
+    "correctAnswers": [2],
+    "explanation": "Tightly coupled systems have strong dependencies between components, while loosely coupled systems are independent and more resilient and scalable."
+  },
+  {
+    "id": 54,
+    "question": "Which statements describe Amazon Simple Queue Service (Amazon SQS)? (Select THREE.)",
+    "type": "multiple",
+    "choices": [
+      "Stores and optionally encrypts messages until they are processed and deleted",
+      "Supports standard queues and topics",
+      "Enables you to decouple and scale microservices, distributed systems, and serverless applications",
+      "Sends push notifications to consumers",
+      "Supports email and text messaging",
+      "Requires a consumer to poll the queue for messages"
+    ],
+    "correctAnswers": [0, 2, 5],
+    "explanation": "SQS stores messages until processed, enables decoupling of systems, and uses a pull-based model where consumers poll the queue."
+  },
+  {
+    "id": 55,
+    "question": "Which statements are true when using an Amazon Simple Queue Service (Amazon SQS) standard queue? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "Messages must be processed in the order that they are sent.",
+      "A message must be processed only once.",
+      "Messages can be sent in any order.",
+      "A message might be delivered more than once.",
+      "Messages can be assigned a priority."
+    ],
+    "correctAnswers": [2, 3],
+    "explanation": "Standard SQS queues do not guarantee ordering and support at-least-once delivery, meaning duplicates are possible."
+  },
+  {
+    "id": 56,
+    "question": "A fleet of Amazon EC2 instances processes videos that users upload. Which function can Amazon SQS perform in this application?",
+    "type": "single",
+    "choices": [
+      "EC2 instances put edited video files in an SQS queue. The application retrieves the videos from the queue.",
+      "The application places job messages in an SQS queue. EC2 instances with available processing capacity pull the next job message from the queue.",
+      "The application writes the video files to an SQS queue. EC2 instances with available processing capacity pull the next video from the queue.",
+      "An SQS queue receives messages from the application and notifies all available EC2 instances that videos are available."
+    ],
+    "correctAnswers": [1],
+    "explanation": "SQS is used for decoupling: producers send job messages, and EC2 workers poll and process them when available."
+  },
+  {
+    "id": 57,
+    "question": "What is Amazon Simple Notification Service (Amazon SNS)?",
+    "type": "single",
+    "choices": [
+      "A fully managed messaging service for both system-to-system and application-to-person (A2P) communication using publish/subscribe patterns",
+      "A flexible outbound marketing communications service using email, SMS, push, or voice",
+      "A serverless event bus connecting SaaS and AWS services",
+      "A cost-effective email-only service"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SNS is a fully managed pub/sub messaging service for broadcasting messages to multiple subscribers."
+  },
+  {
+    "id": 58,
+    "question": "What are some use cases for Amazon SNS? (Select THREE.)",
+    "type": "multiple",
+    "choices": [
+      "Hold input until it can be processed in order",
+      "Send a text message to systems operators when unusual activity has been detected",
+      "Notify multiple systems that user input is ready for processing",
+      "Gather streaming data from multiple systems",
+      "Send a push notification to mobile applications when a new software update is available",
+      "Trigger a single AWS Lambda function when an object is created in an S3 bucket"
+    ],
+    "correctAnswers": [1, 2, 4],
+    "explanation": "SNS is used for fan-out messaging such as alerts, notifications, and broadcasting events to multiple subscribers."
+  },
+  {
+    "id": 59,
+    "question": "What are some features of Amazon Simple Notification Service (Amazon SNS)? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "Providing strict message ordering with standard topics",
+      "Message delivery to an Amazon SQS queue",
+      "Recall of sent messages",
+      "Message delivery to a URL",
+      "Guaranteed message delivery even when an endpoint isn’t accessible"
+    ],
+    "correctAnswers": [1, 3],
+    "explanation": "SNS supports delivery to SQS queues and HTTP/S endpoints (URLs) via subscriptions."
+  },
+  {
+    "id": 60,
+    "question": "Two different AWS Lambda functions must simultaneously process PDF files uploaded to an Amazon S3 bucket. S3 event notification allows only one action. Which solution provides the least complex way to process messages with both Lambda functions efficiently?",
+    "type": "single",
+    "choices": [
+      "Upload two copies of each PDF file using different object key prefixes",
+      "Send the S3 event to an Amazon SNS topic that both Lambda functions subscribe to",
+      "Send the S3 event to an Amazon SQS queue that both Lambda functions poll",
+      "Send the S3 event to Amazon MQ for distribution to both Lambda functions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon SNS supports fan-out. One S3 event can be published to SNS, and multiple Lambda functions can subscribe and process the same event simultaneously."
+  },
+  {
+    "id": 61,
+    "question": "Which is a common use case for Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "Decouple components in a new cloud-native application",
+      "Leverage an existing on-premises application that uses Apache ActiveMQ to communicate between microservices",
+      "Upload a standalone static website to AWS",
+      "Connect a virtual private cloud (VPC) to an on-premises network"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ is used for migrating or integrating existing message broker systems like ActiveMQ or RabbitMQ."
+  },
+  {
+    "id": 62,
+    "question": "A web application uses synchronous HTTP calls from frontend EC2 instances directly to backend EC2 instances, and failures immediately break user requests. What best describes this architecture?",
+    "type": "single",
+    "choices": [
+      "Highly available",
+      "Loosely coupled",
+      "Tightly coupled",
+      "Event-driven"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Direct synchronous dependencies between components indicate a tightly coupled architecture."
+  },
+  {
+    "id": 63,
+    "question": "A company wants to remove direct dependency between frontend and backend services. Backend may be temporarily unavailable but requests must not be lost. What is the BEST solution?",
+    "type": "single",
+    "choices": [
+      "Increase EC2 instance size for backend",
+      "Add an Application Load Balancer",
+      "Use Amazon SQS between frontend and backend",
+      "Enable Auto Scaling for backend EC2 instances"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon SQS decouples systems and ensures messages are stored until processed, preventing data loss."
+  },
+
+  {
+    "id": 64,
+    "question": "A company wants to remove the direct dependency between a frontend application and a backend processing service. The backend may be unavailable temporarily, but requests must not be lost. Which solution BEST decouples the system?",
+    "type": "single",
+    "choices": [
+      "Increase EC2 instance size for the backend",
+      "Add an Application Load Balancer",
+      "Use Amazon SQS between frontend and backend",
+      "Enable Auto Scaling for backend EC2 instances"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon SQS decouples systems by storing messages until they are processed, ensuring requests are not lost when the backend is unavailable."
+  },
+  {
+    "id": 65,
+    "question": "A web application has the following design: Frontend EC2 instances make synchronous HTTP calls directly to backend EC2 instances. If the backend is unavailable, user requests immediately fail. Which statement BEST describes this architecture?",
+    "type": "single",
+    "choices": [
+      "Highly available",
+      "Loosely coupled",
+      "Tightly coupled",
+      "Event-driven"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Direct synchronous communication creates strong dependency between components, which defines a tightly coupled architecture."
+  },
+  {
+    "id": 66,
+    "question": "A company wants to remove the direct dependency between a frontend application and a backend processing service. The backend may be unavailable temporarily, but requests must not be lost. Which solution BEST decouples the system?",
+    "type": "single",
+    "choices": [
+      "Increase EC2 instance size for the backend",
+      "Add an Application Load Balancer",
+      "Use Amazon SQS between frontend and backend",
+      "Enable Auto Scaling for backend EC2 instances"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon SQS decouples systems by storing messages durably until the backend processes them, preventing request loss during downtime."
+  },
+  {
+    "id": 67,
+    "question": "A web application has the following design: Frontend EC2 instances make synchronous HTTP calls directly to backend EC2 instances. If the backend is unavailable, user requests immediately fail. Which statement BEST describes this architecture?",
+    "type": "single",
+    "choices": [
+      "Highly available",
+      "Loosely coupled",
+      "Tightly coupled",
+      "Event-driven"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Direct synchronous communication between frontend and backend creates strong dependencies, which defines a tightly coupled architecture."
+  },
+  {
+    "id": 68,
+    "question": "A company wants to remove the direct dependency between a frontend application and a backend processing service. The backend may be unavailable temporarily, but requests must not be lost. Which solution BEST decouples the system?",
+    "type": "single",
+    "choices": [
+      "Increase EC2 instance size for the backend",
+      "Add an Application Load Balancer",
+      "Use Amazon SQS between frontend and backend",
+      "Enable Auto Scaling for backend EC2 instances"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon SQS provides asynchronous messaging and decouples frontend and backend systems by buffering requests."
+  },
+  {
+    "id": 69,
+    "question": "A web application sends traffic directly to three EC2 instances. When one instance fails, users experience errors. Adding new instances requires updating the application configuration. Which solution BEST improves availability and scalability with minimal application changes?",
+    "type": "single",
+    "choices": [
+      "Add Amazon SQS between the web app and EC2 instances",
+      "Place an Application Load Balancer in front of the EC2 instances",
+      "Increase EC2 instance size",
+      "Enable Multi-AZ on the database"
+    ],
+    "correctAnswers": [1],
+    "explanation": "An Application Load Balancer improves availability by routing traffic only to healthy instances and improves scalability by removing the need for manual configuration changes when instances are added or removed."
+  },
+  {
+    "id": 70,
+    "question": "A web application uses an Application Load Balancer to distribute traffic to multiple EC2 instances. Requests are processed synchronously. Which statement is TRUE?",
+    "type": "single",
+    "choices": [
+      "The system is fully decoupled",
+      "The system is still synchronously coupled",
+      "The system is event-driven",
+      "EC2 instances are no longer dependent on the frontend"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Even with an ALB, communication is still synchronous HTTP request/response, so the system remains synchronously coupled."
+  },
+  {
+    "id": 71,
+    "question": "A company runs a single EC2 application server that contains multiple features. When one feature crashes, the entire application becomes unavailable. The company wants to isolate failures and scale features independently. Which architecture BEST meets these requirements?",
+    "type": "single",
+    "choices": [
+      "Increase the EC2 instance size",
+      "Deploy the application as multiple microservices behind an Application Load Balancer",
+      "Add a Multi-AZ RDS database",
+      "Enable Auto Scaling on the existing EC2 instance"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Microservices architecture isolates components into independent services, improving fault isolation and enabling independent scaling."
+  },
+  {
+    "id": 72,
+    "question": "A company migrates from a monolithic application to multiple microservices, each running on separate EC2 instances. They want incoming traffic to be distributed automatically without changing client configuration when new services are added. Which solution should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon Route 53 weighted routing",
+      "Application Load Balancer",
+      "Amazon SQS",
+      "Amazon CloudFront"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Application Load Balancer automatically distributes incoming traffic across microservices and supports dynamic scaling without requiring client-side changes."
+  },
+  {
+    "id": 73,
+    "question": "Some microservices in an application require long processing time and may block the request flow. The company wants to decouple services so requests are processed asynchronously and not lost. Which solution BEST meets this requirement?",
+    "type": "single",
+    "choices": [
+      "Use an Application Load Balancer between the microservices",
+      "Use Amazon SQS between the microservices",
+      "Use Amazon Route 53 latency-based routing",
+      "Increase EC2 instance size"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon SQS enables asynchronous processing and decouples services by storing messages until they are processed, preventing request loss."
+  },
+  {
+    "id": 74,
+    "question": "After completing long-running background processing, a service must notify multiple subscribers that the job is finished. Which AWS service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon SQS",
+      "Amazon EventBridge",
+      "Amazon SNS",
+      "Amazon CloudWatch Logs"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon SNS is used for pub/sub messaging to notify multiple subscribers when an event occurs."
+  },
+  {
+    "id": 75,
+    "question": "A system must process requests asynchronously, prevent request loss if services are unavailable, and notify multiple systems when processing is complete. Which architecture BEST satisfies these requirements?",
+    "type": "single",
+    "choices": [
+      "Application Load Balancer → EC2",
+      "Amazon SNS only",
+      "Amazon SQS for processing and Amazon SNS for notifications",
+      "Amazon CloudFront with Lambda@Edge"
+    ],
+    "correctAnswers": [2],
+    "explanation": "SQS handles reliable asynchronous processing while SNS provides fan-out notifications to multiple systems."
+  },
+  {
+    "id": 76,
+    "question": "A company has a decoupled AWS microservices architecture using message queues. They need to extend this architecture to on-premises systems that already use ActiveMQ-compatible protocols. Which AWS service BEST meets this requirement?",
+    "type": "single",
+    "choices": [
+      "Amazon SQS",
+      "Amazon SNS",
+      "Amazon MQ",
+      "AWS AppSync"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon MQ supports ActiveMQ-compatible protocols and is designed for integrating with existing on-premises message broker systems."
+  },
+  {
+    "id": 77,
+    "question": "A company wants to integrate AWS services with legacy on-premises applications that require JMS, AMQP, or MQTT protocols. The solution must support decoupled, asynchronous messaging. Which service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon SQS Standard",
+      "Amazon EventBridge",
+      "Amazon MQ",
+      "Amazon Kinesis Data Streams"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon MQ supports JMS, AMQP, and MQTT protocols, making it suitable for legacy and hybrid messaging integrations."
+  },
+  {
+    "id": 78,
+    "question": "A hybrid architecture requires asynchronous communication, compatibility with existing on-prem message brokers, and minimal application refactoring. Which solution BEST satisfies these requirements?",
+    "type": "single",
+    "choices": [
+      "Replace on-prem brokers with Amazon SQS",
+      "Use Amazon SNS to push messages directly to on-prem servers",
+      "Use Amazon MQ as a managed broker between AWS and on-premises systems",
+      "Use Application Load Balancer with long polling"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon MQ enables hybrid integration by providing managed broker compatibility with on-premises messaging systems and minimizing application changes."
+  },
+  {
+    "id": 79,
+    "question": "A solutions architect is designing a system where components must communicate asynchronously so that temporary backend failures do not block requests. Which solution should be used?",
+    "type": "single",
+    "choices": [
+      "Application Load Balancer",
+      "Classic Load Balancer",
+      "Amazon SQS",
+      "Network Load Balancer"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon SQS enables asynchronous communication by buffering messages and decoupling producers and consumers."
+  },
+  {
+    "id": 80,
+    "question": "Which of the following AWS services uses synchronous request/response communication?",
+    "type": "single",
+    "choices": [
+      "Amazon SNS",
+      "Amazon SQS",
+      "Application Load Balancer",
+      "Amazon MQ"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Application Load Balancer uses synchronous HTTP request/response communication between client and backend targets."
+  },
+  {
+    "id": 81,
+    "question": "Which AWS services provide asynchronous messaging? (Choose TWO)",
+    "type": "multiple",
+    "choices": [
+      "Amazon SNS",
+      "Amazon SQS",
+      "Network Load Balancer",
+      "Application Load Balancer"
+    ],
+    "correctAnswers": [0, 1],
+    "explanation": "SNS provides pub/sub asynchronous messaging and SQS provides queue-based asynchronous messaging."
+  },
+  {
+    "id": 82,
+    "question": "A hybrid application requires asynchronous communication and compatibility with existing on-premises messaging protocols. Which service should be used?",
+    "type": "single",
+    "choices": [
+      "Amazon SQS",
+      "Application Load Balancer",
+      "Amazon MQ",
+      "Amazon CloudFront"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon MQ supports JMS/AMQP/MQTT and is designed for hybrid messaging with on-premises systems."
+  },
+  {
+    "id": 83,
+    "question": "A company uses Amazon SQS Standard queue. Consumers frequently receive empty responses, causing unnecessary API calls and cost. Which solution BEST improves efficiency?",
+    "type": "single",
+    "choices": [
+      "Increase EC2 instance size",
+      "Switch to FIFO queue",
+      "Enable long polling in SQS",
+      "Use Amazon SNS instead"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Long polling reduces empty responses by waiting for messages to arrive before returning, improving efficiency and reducing costs."
+  },
+  {
+    "id": 84,
+    "question": "Which statement about SQS long polling is CORRECT?",
+    "type": "single",
+    "choices": [
+      "It immediately returns even if no messages are available",
+      "It reduces latency by skipping message wait time",
+      "It waits for messages and reduces empty responses",
+      "It only works with FIFO queues"
+    ],
+    "correctAnswers": [2],
+    "explanation": "SQS long polling waits for messages to arrive before returning a response, reducing empty responses and unnecessary API calls."
+  },
+  {
+    "id": 85,
+    "question": "A message is received by a consumer from an Amazon SQS queue. The visibility timeout is set to 60 seconds. The consumer takes 90 seconds to process the message and does not delete it. What will happen?",
+    "type": "single",
+    "choices": [
+      "The message is deleted automatically after 60 seconds",
+      "The message is permanently lost",
+      "The message becomes visible again and may be processed by another consumer",
+      "The message is duplicated in S3 for backup"
+    ],
+    "correctAnswers": [2],
+    "explanation": "After the visibility timeout expires (60s), the message becomes visible again in the queue and can be processed again, potentially causing duplicate processing."
+  },
+  {
+    "id": 86,
+    "question": "Which statement BEST describes SQS Visibility Timeout?",
+    "type": "single",
+    "choices": [
+      "It delays message delivery to the queue",
+      "It prevents messages from being sent to the queue",
+      "It temporarily hides a message after a consumer receives it",
+      "It stores messages permanently in case of failure"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Visibility timeout temporarily hides a message after retrieval so other consumers cannot process it during processing."
+  },
+  {
+    "id": 87,
+    "question": "A message is retrieved from an Amazon SQS queue by a consumer. During processing, the message becomes hidden from other consumers. What is the PRIMARY purpose of this behavior?",
+    "type": "single",
+    "choices": [
+      "To permanently delete the message after retrieval",
+      "To ensure exactly-once processing",
+      "To prevent multiple consumers from processing the same message at the same time",
+      "To store the message in Amazon S3 for backup"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Visibility timeout ensures that only one consumer processes a message at a time, preventing concurrent processing."
+  },
+  {
+    "id": 88,
+    "question": "Which statement about SQS Visibility Timeout is TRUE?",
+    "type": "single",
+    "choices": [
+      "It guarantees a message is processed only once",
+      "It prevents any retry of failed messages",
+      "It only prevents concurrent processing, not duplicate processing after timeout",
+      "It converts SQS into a synchronous system"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Visibility timeout only hides a message during processing to prevent concurrent consumption. It does not prevent duplicate processing if the message is not deleted in time."
+  },
+  {
+    "id": 89,
+    "question": "A company uses Amazon SQS with a Dead-Letter Queue (DLQ) configured. A message keeps failing processing by the consumer. When will the message be moved to the DLQ?",
+    "type": "single",
+    "choices": [
+      "Immediately after the first failure",
+      "After the visibility timeout expires once",
+      "After the message exceeds the maximum receive count",
+      "When the queue becomes full"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Messages are moved to a DLQ after they exceed the maximum receive count, indicating repeated processing failures."
+  },
+  {
+    "id": 90,
+    "question": "What is the PRIMARY purpose of a Dead-Letter Queue (DLQ) in Amazon SQS?",
+    "type": "single",
+    "choices": [
+      "To increase message processing speed",
+      "To permanently delete failed messages",
+      "To isolate messages that cannot be processed successfully after multiple attempts",
+      "To convert SQS into a real-time streaming service"
+    ],
+    "correctAnswers": [2],
+    "explanation": "A DLQ isolates messages that repeatedly fail processing so they can be analyzed or retried later."
+  },
+  {
+    "id": 91,
+    "question": "Which sequence correctly describes how Amazon SQS works?",
+    "type": "single",
+    "choices": [
+      "Consumer receives message → Producer deletes message → queue stores backup",
+      "Producer sends message → Consumer polls queue → Consumer processes and deletes message",
+      "Producer pushes message directly to consumer → Consumer acknowledges → SQS stores result",
+      "Consumer pulls message → SQS automatically deletes it after processing starts"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SQS is a pull-based system where producers send messages, consumers poll and process them, and then explicitly delete them."
+  },
+  {
+    "id": 92,
+    "question": "A message is sent to an SQS queue. A consumer retrieves it but fails to delete it within the visibility timeout period. What happens next?",
+    "type": "single",
+    "choices": [
+      "The message is permanently deleted",
+      "The message is lost",
+      "The message becomes visible again and can be processed by another consumer",
+      "The message is moved automatically to SNS"
+    ],
+    "correctAnswers": [2],
+    "explanation": "If the message is not deleted within the visibility timeout, it becomes visible again and can be retried by another consumer."
+  },
+  {
+    "id": 89,
+    "question": "Which delivery model does Amazon SNS primarily use?",
+    "type": "single",
+    "choices": [
+      "Pull-based message consumption",
+      "Push-based pub/sub messaging",
+      "Batch polling mechanism",
+      "Point-to-point queueing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS uses a push-based pub/sub model where messages are pushed to subscribers."
+  },
+  {
+    "id": 90,
+    "question": "Which protocol is NOT supported natively by Amazon SNS?",
+    "type": "single",
+    "choices": [
+      "HTTP/S",
+      "Email",
+      "SQS",
+      "FTP"
+    ],
+    "correctAnswers": [3],
+    "explanation": "SNS supports HTTP/S, Email, SMS, Lambda, and SQS, but not FTP."
+  },
+  {
+    "id": 91,
+    "question": "What happens if an SNS message delivery to an HTTP endpoint fails?",
+    "type": "single",
+    "choices": [
+      "Message is immediately deleted",
+      "SNS retries based on retry policy",
+      "Message is moved to SQS DLQ automatically without configuration",
+      "Message is lost permanently"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS retries delivery using exponential backoff; DLQ must be configured separately."
+  },
+  {
+    "id": 92,
+    "question": "Which feature allows SNS to filter messages before delivery to subscribers?",
+    "type": "single",
+    "choices": [
+      "Message Attributes Filtering",
+      "IAM Policies",
+      "KMS Encryption",
+      "Topic Partitioning"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SNS supports subscription filter policies based on message attributes."
+  },
+  {
+    "id": 93,
+    "question": "What is required for an SQS queue to receive messages from SNS?",
+    "type": "single",
+    "choices": [
+      "Enable FIFO mode",
+      "Attach a Lambda trigger",
+      "Set queue policy allowing SNS topic access",
+      "Enable long polling"
+    ],
+    "correctAnswers": [2],
+    "explanation": "SQS must have a resource policy allowing SNS to publish messages."
+  },
+  {
+    "id": 94,
+    "question": "Which SNS feature ensures encrypted messages at rest?",
+    "type": "single",
+    "choices": [
+      "TLS encryption",
+      "SSE-KMS",
+      "Client-side encryption only",
+      "IAM encryption policy"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS supports server-side encryption using AWS KMS (SSE-KMS)."
+  },
+  {
+    "id": 95,
+    "question": "What is the maximum message size in Amazon SNS?",
+    "type": "single",
+    "choices": [
+      "256 KB",
+      "1 MB",
+      "10 MB",
+      "128 KB"
+    ],
+    "correctAnswers": [0],
+    "explanation": "SNS message size limit is 256 KB."
+  },
+  {
+    "id": 96,
+    "question": "Which SNS delivery retry behavior is correct?",
+    "type": "single",
+    "choices": [
+      "SNS never retries failed deliveries",
+      "SNS retries with exponential backoff for HTTP/S endpoints",
+      "SNS retries only once",
+      "SNS retries only for SQS subscriptions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS uses exponential backoff retry for failed HTTP/S deliveries."
+  },
+  {
+    "id": 97,
+    "question": "Which SNS subscription protocol supports direct invocation of AWS Lambda?",
+    "type": "single",
+    "choices": [
+      "Email",
+      "HTTP",
+      "Lambda",
+      "SMS"
+    ],
+    "correctAnswers": [2],
+    "explanation": "SNS can directly trigger Lambda functions as subscribers."
+  },
+  {
+    "id": 98,
+    "question": "What is true about SNS message ordering?",
+    "type": "single",
+    "choices": [
+      "SNS guarantees strict ordering by default",
+      "SNS does not guarantee ordering",
+      "SNS guarantees FIFO for all topics",
+      "SNS ordering depends on region only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS does not guarantee message ordering (except FIFO topics)."
+  },
+  {
+    "id": 99,
+    "question": "Which SNS feature allows deduplication in FIFO topics?",
+    "type": "single",
+    "choices": [
+      "Message group ID only",
+      "Deduplication ID",
+      "Visibility timeout",
+      "Batching key"
+    ],
+    "correctAnswers": [1],
+    "explanation": "FIFO SNS uses Deduplication ID for preventing duplicate messages."
+  },
+  {
+    "id": 100,
+    "question": "What is the main purpose of SNS dead-letter queues (DLQ)?",
+    "type": "single",
+    "choices": [
+      "Store successfully delivered messages",
+      "Store failed deliveries after retries",
+      "Increase throughput",
+      "Encrypt messages"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DLQs store messages that cannot be delivered after retries."
+  },
+  {
+    "id": 101,
+    "question": "Which statement about SNS and SQS integration is TRUE?",
+    "type": "single",
+    "choices": [
+      "SNS can only send messages to one SQS queue",
+      "SNS requires polling from SQS",
+      "SNS can fan out to multiple SQS queues",
+      "SQS must always push to SNS"
+    ],
+    "correctAnswers": [2],
+    "explanation": "SNS supports fan-out architecture by sending messages to multiple SQS queues."
+  },
+  {
+    "id": 102,
+    "question": "Which AWS service is best for decoupling microservices using pub/sub?",
+    "type": "single",
+    "choices": [
+      "SQS",
+      "SNS",
+      "EC2",
+      "EBS"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS is designed for pub/sub decoupling."
+  },
+  {
+    "id": 103,
+    "question": "What is required for SMS delivery using SNS?",
+    "type": "single",
+    "choices": [
+      "IAM role with EC2 access",
+      "Verified phone numbers and region support",
+      "SQS queue subscription",
+      "Lambda function trigger"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS SMS requires verified phone numbers and supported regions."
+  },
+  {
+    "id": 104,
+    "question": "Which SNS feature helps reduce cost by avoiding unnecessary deliveries?",
+    "type": "single",
+    "choices": [
+      "Message filtering",
+      "Encryption",
+      "Fan-out",
+      "Batching"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Message filtering avoids delivering irrelevant messages to subscribers."
+  },
+  {
+    "id": 105,
+    "question": "What happens if a subscriber is deleted from an SNS topic?",
+    "type": "single",
+    "choices": [
+      "Messages are queued until re-added",
+      "Messages are still delivered",
+      "Messages are no longer delivered to that endpoint",
+      "Topic is deleted"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Deleted subscriptions stop receiving messages immediately."
+  },
+  {
+    "id": 106,
+    "question": "Which SNS feature improves security for sensitive message delivery?",
+    "type": "single",
+    "choices": [
+      "Public access policy",
+      "SSE-KMS encryption",
+      "Open subscription model",
+      "HTTP-only endpoints"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SSE-KMS encrypts SNS messages at rest."
+  },
+  {
+    "id": 107,
+    "question": "What is a limitation of SNS compared to SQS?",
+    "type": "single",
+    "choices": [
+      "No integration with Lambda",
+      "No persistence of messages",
+      "No encryption support",
+      "No retry mechanism"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS is not a queue and does not persist messages."
+  },
+
+  {
+    "id": 108,
+    "question": "What is a key difference between SNS and SQS message consumption models?",
+    "type": "single",
+    "choices": [
+      "SNS uses pull, SQS uses push",
+      "SNS uses pub/sub push, SQS uses polling pull",
+      "Both use polling",
+      "Both use push delivery"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS pushes messages; SQS requires polling."
+  },
+  {
+    "id": 109,
+    "question": "Which service guarantees message retention until processed?",
+    "type": "single",
+    "choices": [
+      "SNS",
+      "SQS",
+      "Both",
+      "Neither"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SQS stores messages until they are deleted after processing."
+  },
+  {
+    "id": 110,
+    "question": "Which service supports multiple subscribers receiving the same message?",
+    "type": "single",
+    "choices": [
+      "SQS",
+      "SNS",
+      "EBS",
+      "EFS"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SNS supports fan-out pub/sub to multiple subscribers."
+  },
+  {
+    "id": 111,
+    "question": "Which service is better suited for decoupling distributed workers processing tasks independently?",
+    "type": "single",
+    "choices": [
+      "SNS",
+      "SQS",
+      "Route 53",
+      "CloudFront"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SQS is ideal for worker-based task processing."
+  },
+  {
+    "id": 112,
+    "question": "Which statement is TRUE about message durability?",
+    "type": "single",
+    "choices": [
+      "SNS stores messages indefinitely",
+      "SQS provides durable storage until deletion",
+      "SNS and SQS both do not store messages",
+      "SNS stores messages for 24 hours"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SQS stores messages durably until they are deleted or expire."
+  },
+  {
+    "id": 113,
+    "question": "What is Amazon MQ primarily used for?",
+    "type": "single",
+    "choices": [
+      "Serverless event routing between services",
+      "Managed message broker for ActiveMQ and RabbitMQ",
+      "Object storage for large files",
+      "Real-time analytics processing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ is a managed message broker service for ActiveMQ and RabbitMQ."
+  },
+  {
+    "id": 114,
+    "question": "Which protocols are supported by Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "HTTP and HTTPS only",
+      "AMQP, MQTT, STOMP, and OpenWire",
+      "S3 and FTP",
+      "Only REST API"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ supports broker protocols like AMQP, MQTT, STOMP, and OpenWire."
+  },
+  {
+    "id": 115,
+    "question": "When should you choose Amazon MQ over SNS or SQS?",
+    "type": "single",
+    "choices": [
+      "When you need serverless event fan-out",
+      "When migrating existing JMS/ActiveMQ applications",
+      "When you need ultra-low latency pub/sub",
+      "When you need object storage"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ is best for migrating existing message broker-based applications like JMS/ActiveMQ."
+  },
+  {
+    "id": 116,
+    "question": "How does Amazon MQ ensure message durability?",
+    "type": "single",
+    "choices": [
+      "Messages are stored only in memory",
+      "Messages are persisted on disk in the broker",
+      "Messages are stored in S3 automatically",
+      "Messages are not durable"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ uses persistent storage on the broker to ensure durability."
+  },
+  {
+    "id": 117,
+    "question": "What does Amazon MQ Multi-AZ deployment provide?",
+    "type": "single",
+    "choices": [
+      "Horizontal scaling across regions",
+      "Automatic failover with standby broker in another AZ",
+      "Global message replication across accounts",
+      "Serverless scaling"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Multi-AZ provides high availability with automatic failover to a standby broker."
+  },
+  {
+    "id": 118,
+    "question": "What is required for message consumption in Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "Polling from SQS queues",
+      "Broker connection using supported protocol",
+      "Lambda trigger configuration",
+      "Kinesis stream subscription"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Consumers connect directly to the broker using supported protocols."
+  },
+  {
+    "id": 119,
+    "question": "Which feature makes Amazon MQ suitable for enterprise Java applications?",
+    "type": "single",
+    "choices": [
+      "JMS (Java Message Service) support",
+      "Serverless architecture",
+      "EventBridge integration",
+      "S3 event notifications"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon MQ supports JMS, making it suitable for Java enterprise systems."
+  },
+  {
+    "id": 120,
+    "question": "What is a key difference between Amazon MQ and SQS?",
+    "type": "single",
+    "choices": [
+      "Amazon MQ is serverless, SQS is not",
+      "Amazon MQ requires managing broker concepts, SQS is fully managed queue service",
+      "SQS supports JMS natively",
+      "Both require broker management"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ uses traditional broker architecture; SQS is a fully managed queue service without broker management."
+  },
+  {
+    "id": 121,
+    "question": "What is a limitation of Amazon MQ compared to SQS?",
+    "type": "single",
+    "choices": [
+      "No support for persistent messages",
+      "Requires more operational overhead and scaling is limited",
+      "No support for messaging protocols",
+      "No support for encryption"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ requires broker management and has more limited scaling compared to SQS."
+  },
+  {
+    "id": 122,
+    "question": "Which use case best fits Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "Event-driven microservices with serverless scaling",
+      "Legacy application migration using ActiveMQ",
+      "Real-time analytics streaming",
+      "Static file hosting"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ is ideal for migrating legacy ActiveMQ or RabbitMQ-based systems."
+  },
+  {
+    "id": 123,
+    "question": "Which broker engines are supported by Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "Kafka and Kinesis",
+      "ActiveMQ and RabbitMQ",
+      "SQS and SNS",
+      "Redis and Memcached"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ supports Apache ActiveMQ and RabbitMQ engines."
+  },
+  {
+    "id": 124,
+    "question": "What type of scaling does Amazon MQ primarily support?",
+    "type": "single",
+    "choices": [
+      "Automatic serverless scaling",
+      "Manual vertical scaling and limited horizontal scaling",
+      "Infinite horizontal scaling",
+      "No scaling options"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ mainly supports vertical scaling and limited horizontal scaling depending on broker setup."
+  },
+  {
+    "id": 125,
+    "question": "What happens if an Amazon MQ broker fails in a Multi-AZ setup?",
+    "type": "single",
+    "choices": [
+      "Messages are lost permanently",
+      "Clients are disconnected and cannot reconnect",
+      "Failover occurs to standby broker automatically",
+      "New broker must be manually created"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Multi-AZ deployments automatically fail over to a standby broker."
+  },
+  {
+    "id": 126,
+    "question": "Which messaging pattern is natively supported by Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "Pub/Sub only",
+      "Point-to-point and pub/sub",
+      "Only event streaming",
+      "Only batch processing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ supports both point-to-point and pub/sub messaging models."
+  },
+  {
+    "id": 127,
+    "question": "Does Amazon MQ support message transactions?",
+    "type": "single",
+    "choices": [
+      "No, it does not support transactions",
+      "Yes, via broker transaction support (e.g., JMS transactions)",
+      "Only for SNS integration",
+      "Only for SQS integration"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ supports transactions depending on the broker engine (e.g., JMS transactions in ActiveMQ)."
+  },
+  {
+    "id": 128,
+    "question": "How do consumers typically receive messages in Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "By polling SQS queues",
+      "By maintaining a persistent connection to the broker",
+      "By Lambda event triggers only",
+      "By batch file downloads"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Consumers connect persistently to the broker to receive messages."
+  },
+  {
+    "id": 129,
+    "question": "What authentication method is commonly used in Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "IAM roles only",
+      "Username and password credentials",
+      "Anonymous public access",
+      "API Gateway keys only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ typically uses username/password authentication for broker access."
+  },
+  {
+    "id": 130,
+    "question": "What is a Dead Letter Queue (DLQ) in Amazon MQ?",
+    "type": "single",
+    "choices": [
+      "A queue that stores encrypted messages only",
+      "A queue for messages that cannot be processed successfully",
+      "A queue used for scaling brokers",
+      "A queue for logging only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DLQs store messages that fail processing after retries."
+  },
+  {
+    "id": 131,
+    "question": "Which statement about Amazon MQ performance scaling is correct?",
+    "type": "single",
+    "choices": [
+      "It scales automatically to unlimited throughput",
+      "It is limited by broker instance size and configuration",
+      "It has no performance limits",
+      "It only supports burst scaling"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ performance depends on broker instance sizing and configuration."
+  },
+  {
+    "id": 132,
+    "question": "What is a key advantage of Amazon MQ in enterprise environments?",
+    "type": "single",
+    "choices": [
+      "No need for messaging knowledge",
+      "Compatibility with existing JMS and RabbitMQ applications",
+      "Infinite free scaling",
+      "Built-in analytics dashboards"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon MQ allows enterprises to reuse existing JMS/RabbitMQ-based applications with minimal changes."
+  },
+  {
+    "id": 133,
+    "question": "What does RPO (Recovery Point Objective) define in Disaster Recovery planning?",
+    "type": "single",
+    "choices": [
+      "Maximum acceptable downtime after a failure",
+      "Maximum acceptable data loss measured in time",
+      "Time required to restart a server",
+      "Time to deploy new infrastructure"
+    ],
+    "correctAnswers": [1],
+    "explanation": "RPO defines how much data loss is acceptable, measured as a time window."
+  },
+  {
+    "id": 134,
+    "question": "What does RTO (Recovery Time Objective) measure?",
+    "type": "single",
+    "choices": [
+      "Maximum data loss allowed",
+      "Time to back up data to S3",
+      "Time required to restore application after disruption",
+      "Time to replicate databases"
+    ],
+    "correctAnswers": [2],
+    "explanation": "RTO is the maximum acceptable time to restore service after a disaster."
+  },
+  {
+    "id": 135,
+    "question": "Which AWS service is used for cross-region replication of S3 objects?",
+    "type": "single",
+    "choices": [
+      "S3 Transfer Acceleration",
+      "S3 Cross-Region Replication (CRR)",
+      "AWS Backup",
+      "AWS DataSync"
+    ],
+    "correctAnswers": [1],
+    "explanation": "S3 CRR replicates objects asynchronously across regions for DR."
+  },
+  {
+    "id": 136,
+    "question": "What is the best DR strategy for Amazon EBS volumes?",
+    "type": "single",
+    "choices": [
+      "Enable multi-AZ replication",
+      "Use EBS snapshots",
+      "Use EventBridge replication",
+      "Use S3 CRR"
+    ],
+    "correctAnswers": [1],
+    "explanation": "EBS snapshots are used to back up and restore volumes in DR scenarios."
+  },
+  {
+    "id": 137,
+    "question": "Which AWS service is used to replicate file system data in disaster recovery scenarios?",
+    "type": "single",
+    "choices": [
+      "AWS DataSync",
+      "AWS Glue",
+      "Amazon MQ",
+      "AWS Shield"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AWS DataSync is used to transfer and replicate file system data efficiently."
+  },
+  {
+    "id": 138,
+    "question": "How can you ensure EC2 instances can be quickly recreated after a disaster?",
+    "type": "single",
+    "choices": [
+      "Use Elastic IP only",
+      "Use AMIs (Amazon Machine Images)",
+      "Use S3 backups",
+      "Use Route 53 health checks only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AMIs allow quick recreation of EC2 instances with identical configurations."
+  },
+  {
+    "id": 139,
+    "question": "Which AWS service can help automate infrastructure recreation using templates?",
+    "type": "single",
+    "choices": [
+      "AWS CloudFormation",
+      "Amazon EventBridge",
+      "AWS IAM",
+      "Amazon S3"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CloudFormation automates infrastructure provisioning using templates."
+  },
+  {
+    "id": 140,
+    "question": "Which DynamoDB feature supports global disaster recovery?",
+    "type": "single",
+    "choices": [
+      "DynamoDB Streams",
+      "DynamoDB Global Tables",
+      "DAX caching",
+      "On-demand backups only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Global Tables replicate DynamoDB data across multiple regions."
+  },
+  {
+    "id": 141,
+    "question": "What is the main purpose of RDS Multi-AZ deployment?",
+    "type": "single",
+    "choices": [
+      "Improve read performance",
+      "Enable automatic failover for high availability",
+      "Reduce storage cost",
+      "Enable cross-account backups"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Multi-AZ provides automatic failover for high availability and disaster recovery."
+  },
+  {
+    "id": 142,
+    "question": "What is the purpose of RDS Read Replicas in DR strategy?",
+    "type": "single",
+    "choices": [
+      "Provide failover automatically",
+      "Improve read scalability and optionally support DR promotion",
+      "Encrypt database traffic",
+      "Replace backups"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Read replicas improve read scaling and can be promoted in DR scenarios."
+  },
+  {
+    "id": 143,
+    "question": "Which AWS service is useful for event-driven DR orchestration?",
+    "type": "single",
+    "choices": [
+      "Amazon EventBridge",
+      "Amazon S3",
+      "AWS IAM",
+      "Amazon EBS"
+    ],
+    "correctAnswers": [0],
+    "explanation": "EventBridge can trigger automated workflows during DR events."
+  },
+  {
+    "id": 144,
+    "question": "What is a key principle of Disaster Recovery planning?",
+    "type": "single",
+    "choices": [
+      "Avoid backups to reduce cost",
+      "Test recovery procedures regularly",
+      "Only rely on manual recovery",
+      "Disable automation"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DR plans must be regularly tested to ensure recovery works as expected."
+  },
+  {
+    "id": 145,
+    "question": "What is the purpose of establishing an emergency access process in DR?",
+    "type": "single",
+    "choices": [
+      "Restrict all admin access permanently",
+      "Allow controlled access during disaster situations",
+      "Replace IAM policies",
+      "Disable authentication"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Emergency access ensures controlled access when normal systems fail."
+  },
+  {
+    "id": 146,
+    "question": "Which statement best describes a disaster recovery plan in AWS?",
+    "type": "single",
+    "choices": [
+      "It only focuses on backups",
+      "It defines how to restore infrastructure and data after failure",
+      "It replaces security policies",
+      "It is optional for production systems"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A DR plan defines procedures to restore systems and data after disruption."
+  },
+  {
+    "id": 147,
+    "question": "What is the relationship between RPO and backup frequency?",
+    "type": "single",
+    "choices": [
+      "Higher RPO requires more frequent backups",
+      "Lower RPO requires more frequent backups",
+      "RPO is unrelated to backups",
+      "RPO only depends on compute resources"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A lower RPO means less acceptable data loss, requiring more frequent backups."
+  },
+  {
+    "id": 148,
+    "question": "Which AWS concept best supports 'infrastructure can be rebuilt in minutes'?",
+    "type": "single",
+    "choices": [
+      "Manual server configuration",
+      "Infrastructure as Code (CloudFormation)",
+      "Elastic Load Balancing only",
+      "S3 versioning only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Infrastructure as Code allows fast and consistent recreation of systems."
+  },
+  {
+    "id": 149,
+    "question": "What is the main goal of Disaster Recovery testing?",
+    "type": "single",
+    "choices": [
+      "Increase production load",
+      "Verify recovery procedures work correctly",
+      "Reduce AWS costs",
+      "Replace backups with replicas"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DR testing ensures that recovery plans actually work in real scenarios."
+  },
+  {
+    "id": 150,
+    "question": "Which Disaster Recovery strategy keeps only critical components running in the secondary region and starts other services when needed?",
+    "type": "single",
+    "choices": [
+      "Backup and Restore",
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active-Active"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Pilot Light keeps minimal critical infrastructure running, and scales up other components during disaster."
+  },
+  {
+    "id": 151,
+    "question": "Which DR strategy involves a fully functional scaled-down version of the production environment always running?",
+    "type": "single",
+    "choices": [
+      "Backup and Restore",
+      "Pilot Light",
+      "Warm Standby",
+      "Cold Site"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Warm Standby runs a small but fully functional version of the production system."
+  },
+  {
+    "id": 152,
+    "question": "Which DR strategy provides the lowest RTO but the highest cost?",
+    "type": "single",
+    "choices": [
+      "Backup and Restore",
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active-Active"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Multi-Site Active-Active has the lowest RTO because both sites are fully active, but it is the most expensive."
+  },
+  {
+    "id": 153,
+    "question": "Which DR strategy is the most cost-effective but has the highest RTO?",
+    "type": "single",
+    "choices": [
+      "Warm Standby",
+      "Pilot Light",
+      "Backup and Restore",
+      "Multi-Site Active-Active"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Backup and Restore is the cheapest but takes the longest time to recover."
+  },
+  {
+    "id": 154,
+    "question": "What is the main characteristic of the Pilot Light DR strategy?",
+    "type": "single",
+    "choices": [
+      "Everything runs at full scale in two regions",
+      "Only core components are always running in standby region",
+      "No resources are pre-provisioned",
+      "All traffic is active in both regions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Pilot Light keeps only essential components running in a secondary region."
+  },
+  {
+    "id": 155,
+    "question": "Which DR strategy requires full infrastructure duplication in multiple regions?",
+    "type": "single",
+    "choices": [
+      "Backup and Restore",
+      "Pilot Light",
+      "Warm Standby",
+      "Multi-Site Active-Active"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Multi-Site Active-Active runs full production stacks in multiple regions."
+  },
+  {
+    "id": 156,
+    "question": "In Backup and Restore strategy, what is the typical first step after disaster?",
+    "type": "single",
+    "choices": [
+      "Scale up warm standby environment",
+      "Restore data from backups and recreate infrastructure",
+      "Failover traffic instantly",
+      "Activate read replicas"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Backup and Restore requires rebuilding infrastructure and restoring backups after failure."
+  },
+  {
+    "id": 157,
+    "question": "Which DR pattern is most suitable for non-critical applications with cost constraints?",
+    "type": "single",
+    "choices": [
+      "Multi-Site Active-Active",
+      "Warm Standby",
+      "Pilot Light",
+      "Backup and Restore"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Backup and Restore is cheapest and suitable for non-critical workloads."
+  },
+  {
+    "id": 158,
+    "question": "Which DR strategy provides near-zero downtime and continuous availability?",
+    "type": "single",
+    "choices": [
+      "Pilot Light",
+      "Warm Standby",
+      "Backup and Restore",
+      "Multi-Site Active-Active"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Multi-Site Active-Active provides continuous availability with minimal downtime."
+  },
+  {
+    "id": 159,
+    "question": "Which statement about Warm Standby is TRUE?",
+    "type": "single",
+    "choices": [
+      "No infrastructure is running in the DR region",
+      "A scaled-down but fully functional environment is always running",
+      "Only backups are stored in DR region",
+      "Traffic is not routed during failover"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Warm Standby maintains a smaller live version of the full system in another region."
+  }
+]
 }

@@ -1,9 +1,1048 @@
 {
     "id": "github",
-    "name": "Personalized 2",
+    "name": " Serverless & Data Engineer & Disaster",
     "description": "Personalized questions based on GitHub repositories",
     "icon": "Github",
     "questions": [
-      
-    ]
+  {
+    "id": 160,
+    "question": "Where does AWS Lambda execute by default?",
+    "type": "single",
+    "choices": [
+      "Inside the customer's VPC only",
+      "Inside AWS-managed isolated execution environment",
+      "Inside Amazon EC2 instances managed by user",
+      "Inside CloudFront edge locations only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda runs in an AWS-managed, isolated execution environment by default, not inside a user-controlled VPC unless configured."
+  },
+  {
+    "id": 161,
+    "question": "What is AWS Lambda@Edge primarily used for?",
+    "type": "single",
+    "choices": [
+      "Running batch jobs in S3",
+      "Running Lambda functions at CloudFront edge locations",
+      "Deploying containers in ECS",
+      "Managing VPC networking"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda@Edge runs Lambda functions at CloudFront edge locations to reduce latency."
+  },
+  {
+    "id": 162,
+    "question": "What is a Lambda Function URL?",
+    "type": "single",
+    "choices": [
+      "A private internal VPC endpoint only",
+      "A built-in HTTPS endpoint to invoke Lambda directly",
+      "A CloudFront distribution URL",
+      "An S3 signed URL"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Function URLs provide a simple HTTPS endpoint to invoke Lambda directly without API Gateway."
+  },
+  {
+    "id": 163,
+    "question": "What is a Lambda Layer?",
+    "type": "single",
+    "choices": [
+      "A separate Lambda function version",
+      "A ZIP archive containing reusable code or dependencies",
+      "A VPC subnet configuration",
+      "A logging service for Lambda"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda Layers are ZIP packages used to share libraries and dependencies across functions."
+  },
+  {
+    "id": 164,
+    "question": "When should you prefer containers over Lambda?",
+    "type": "single",
+    "choices": [
+      "When you need event-driven execution under 15 minutes",
+      "When execution exceeds Lambda limits or requires high memory (>10 GB)",
+      "When you need serverless scaling",
+      "When you want automatic per-request billing only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Containers are better for workloads exceeding Lambda limits like long execution time or high memory needs."
+  },
+  {
+    "id": 165,
+    "question": "What is the maximum execution duration of AWS Lambda?",
+    "type": "single",
+    "choices": [
+      "5 minutes",
+      "10 minutes",
+      "15 minutes",
+      "60 minutes"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Lambda maximum timeout is 15 minutes per invocation."
+  },
+  {
+    "id": 166,
+    "question": "Which scenario is NOT suitable for AWS Lambda?",
+    "type": "single",
+    "choices": [
+      "Event-driven image processing",
+      "API backend for microservices",
+      "Long-running batch processing exceeding 15 minutes",
+      "Short stateless functions"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Lambda is not suitable for long-running tasks beyond its 15-minute limit."
+  },
+  {
+    "id": 167,
+    "question": "Which advantage do containers have over Lambda?",
+    "type": "single",
+    "choices": [
+      "Automatic scaling with zero configuration",
+      "No cost when idle",
+      "No execution time limit",
+      "Built-in event triggers"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Containers do not have the strict 15-minute execution limit of Lambda."
+  },
+  {
+    "id": 168,
+    "question": "Which workload is BEST suited for Lambda?",
+    "type": "single",
+    "choices": [
+      "Long-running ETL jobs",
+      "Microservices with unpredictable traffic spikes",
+      "High-memory machine learning training",
+      "Always-on stateful applications"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda is ideal for stateless microservices with variable traffic."
+  },
+  {
+    "id": 169,
+    "question": "What is a key cost consideration when using AWS Lambda?",
+    "type": "single",
+    "choices": [
+      "You pay for reserved capacity",
+      "High invocation frequency can increase cost significantly",
+      "You pay only for idle time",
+      "Costs are fixed monthly"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda pricing is based on invocations and duration, so high traffic increases cost."
+  },
+  {
+    "id": 170,
+    "question": "Which service is commonly used for container orchestration in AWS?",
+    "type": "single",
+    "choices": [
+      "AWS Lambda",
+      "Amazon ECS / EKS",
+      "Amazon S3",
+      "AWS IAM"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS and EKS are used for container orchestration."
+  },
+  {
+    "id": 171,
+    "question": "Which statement about Lambda networking is TRUE?",
+    "type": "single",
+    "choices": [
+      "Lambda always runs inside a VPC by default",
+      "Lambda runs outside VPC unless explicitly configured",
+      "Lambda only works inside private subnets",
+      "Lambda cannot access VPC resources"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda runs in AWS-managed environment and can optionally be attached to a VPC."
+  },
+  {
+    "id": 172,
+    "question": "What is the main benefit of Lambda@Edge?",
+    "type": "single",
+    "choices": [
+      "Reduces database cost",
+      "Executes code closer to users for lower latency",
+      "Replaces S3 storage",
+      "Increases VPC throughput"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda@Edge runs at CloudFront edge locations to reduce latency."
+  },
+  {
+    "id": 173,
+    "question": "Which Lambda feature helps reuse dependencies across multiple functions?",
+    "type": "single",
+    "choices": [
+      "Function URL",
+      "Lambda Layers",
+      "CloudWatch Logs",
+      "IAM roles"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda Layers allow sharing code and dependencies across functions."
+  },
+  {
+    "id": 174,
+    "question": "What is a key disadvantage of Lambda compared to containers?",
+    "type": "single",
+    "choices": [
+      "No auto-scaling",
+      "Execution time limit",
+      "No event-driven support",
+      "Requires manual scaling"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda has a 15-minute execution limit, unlike containers."
+  },
+  {
+    "id": 175,
+    "question": "Which architecture is best for migrating legacy on-prem applications to AWS?",
+    "type": "single",
+    "choices": [
+      "Serverless Lambda-only architecture",
+      "Container-based architecture",
+      "S3 static hosting",
+      "CloudFront only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Containers are best for migrating existing monolithic or on-prem applications."
+  },
+  {
+    "id": 176,
+    "question": "Which feature allows direct HTTPS invocation of Lambda without API Gateway?",
+    "type": "single",
+    "choices": [
+      "Lambda Layer",
+      "Lambda Function URL",
+      "Lambda@Edge",
+      "CloudFront distribution"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Function URLs provide direct HTTPS access to Lambda."
+  },
+  {
+    "id": 177,
+    "question": "Which statement about Lambda cost is TRUE?",
+    "type": "single",
+    "choices": [
+      "Cost is based on reserved instances",
+      "Cost depends on execution time and number of requests",
+      "Cost is fixed monthly",
+      "Cost is independent of usage"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda pricing is based on requests and execution duration."
+  },
+  {
+    "id": 178,
+    "question": "Which workload is BEST suited for containers instead of Lambda?",
+    "type": "single",
+    "choices": [
+      "Event-driven file processing",
+      "Short API microservices",
+      "Batch processing with long execution time",
+      "Simple cron jobs"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Containers are better for long-running batch processing workloads."
+  },
+  {
+    "id": 179,
+    "question": "What is a key characteristic of serverless computing like Lambda?",
+    "type": "single",
+    "choices": [
+      "You manage servers manually",
+      "You pay for idle compute capacity",
+      "You do not manage servers and scale automatically",
+      "You must configure hardware"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Serverless means no server management and automatic scaling."
+  },
+  {
+    "id": 180,
+    "question": "What is an Amazon ECS Cluster?",
+    "type": "single",
+    "choices": [
+      "A Docker image repository",
+      "A pool of compute resources where containers run (EC2 or Fargate)",
+      "A load balancer for containers",
+      "A logging service for containers"
+    ],
+    "correctAnswers": [1],
+    "explanation": "An ECS cluster is a logical grouping of compute resources (EC2 or Fargate) where containers run."
+  },
+  {
+    "id": 181,
+    "question": "What is an ECS Task Definition?",
+    "type": "single",
+    "choices": [
+      "A running container instance",
+      "A blueprint that defines container image, CPU, memory, ports, and environment variables",
+      "A cluster of EC2 instances",
+      "A load balancing configuration"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A task definition is a blueprint describing how containers should run."
+  },
+  {
+    "id": 182,
+    "question": "What is an ECS Task?",
+    "type": "single",
+    "choices": [
+      "A cluster of services",
+      "A running instance of a task definition",
+      "A Docker image stored in ECR",
+      "A scaling policy"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A task is a running container based on a task definition."
+  },
+  {
+    "id": 183,
+    "question": "What is an ECS Service?",
+    "type": "single",
+    "choices": [
+      "A Docker image registry",
+      "A mechanism that maintains desired number of running tasks and handles scaling",
+      "A VPC networking layer",
+      "A logging system"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A service ensures desired task count, handles scaling, and replaces failed tasks."
+  },
+  {
+    "id": 184,
+    "question": "Which ECS launch type requires you to manage EC2 instances?",
+    "type": "single",
+    "choices": [
+      "Fargate",
+      "EC2",
+      "Lambda",
+      "EKS"
+    ],
+    "correctAnswers": [1],
+    "explanation": "EC2 launch type requires you to manage the underlying EC2 instances."
+  },
+  {
+    "id": 185,
+    "question": "Which ECS launch type is serverless?",
+    "type": "single",
+    "choices": [
+      "EC2",
+      "Fargate",
+      "Both EC2 and Fargate",
+      "Neither"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Fargate is serverless and AWS manages the infrastructure."
+  },
+  {
+    "id": 186,
+    "question": "What is the main role of an ECS Service?",
+    "type": "single",
+    "choices": [
+      "Build Docker images",
+      "Run and maintain desired number of tasks",
+      "Store container logs",
+      "Manage IAM users"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Services ensure tasks are running and handle scaling and recovery."
+  },
+  {
+    "id": 187,
+    "question": "What happens if an ECS task fails in a Service?",
+    "type": "single",
+    "choices": [
+      "Nothing happens",
+      "Service automatically replaces it to maintain desired count",
+      "Cluster is deleted",
+      "Task is moved to another region"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Service automatically restarts failed tasks."
+  },
+  {
+    "id": 188,
+    "question": "Which ECS component defines CPU, memory, and container configuration?",
+    "type": "single",
+    "choices": [
+      "Cluster",
+      "Service",
+      "Task Definition",
+      "Load Balancer"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Task definition defines compute resources and container settings."
+  },
+  {
+    "id": 189,
+    "question": "What is the difference between ECS Task and Task Definition?",
+    "type": "single",
+    "choices": [
+      "Task is blueprint, Task Definition is running container",
+      "Task Definition is blueprint, Task is running instance",
+      "Both are identical",
+      "Task is cluster, Task Definition is service"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Task definition is the template; task is the running instance."
+  },
+  {
+    "id": 190,
+    "question": "Which ECS component is responsible for scaling containers automatically?",
+    "type": "single",
+    "choices": [
+      "Task Definition",
+      "Service",
+      "Container Image",
+      "Cluster"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Service handles auto scaling based on configuration."
+  },
+  {
+    "id": 191,
+    "question": "Which launch type is best when you want to avoid managing servers?",
+    "type": "single",
+    "choices": [
+      "EC2",
+      "Fargate",
+      "On-premises",
+      "Spot instances only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Fargate is serverless and removes the need to manage EC2 instances."
+  },
+  {
+    "id": 192,
+    "question": "What does ECS Cluster NOT directly manage?",
+    "type": "single",
+    "choices": [
+      "Placement of tasks",
+      "Compute resources",
+      "Container image building",
+      "Capacity for running tasks"
+    ],
+    "correctAnswers": [2],
+    "explanation": "ECS does not build images; that is handled by tools like Docker or CodeBuild."
+  },
+  {
+    "id": 193,
+    "question": "Which ECS component interacts with load balancers?",
+    "type": "single",
+    "choices": [
+      "Task Definition",
+      "Service",
+      "Container Image",
+      "IAM Role"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Service integrates with Elastic Load Balancing."
+  },
+  {
+    "id": 194,
+    "question": "What is a key benefit of ECS Fargate?",
+    "type": "single",
+    "choices": [
+      "You manage EC2 instances directly",
+      "No server management required",
+      "No container support",
+      "No scaling capability"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Fargate is serverless, so AWS manages the infrastructure."
+  },
+  {
+    "id": 195,
+    "question": "What is a common use case for ECS?",
+    "type": "single",
+    "choices": [
+      "Object storage",
+      "Running containerized microservices",
+      "DNS routing",
+      "Database backup"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS is used to run containerized microservices."
+  },
+  {
+    "id": 196,
+    "question": "Which ECS component defines how many copies of a task should run?",
+    "type": "single",
+    "choices": [
+      "Cluster",
+      "Service",
+      "Task Definition",
+      "Docker Image"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Service defines desired task count."
+  },
+  {
+    "id": 197,
+    "question": "What happens when you update a Task Definition in ECS Service?",
+    "type": "single",
+    "choices": [
+      "All running tasks are automatically replaced with new version",
+      "Nothing changes automatically",
+      "Cluster is deleted",
+      "Load balancer is removed"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Updating service causes new tasks to be deployed with updated task definition."
+  },
+  {
+    "id": 198,
+    "question": "Which ECS concept is closest to a Docker container runtime instance?",
+    "type": "single",
+    "choices": [
+      "Cluster",
+      "Task",
+      "Service",
+      "Task Definition"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A task is a running container instance."
+  },
+  {
+    "id": 199,
+    "question": "What is the relationship between ECS Cluster and Tasks?",
+    "type": "single",
+    "choices": [
+      "Clusters store images, tasks store logs",
+      "Clusters provide compute capacity where tasks run",
+      "Tasks manage clusters",
+      "Clusters are inside tasks"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Clusters provide the environment where tasks run."
+  },
+  {
+    "id": 200,
+    "question": "What is the primary purpose of AWS Step Functions?",
+    "type": "single",
+    "choices": [
+      "To run containers on EC2",
+      "To orchestrate workflows between distributed services",
+      "To store application logs",
+      "To manage VPC networking"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions is used to orchestrate workflows across multiple AWS services."
+  },
+  {
+    "id": 201,
+    "question": "What happens if a step in AWS Step Functions fails?",
+    "type": "single",
+    "choices": [
+      "Workflow continues ignoring the error",
+      "Workflow stops unless retry/catch is defined",
+      "Entire AWS account is stopped",
+      "Step is automatically deleted"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions stops on failure unless retry or catch logic is configured."
+  },
+  {
+    "id": 202,
+    "question": "Which AWS service is best for orchestrating ECS tasks in a workflow?",
+    "type": "single",
+    "choices": [
+      "Amazon S3",
+      "AWS Step Functions",
+      "Amazon Route 53",
+      "AWS IAM"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions is designed to orchestrate ECS tasks and other AWS services."
+  },
+  {
+    "id": 203,
+    "question": "What is true about ECS Services?",
+    "type": "single",
+    "choices": [
+      "They automatically orchestrate other services",
+      "They maintain desired number of running tasks",
+      "They control Step Functions workflows",
+      "They replace clusters"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Services ensure the desired number of tasks are always running."
+  },
+  {
+    "id": 204,
+    "question": "Can ECS Services directly coordinate with each other?",
+    "type": "single",
+    "choices": [
+      "Yes, automatically",
+      "No, they are independent and do not coordinate",
+      "Only in Fargate mode",
+      "Only via load balancers"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Services are independent and do not coordinate with each other."
+  },
+  {
+    "id": 205,
+    "question": "Which AWS service allows waiting for a task to complete before starting another?",
+    "type": "single",
+    "choices": [
+      "ECS Service",
+      "Step Functions",
+      "S3",
+      "CloudFront"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions can wait for task completion before proceeding."
+  },
+  {
+    "id": 206,
+    "question": "What is a key limitation of ECS Services in workflow management?",
+    "type": "single",
+    "choices": [
+      "They cannot run containers",
+      "They do not support orchestration between services",
+      "They cannot scale",
+      "They cannot use Fargate"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Services manage tasks but do not orchestrate workflows."
+  },
+  {
+    "id": 207,
+    "question": "What is a Step Function state machine?",
+    "type": "single",
+    "choices": [
+      "A database engine",
+      "A workflow definition describing steps and transitions",
+      "A container image",
+      "A load balancer configuration"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A state machine defines workflow steps and transitions in Step Functions."
+  },
+  {
+    "id": 208,
+    "question": "Which feature allows Step Functions to retry failed tasks?",
+    "type": "single",
+    "choices": [
+      "IAM roles",
+      "Retry policy",
+      "Auto Scaling group",
+      "CloudWatch logs"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions supports retry policies for handling transient failures."
+  },
+  {
+    "id": 209,
+    "question": "Which AWS service is responsible for maintaining running ECS tasks but NOT workflow orchestration?",
+    "type": "single",
+    "choices": [
+      "Step Functions",
+      "ECS Service",
+      "Lambda",
+      "EventBridge"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Service manages task lifecycle but does not orchestrate workflows."
+  },
+  {
+    "id": 210,
+    "question": "Which Step Functions capability supports conditional branching?",
+    "type": "single",
+    "choices": [
+      "Task Definition",
+      "Choice state",
+      "Cluster state",
+      "Service state"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Choice states allow branching logic in workflows."
+  },
+  {
+    "id": 211,
+    "question": "What happens if Step Functions reaches a timeout?",
+    "type": "single",
+    "choices": [
+      "Workflow continues indefinitely",
+      "Execution fails and stops",
+      "AWS retries the workflow automatically forever",
+      "ECS services are deleted"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions execution fails if timeout is reached."
+  },
+  {
+    "id": 212,
+    "question": "Which combination is most common for workflow orchestration?",
+    "type": "single",
+    "choices": [
+      "S3 + CloudFront",
+      "Step Functions + ECS/Lambda",
+      "EC2 + EBS only",
+      "IAM + VPC only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions orchestrates ECS or Lambda tasks in workflows."
+  },
+  {
+    "id": 213,
+    "question": "What is a key difference between ECS Service and Step Functions?",
+    "type": "single",
+    "choices": [
+      "ECS Service orchestrates workflows, Step Functions runs containers",
+      "ECS Service manages tasks, Step Functions orchestrates workflows",
+      "Both do the same thing",
+      "Step Functions manages clusters"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Service maintains tasks; Step Functions orchestrates workflows."
+  },
+  {
+    "id": 214,
+    "question": "Which Step Functions feature helps handle error recovery?",
+    "type": "single",
+    "choices": [
+      "Retry and Catch mechanisms",
+      "Auto Scaling",
+      "Load Balancing",
+      "IAM policies"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Retry and Catch provide error handling and recovery logic."
+  },
+  {
+    "id": 215,
+    "question": "What is the role of ECS Cluster in Step Functions orchestration?",
+    "type": "single",
+    "choices": [
+      "It orchestrates workflow steps",
+      "It provides compute capacity for running ECS tasks",
+      "It defines workflow logic",
+      "It replaces Step Functions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Cluster provides compute resources where ECS tasks run."
+  },
+  {
+    "id": 216,
+    "question": "Which service is best for coordinating multiple microservices execution order?",
+    "type": "single",
+    "choices": [
+      "ECS Service",
+      "Step Functions",
+      "S3",
+      "Route 53"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions coordinates execution order across microservices."
+  },
+  {
+    "id": 217,
+    "question": "What is true about ECS Services in a distributed system?",
+    "type": "single",
+    "choices": [
+      "They communicate automatically with each other",
+      "They operate independently and do not manage workflow logic",
+      "They replace Step Functions",
+      "They manage state machines"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ECS Services are independent and do not coordinate workflows."
+  },
+  {
+    "id": 218,
+    "question": "Which Step Functions feature allows pausing between tasks?",
+    "type": "single",
+    "choices": [
+      "Wait state",
+      "Cluster state",
+      "Task definition",
+      "Service state"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Wait states allow delaying execution in workflows."
+  },
+  {
+    "id": 219,
+    "question": "What is a main benefit of using Step Functions with ECS?",
+    "type": "single",
+    "choices": [
+      "It replaces ECS entirely",
+      "It provides orchestration over independent ECS services",
+      "It eliminates the need for containers",
+      "It removes the need for clusters"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Step Functions orchestrates workflows across ECS services."
+  },
+  {
+    "id": 220,
+    "question": "What are the main stages of a data pipeline?",
+    "type": "single",
+    "choices": [
+      "Build, deploy, monitor, delete",
+      "Ingest, store, process, analyze",
+      "Design, code, test, release",
+      "Collect, encrypt, compress, delete"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A typical data pipeline includes ingesting, storing, processing, and analyzing data."
+  },
+  {
+    "id": 221,
+    "question": "What does ETL stand for in data engineering?",
+    "type": "single",
+    "choices": [
+      "Extract, Transform, Load",
+      "Execute, Transfer, Log",
+      "Encrypt, Transform, Load",
+      "Extract, Track, Load"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ETL means Extract, Transform, Load where data is transformed before loading."
+  },
+  {
+    "id": 222,
+    "question": "What is the main characteristic of ELT?",
+    "type": "single",
+    "choices": [
+      "Data is transformed before loading",
+      "Data is loaded first, then transformed",
+      "Data is never transformed",
+      "Data is only streamed in real-time"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ELT loads raw data first and transforms it later inside the target system."
+  },
+  {
+    "id": 223,
+    "question": "When is ETL preferred over ELT?",
+    "type": "single",
+    "choices": [
+      "When you want raw data stored immediately",
+      "When you need structured, cleaned data before storage",
+      "When using streaming systems only",
+      "When using IoT devices"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ETL is used when data must be cleaned and transformed before loading."
+  },
+  {
+    "id": 224,
+    "question": "What is batch processing?",
+    "type": "single",
+    "choices": [
+      "Processing data continuously in real time",
+      "Processing data periodically in large groups",
+      "Processing only failed records",
+      "Processing only metadata"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Batch processing handles data in scheduled intervals in bulk."
+  },
+  {
+    "id": 225,
+    "question": "What is streaming data processing?",
+    "type": "single",
+    "choices": [
+      "Processing data once per day",
+      "Processing data continuously as it arrives",
+      "Processing archived data only",
+      "Processing data manually"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Streaming processes data in real time as it is generated."
+  },
+  {
+    "id": 226,
+    "question": "Which AWS service is commonly used for large-scale distributed batch processing?",
+    "type": "single",
+    "choices": [
+      "AWS Lambda",
+      "Amazon EMR",
+      "Amazon S3",
+      "AWS IAM"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon EMR is used for big data processing using frameworks like Hadoop and Spark."
+  },
+  {
+    "id": 227,
+    "question": "What is a key advantage of parallel processing in EMR?",
+    "type": "single",
+    "choices": [
+      "It reduces storage cost only",
+      "It speeds up processing by distributing work across nodes",
+      "It eliminates the need for data ingestion",
+      "It replaces S3 storage"
+    ],
+    "correctAnswers": [1],
+    "explanation": "EMR parallel processing distributes computation across multiple nodes for efficiency."
+  },
+  {
+    "id": 228,
+    "question": "Which stage is NOT part of a typical data pipeline?",
+    "type": "single",
+    "choices": [
+      "Ingest",
+      "Store",
+      "Process",
+      "Deploy containers"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Container deployment is not a standard data pipeline stage."
+  },
+  {
+    "id": 229,
+    "question": "What is the main goal of the ingest stage in a data pipeline?",
+    "type": "single",
+    "choices": [
+      "Analyze data",
+      "Collect and bring data into the system",
+      "Delete old data",
+      "Encrypt storage only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Ingestion is the process of collecting data from sources into the pipeline."
+  },
+  {
+    "id": 230,
+    "question": "Which AWS service is commonly used for data storage in pipelines?",
+    "type": "single",
+    "choices": [
+      "Amazon S3",
+      "Amazon Route 53",
+      "AWS IAM",
+      "Amazon MQ"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon S3 is widely used for scalable data storage in pipelines."
+  },
+  {
+    "id": 231,
+    "question": "What is a key difference between batch and streaming processing?",
+    "type": "single",
+    "choices": [
+      "Batch is real-time, streaming is delayed",
+      "Batch processes data periodically, streaming processes continuously",
+      "Both are identical",
+      "Streaming only works with databases"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Batch processes data in chunks; streaming processes continuously."
+  },
+  {
+    "id": 232,
+    "question": "Which type of processing is best for real-time analytics?",
+    "type": "single",
+    "choices": [
+      "Batch processing",
+      "Streaming processing",
+      "Manual processing",
+      "Cold storage processing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Streaming is ideal for real-time analytics use cases."
+  },
+  {
+    "id": 233,
+    "question": "What is ELT commonly used for?",
+    "type": "single",
+    "choices": [
+      "Highly structured preprocessing before storage",
+      "Flexible analytics on raw data in data lakes",
+      "Only transactional systems",
+      "Network routing"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ELT is used in modern data lakes where raw data is loaded first."
+  },
+  {
+    "id": 234,
+    "question": "Which AWS service is often used for real-time streaming ingestion?",
+    "type": "single",
+    "choices": [
+      "Amazon Kinesis",
+      "Amazon S3",
+      "AWS Glue",
+      "Amazon EC2"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon Kinesis is used for real-time streaming data ingestion."
+  },
+  {
+    "id": 235,
+    "question": "What is a key characteristic of a data engineer pattern?",
+    "type": "single",
+    "choices": [
+      "Focus on UI design",
+      "Building scalable pipelines for ingest, transform, and analyze data",
+      "Managing DNS systems",
+      "Developing mobile applications"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Data engineers design and build scalable data pipelines."
+  },
+  {
+    "id": 236,
+    "question": "Which system is best suited for distributed batch processing of big data?",
+    "type": "single",
+    "choices": [
+      "Amazon EMR",
+      "Amazon S3",
+      "Amazon Route 53",
+      "AWS Shield"
+    ],
+    "correctAnswers": [0],
+    "explanation": "EMR is designed for distributed big data processing."
+  },
+  {
+    "id": 237,
+    "question": "What is stored first in an ELT pipeline?",
+    "type": "single",
+    "choices": [
+      "Transformed data",
+      "Raw data",
+      "Aggregated reports",
+      "Metadata only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ELT loads raw data first before transformation."
+  },
+  {
+    "id": 238,
+    "question": "Which AWS service is commonly used for data transformation in ETL pipelines?",
+    "type": "single",
+    "choices": [
+      "AWS Glue",
+      "Amazon EC2",
+      "Amazon Route 53",
+      "Amazon CloudFront"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AWS Glue is a serverless ETL service for data transformation."
+  },
+  {
+    "id": 239,
+    "question": "What is a key advantage of batch processing?",
+    "type": "single",
+    "choices": [
+      "Low latency real-time processing",
+      "Efficient processing of large volumes of data",
+      "Immediate response times",
+      "No storage required"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Batch processing is efficient for large-scale data processing workloads."
+  }
+]
 }
