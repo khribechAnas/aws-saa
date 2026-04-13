@@ -1589,6 +1589,240 @@
     ],
     "correctAnswers": [0,3],
     "explanation": "Parameters provide user input, and Conditions allow resources to be created only if the parameter and other conditions evaluate to true."
+  },
+  {
+    "id": 123,
+    "question": "A stack update fails after replacing several resources. You need CloudFormation to automatically return the stack to the last known good state. Which behavior provides this by default?",
+    "type": "single",
+    "choices": [
+      "Automatic rollback on update failure",
+      "Drift detection",
+      "Stack policy",
+      "Termination protection"
+    ],
+    "correctAnswers": [0],
+    "explanation": "CloudFormation update operations use rollback by default, restoring the previous stable state when an update fails."
+  },
+  {
+    "id": 124,
+    "question": "You want to preserve data in an Amazon RDS resource when the stack is deleted. Which setting is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "CreationPolicy",
+      "DeletionPolicy: Snapshot",
+      "UpdateReplacePolicy: Retain",
+      "DependsOn"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DeletionPolicy: Snapshot instructs CloudFormation to take a final snapshot before deleting supported stateful resources like RDS."
+  },
+  {
+    "id": 125,
+    "question": "Which CloudFormation attribute helps preserve the old physical resource when an UPDATE operation requires replacement?",
+    "type": "single",
+    "choices": [
+      "UpdateReplacePolicy",
+      "StackPolicy",
+      "RollbackConfiguration",
+      "Metadata"
+    ],
+    "correctAnswers": [0],
+    "explanation": "UpdateReplacePolicy controls what happens to the old resource during replacement updates, such as Retain or Snapshot where supported."
+  },
+  {
+    "id": 126,
+    "question": "A company wants to deploy the same baseline network stack to 40 AWS accounts in 3 Regions with centralized governance. Which feature is BEST?",
+    "type": "single",
+    "choices": [
+      "Nested stacks",
+      "CloudFormation StackSets",
+      "CloudFormation macros",
+      "Local parameters files"
+    ],
+    "correctAnswers": [1],
+    "explanation": "StackSets are built for multi-account, multi-Region deployments from a centralized administrator account."
+  },
+  {
+    "id": 127,
+    "question": "You need to split a very large template into reusable modules while deploying as a single parent stack. Which approach is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "CloudFormation StackSets",
+      "Nested stacks",
+      "Multiple Change Sets",
+      "Drift detection"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Nested stacks let you compose large systems from smaller reusable templates under one parent stack."
+  },
+  {
+    "id": 128,
+    "question": "Which CloudFormation section should export values (for example, VPC ID) so other stacks can import them?",
+    "type": "single",
+    "choices": [
+      "Parameters",
+      "Outputs",
+      "Resources",
+      "Conditions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Cross-stack sharing is done through Outputs with Export names and consumed via Fn::ImportValue."
+  },
+  {
+    "id": 129,
+    "question": "An engineer manually changed a security group rule outside CloudFormation. What is the correct sequence to safely reconcile with IaC?",
+    "type": "single",
+    "choices": [
+      "Run Drift Detection, then update template and deploy via Change Set",
+      "Delete and recreate the stack immediately",
+      "Run StackSets across all Regions",
+      "Enable termination protection"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Drift Detection identifies divergence, then Change Sets let you preview the corrective update before applying it."
+  },
+  {
+    "id": 130,
+    "question": "For an internet-facing ALB with EC2 in private subnets, which architecture is correct?",
+    "type": "single",
+    "choices": [
+      "ALB in private subnets, EC2 in public subnets",
+      "ALB in public subnets, EC2 in private subnets",
+      "Both ALB and EC2 in private subnets with no NAT",
+      "Both ALB and EC2 in public subnets only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "The ALB needs public subnets for internet ingress, while application instances should stay in private subnets for better security posture."
+  },
+  {
+    "id": 131,
+    "question": "A web app in two AZs must tolerate an AZ outage with minimal ops effort. Which design is BEST?",
+    "type": "single",
+    "choices": [
+      "Single EC2 with EIP",
+      "ALB + Auto Scaling group across at least two AZs",
+      "NAT gateway in one AZ only",
+      "Manual instance recovery scripts"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ALB with ASG across multiple AZs is the standard managed high-availability pattern for web tiers."
+  },
+  {
+    "id": 132,
+    "question": "You need EC2 Auto Scaling based on application demand rather than CPU. Which metric is most appropriate for ALB-backed services?",
+    "type": "single",
+    "choices": [
+      "DiskReadOps",
+      "RequestCountPerTarget",
+      "StatusCheckFailed",
+      "EstimatedCharges"
+    ],
+    "correctAnswers": [1],
+    "explanation": "RequestCountPerTarget aligns scaling with request pressure and is often more representative than CPU for web workloads."
+  },
+  {
+    "id": 133,
+    "question": "A team wants to be alerted when ALB 5XX errors spike and latency increases. Which native observability combination is BEST?",
+    "type": "single",
+    "choices": [
+      "CloudWatch metrics + CloudWatch alarms",
+      "Route 53 health checks only",
+      "CloudFormation drift detection",
+      "AWS Config conformance packs"
+    ],
+    "correctAnswers": [0],
+    "explanation": "ALB publishes metrics such as HTTPCode_ELB_5XX_Count and TargetResponseTime to CloudWatch, where alarms can trigger notifications."
+  },
+  {
+    "id": 134,
+    "question": "You need to centralize VPC Flow Logs from multiple accounts for security analytics. Which destination is MOST suitable for long-term query and retention?",
+    "type": "single",
+    "choices": [
+      "CloudWatch Logs only",
+      "Amazon S3 with Athena",
+      "Amazon SNS",
+      "AWS Systems Manager Parameter Store"
+    ],
+    "correctAnswers": [1],
+    "explanation": "S3 provides cost-effective long-term storage and Athena enables serverless SQL analysis across large flow log datasets."
+  },
+  {
+    "id": 135,
+    "question": "An Auto Scaling group keeps launching and terminating instances repeatedly during deployments. Which setting should be tuned first to reduce false unhealthy replacements?",
+    "type": "single",
+    "choices": [
+      "Desired capacity",
+      "Health check grace period",
+      "Termination protection",
+      "Max instance lifetime"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A proper grace period gives new instances time to boot and pass load balancer health checks before replacement decisions."
+  },
+  {
+    "id": 136,
+    "question": "Which Route 53 policy is BEST for active-passive disaster recovery between two Regions?",
+    "type": "single",
+    "choices": [
+      "Failover routing with health checks",
+      "Weighted routing without health checks",
+      "Simple routing",
+      "Multivalue answer routing only"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Failover routing is designed for active-passive setups and automatically shifts to secondary endpoints when the primary is unhealthy."
+  },
+  {
+    "id": 137,
+    "question": "A company wants static anycast IPs and improved global path performance for TCP applications without changing DNS frequently. Which service is BEST?",
+    "type": "single",
+    "choices": [
+      "AWS Global Accelerator",
+      "Route 53 weighted routing",
+      "Amazon CloudFront",
+      "Network ACL"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Global Accelerator provides static anycast IPs and routes traffic over the AWS global network to healthy regional endpoints."
+  },
+  {
+    "id": 138,
+    "question": "You must allow private access from a VPC to Amazon S3 without traversing the public internet and at lowest cost. Which option is BEST?",
+    "type": "single",
+    "choices": [
+      "Interface VPC endpoint for S3",
+      "Gateway VPC endpoint for S3",
+      "NAT gateway",
+      "Internet gateway"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Gateway endpoints are purpose-built for S3 and DynamoDB private access and are typically the most cost-effective option."
+  },
+  {
+    "id": 139,
+    "question": "Which statement about Security Groups and Network ACLs is TRUE?",
+    "type": "single",
+    "choices": [
+      "Security Groups are stateless and evaluated by rule number",
+      "Network ACLs are stateful and attached to ENIs",
+      "Security Groups are stateful; Network ACLs are stateless",
+      "Both are stateful"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Security Groups are stateful and attached to ENIs, while NACLs are stateless subnet-level filters evaluated in order."
+  },
+  {
+    "id": 140,
+    "question": "You need CloudFormation deployment safety so that accidental stack deletion is blocked, but updates can still be reviewed before execution. Which combination is BEST?",
+    "type": "multiple",
+    "choices": [
+      "Enable termination protection",
+      "Use Change Sets before updates",
+      "Disable rollback",
+      "Use only direct console edits"
+    ],
+    "correctAnswers": [0,1],
+    "explanation": "Termination protection reduces accidental deletions, and Change Sets provide a pre-execution preview for safer updates."
   }
 ]
 }

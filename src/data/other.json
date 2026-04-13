@@ -1790,6 +1790,201 @@
     ],
     "correctAnswers": [3],
     "explanation": "AWS KMS keys are region-specific. To decrypt data in another region, you must replicate the key or create a CMK in the target region."
+  },
+  {
+    "id": 131,
+    "question": "A company stores transaction records in Amazon DynamoDB and must prevent lost updates when multiple writers modify the same item concurrently. Which approach is BEST?",
+    "type": "single",
+    "choices": [
+      "Use Scan before every update",
+      "Use conditional writes with an expected version attribute",
+      "Use DynamoDB Streams only",
+      "Increase WCUs"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Conditional writes implement optimistic concurrency control by updating only when the expected version matches."
+  },
+  {
+    "id": 132,
+    "question": "A table stores session tokens that should expire automatically after 24 hours with minimal operational effort. Which DynamoDB feature should be used?",
+    "type": "single",
+    "choices": [
+      "DynamoDB Streams",
+      "Time to Live (TTL)",
+      "Global Secondary Index",
+      "On-demand backup"
+    ],
+    "correctAnswers": [1],
+    "explanation": "TTL automatically marks expired items for background deletion, reducing custom cleanup jobs."
+  },
+  {
+    "id": 133,
+    "question": "An application needs to react in near real time whenever new orders are inserted into DynamoDB. Which pattern is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "DynamoDB Streams + Lambda",
+      "Daily export to S3",
+      "CloudTrail lookup",
+      "Athena scheduled query"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DynamoDB Streams capture item-level changes, and Lambda can process those events in near real time."
+  },
+  {
+    "id": 134,
+    "question": "A company uses DynamoDB with unpredictable traffic and wants to avoid capacity planning while paying per request. Which mode should be selected?",
+    "type": "single",
+    "choices": [
+      "Provisioned capacity with auto scaling disabled",
+      "On-demand capacity mode",
+      "Reserved instances",
+      "Global table write forwarding"
+    ],
+    "correctAnswers": [1],
+    "explanation": "On-demand mode is ideal for spiky or unpredictable workloads because capacity planning is not required."
+  },
+  {
+    "id": 135,
+    "question": "A PostgreSQL database on Amazon RDS is heavily read-oriented. The team needs to scale reads without changing the write endpoint. What should they do?",
+    "type": "single",
+    "choices": [
+      "Enable Multi-AZ only",
+      "Add read replicas and route read traffic to replica endpoint(s)",
+      "Increase storage size only",
+      "Use snapshots for reads"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Read replicas are the native RDS read-scaling mechanism; Multi-AZ is for availability, not read scaling."
+  },
+  {
+    "id": 136,
+    "question": "A serverless workload using Lambda frequently opens new PostgreSQL connections and intermittently exhausts DB connections. Which solution is BEST?",
+    "type": "single",
+    "choices": [
+      "Increase Lambda timeout",
+      "Use Amazon RDS Proxy",
+      "Move credentials to SSM Parameter Store only",
+      "Use CloudWatch Logs Insights"
+    ],
+    "correctAnswers": [1],
+    "explanation": "RDS Proxy pools and reuses connections, reducing connection storms from bursty Lambda concurrency."
+  },
+  {
+    "id": 137,
+    "question": "A company must rotate database credentials automatically every 30 days with minimal application changes. Which approach is BEST?",
+    "type": "single",
+    "choices": [
+      "Store credentials in an EC2 user-data script",
+      "Use AWS Secrets Manager rotation integrated with RDS",
+      "Hardcode credentials in Lambda environment variables",
+      "Use IAM user access keys for database login"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Secrets Manager can automatically rotate RDS credentials and integrates cleanly with applications and services."
+  },
+  {
+    "id": 138,
+    "question": "Which statements about RDS Multi-AZ and read replicas are correct? (Select TWO)",
+    "type": "multi",
+    "choices": [
+      "Multi-AZ is primarily for high availability and failover",
+      "Read replicas are primarily for scaling read traffic",
+      "Multi-AZ standby is intended for serving application reads",
+      "Read replicas provide synchronous replication for zero data loss"
+    ],
+    "correctAnswers": [0,1],
+    "explanation": "Multi-AZ improves availability with synchronous standby failover; read replicas are asynchronous and used for read scaling."
+  },
+  {
+    "id": 139,
+    "question": "An S3 bucket with sensitive exports must deny uploads unless objects are encrypted with a specific KMS key. Which control is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "S3 lifecycle rule",
+      "Bucket policy condition on s3:x-amz-server-side-encryption-aws-kms-key-id",
+      "CloudWatch alarm only",
+      "S3 object lock governance mode"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A bucket policy condition can enforce SSE-KMS and a specific key ID for all object uploads."
+  },
+  {
+    "id": 140,
+    "question": "A security team needs centralized, immutable audit logs for all API activity across multiple accounts. Which architecture is BEST?",
+    "type": "single",
+    "choices": [
+      "Enable CloudTrail per account without central destination",
+      "Use an organization trail to a centralized S3 bucket with restrictive bucket policy",
+      "Use VPC Flow Logs only",
+      "Use AWS Config snapshots only"
+    ],
+    "correctAnswers": [1],
+    "explanation": "An organization trail centralizes CloudTrail logs across accounts and supports stronger governance controls."
+  },
+  {
+    "id": 141,
+    "question": "A company wants to enforce that no IAM principal can disable CloudTrail in production accounts. Which control should be used at scale?",
+    "type": "single",
+    "choices": [
+      "IAM inline policies on each user",
+      "Service Control Policy (SCP) attached to the production OU",
+      "Security group rules",
+      "Macie managed policy"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SCPs apply organization-wide guardrails and can deny dangerous actions regardless of local IAM allows."
+  },
+  {
+    "id": 142,
+    "question": "A company must provide private connectivity from VPC workloads to DynamoDB without internet traversal. Which option is correct?",
+    "type": "single",
+    "choices": [
+      "NAT gateway",
+      "Interface endpoint for DynamoDB",
+      "Gateway VPC endpoint for DynamoDB",
+      "Internet gateway"
+    ],
+    "correctAnswers": [2],
+    "explanation": "DynamoDB supports gateway VPC endpoints for private access from VPCs without using public internet paths."
+  },
+  {
+    "id": 143,
+    "question": "You need to restore an RDS database to an exact second before accidental data deletion. Which capability should be used?",
+    "type": "single",
+    "choices": [
+      "Manual snapshot restore only",
+      "Point-in-time recovery from automated backups",
+      "Read replica promotion",
+      "CloudTrail event replay"
+    ],
+    "correctAnswers": [1],
+    "explanation": "RDS point-in-time recovery restores to a specific timestamp within the backup retention window."
+  },
+  {
+    "id": 144,
+    "question": "A global application needs active-active writes with low-latency local reads in multiple Regions and can tolerate eventual consistency conflict resolution. Which service is BEST?",
+    "type": "single",
+    "choices": [
+      "RDS Multi-AZ",
+      "Aurora single-Region cluster",
+      "DynamoDB Global Tables",
+      "ElastiCache global datastore"
+    ],
+    "correctAnswers": [2],
+    "explanation": "DynamoDB Global Tables provide multi-Region, multi-active replication with eventual consistency semantics."
+  },
+  {
+    "id": 145,
+    "question": "A company wants continuous security findings from GuardDuty, Inspector, and Macie in one place, with standards-based posture checks. Which service should be the central pane of glass?",
+    "type": "single",
+    "choices": [
+      "Amazon Detective",
+      "AWS Security Hub",
+      "AWS WAF",
+      "CloudTrail Lake"
+    ],
+    "correctAnswers": [1],
+    "explanation": "AWS Security Hub centralizes findings and compliance checks across multiple AWS security services and integrations."
   }
         
     ]

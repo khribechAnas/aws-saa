@@ -1659,6 +1659,352 @@
       1
     ],
     "explanation": "A NAT Gateway in a private subnet allows outbound internet access for instances without exposing them to inbound internet traffic."
+  },
+  {
+    "id": 110,
+    "question": "A company needs to enforce that all objects uploaded to an S3 bucket are encrypted with SSE-KMS using a specific customer managed key. Which solution is BEST?",
+    "type": "single",
+    "choices": [
+      "Enable versioning on the bucket",
+      "Use a bucket policy that denies PutObject unless the required KMS key ID is specified",
+      "Enable S3 Transfer Acceleration",
+      "Use CloudFront signed URLs"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "A bucket policy with conditions on s3:x-amz-server-side-encryption and s3:x-amz-server-side-encryption-aws-kms-key-id enforces KMS encryption requirements."
+  },
+  {
+    "id": 111,
+    "question": "Which S3 feature helps prevent accidental or malicious object deletion in a versioned bucket by adding a second layer of protection?",
+    "type": "single",
+    "choices": [
+      "Object Lock",
+      "MFA Delete",
+      "Lifecycle transition",
+      "S3 Select"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "MFA Delete on versioned buckets requires MFA for permanent delete/version change operations, reducing accidental or malicious deletion risk."
+  },
+  {
+    "id": 112,
+    "question": "A team needs WORM retention for compliance so that S3 objects cannot be deleted or overwritten during a legal retention period. Which feature should they use?",
+    "type": "single",
+    "choices": [
+      "S3 Versioning",
+      "S3 Object Lock in Compliance mode",
+      "S3 Transfer Acceleration",
+      "S3 Access Points"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "S3 Object Lock in Compliance mode enforces immutable retention, even against privileged users."
+  },
+  {
+    "id": 113,
+    "question": "A company must replicate encrypted objects from one bucket to another in a different Region, including existing objects. Which approach is correct?",
+    "type": "single",
+    "choices": [
+      "Enable CRR only; existing objects will replicate automatically",
+      "Enable CRR and S3 Batch Replication for existing objects",
+      "Use lifecycle rules only",
+      "Use multipart upload"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "CRR handles new objects, while existing objects require S3 Batch Replication. KMS permissions must also be configured for replication of encrypted data."
+  },
+  {
+    "id": 114,
+    "question": "You need EC2 instances in a private subnet to access S3 without using a NAT gateway. Which option should be used?",
+    "type": "single",
+    "choices": [
+      "Internet Gateway",
+      "Gateway VPC endpoint for S3",
+      "Interface VPC endpoint for S3 only",
+      "Transit Gateway"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "A gateway endpoint provides private S3 access from VPC subnets without internet routing or NAT costs."
+  },
+  {
+    "id": 115,
+    "question": "A solution requires temporary shared access to millions of S3 objects under different prefixes for multiple applications, each with distinct policies. Which feature is BEST?",
+    "type": "single",
+    "choices": [
+      "One bucket policy with many statements",
+      "S3 Access Points",
+      "CloudFront only",
+      "S3 Inventory"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "S3 Access Points simplify large-scale, multi-application access management with separate access policies per use case."
+  },
+  {
+    "id": 116,
+    "question": "A company wants to serve private S3 content through CloudFront and ensure users can access content only with signed URLs. What is required at the origin layer?",
+    "type": "single",
+    "choices": [
+      "Public bucket with website hosting",
+      "Origin Access Control (or OAI) to keep bucket private",
+      "Transfer Acceleration",
+      "S3 Select"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Origin Access Control (recommended) keeps the S3 bucket private and allows access only through CloudFront, where signed URLs/cookies are enforced."
+  },
+  {
+    "id": 117,
+    "question": "An S3 lifecycle rule transitions objects to Glacier Deep Archive after 30 days, but the app needs occasional retrieval within minutes. What is the best storage class choice after day 30?",
+    "type": "single",
+    "choices": [
+      "S3 Glacier Deep Archive",
+      "S3 Standard-IA",
+      "S3 Glacier Flexible Retrieval",
+      "S3 One Zone-IA"
+    ],
+    "correctAnswers": [
+      2
+    ],
+    "explanation": "Glacier Flexible Retrieval supports restore options including expedited retrieval, unlike Deep Archive which has long retrieval times."
+  },
+  {
+    "id": 118,
+    "question": "An EC2 fleet must block all IMDSv1 requests and allow metadata access only through session-oriented calls. Which setting should be enforced?",
+    "type": "single",
+    "choices": [
+      "Disable source/destination check",
+      "Require IMDSv2",
+      "Enable hibernation",
+      "Use placement groups"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Requiring IMDSv2 enforces token-based metadata requests and mitigates common SSRF-style credential theft paths."
+  },
+  {
+    "id": 119,
+    "question": "A company wants to patch EC2 instances automatically without opening inbound SSH from the internet. Which service combination is BEST?",
+    "type": "single",
+    "choices": [
+      "Bastion host + cron",
+      "AWS Systems Manager Patch Manager + SSM Agent + IAM role",
+      "CloudTrail + EventBridge",
+      "CloudFront + WAF"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Systems Manager supports agent-based patching and management without inbound SSH, provided instances have connectivity to SSM endpoints and appropriate IAM role permissions."
+  },
+  {
+    "id": 120,
+    "question": "Which EBS volume type is generally best for most production workloads requiring baseline SSD performance with independent tuning of IOPS and throughput?",
+    "type": "single",
+    "choices": [
+      "gp3",
+      "st1",
+      "sc1",
+      "standard magnetic"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "gp3 provides cost-effective SSD storage with decoupled performance settings, making it a common default for production."
+  },
+  {
+    "id": 121,
+    "question": "A critical database on EC2 needs sub-millisecond latency and sustained high IOPS with durability. Which EBS option is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "gp3",
+      "io2/io2 Block Express",
+      "st1",
+      "sc1"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "io2 and io2 Block Express are designed for mission-critical workloads needing high IOPS, low latency, and high durability."
+  },
+  {
+    "id": 122,
+    "question": "You need to take crash-consistent backups of multiple EBS volumes attached to one EC2 instance at the same time. Which feature should you use?",
+    "type": "single",
+    "choices": [
+      "AMI copy",
+      "Multi-volume EBS snapshots",
+      "EBS encryption by default",
+      "Elastic IP"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Multi-volume snapshots capture point-in-time snapshots across attached volumes in a coordinated operation."
+  },
+  {
+    "id": 123,
+    "question": "An EC2 Auto Scaling group needs faster scale-out during sudden traffic spikes because initialization takes 8 minutes. Which feature helps reduce effective warm-up time?",
+    "type": "single",
+    "choices": [
+      "Warm Pools",
+      "Placement groups",
+      "Elastic IP",
+      "S3 Select"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "Warm Pools keep pre-initialized instances ready for rapid scale-out and reduce response delay during bursts."
+  },
+  {
+    "id": 124,
+    "question": "Which architecture provides the lowest operational overhead for highly available web traffic on EC2?",
+    "type": "single",
+    "choices": [
+      "Single EC2 instance with EIP",
+      "ASG across multiple AZs behind an ALB",
+      "Instance store with manual failover",
+      "NLB in one AZ only"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "An Auto Scaling group across AZs with ALB provides managed resilience and elasticity with minimal manual intervention."
+  },
+  {
+    "id": 125,
+    "question": "A workload has steady baseline demand plus unpredictable short spikes. Which cost model combination is BEST?",
+    "type": "single",
+    "choices": [
+      "All Spot",
+      "Savings Plans for baseline + On-Demand for spikes",
+      "All Dedicated Hosts",
+      "All On-Demand"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Use Savings Plans (or RIs) for predictable baseline and On-Demand for unforecastable peaks to balance cost and flexibility."
+  },
+  {
+    "id": 126,
+    "question": "You need to harden S3 so that data is never publicly accessible, even if someone accidentally adds a public ACL. Which setting should be enabled at bucket/account level?",
+    "type": "single",
+    "choices": [
+      "S3 Block Public Access",
+      "S3 Event Notifications",
+      "S3 Inventory",
+      "S3 Batch Operations"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "S3 Block Public Access provides guardrails that override public ACLs and public bucket policies."
+  },
+  {
+    "id": 127,
+    "question": "Which S3 feature helps detect accidental object corruption by validating checksums during upload/download operations?",
+    "type": "single",
+    "choices": [
+      "S3 checksum support",
+      "S3 lifecycle rules",
+      "S3 Intelligent-Tiering",
+      "S3 Access Analyzer"
+    ],
+    "correctAnswers": [
+      0
+    ],
+    "explanation": "S3 supports checksum algorithms and validation to verify data integrity in transit and at rest workflows."
+  },
+  {
+    "id": 128,
+    "question": "An EC2 instance in a private subnet needs to call Systems Manager without internet access. What should be configured? (Select TWO)",
+    "type": "multiple",
+    "choices": [
+      "Interface VPC endpoints for SSM services",
+      "IAM role allowing SSM actions",
+      "Public IP on instance",
+      "Open inbound SSH from 0.0.0.0/0"
+    ],
+    "correctAnswers": [
+      0,
+      1
+    ],
+    "explanation": "Private SSM management requires the right IAM role and private connectivity through SSM-related interface endpoints."
+  },
+  {
+    "id": 129,
+    "question": "A company wants to move from SSH key management to browser-based shell access with centralized audit for EC2 administration. Which service is BEST?",
+    "type": "single",
+    "choices": [
+      "EC2 Serial Console only",
+      "AWS Systems Manager Session Manager",
+      "AWS Transfer Family",
+      "S3 pre-signed URLs"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Session Manager provides secure shell access without inbound SSH and supports centralized logging/auditing."
+  },
+  {
+    "id": 130,
+    "question": "For EC2 disaster recovery with minimal recovery time in another Region, which pattern is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "Keep only one on-demand instance in primary Region",
+      "Maintain AMIs/snapshots and infrastructure templates, then automate launch in secondary Region",
+      "Use only EIP reassignment",
+      "Use S3 lifecycle rules"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Pre-staged AMIs/snapshots plus IaC automation improves recovery speed and repeatability for regional failover."
+  },
+  {
+    "id": 131,
+    "question": "You need predictable high network throughput for HPC nodes, with enhanced packet performance. Which EC2 option should be enabled where supported?",
+    "type": "single",
+    "choices": [
+      "Elastic IP",
+      "Enhanced networking (ENA/EFA depending on workload)",
+      "Instance hibernation",
+      "Dedicated Hosts"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Enhanced networking (and EFA for suitable HPC/ML patterns) improves packet throughput and latency characteristics."
+  },
+  {
+    "id": 132,
+    "question": "A company stores long-term archives in S3 and must verify that no one can permanently delete protected records before retention expires. Which combination is BEST?",
+    "type": "single",
+    "choices": [
+      "Versioning only",
+      "Object Lock + retention policy",
+      "Transfer Acceleration + KMS",
+      "CORS + pre-signed URLs"
+    ],
+    "correctAnswers": [
+      1
+    ],
+    "explanation": "Object Lock with explicit retention is built for immutable archive controls and compliance retention use cases."
   }
   ]
 }

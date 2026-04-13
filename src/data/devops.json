@@ -1,9 +1,1966 @@
 {
   "id": "devops",
-  "name": "DevOps",
-  "description": "CI/CD, containers, infrastructure as code",
+  "name": "Network",
+  "description": "Network",
   "icon": "GitBranch",
   "questions": [
-    
+    {
+      "id": 1,
+      "question": "Which statement correctly describes Amazon VPC scope and Availability Zones?",
+      "type": "single",
+      "choices": [
+        "A VPC can span multiple AWS Regions but only one Availability Zone per Region.",
+        "A VPC belongs to one Region and can include subnets in multiple Availability Zones in that Region.",
+        "A VPC is global and automatically spans all Regions in an account.",
+        "A VPC is tied to one Availability Zone, and cross-AZ traffic requires VPC peering."
+      ],
+      "correctAnswers": [1],
+      "explanation": "A VPC is a Regional construct. Within that Region, you can create subnets across multiple AZs for high availability."
+    },
+    {
+      "id": 2,
+      "question": "A solutions architect creates subnets in us-east-1a and us-east-1b in the same VPC. Which statement is TRUE?",
+      "type": "single",
+      "choices": [
+        "The design is invalid because each subnet must be in a separate VPC.",
+        "The design is valid because a single VPC can span multiple AZs in one Region.",
+        "The design requires Transit Gateway for inter-subnet communication.",
+        "The design is only valid if both subnets are public."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Subnets are AZ-scoped, while VPCs are Region-scoped. Multiple AZ subnets in one VPC is a standard HA design."
+    },
+    {
+      "id": 3,
+      "question": "Which AWS services are typically accessed through public regional endpoints outside your VPC by default? (Select THREE.)",
+      "type": "multiple",
+      "choices": [
+        "Amazon S3",
+        "Amazon DynamoDB",
+        "AWS Lambda",
+        "Amazon EC2",
+        "Amazon EBS"
+      ],
+      "correctAnswers": [0, 1, 2],
+      "explanation": "Services such as S3, DynamoDB, and Lambda expose regional public endpoints by default. Access can be kept private using VPC endpoints or private integrations where supported."
+    },
+    {
+      "id": 4,
+      "question": "An EC2 instance in a private subnet must download OS updates from the internet. Which architecture is MOST appropriate?",
+      "type": "single",
+      "choices": [
+        "Attach an Internet Gateway directly to the private subnet.",
+        "Assign an Elastic IP to the instance in the private subnet.",
+        "Route private subnet outbound traffic to a NAT device in a public subnet.",
+        "Create a security group rule that allows 0.0.0.0/0 inbound."
+      ],
+      "correctAnswers": [2],
+      "explanation": "Private subnets do not provide direct internet routing. A NAT in a public subnet allows outbound internet access without exposing private instances to inbound internet traffic."
+    },
+    {
+      "id": 5,
+      "question": "What is the core function of a NAT device for instances in private subnets?",
+      "type": "single",
+      "choices": [
+        "Encrypt all traffic and terminate TLS sessions",
+        "Translate private source IPs to the NAT device public IP for outbound internet access",
+        "Provide inbound internet access directly to private instances",
+        "Distribute traffic across multiple targets like a load balancer"
+      ],
+      "correctAnswers": [1],
+      "explanation": "NAT performs source network address translation, so private instances can initiate outbound connections while their private IPs remain hidden."
+    },
+    {
+      "id": 6,
+      "question": "Which statement about NAT Gateway and NAT Instance is TRUE?",
+      "type": "single",
+      "choices": [
+        "Both are fully managed services with identical operational responsibility.",
+        "NAT Gateway is managed by AWS, while NAT Instance is self-managed on EC2.",
+        "NAT Instance supports automatic multi-AZ failover by default, but NAT Gateway does not.",
+        "NAT Gateway requires you to patch the operating system regularly."
+      ],
+      "correctAnswers": [1],
+      "explanation": "NAT Gateway is a managed service. NAT Instance is an EC2 instance you manage, including patching, scaling, and failover design."
+    },
+    {
+      "id": 7,
+      "question": "A company wants high availability for outbound internet access from private subnets across two AZs. Which design is BEST practice?",
+      "type": "single",
+      "choices": [
+        "One NAT Gateway in a single AZ used by all private subnets in the Region.",
+        "One NAT Gateway per AZ, with each private subnet routing to the NAT in the same AZ.",
+        "One NAT Instance in one AZ and no failover configuration.",
+        "No NAT device, only an Internet Gateway route in private subnets."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Using one NAT Gateway per AZ improves resilience and avoids cross-AZ dependency for internet egress from private subnets."
+    },
+    {
+      "id": 8,
+      "question": "Which statement about connectivity from private subnets is correct?",
+      "type": "single",
+      "choices": [
+        "Private subnet instances can receive unsolicited inbound internet traffic through a NAT Gateway.",
+        "A NAT device enables outbound-initiated internet connectivity from private subnet instances.",
+        "An Internet Gateway in the VPC automatically makes all subnets public.",
+        "A private subnet becomes public if its security group allows outbound 0.0.0.0/0."
+      ],
+      "correctAnswers": [1],
+      "explanation": "NAT allows outbound-initiated flows. It does not make private instances directly reachable from the internet."
+    },
+    {
+      "id": 9,
+      "question": "Which statement BEST describes the relationship between Network ACLs and Security Groups in a VPC security model?",
+      "type": "single",
+      "choices": [
+        "Use only Security Groups because Network ACLs are legacy and ignored.",
+        "Use only Network ACLs because they automatically secure instances.",
+        "Apply defense in depth: Network ACLs at subnet boundary and Security Groups at resource level.",
+        "Security Groups and Network ACLs are mutually exclusive and cannot be used together."
+      ],
+      "correctAnswers": [2],
+      "explanation": "Best practice is layered security: NACLs filter subnet traffic, and Security Groups protect individual resources."
+    },
+    {
+      "id": 10,
+      "question": "A solutions architect compares Security Groups and Network ACLs. Which mapping is CORRECT?",
+      "type": "single",
+      "choices": [
+        "Security Group protects subnet, Network ACL protects instance ENI.",
+        "Network ACL protects subnet, Security Group protects resource ENI.",
+        "Both protect only internet gateways.",
+        "Both protect only route tables."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Network ACLs are attached to subnets, while Security Groups are attached to ENIs/resources such as EC2."
+    },
+    {
+      "id": 11,
+      "question": "Which statement about Security Group rule behavior is TRUE?",
+      "type": "single",
+      "choices": [
+        "Security Groups are stateless and require symmetric inbound/outbound rules.",
+        "Security Groups are stateful; return traffic is automatically allowed for permitted flows.",
+        "Security Groups support numbered rule order and first-match processing.",
+        "Security Groups evaluate deny rules before allow rules."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Security Groups are stateful. If a connection is allowed in one direction, response traffic is allowed automatically."
+    },
+    {
+      "id": 12,
+      "question": "An engineer needs to explicitly block one malicious source IP at the instance firewall layer using Security Groups only. What is the outcome?",
+      "type": "single",
+      "choices": [
+        "Possible, because Security Groups support explicit deny rules.",
+        "Not possible with Security Groups alone, because Security Groups have allow rules only.",
+        "Possible only if the Security Group is attached to a private subnet.",
+        "Possible only when using default Security Group."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Security Groups do not support explicit deny rules; they only contain allow rules."
+    },
+    {
+      "id": 13,
+      "question": "Which statement about Network ACLs (NACLs) is accurate?",
+      "type": "single",
+      "choices": [
+        "NACLs apply at the subnet level and can be used with Security Groups.",
+        "NACLs attach to EC2 instances and replace Security Groups.",
+        "NACLs are stateful and automatically allow response traffic.",
+        "NACLs can be configured only for public subnets."
+      ],
+      "correctAnswers": [0],
+      "explanation": "NACLs are subnet-level controls and are commonly combined with Security Groups for layered protection."
+    },
+    {
+      "id": 14,
+      "question": "A workload in a subnet allows inbound HTTPS in its Security Group. No outbound Security Group rule is added. What happens to response traffic?",
+      "type": "single",
+      "choices": [
+        "Response traffic is blocked because outbound allow rule is mandatory for each flow.",
+        "Response traffic is allowed automatically because Security Groups are stateful.",
+        "Response traffic is allowed only if NACL has an allow-all inbound rule.",
+        "Response traffic is dropped unless an Internet Gateway is attached."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Security Groups are stateful, so return traffic for an established allowed connection is automatically permitted."
+    },
+    {
+      "id": 15,
+      "question": "Which statement is TRUE about Amazon VPC Network ACLs?",
+      "type": "single",
+      "choices": [
+        "Network ACLs are stateful and automatically allow return traffic.",
+        "Network ACLs are stateless, so inbound and outbound rules are evaluated independently.",
+        "Network ACLs support only allow rules and no deny rules.",
+        "Network ACLs attach to ENIs, not subnets."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Network ACLs are stateless controls at the subnet boundary. You must explicitly allow traffic in each direction as needed."
+    },
+    {
+      "id": 16,
+      "question": "A subnet uses a Network ACL with inbound allow TCP 443 and no matching outbound rule for ephemeral return traffic. What is the most likely result?",
+      "type": "single",
+      "choices": [
+        "HTTPS works because NACLs are stateful.",
+        "Connection fails because NACLs require separate outbound allowance for return path.",
+        "Connection works only when an Internet Gateway is attached.",
+        "Connection works only for TLS 1.3."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Because NACLs are stateless, return traffic is not automatically permitted. Required outbound (or inbound, depending on flow) rules must be present."
+    },
+    {
+      "id": 17,
+      "question": "How does rule evaluation order work in a Network ACL?",
+      "type": "single",
+      "choices": [
+        "Rules are evaluated from highest rule number to lowest.",
+        "Rules are evaluated randomly for load distribution.",
+        "Rules are evaluated from lowest rule number to highest, and evaluation stops at first match.",
+        "All matching rules are merged, and deny always wins after full scan."
+      ],
+      "correctAnswers": [2],
+      "explanation": "NACLs process rules in ascending numeric order and stop at the first matching rule."
+    },
+    {
+      "id": 18,
+      "question": "A Network ACL has inbound rules: 100 ALLOW TCP 80 from 0.0.0.0/0, 110 DENY TCP 80 from 0.0.0.0/0, 120 ALLOW TCP 443 from 0.0.0.0/0. Which is correct?",
+      "type": "single",
+      "choices": [
+        "TCP 80 is denied because deny at 110 overrides prior allow.",
+        "TCP 80 is allowed by rule 100, rule 110 is never evaluated for that traffic, and TCP 443 is allowed by rule 120.",
+        "Both TCP 80 and TCP 443 are denied due to conflicting rules.",
+        "Only TCP 443 is evaluated because HTTPS has priority over HTTP."
+      ],
+      "correctAnswers": [1],
+      "explanation": "First-match wins in NACLs. Traffic matching rule 100 is allowed immediately, so later rule 110 is irrelevant for that same match."
+    },
+    {
+      "id": 19,
+      "question": "Which design principle helps avoid unintended NACL behavior in production VPCs?",
+      "type": "single",
+      "choices": [
+        "Place broad allow rules at lower priority than specific denies, using intentional numbering gaps.",
+        "Use duplicate rule numbers to create deterministic tie-breaking.",
+        "Rely on implicit allows for unmatched traffic.",
+        "Prefer high rule numbers first so they evaluate before low numbers."
+      ],
+      "correctAnswers": [0],
+      "explanation": "Because evaluation is lowest-to-highest and first-match, careful numbering and ordering are critical to make rule intent explicit and maintainable."
+    },
+    {
+      "id": 20,
+      "question": "What is AWS Network Firewall primarily used for in a VPC security architecture?",
+      "type": "single",
+      "choices": [
+        "Replacing all Security Groups and Network ACLs",
+        "Providing a managed, stateful network firewall with advanced traffic inspection",
+        "Acting as a NAT solution for private subnets",
+        "Automatically creating VPC endpoints for all AWS services"
+      ],
+      "correctAnswers": [1],
+      "explanation": "AWS Network Firewall is a managed stateful firewall that adds deeper inspection and centralized policy control."
+    },
+    {
+      "id": 21,
+      "question": "Which capabilities are supported by AWS Network Firewall to strengthen security posture? (Select THREE.)",
+      "type": "multiple",
+      "choices": [
+        "Domain and FQDN-based filtering",
+        "Deep packet inspection",
+        "Malware/signature-based traffic inspection",
+        "Automatic IAM user credential rotation",
+        "Automatic Route 53 hosted zone creation"
+      ],
+      "correctAnswers": [0, 1, 2],
+      "explanation": "Network Firewall supports advanced inspection including domain filtering and deep/signature-based inspection features under centralized policy management."
+    },
+    {
+      "id": 22,
+      "question": "A company wants private subnet egress inspection before internet access. Which routing pattern is MOST appropriate?",
+      "type": "single",
+      "choices": [
+        "Private subnet default route to Internet Gateway, then to firewall endpoint",
+        "Private subnet default route to firewall endpoint, firewall subnet route to NAT Gateway, NAT in public subnet",
+        "Private subnet default route to NAT Gateway directly, with firewall endpoint optional",
+        "Public subnet default route to firewall endpoint, private subnet default route to local"
+      ],
+      "correctAnswers": [1],
+      "explanation": "For centralized inspection, private subnet traffic is routed first to firewall endpoints, then to NAT for internet egress."
+    },
+    {
+      "id": 23,
+      "question": "Where should AWS Network Firewall endpoints typically be deployed for high availability?",
+      "type": "single",
+      "choices": [
+        "In one shared public subnet for the entire Region",
+        "In a dedicated private firewall subnet in each Availability Zone used by the workload",
+        "Only in the same subnet as the NAT Gateway",
+        "Only in subnets that host internet-facing load balancers"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Best practice is to deploy firewall endpoints in dedicated private subnets per AZ to keep traffic local to each AZ and improve resilience."
+    },
+    {
+      "id": 24,
+      "question": "Which statement best describes the relationship between AWS Network Firewall and NAT Gateway in internet egress design?",
+      "type": "single",
+      "choices": [
+        "NAT Gateway performs deep packet inspection, so firewall is unnecessary.",
+        "Network Firewall inspects and enforces policy; NAT Gateway performs address translation for outbound internet access.",
+        "Network Firewall replaces both NAT and Internet Gateway.",
+        "NAT Gateway must always route to Network Firewall after translation."
+      ],
+      "correctAnswers": [1],
+      "explanation": "These services have different roles: Firewall enforces traffic policy, NAT provides egress source translation for private resources."
+    },
+    {
+      "id": 25,
+      "question": "What is the PRIMARY role of a bastion host in a secure AWS VPC design?",
+      "type": "single",
+      "choices": [
+        "To provide outbound internet access for all private subnets",
+        "To terminate TLS for application traffic in private subnets",
+        "To provide controlled administrative entry (for example SSH) into private resources",
+        "To replace Security Groups for EC2 instances"
+      ],
+      "correctAnswers": [2],
+      "explanation": "A bastion host is an administration jump point in a public subnet, typically used for controlled SSH access to private instances."
+    },
+    {
+      "id": 26,
+      "question": "An EC2 bastion host is in a public subnet. Private app instances allow SSH from which source for least privilege?",
+      "type": "single",
+      "choices": [
+        "0.0.0.0/0 on port 22",
+        "The VPC CIDR block on port 22",
+        "The Security Group attached to the bastion host",
+        "Only the NAT Gateway Elastic IP"
+      ],
+      "correctAnswers": [2],
+      "explanation": "Referencing the bastion Security Group is more secure and maintainable than opening SSH broadly by CIDR."
+    },
+    {
+      "id": 27,
+      "question": "In a secure multi-tier VPC architecture, which components are expected in public subnets? (Select THREE.)",
+      "type": "multiple",
+      "choices": [
+        "Internet Gateway path for internet-routable resources",
+        "NAT Gateway for egress from private subnets",
+        "Bastion host for administrative entry",
+        "RDS instances with no public IP",
+        "Network Firewall endpoints only"
+      ],
+      "correctAnswers": [0, 1, 2],
+      "explanation": "Public subnets commonly host internet-facing components such as bastion and NAT, while databases should remain in private subnets."
+    },
+    {
+      "id": 28,
+      "question": "A company designs dedicated private database subnets for Amazon RDS. Which route table configuration is MOST appropriate for those subnets?",
+      "type": "single",
+      "choices": [
+        "Add 0.0.0.0/0 route to Internet Gateway for patching",
+        "Add 0.0.0.0/0 route to NAT Gateway for direct internet access",
+        "Keep only local VPC routing unless there is a specific private egress requirement",
+        "Route 0.0.0.0/0 to bastion host ENI"
+      ],
+      "correctAnswers": [2],
+      "explanation": "Database subnets are typically isolated without internet default routes; they communicate through local/private paths as required."
+    },
+    {
+      "id": 29,
+      "question": "Which route flow best matches a secure inspected egress path for private app subnets in this design?",
+      "type": "single",
+      "choices": [
+        "Private app subnet -> Internet Gateway -> Network Firewall endpoint -> NAT Gateway",
+        "Private app subnet -> Network Firewall endpoint -> NAT Gateway (public subnet) -> Internet Gateway",
+        "Private app subnet -> NAT Gateway -> Network Firewall endpoint -> Internet Gateway",
+        "Private app subnet -> Bastion host -> Internet Gateway"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Traffic is first steered to firewall endpoints for inspection, then sent to NAT for internet egress translation, then to IGW."
+    },
+    {
+      "id": 30,
+      "question": "Why deploy firewall subnets and endpoints per Availability Zone in a production VPC?",
+      "type": "single",
+      "choices": [
+        "To make Security Groups stateless",
+        "To avoid route tables and simplify by using one global endpoint",
+        "To improve availability and keep inspected traffic aligned with AZ-local design",
+        "To eliminate the need for NAT Gateways"
+      ],
+      "correctAnswers": [2],
+      "explanation": "Per-AZ deployment improves fault tolerance and helps keep routing resilient and predictable during AZ failures."
+    },
+    {
+      "id": 31,
+      "question": "A private subnet workload needs to call AWS managed services. Which statement is MOST accurate?",
+      "type": "single",
+      "choices": [
+        "A NAT Gateway is always required to reach all AWS managed services.",
+        "Use NAT for internet egress paths, but use VPC endpoints when you want private connectivity without internet traversal.",
+        "VPC endpoints can be used only for on-premises workloads, not VPC workloads.",
+        "Internet Gateway is mandatory for private subnets to access S3."
+      ],
+      "correctAnswers": [1],
+      "explanation": "NAT provides outbound internet access, while VPC endpoints provide private access to supported AWS services without routing traffic to the public internet."
+    },
+    {
+      "id": 32,
+      "question": "Which statement about Interface VPC Endpoints is TRUE?",
+      "type": "single",
+      "choices": [
+        "They update route tables with prefix-list targets and are available only for S3 and DynamoDB.",
+        "They are powered by AWS PrivateLink and create Elastic Network Interfaces in selected subnets.",
+        "They do not use security groups because they are managed by route tables only.",
+        "They are free of hourly and data processing charges."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Interface endpoints use PrivateLink and deploy ENIs in your subnets. They typically incur hourly and data processing charges."
+    },
+    {
+      "id": 33,
+      "question": "Which statement about Gateway VPC Endpoints is CORRECT?",
+      "type": "single",
+      "choices": [
+        "They support all AWS services that offer PrivateLink.",
+        "They are available only for Amazon S3 and Amazon DynamoDB and are targeted through route tables.",
+        "They require an ENI in each subnet and a security group.",
+        "They require NAT Gateway in front of them."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Gateway endpoints are specific to S3 and DynamoDB and are configured via route tables, not ENIs."
+    },
+    {
+      "id": 34,
+      "question": "A team needs private S3 access from EC2 instances in private subnets at the lowest additional endpoint cost. What is the BEST option?",
+      "type": "single",
+      "choices": [
+        "Use S3 Interface VPC Endpoint in every subnet",
+        "Use S3 Gateway VPC Endpoint with route table updates",
+        "Use NAT Gateway plus Internet Gateway only",
+        "Use Transit Gateway attachment to S3"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Gateway endpoints for S3 are generally the most cost-efficient private access option because they do not have per-endpoint hourly charges."
+    },
+    {
+      "id": 35,
+      "question": "When is an S3 Interface Endpoint typically preferred over an S3 Gateway Endpoint?",
+      "type": "single",
+      "choices": [
+        "When access is needed only from resources in the same VPC and no private network extensions are involved",
+        "When private access from on-premises or across connected private networks is required using PrivateLink-based patterns",
+        "When you need zero-cost endpoint usage and route-table-only configuration",
+        "When you need to replace bucket policies"
+      ],
+      "correctAnswers": [1],
+      "explanation": "S3 interface endpoints are useful in architectures needing PrivateLink-style connectivity beyond local VPC route-table gateway endpoint behavior."
+    },
+    {
+      "id": 36,
+      "question": "Which design avoids internet exposure while allowing private subnet instances to access DynamoDB?",
+      "type": "single",
+      "choices": [
+        "Attach public IPs to instances and allow outbound 0.0.0.0/0",
+        "Use NAT Gateway and disable security groups",
+        "Create a DynamoDB Gateway VPC Endpoint and route traffic through the endpoint",
+        "Place DynamoDB in your private subnet"
+      ],
+      "correctAnswers": [2],
+      "explanation": "DynamoDB supports Gateway VPC Endpoints, which keep traffic on AWS private networking without direct internet routing."
+    },
+    {
+      "id": 37,
+      "question": "In a centralized security architecture using Gateway Load Balancer (GWLB), what is the PRIMARY role of a GWLB Endpoint in the application VPC?",
+      "type": "single",
+      "choices": [
+        "It performs NAT translation for private subnet egress.",
+        "It provides a PrivateLink-based entry/exit point to steer traffic to a GWLB service in a security VPC.",
+        "It replaces route tables for all subnets.",
+        "It terminates TLS and applies WAF rules."
+      ],
+      "correctAnswers": [1],
+      "explanation": "A GWLB endpoint is the VPC-side endpoint used to send traffic to a GWLB service over PrivateLink for inspection."
+    },
+    {
+      "id": 38,
+      "question": "Which sequence BEST describes east-west or north-south traffic inspection with GWLB and a Security VPC?",
+      "type": "single",
+      "choices": [
+        "Source workload -> Internet Gateway -> GWLB Endpoint -> security appliance -> destination",
+        "Source workload -> GWLB Endpoint -> PrivateLink -> GWLB -> security appliance -> GWLB -> GWLB Endpoint -> destination",
+        "Source workload -> NAT Gateway -> GWLB -> PrivateLink -> destination",
+        "Source workload -> Transit Gateway -> NAT Gateway -> GWLB Endpoint -> destination"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Traffic is steered through the GWLB endpoint to GWLB in the security VPC, inspected by appliances, and returned to the source VPC path."
+    },
+    {
+      "id": 39,
+      "question": "A security team deploys third-party EC2 appliances behind GWLB. What happens to malicious traffic detected by an appliance?",
+      "type": "single",
+      "choices": [
+        "It is automatically forwarded to NAT Gateway for quarantine.",
+        "It is dropped by the appliance according to policy and not returned to the application path.",
+        "It must always be forwarded to the destination and logged later.",
+        "It bypasses inspection if it came from a private subnet."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Inline appliances enforce policy; malicious traffic is blocked, while permitted traffic is returned through GWLB and the endpoint."
+    },
+    {
+      "id": 40,
+      "question": "Why is GWLB commonly paired with a dedicated Security VPC?",
+      "type": "single",
+      "choices": [
+        "To centralize inspection appliances for multiple VPCs while decoupling security operations from application VPCs",
+        "Because GWLB can only be created in the same subnet as an Internet Gateway",
+        "To eliminate the need for Security Groups and Network ACLs",
+        "Because PrivateLink requires public subnets only"
+      ],
+      "correctAnswers": [0],
+      "explanation": "A Security VPC pattern centralizes and standardizes inspection while application VPCs consume the service through GWLB endpoints."
+    },
+    {
+      "id": 41,
+      "question": "Which statement about traffic return path in a GWLB architecture is TRUE?",
+      "type": "single",
+      "choices": [
+        "Clean traffic goes directly from appliance to destination, bypassing GWLB endpoint.",
+        "Clean traffic is returned from appliance to GWLB, then back through GWLB Endpoint toward destination.",
+        "Traffic return path is handled by Route 53 health checks.",
+        "GWLB endpoints are one-way and cannot receive return traffic."
+      ],
+      "correctAnswers": [1],
+      "explanation": "After inspection, allowed traffic returns through the GWLB data path and is delivered back via the GWLB endpoint routing path."
+    },
+    {
+      "id": 42,
+      "question": "What does 'transparent inspection' mean in a GWLB-based security architecture?",
+      "type": "single",
+      "choices": [
+        "Applications must install security agents to forward packets manually.",
+        "Traffic is inspected inline by security appliances without requiring application changes.",
+        "Inspection occurs only after packets reach the destination workload.",
+        "Only inbound internet traffic is inspected; east-west and outbound traffic are ignored."
+      ],
+      "correctAnswers": [1],
+      "explanation": "With GWLB service insertion, traffic can be screened inline while workloads remain unaware of the inspection process."
+    },
+    {
+      "id": 43,
+      "question": "Which flow correctly represents ingress traffic for a VPC-hosted EC2 instance?",
+      "type": "single",
+      "choices": [
+        "EC2 -> Internet",
+        "Internet -> EC2",
+        "EC2 -> S3 same Region",
+        "EC2 -> DynamoDB gateway endpoint"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Ingress traffic is traffic entering your VPC resources from external networks such as the internet."
+    },
+    {
+      "id": 44,
+      "question": "Which flow correctly represents egress traffic from a VPC workload?",
+      "type": "single",
+      "choices": [
+        "Internet -> EC2",
+        "Route 53 -> EC2",
+        "EC2 -> Internet",
+        "CloudFront -> ALB"
+      ],
+      "correctAnswers": [2],
+      "explanation": "Egress traffic originates from your workload and exits toward external destinations such as the public internet."
+    },
+    {
+      "id": 45,
+      "question": "An EC2 instance in a private subnet needs private access to Amazon S3 and DynamoDB in the same Region with minimal endpoint cost. Which option is BEST?",
+      "type": "single",
+      "choices": [
+        "Use Gateway VPC Endpoints for S3 and DynamoDB",
+        "Use Interface VPC Endpoints for both services only",
+        "Use NAT Gateway only",
+        "Use Internet Gateway and public IPs"
+      ],
+      "correctAnswers": [0],
+      "explanation": "For same-Region private access to S3 and DynamoDB, gateway endpoints are typically the most cost-efficient and direct option."
+    },
+    {
+      "id": 46,
+      "question": "A company needs private-style access patterns to S3 from on-premises or from architectures where gateway endpoints are not sufficient. Which approach is generally preferred?",
+      "type": "single",
+      "choices": [
+        "S3 Interface Endpoint (PrivateLink-based pattern)",
+        "DynamoDB Gateway Endpoint",
+        "Public internet with no endpoint",
+        "Security Group-only policy"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Interface endpoints are commonly used when PrivateLink-based connectivity is required beyond standard same-VPC gateway endpoint routing behavior."
+    },
+    {
+      "id": 47,
+      "question": "Which AWS tool answers the question: 'Can traffic reach from source A to destination B?'",
+      "type": "single",
+      "choices": [
+        "Network Access Analyzer",
+        "Reachability Analyzer",
+        "VPC Flow Logs",
+        "AWS Config"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Reachability Analyzer evaluates connectivity between specific endpoints and reports whether a path is reachable."
+    },
+    {
+      "id": 48,
+      "question": "If a path is blocked, which service can identify the specific blocking component (for example route table, NACL, or security group) in a path analysis?",
+      "type": "single",
+      "choices": [
+        "AWS Trusted Advisor",
+        "Reachability Analyzer",
+        "Network Access Analyzer",
+        "Amazon GuardDuty"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Reachability Analyzer provides path-level diagnostics and shows where connectivity is blocked in the network configuration path."
+    },
+    {
+      "id": 49,
+      "question": "Which AWS tool is best suited for finding unintended exposure such as 'internet can reach private database paths'?",
+      "type": "single",
+      "choices": [
+        "Reachability Analyzer",
+        "Network Access Analyzer",
+        "CloudWatch Contributor Insights",
+        "AWS X-Ray"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Network Access Analyzer is policy-based and designed to detect undesired reachable paths and network exposure risks at scale."
+    },
+    {
+      "id": 50,
+      "question": "Which statement best captures typical pricing behavior for these two analyzers?",
+      "type": "single",
+      "choices": [
+        "Reachability Analyzer is charged per analysis run, while Network Access Analyzer pricing is commonly tied to analyzed resources/path checks.",
+        "Both tools are always free in all Regions.",
+        "Reachability Analyzer is charged per EC2 hour, while Network Access Analyzer is charged per NAT Gateway hour.",
+        "Both tools use identical flat monthly account-wide pricing only."
+      ],
+      "correctAnswers": [0],
+      "explanation": "Reachability Analyzer is typically billed per analysis execution, while Network Access Analyzer uses a resource/path analysis pricing model."
+    },
+    {
+      "id": 51,
+      "question": "What is Amazon VPC Traffic Mirroring primarily used for?",
+      "type": "single",
+      "choices": [
+        "To load balance traffic across EC2 instances",
+        "To copy network traffic from an ENI to monitoring/security tools for deep analysis",
+        "To replace Security Groups with packet filtering policies",
+        "To provide private connectivity to S3 and DynamoDB"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Traffic Mirroring creates packet copies from selected ENIs and forwards them to analysis tools such as IDS/IPS or packet capture systems."
+    },
+    {
+      "id": 52,
+      "question": "A security team wants to inspect real EC2 packet flows in near real time using an IDS sensor. Which service capability best fits this need?",
+      "type": "single",
+      "choices": [
+        "VPC Traffic Mirroring from the workload ENI to a monitoring target",
+        "NAT Gateway flow translation logs only",
+        "Route 53 Resolver query logs",
+        "Internet Gateway metrics"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Traffic Mirroring is designed to copy live traffic streams from ENIs to packet inspection tools without changing application logic."
+    },
+    {
+      "id": 53,
+      "question": "For SSH from bastion host to a private EC2 instance, which inbound NACL rule on the private subnet is correct for the initial request?",
+      "type": "single",
+      "choices": [
+        "Allow TCP 22 from bastion private IP/CIDR",
+        "Allow TCP ephemeral ports (1024-65535) from bastion public IP",
+        "Allow all TCP from 0.0.0.0/0",
+        "Allow TCP 22 from Internet Gateway"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Initial SSH request is bastion source ephemeral port to destination port 22 on the private instance. Inbound rule must allow destination port 22 from bastion private address space."
+    },
+    {
+      "id": 54,
+      "question": "Because NACLs are stateless, which outbound rule is typically required on the private subnet NACL for SSH response traffic back to bastion?",
+      "type": "single",
+      "choices": [
+        "Allow TCP 22 to bastion public IP only",
+        "Allow TCP ephemeral destination ports (1024-65535) to bastion private IP/CIDR",
+        "Allow ICMP only to bastion private IP/CIDR",
+        "No outbound rule is needed because SSH is stateful at NACL layer"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Response packets originate from source port 22 on private instance and return to bastion's ephemeral client port, so NACL must allow outbound to ephemeral destination ports."
+    },
+    {
+      "id": 55,
+      "question": "Why should NACL rules for bastion-to-private SSH generally reference bastion private IPs, not bastion public IPs, for intra-VPC traffic?",
+      "type": "single",
+      "choices": [
+        "Because Security Groups do not support public CIDRs",
+        "Because internal VPC routing uses private addressing for instance-to-instance communication",
+        "Because bastion public IP is used only for DNS and never for SSH",
+        "Because NACLs automatically translate public IP to private IP"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Within the VPC, traffic between instances uses private IP paths. Public IP is for internet-facing connectivity, not normal east-west private subnet access."
+    },
+    {
+      "id": 56,
+      "question": "How should Network ACL rule type be selected for protocol-specific traffic such as SSH versus ICMP ping?",
+      "type": "single",
+      "choices": [
+        "Always use TCP destination ports, including for ICMP.",
+        "For TCP/UDP traffic like SSH, match by destination port rule type; for ping, use ICMP rule type (type/code) rather than ports.",
+        "Always use ephemeral destination ports regardless of protocol.",
+        "Use only 'All traffic' because protocol-specific matching is not supported in NACLs."
+      ],
+      "correctAnswers": [1],
+      "explanation": "SSH is TCP port-based (destination port 22), while ping uses ICMP types/codes and does not use TCP/UDP port numbers."
+    },
+    {
+      "id": 57,
+      "question": "A team configures NACL rules for ICMP echo request/echo reply. Which statement is TRUE?",
+      "type": "single",
+      "choices": [
+        "ICMP rules require destination TCP port 8 for echo request.",
+        "ICMP traffic is configured using ICMP protocol/type-code logic, not TCP/UDP port rules.",
+        "ICMP is stateful in NACLs, so only inbound is required.",
+        "ICMP can be controlled only by Security Groups, not NACLs."
+      ],
+      "correctAnswers": [1],
+      "explanation": "NACLs can filter ICMP directly by protocol and ICMP type/code. Since NACLs are stateless, required return direction must also be allowed."
+    },
+    {
+      "id": 58,
+      "question": "Which source/destination addressing is usually correct for traffic between two instances communicating inside the same VPC using private connectivity?",
+      "type": "single",
+      "choices": [
+        "Use public IP addresses in NACL/route reasoning because all VPC traffic is internet-routed.",
+        "Use private IP addressing for the flow path and corresponding NACL source/destination matching.",
+        "Use Elastic IP addresses only, regardless of path.",
+        "Use NAT Gateway private address as source for all east-west traffic."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Intra-VPC communication typically uses private IP paths, so controls should match private source/destination ranges."
+    },
+    {
+      "id": 59,
+      "question": "A workload intentionally targets another instance's public IP. Which statement best reflects NACL planning for that path?",
+      "type": "single",
+      "choices": [
+        "Treat it as private-only traffic and match only private CIDRs in all cases.",
+        "When traffic is addressed through public endpoints/IGW pathing, evaluate and allow the address space seen on that public path.",
+        "NACLs ignore source and destination addresses when public IP is used.",
+        "Public-IP targeting automatically bypasses NACL rules."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Rule planning must follow the actual routed path and addresses seen on that path. If the flow is built around public addressing, NACL matches should reflect that behavior."
+    },
+    {
+      "id": 60,
+      "question": "For two EC2 instances in the same VPC, which approach is generally preferred for ping/connectivity checks and why?",
+      "type": "single",
+      "choices": [
+        "Use public IPs first, because they are always faster and cheaper.",
+        "Use private IPs first, because intra-VPC private routing is typically simpler, lower-latency, and avoids unnecessary public-path dependency.",
+        "Use NAT Gateway IPs, because private instances cannot reach each other directly.",
+        "Use Internet Gateway as the source endpoint for all diagnostics."
+      ],
+      "correctAnswers": [1],
+      "explanation": "For same-VPC east-west communication, private addressing is usually the cleanest and most efficient path for both operations and security policy design."
+    },
+    {
+      "id": 61,
+      "question": "Which statement best describes AWS WAF protection scope?",
+      "type": "single",
+      "choices": [
+        "AWS WAF operates at Layer 7 and inspects HTTP/HTTPS requests.",
+        "AWS WAF is a Layer 3/4 firewall for all TCP/UDP ports including SSH.",
+        "AWS WAF replaces subnet Network ACLs for all protocols.",
+        "AWS WAF only protects traffic inside private subnets."
+      ],
+      "correctAnswers": [0],
+      "explanation": "AWS WAF is designed for web traffic inspection at the application layer (HTTP/HTTPS), not arbitrary network protocols like SSH."
+    },
+    {
+      "id": 62,
+      "question": "Which threats/features are appropriate for AWS WAF rule sets? (Select THREE.)",
+      "type": "multiple",
+      "choices": [
+        "SQL injection pattern filtering",
+        "Cross-site scripting (XSS) detection",
+        "Geo match country-based filtering",
+        "Blocking SSH on TCP port 22 directly",
+        "Replacing Security Group state tracking"
+      ],
+      "correctAnswers": [0, 1, 2],
+      "explanation": "WAF supports web-layer controls such as SQLi/XSS protections and geo filtering. Network-port enforcement remains a VPC/SG/NACL responsibility."
+    },
+    {
+      "id": 63,
+      "question": "A company wants to mitigate HTTP request floods to its internet-facing ALB without blocking normal users permanently. Which WAF capability is most suitable?",
+      "type": "single",
+      "choices": [
+        "Geo match allow-all",
+        "Rate-based rule with threshold and action",
+        "NACL deny all ephemeral ports",
+        "EC2 host-level manual iptables only"
+      ],
+      "correctAnswers": [1],
+      "explanation": "WAF rate-based rules are intended to detect and control excessive web request rates from clients."
+    },
+    {
+      "id": 64,
+      "question": "Which control should be used to block SSH access attempts from untrusted sources?",
+      "type": "single",
+      "choices": [
+        "AWS WAF web ACL on ALB",
+        "Security Group and/or Network ACL rules on port 22",
+        "WAF geo match rule only",
+        "CloudFront cache policy"
+      ],
+      "correctAnswers": [1],
+      "explanation": "SSH is not HTTP/HTTPS application traffic. Enforce SSH restrictions with Security Groups and, when needed, Network ACLs."
+    },
+    {
+      "id": 65,
+      "question": "In a common internet-to-application path with ALB and EC2 targets, where does AWS WAF logically apply?",
+      "type": "single",
+      "choices": [
+        "After EC2 Security Group evaluation only",
+        "At the web entry point (for example ALB) to inspect HTTP/HTTPS before forwarding to targets",
+        "Inside NAT Gateway before route table lookup",
+        "At the bastion host for all protocols"
+      ],
+      "correctAnswers": [1],
+      "explanation": "WAF is associated with supported web entry services (such as ALB) and evaluates web requests before they are sent to backend targets."
+    },
+    {
+      "id": 66,
+      "question": "Which statement best describes full-mesh VPC connectivity architecture?",
+      "type": "single",
+      "choices": [
+        "Each VPC connects directly to every other VPC, which can be simple for a small number of VPCs but does not scale operationally.",
+        "All VPCs connect through a single managed hub by default in AWS.",
+        "It requires AWS Transit Gateway in all cases.",
+        "It always provides lower cost than hub-and-spoke regardless of VPC count."
+      ],
+      "correctAnswers": [0],
+      "explanation": "Full mesh can offer direct paths for small environments, but connection count and management complexity grow quickly as VPC count increases."
+    },
+    {
+      "id": 67,
+      "question": "A company has dozens of VPCs and wants simpler centralized connectivity management. Which pattern is most appropriate?",
+      "type": "single",
+      "choices": [
+        "Full mesh peering between every VPC",
+        "Hub-and-spoke using a central connectivity hub such as AWS Transit Gateway",
+        "One NAT Gateway shared across Regions",
+        "Only VPC endpoints with no central routing construct"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Hub-and-spoke with Transit Gateway reduces connection sprawl and simplifies routing governance for large multi-VPC environments."
+    },
+    {
+      "id": 68,
+      "question": "Which statement about AWS Transit Gateway (TGW) is TRUE?",
+      "type": "single",
+      "choices": [
+        "TGW is global and does not require regional deployment considerations.",
+        "TGW is a regional hub that can attach many VPCs and on-premises connections; inter-Region communication is handled via TGW peering.",
+        "TGW can connect only VPCs in one account and cannot integrate on-premises networks.",
+        "TGW replaces Security Groups and NACLs."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Transit Gateway is Region-scoped, supports large-scale attachments (including hybrid connectivity), and can peer with TGWs in other Regions."
+    },
+    {
+      "id": 69,
+      "question": "Which pricing model best matches AWS Transit Gateway usage?",
+      "type": "single",
+      "choices": [
+        "Flat monthly account price regardless of usage",
+        "Charged by attachment hour and data processing/traffic volume",
+        "Charged only when route tables are modified",
+        "No cost for inter-VPC traffic if same Region"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Transit Gateway pricing typically includes attachment-hour charges and data processing charges for traffic traversing TGW."
+    },
+    {
+      "id": 70,
+      "question": "What is AWS Transit Gateway Flow Logs used for?",
+      "type": "single",
+      "choices": [
+        "Capturing application HTTP headers at ALB",
+        "Capturing metadata about IP traffic to and from Transit Gateway attachments for visibility and troubleshooting",
+        "Replacing CloudTrail API auditing",
+        "Inspecting packet payload contents like a DPI firewall"
+      ],
+      "correctAnswers": [1],
+      "explanation": "TGW Flow Logs provide network traffic metadata for analysis, monitoring, and troubleshooting across TGW-connected networks."
+    },
+    {
+      "id": 71,
+      "question": "Which trade-off is commonly associated with hub-and-spoke compared with direct full-mesh paths?",
+      "type": "single",
+      "choices": [
+        "Hub-and-spoke removes all routing control points.",
+        "Hub-and-spoke can add an extra hop but significantly improves manageability at scale.",
+        "Hub-and-spoke prevents on-premises connectivity.",
+        "Hub-and-spoke works only for two VPCs."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Centralized hub designs may introduce additional hop/latency trade-offs in some paths, but provide far better operational scalability and governance."
+    },
+    {
+      "id": 72,
+      "question": "To connect a VPC to AWS Transit Gateway (TGW), which action is required first?",
+      "type": "single",
+      "choices": [
+        "Create a VPC peering connection between all VPCs",
+        "Create a Transit Gateway VPC attachment between the VPC and the TGW",
+        "Attach an Internet Gateway to the TGW",
+        "Create a NAT Gateway in every subnet"
+      ],
+      "correctAnswers": [1],
+      "explanation": "A VPC becomes connected to a TGW through a TGW VPC attachment."
+    },
+    {
+      "id": 73,
+      "question": "After creating a TGW attachment, what route is typically needed in the VPC subnet route table for traffic to remote VPC CIDRs?",
+      "type": "single",
+      "choices": [
+        "Destination: remote VPC CIDR, Target: Transit Gateway",
+        "Destination: remote VPC CIDR, Target: Internet Gateway",
+        "Destination: 0.0.0.0/0, Target: Bastion host",
+        "Destination: local VPC CIDR, Target: NAT Gateway"
+      ],
+      "correctAnswers": [0],
+      "explanation": "In VPC route tables, traffic for other connected networks must point to the TGW as the next hop."
+    },
+    {
+      "id": 74,
+      "question": "Which statement about Transit Gateway route tables is correct?",
+      "type": "single",
+      "choices": [
+        "TGW route tables are optional if VPC route tables already contain TGW routes.",
+        "TGW route tables map destination CIDR ranges to the correct TGW attachment for forwarding.",
+        "TGW route tables can contain only a default route 0.0.0.0/0.",
+        "TGW route tables are replaced by Security Groups."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Transit Gateway route tables decide which attachment receives traffic for a given destination CIDR."
+    },
+    {
+      "id": 75,
+      "question": "A team configures only VPC route tables to point traffic to TGW, but forgets corresponding routes in the TGW route table. What is the likely result?",
+      "type": "single",
+      "choices": [
+        "Traffic still works because TGW learns all routes automatically without route table entries.",
+        "Traffic reaches TGW but forwarding fails or blackholes because TGW lacks destination mapping.",
+        "Only internet traffic fails; private CIDR traffic always succeeds.",
+        "Security Groups automatically create TGW routes."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Both sides are required: VPC route tables must send traffic to TGW, and TGW route tables must know which attachment owns the destination CIDR."
+    },
+    {
+      "id": 76,
+      "question": "Which statement correctly defines ingress and egress traffic for an EC2 instance?",
+      "type": "single",
+      "choices": [
+        "Ingress is traffic leaving the instance; egress is traffic entering the instance.",
+        "Ingress is incoming traffic to the instance/resource; egress is outgoing traffic from the instance/resource.",
+        "Ingress applies only to internet traffic, while egress applies only to intra-VPC traffic.",
+        "Ingress and egress are synonyms in AWS networking."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Ingress means incoming to a resource, and egress means outgoing from a resource."
+    },
+    {
+      "id": 77,
+      "question": "What is centralized outbound (egress) internet architecture in a multi-VPC environment?",
+      "type": "single",
+      "choices": [
+        "Each VPC has its own Internet Gateway and NAT Gateway with no shared path.",
+        "All VPCs send internet-bound traffic to one egress VPC (for example via TGW), where shared egress controls and NAT are hosted.",
+        "Only private link endpoints are used; no route tables are required.",
+        "Traffic is sent directly to AWS WAF for all protocols before internet egress."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Centralized egress uses a shared egress VPC and hub routing so multiple VPCs can use common outbound controls and NAT infrastructure."
+    },
+    {
+      "id": 78,
+      "question": "A company replaces one NAT Gateway per VPC with a shared egress VPC reached through Transit Gateway. What is the PRIMARY expected benefit?",
+      "type": "single",
+      "choices": [
+        "Lower NAT footprint and simplified centralized outbound policy management",
+        "Elimination of all data processing charges in AWS",
+        "Automatic cross-Region routing without additional configuration",
+        "Removal of the need for route tables in spoke VPCs"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Centralizing egress typically reduces duplicated NAT deployments and improves governance by concentrating outbound controls."
+    },
+    {
+      "id": 79,
+      "question": "Which statement about AWS Transit Gateway scope is TRUE?",
+      "type": "single",
+      "choices": [
+        "Transit Gateway is global and automatically routes all Regions/accounts by default.",
+        "Transit Gateway is regional; cross-Region connectivity requires additional constructs such as inter-Region TGW peering.",
+        "Transit Gateway cannot connect to on-premises networks.",
+        "Transit Gateway works only within a single VPC."
+      ],
+      "correctAnswers": [1],
+      "explanation": "TGW is a regional service. Cross-Region designs require explicit inter-Region TGW connectivity."
+    },
+    {
+      "id": 80,
+      "question": "A company has VPCs in multiple AWS accounts and wants centralized egress through a shared TGW architecture. Which capability is required to share TGW attachments across accounts?",
+      "type": "single",
+      "choices": [
+        "AWS RAM (Resource Access Manager) for cross-account sharing",
+        "CloudFront origin access identity",
+        "Only Security Group references across accounts",
+        "No additional mechanism; all accounts auto-attach to TGW"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Cross-account TGW usage typically relies on AWS RAM sharing and explicit attachment/routing configuration."
+    },
+    {
+      "id": 81,
+      "question": "Which statement best describes VPC peering in a full-mesh style design?",
+      "type": "single",
+      "choices": [
+        "A single peering connection automatically connects all VPCs transitively.",
+        "VPC peering is a one-to-one connection; full mesh requires many individual peering connections.",
+        "VPC peering works only within one Availability Zone.",
+        "VPC peering requires AWS Transit Gateway in the same account."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Peering is point-to-point and non-transitive, so multi-VPC full mesh quickly increases connection count."
+    },
+    {
+      "id": 82,
+      "question": "Which cost statement about VPC peering is most accurate?",
+      "type": "single",
+      "choices": [
+        "VPC peering has mandatory hourly connection charges in all cases.",
+        "Creating a peering connection has no hourly fee, but normal data transfer charges can apply (for example cross-AZ or inter-Region).",
+        "Data transfer over peering is always free, including inter-Region.",
+        "Peering cost is based only on number of route table entries."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Peering itself generally has no hourly connection fee, but traffic can incur standard data transfer pricing depending on path and scope."
+    },
+    {
+      "id": 83,
+      "question": "A solutions architect attempts to create VPC peering between two VPCs that have overlapping CIDR blocks. What is expected?",
+      "type": "single",
+      "choices": [
+        "Peering succeeds if Security Groups allow all traffic.",
+        "Peering fails because overlapping CIDRs are not supported for peering routes.",
+        "Peering succeeds only with a NAT Gateway in each VPC.",
+        "Peering succeeds automatically when both VPCs are in the same account."
+      ],
+      "correctAnswers": [1],
+      "explanation": "VPC peering requires non-overlapping CIDR ranges for routable connectivity."
+    },
+    {
+      "id": 84,
+      "question": "If two VPCs have overlapping CIDR ranges but one application must privately consume a service from the other VPC, which architecture is most appropriate?",
+      "type": "single",
+      "choices": [
+        "Use VPC peering with static host routes",
+        "Use AWS PrivateLink with a Network Load Balancer service endpoint model",
+        "Use Internet Gateway and public IP communication only",
+        "Use Security Group referencing across VPCs without connectivity changes"
+      ],
+      "correctAnswers": [1],
+      "explanation": "PrivateLink provides service-level private connectivity without requiring full CIDR-to-CIDR routing between overlapping VPCs."
+    },
+    {
+      "id": 85,
+      "question": "Which is a key operational trade-off when scaling from a few VPCs to many VPCs using full-mesh peering?",
+      "type": "single",
+      "choices": [
+        "Lower connection count and simpler route management as VPC count increases",
+        "Rapid growth in peering links and route complexity, often favoring hub-and-spoke alternatives",
+        "Automatic transitive routing eliminates most route configuration",
+        "Overlapping CIDR becomes automatically supported"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Full mesh becomes hard to manage at scale because each additional VPC increases link and routing complexity."
+    },
+    {
+      "id": 86,
+      "question": "Which statement about VPC peering scope is TRUE?",
+      "type": "single",
+      "choices": [
+        "VPC peering works only for VPCs in the same Region.",
+        "VPC peering can connect VPCs in the same Region or across Regions.",
+        "VPC peering requires Transit Gateway for cross-Region communication.",
+        "VPC peering supports only cross-account, not same-account, connectivity."
+      ],
+      "correctAnswers": [1],
+      "explanation": "VPC peering supports both intra-Region and inter-Region private connectivity patterns."
+    },
+    {
+      "id": 87,
+      "question": "Why is VPC peering often selected for direct communication between a small number of VPCs?",
+      "type": "single",
+      "choices": [
+        "Because it provides centralized hub routing for thousands of VPCs.",
+        "Because it creates direct VPC-to-VPC paths with typically low-latency communication characteristics.",
+        "Because it enables transitive routing automatically.",
+        "Because it removes all data transfer charges in every scenario."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Peering establishes direct network links between VPCs, which can be favorable for simple low-latency connectivity patterns at small scale."
+    },
+    {
+      "id": 88,
+      "question": "A network design has VPC1 peered with VPC2 and VPC2 peered with VPC3. No direct peering exists between VPC1 and VPC3. Which statement is correct?",
+      "type": "single",
+      "choices": [
+        "VPC1 can reach VPC3 through VPC2 because peering is transitive.",
+        "VPC1 cannot reach VPC3 through VPC2 because VPC peering is non-transitive.",
+        "VPC1 can reach VPC3 only if both are in the same AZ.",
+        "VPC1 reaches VPC3 automatically if route tables are set to 0.0.0.0/0."
+      ],
+      "correctAnswers": [1],
+      "explanation": "VPC peering does not support transitive routing. Each communicating VPC pair must have direct connectivity or another routing architecture."
+    },
+    {
+      "id": 89,
+      "question": "Which architecture is usually better when many VPCs need shared connectivity and transitive routing behavior?",
+      "type": "single",
+      "choices": [
+        "Chained VPC peering only",
+        "Hub-and-spoke using AWS Transit Gateway",
+        "Single VPC with no attachments",
+        "Internet Gateway with public subnets only"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Transit Gateway is designed for scalable many-to-many connectivity and simplifies routing compared with large peering meshes."
+    },
+    {
+      "id": 90,
+      "question": "Which statement correctly contrasts VPC Peering/TGW with AWS PrivateLink?",
+      "type": "single",
+      "choices": [
+        "Peering and TGW expose only a single application endpoint, while PrivateLink exposes full network routing.",
+        "Peering and TGW provide network-level connectivity between CIDR networks; PrivateLink provides service-level private access without full network connectivity.",
+        "PrivateLink is required before any peering connection can be created.",
+        "Transit Gateway and PrivateLink are both layer-7 web firewalls."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Peering and TGW connect networks, while PrivateLink publishes/consumes specific services privately without granting broad VPC-to-VPC routing."
+    },
+    {
+      "id": 91,
+      "question": "A security architect must allow one consumer VPC to access only a single service in a provider VPC, without broad CIDR-level trust. Which option is best?",
+      "type": "single",
+      "choices": [
+        "VPC peering with full route exchange",
+        "Transit Gateway with shared route tables",
+        "AWS PrivateLink service endpoint model",
+        "Internet Gateway with public NLB"
+      ],
+      "correctAnswers": [2],
+      "explanation": "PrivateLink is designed for service-level exposure and least-network-exposure patterns."
+    },
+    {
+      "id": 92,
+      "question": "In a VPC peering workflow, what is the purpose of requester and accepter roles?",
+      "type": "single",
+      "choices": [
+        "To assign NAT translation responsibility",
+        "To enforce explicit authorization by requiring the target VPC owner to accept the peering request",
+        "To decide which VPC pays for EC2 instances",
+        "To make peering transitive after acceptance"
+      ],
+      "correctAnswers": [1],
+      "explanation": "The accepter must approve the request, preventing unauthorized unilateral network connectivity."
+    },
+    {
+      "id": 93,
+      "question": "What is true after a VPC peering request is accepted and both sides have proper routes/security rules?",
+      "type": "single",
+      "choices": [
+        "Communication remains one-way from requester to accepter only.",
+        "Communication can be bidirectional between the two peered VPCs.",
+        "Communication is blocked until a Transit Gateway is attached.",
+        "Only public subnets can communicate over peering."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Once accepted and correctly routed, peering supports bidirectional traffic between the two VPCs (subject to security controls)."
+    },
+    {
+      "id": 94,
+      "question": "Which statement is FALSE about VPC peering security/governance behavior?",
+      "type": "single",
+      "choices": [
+        "The accepter side must explicitly approve the peering request.",
+        "Peering can be created without any consent from the target VPC owner.",
+        "Requester/accepter roles help enforce ownership consent.",
+        "After acceptance, routes and security policies still control effective connectivity."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Peering is not unilateral: the other side must accept the request."
+    },
+    {
+      "id": 95,
+      "question": "What does enabling VPC Flow Logs primarily provide?",
+      "type": "single",
+      "choices": [
+        "Full packet payload capture similar to packet sniffing tools",
+        "Metadata about IP traffic flows for visibility, auditing, and troubleshooting",
+        "Automatic blocking of malicious traffic",
+        "Replacement of Security Groups and NACLs"
+      ],
+      "correctAnswers": [1],
+      "explanation": "VPC Flow Logs record flow metadata (not packet payloads), which is useful for network monitoring, investigations, and compliance auditing."
+    },
+    {
+      "id": 96,
+      "question": "Which traffic disposition values can VPC Flow Logs capture?",
+      "type": "single",
+      "choices": [
+        "Only accepted traffic",
+        "Only denied traffic",
+        "Both accepted and rejected traffic (based on configuration)",
+        "Only traffic that crosses an Internet Gateway"
+      ],
+      "correctAnswers": [2],
+      "explanation": "Flow Logs can be configured to capture accepted, rejected, or all traffic at the selected scope."
+    },
+    {
+      "id": 97,
+      "question": "Where can VPC Flow Logs be delivered? (Select TWO.)",
+      "type": "multiple",
+      "choices": [
+        "Amazon CloudWatch Logs",
+        "Amazon S3",
+        "AWS Secrets Manager",
+        "Amazon Route 53 Hosted Zones"
+      ],
+      "correctAnswers": [0, 1],
+      "explanation": "Common flow log destinations are CloudWatch Logs and Amazon S3."
+    },
+    {
+      "id": 98,
+      "question": "A company enables VPC Flow Logs on all VPCs and retention is long-term. Which statement is most accurate about cost impact?",
+      "type": "single",
+      "choices": [
+        "No additional cost is introduced by enabling flow logs.",
+        "Cost can increase due to log ingestion/storage and analysis, depending on destination and retention.",
+        "Only compute cost increases; logging destinations are always free.",
+        "Costs decrease automatically because denied traffic is dropped."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Flow logging improves visibility but can add charges for ingestion, storage, and queries/analytics."
+    },
+    {
+      "id": 99,
+      "question": "What is the primary purpose of a VPC Flow Log dashboard?",
+      "type": "single",
+      "choices": [
+        "To edit route tables directly from charts",
+        "To visualize network traffic trends and anomalies for faster troubleshooting and security monitoring",
+        "To replace all SIEM tooling",
+        "To enforce SG/NACL policy changes automatically"
+      ],
+      "correctAnswers": [1],
+      "explanation": "A dashboard helps summarize flow-log telemetry (for example top talkers, rejected flows, unusual spikes) for operational and security insights."
+    },
+    {
+      "id": 100,
+      "question": "What is an Elastic Network Interface (ENI) in AWS networking?",
+      "type": "single",
+      "choices": [
+        "A managed internet gateway for VPC-level outbound traffic",
+        "A virtual network interface (network card) attached to resources such as EC2 instances",
+        "A replacement for route tables in private subnets",
+        "A DNS endpoint used by Route 53 Resolver"
+      ],
+      "correctAnswers": [1],
+      "explanation": "An ENI is a virtual NIC that carries private IPs, security groups, and traffic for attached compute resources."
+    },
+    {
+      "id": 101,
+      "question": "Which fields are commonly available in VPC Flow Logs for ENI-level traffic analysis? (Select THREE.)",
+      "type": "multiple",
+      "choices": [
+        "Source and destination IP addresses",
+        "Source and destination ports",
+        "Action (ACCEPT or REJECT)",
+        "SQL query text payload",
+        "HTTP request body"
+      ],
+      "correctAnswers": [0, 1, 2],
+      "explanation": "Flow Logs provide connection metadata such as src/dst addresses, ports, protocol, interface-id, and disposition (ACCEPT/REJECT), not application payloads."
+    },
+    {
+      "id": 102,
+      "question": "A company needs to connect an on-premises data center to AWS. Which options are valid core connectivity choices? (Select TWO.)",
+      "type": "multiple",
+      "choices": [
+        "AWS Site-to-Site VPN",
+        "AWS Direct Connect",
+        "Amazon CloudFront",
+        "AWS WAF",
+        "Amazon Route 53 health checks"
+      ],
+      "correctAnswers": [0, 1],
+      "explanation": "The two primary hybrid network connectivity options are Site-to-Site VPN (over internet) and Direct Connect (dedicated private link)."
+    },
+    {
+      "id": 103,
+      "question": "Which statement best describes AWS Site-to-Site VPN for VPC connectivity?",
+      "type": "single",
+      "choices": [
+        "It provides private connectivity without encryption over an AWS-owned fiber path only.",
+        "It connects on-premises to a VPC over the internet using encrypted IPsec tunnels.",
+        "It requires public subnets and does not support private routing.",
+        "It is identical to PrivateLink service endpoints."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Site-to-Site VPN uses encrypted IPsec tunnels over the internet for hybrid connectivity."
+    },
+    {
+      "id": 104,
+      "question": "In a standard VPC Site-to-Site VPN setup, which architecture detail is correct?",
+      "type": "single",
+      "choices": [
+        "Each VPN connection usually includes two tunnels for redundancy and terminates on the VPC side at a virtual private gateway (or attached gateway construct).",
+        "Each VPN connection has one tunnel only and no failover design.",
+        "VPN tunnels terminate directly on a Security Group.",
+        "VPN requires a NAT Gateway as the tunnel endpoint."
+      ],
+      "correctAnswers": [0],
+      "explanation": "A Site-to-Site VPN commonly provides two tunnels for high availability and terminates on an AWS gateway endpoint such as VGW in classic VPC VPN designs."
+    },
+    {
+      "id": 105,
+      "question": "A company wants many VPCs to reach on-premises through one centralized hybrid hub. Which design is most appropriate?",
+      "type": "single",
+      "choices": [
+        "One VGW per VPC, no central routing construct",
+        "TGW attached to multiple VPCs, with on-prem connectivity via VPN or Direct Connect through the hub",
+        "Only VPC peering between all VPCs and on-premises",
+        "PrivateLink endpoints from each VPC directly to on-premises routers"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Transit Gateway is the scalable hub pattern for connecting many VPCs to shared on-premises connectivity."
+    },
+    {
+      "id": 106,
+      "question": "If only one VPC needs hybrid connectivity to on-premises, which pattern is generally simplest?",
+      "type": "single",
+      "choices": [
+        "Transit Gateway with multi-account route domains only",
+        "VGW plus Site-to-Site VPN or Direct Connect for that single VPC",
+        "CloudFront plus WAF",
+        "NAT Gateway plus Internet Gateway"
+      ],
+      "correctAnswers": [1],
+      "explanation": "For a single VPC hybrid link, a VGW-based pattern with VPN or Direct Connect is commonly the straightforward approach."
+    },
+    {
+      "id": 107,
+      "question": "Which statement correctly compares Site-to-Site VPN and AWS Direct Connect?",
+      "type": "single",
+      "choices": [
+        "Both always use the public internet and differ only by encryption ciphers.",
+        "Site-to-Site VPN uses IPsec over internet paths, while Direct Connect uses a private dedicated connection.",
+        "Direct Connect requires public internet for data transfer; VPN does not.",
+        "Direct Connect is a layer-7 application firewall feature."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Site-to-Site VPN is encrypted over internet transport, whereas Direct Connect provides dedicated private network connectivity."
+    },
+    {
+      "id": 108,
+      "question": "Which option best matches the requirement: 'private dedicated line, not internet transport' for on-prem to AWS connectivity?",
+      "type": "single",
+      "choices": [
+        "AWS Site-to-Site VPN",
+        "AWS Direct Connect",
+        "VPC Peering",
+        "Gateway VPC Endpoint"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Direct Connect is the dedicated private connectivity option for hybrid networks."
+    },
+    {
+      "id": 109,
+      "question": "What is AWS VPN CloudHub in relation to AWS networking components?",
+      "type": "single",
+      "choices": [
+        "A feature of Transit Gateway that replaces VGW",
+        "A feature associated with Virtual Private Gateway (VGW) for specific multi-site VPN routing patterns",
+        "A managed firewall mode of AWS Network Firewall",
+        "A Route 53 DNS failover capability"
+      ],
+      "correctAnswers": [1],
+      "explanation": "CloudHub is tied to VGW-based Site-to-Site VPN topologies and is used for connecting multiple customer gateways through AWS."
+    },
+    {
+      "id": 110,
+      "question": "Which scenario best fits using CloudHub with a VGW?",
+      "type": "single",
+      "choices": [
+        "One on-prem site only that needs internet access",
+        "Multiple on-premises sites, each with Site-to-Site VPN to the same VGW, needing inter-site communication through AWS",
+        "PrivateLink service sharing across overlapping VPCs",
+        "Cross-Region VPC peering with transitive routing"
+      ],
+      "correctAnswers": [1],
+      "explanation": "CloudHub enables a hub-like VPN topology where multiple on-prem locations connect via VPN to a common VGW and can exchange routes through AWS."
+    },
+    {
+      "id": 111,
+      "question": "Which statement about CloudHub deployment is accurate?",
+      "type": "single",
+      "choices": [
+        "It requires creating an extra dedicated VPC and an additional gateway appliance in AWS.",
+        "It is enabled by using a VGW-based VPN architecture; no separate CloudHub gateway resource is created.",
+        "It works only with Direct Connect and not with Site-to-Site VPN.",
+        "It requires one Transit Gateway per on-premises branch."
+      ],
+      "correctAnswers": [1],
+      "explanation": "CloudHub is a routing behavior within VGW Site-to-Site VPN designs, not a separate gateway product to provision."
+    },
+    {
+      "id": 112,
+      "question": "A company has three branch offices, each with a Site-to-Site VPN to the same VGW. They want branch-to-branch connectivity through AWS without deploying extra hub appliances. Which option is most suitable?",
+      "type": "single",
+      "choices": [
+        "Use CloudHub behavior on the VGW-based VPN setup",
+        "Use only VPC peering between branch routers",
+        "Use Gateway VPC Endpoints",
+        "Use AWS WAF geo rules"
+      ],
+      "correctAnswers": [0],
+      "explanation": "CloudHub is intended for this multi-site VPN-through-AWS communication model using a shared VGW endpoint."
+    },
+    {
+      "id": 113,
+      "question": "What is a core capability of AWS Global Accelerator?",
+      "type": "single",
+      "choices": [
+        "It assigns static Anycast IP addresses and routes users to the optimal healthy AWS endpoint.",
+        "It replaces Security Groups for EC2 instances.",
+        "It provides private VPC-to-VPC routing for overlapping CIDRs.",
+        "It is a VPN hub for on-premises branch offices."
+      ],
+      "correctAnswers": [0],
+      "explanation": "Global Accelerator uses static Anycast IPs and the AWS global network to direct users to optimal endpoints for better availability and performance."
+    },
+    {
+      "id": 114,
+      "question": "Which outcome is typically improved by AWS Global Accelerator for internet clients? (Select THREE.)",
+      "type": "multiple",
+      "choices": [
+        "Lower latency to application endpoints",
+        "Higher availability through health-based endpoint routing",
+        "More consistent performance under internet path variability",
+        "Native acceleration of private Site-to-Site VPN tunnels",
+        "Automatic SQL query optimization in databases"
+      ],
+      "correctAnswers": [0, 1, 2],
+      "explanation": "Global Accelerator improves client experience by using AWS edge ingress and health-aware routing for public application traffic."
+    },
+    {
+      "id": 115,
+      "question": "Which traffic pattern can AWS Global Accelerator accelerate?",
+      "type": "single",
+      "choices": [
+        "Public internet clients to ALB/NLB/EC2 public application endpoints",
+        "Private on-premises VPN traffic to VGW over Site-to-Site VPN",
+        "Intra-VPC private subnet traffic only",
+        "Transit Gateway route propagation updates"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Global Accelerator is for public internet-facing application traffic, not private VPN tunnel transport."
+    },
+    {
+      "id": 116,
+      "question": "A company asks whether Global Accelerator can speed up private on-premises-to-VPC communication over CloudHub/VGW VPN. What is the correct answer?",
+      "type": "single",
+      "choices": [
+        "Yes, GA accelerates all IPSec tunnel traffic by default.",
+        "No, GA is designed for public client ingress to public endpoints, not private VPN path acceleration.",
+        "Yes, but only if NAT Gateway is in the same subnet.",
+        "No, unless WAF is enabled on the VGW."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Global Accelerator optimizes public internet ingress to application endpoints. Private hybrid VPN transport uses different networking constructs."
+    },
+    {
+      "id": 117,
+      "question": "In a Transit Gateway design, two VPC attachments exist but VPC-A must not reach VPC-B. Which approach enforces this network isolation most directly?",
+      "type": "single",
+      "choices": [
+        "Do not include routes toward VPC-B in the relevant TGW/VPC route paths for VPC-A",
+        "Enable transitive peering between both VPCs",
+        "Add a NAT Gateway in both VPCs",
+        "Use only Security Groups and keep all TGW routes open"
+      ],
+      "correctAnswers": [0],
+      "explanation": "TGW connectivity is route-driven. If route entries are not present between attachments, those VPCs remain isolated even when both are attached."
+    },
+    {
+      "id": 118,
+      "question": "Which statement best describes AWS Direct Connect?",
+      "type": "single",
+      "choices": [
+        "It is an encrypted VPN tunnel over the public internet.",
+        "It is a dedicated private network connection that bypasses internet transport.",
+        "It is a managed DNS failover service.",
+        "It is a packet inspection firewall for ALB traffic."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Direct Connect provides private connectivity between on-premises networks and AWS without traversing the public internet."
+    },
+    {
+      "id": 119,
+      "question": "Which use cases are strong candidates for AWS Direct Connect? (Select THREE.)",
+      "type": "multiple",
+      "choices": [
+        "Hybrid environments with steady private connectivity needs",
+        "Large data transfer workloads between on-premises and AWS",
+        "Workloads needing more predictable network performance",
+        "Blocking SQL injection at Layer 7",
+        "Replacing all IAM policy controls"
+      ],
+      "correctAnswers": [0, 1, 2],
+      "explanation": "Direct Connect is commonly used for hybrid integration, high-volume transfer, and predictable performance/security posture needs."
+    },
+    {
+      "id": 120,
+      "question": "Which Direct Connect virtual interface maps to the correct purpose?",
+      "type": "single",
+      "choices": [
+        "Private VIF -> Public AWS services only",
+        "Public VIF -> VPC private CIDR routing",
+        "Transit VIF -> Connect to Transit Gateway through Direct Connect Gateway",
+        "Transit VIF -> Internet Gateway attachment"
+      ],
+      "correctAnswers": [2],
+      "explanation": "Transit VIF is used with a Direct Connect Gateway to reach Transit Gateway-enabled architectures."
+    },
+    {
+      "id": 121,
+      "question": "Which statement about Direct Connect interface types is correct?",
+      "type": "single",
+      "choices": [
+        "Private VIF is typically used for private VPC access paths (through associated gateway constructs), while Public VIF is used for public AWS service endpoints.",
+        "Public VIF is required for private subnet routing to VPC CIDRs.",
+        "Transit VIF is used to connect directly to an EC2 instance ENI.",
+        "All VIF types provide identical routing behavior."
+      ],
+      "correctAnswers": [0],
+      "explanation": "Private, public, and transit VIFs serve distinct routing models for private VPC access, public service access, and TGW-scale transit connectivity."
+    },
+    {
+      "id": 122,
+      "question": "What are the two common Direct Connect connection models?",
+      "type": "single",
+      "choices": [
+        "Dedicated connection and hosted (shared) connection",
+        "Public connection and private connection only",
+        "Active and passive connection only",
+        "Single-AZ and Multi-AZ connection only"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Direct Connect offers dedicated connections and hosted/shared options through Direct Connect partners."
+    },
+    {
+      "id": 123,
+      "question": "A company wants high availability for hybrid connectivity. Which design is most aligned with AWS best practice?",
+      "type": "single",
+      "choices": [
+        "Use one Site-to-Site VPN tunnel only",
+        "Use Direct Connect as primary and Site-to-Site VPN as backup path",
+        "Use only internet gateway routes from private subnets",
+        "Use one NAT Gateway for all Regions"
+      ],
+      "correctAnswers": [1],
+      "explanation": "A common resilient pattern is DX primary with VPN backup for failover when private circuit issues occur."
+    },
+    {
+      "id": 124,
+      "question": "Which approach most improves resilience for on-premises to AWS private connectivity at scale?",
+      "type": "single",
+      "choices": [
+        "One Direct Connect location and no secondary path",
+        "Multiple Direct Connect locations and diversified connectivity paths",
+        "Only one VPN tunnel with no redundancy",
+        "Public VIF only with no private routing"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Using multiple DX locations and redundant paths reduces single-point-of-failure risk across facilities and links."
+    },
+    {
+      "id": 125,
+      "question": "Which topology is generally preferred over many-to-many mesh for large enterprise cloud networking and why?",
+      "type": "single",
+      "choices": [
+        "Hub-and-spoke, because it simplifies routing governance and operational management",
+        "Full mesh, because it always requires fewer routes",
+        "Daisy-chain peering, because it enables transitive routing",
+        "Flat subnet-only design, because it removes security boundaries"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Hub-and-spoke architectures usually provide better scalability and centralized control for complex multi-network environments."
+    },
+    {
+      "id": 126,
+      "question": "What does 'control traffic at all layers' imply in AWS network security architecture?",
+      "type": "single",
+      "choices": [
+        "Use only Security Groups and disable all other controls",
+        "Combine controls such as route design, NACL/SG, network firewalls, and application-layer protections where appropriate",
+        "Use WAF for SSH and all TCP/UDP traffic",
+        "Rely only on CloudTrail logs"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Defense in depth means enforcing policy at multiple layers: routing boundaries, L3/L4 filters, stateful inspection, and L7 protections as needed."
+    },
+    {
+      "id": 127,
+      "question": "Which statement best reflects secure hybrid communication best practices? (Select TWO.)",
+      "type": "multiple",
+      "choices": [
+        "Authenticate network communications using appropriate routing/session controls",
+        "Encrypt data in transit for sensitive traffic paths",
+        "Disable redundancy to reduce complexity",
+        "Prefer public internet-only transport for regulated workloads"
+      ],
+      "correctAnswers": [0, 1],
+      "explanation": "Strong hybrid design includes authenticated connectivity models and encryption in transit to meet security and compliance objectives."
+    },
+    {
+      "id": 128,
+      "question": "A solutions architect must reduce data transfer and network operational cost in a hybrid design. Which principle is most appropriate?",
+      "type": "single",
+      "choices": [
+        "Always choose full mesh and public egress by default",
+        "Select connectivity components and traffic paths intentionally to minimize unnecessary transfer and duplicated gateways",
+        "Replicate all traffic to all Regions regardless of need",
+        "Use only hosted shared connections for every workload"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Cost-aware network design optimizes path selection, component placement, and egress architecture to avoid avoidable transfer and infrastructure sprawl."
+    },
+    {
+      "id": 129,
+      "question": "How should architects choose between dedicated connectivity and VPN for hybrid workloads?",
+      "type": "single",
+      "choices": [
+        "Always use VPN because dedicated links are never needed",
+        "Size and select connectivity based on workload throughput, latency, resilience, and compliance requirements",
+        "Always use dedicated links for dev/test only",
+        "Use internet gateways instead of hybrid links"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Connectivity choice should match workload requirements for bandwidth, predictability, recovery targets, and regulatory/security constraints."
+    },
+    {
+      "id": 130,
+      "question": "Which design principle best maps workload placement to network requirements?",
+      "type": "single",
+      "choices": [
+        "Place all workloads in one Region regardless of user or data location",
+        "Choose workload location based on latency, connectivity path quality, compliance boundaries, and data transfer considerations",
+        "Place all sensitive workloads on public subnets for simpler routing",
+        "Ignore network dependencies when selecting deployment Region"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Workload placement should be guided by network and governance requirements, including latency, path resilience, compliance, and transfer economics."
+    },
+    {
+      "id": 131,
+      "question": "Which Route 53 policy is best when you want users routed to the Region with the lowest network latency?",
+      "type": "single",
+      "choices": [
+        "Weighted routing",
+        "Latency-based routing",
+        "Geolocation routing",
+        "Simple routing"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Latency-based routing selects the AWS Region that gives users the best latency profile."
+    },
+    {
+      "id": 132,
+      "question": "A company wants to gradually shift 10% of traffic to a new endpoint while keeping 90% on the current one. Which Route 53 policy is most suitable?",
+      "type": "single",
+      "choices": [
+        "Failover routing",
+        "Weighted routing",
+        "Geoproximity routing",
+        "Multivalue answer routing"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Weighted routing is used for controlled traffic splitting and gradual cutovers."
+    },
+    {
+      "id": 133,
+      "question": "Which statement about Route 53 alias records is TRUE?",
+      "type": "single",
+      "choices": [
+        "Alias records cannot target AWS load balancers.",
+        "Alias records are commonly used at zone apex and can point to AWS resources such as ALB/CloudFront.",
+        "Alias records always require public hosted zones only.",
+        "Alias records are equivalent to SRV records."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Alias records are AWS-specific and useful for apex domains targeting AWS endpoints."
+    },
+    {
+      "id": 134,
+      "question": "What is the primary purpose of Route 53 health checks in failover routing?",
+      "type": "single",
+      "choices": [
+        "To encrypt DNS responses",
+        "To determine endpoint health and route DNS answers to healthy targets",
+        "To provide packet inspection for HTTP payloads",
+        "To allocate Elastic IP addresses"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Health checks allow Route 53 failover records to return healthy endpoints when primary targets become unavailable."
+    },
+    {
+      "id": 135,
+      "question": "Which statement best compares ALB and NLB?",
+      "type": "single",
+      "choices": [
+        "ALB is Layer 4 only; NLB is Layer 7 only.",
+        "ALB is Layer 7 (HTTP/HTTPS features), while NLB is Layer 4 and optimized for very high-performance TCP/UDP/TLS flows.",
+        "Both are identical except pricing.",
+        "NLB supports only HTTP/HTTPS with path-based routing."
+      ],
+      "correctAnswers": [1],
+      "explanation": "ALB is application-aware, while NLB is transport-layer focused and high-throughput/low-latency."
+    },
+    {
+      "id": 136,
+      "question": "Which load balancer is commonly chosen when clients require static IP behavior and high-performance TCP handling?",
+      "type": "single",
+      "choices": [
+        "Application Load Balancer",
+        "Network Load Balancer",
+        "Gateway Load Balancer",
+        "Classic Load Balancer only"
+      ],
+      "correctAnswers": [1],
+      "explanation": "NLB is typically selected for high-performance L4 use cases and static-IP-oriented client patterns."
+    },
+    {
+      "id": 137,
+      "question": "Which service is primarily used as a global CDN for caching and accelerating static/dynamic web content?",
+      "type": "single",
+      "choices": [
+        "AWS Global Accelerator",
+        "Amazon CloudFront",
+        "AWS Site-to-Site VPN",
+        "Amazon Route 53 Resolver"
+      ],
+      "correctAnswers": [1],
+      "explanation": "CloudFront is AWS CDN for content caching, edge delivery, and improved web performance globally."
+    },
+    {
+      "id": 138,
+      "question": "A company needs to restrict direct access to S3 objects and allow access only through CloudFront. Which solution is best?",
+      "type": "single",
+      "choices": [
+        "Use S3 public-read ACLs only",
+        "Use CloudFront with origin access control and keep S3 bucket private",
+        "Use NAT Gateway in front of S3",
+        "Use Route 53 weighted policy"
+      ],
+      "correctAnswers": [1],
+      "explanation": "CloudFront with origin access control lets S3 remain private while content is served through CDN endpoints."
+    },
+    {
+      "id": 139,
+      "question": "What is the main use of CloudFront signed URLs or signed cookies?",
+      "type": "single",
+      "choices": [
+        "To encrypt VPC traffic between subnets",
+        "To control time-limited access to protected content",
+        "To replace IAM users",
+        "To route DNS failover traffic"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Signed URLs/cookies enforce controlled, time-bounded access to private CloudFront content."
+    },
+    {
+      "id": 140,
+      "question": "Which statement about subnet IP addressing in AWS is correct?",
+      "type": "single",
+      "choices": [
+        "All IP addresses in a subnet are usable by EC2 instances.",
+        "AWS reserves 5 IP addresses in each subnet.",
+        "AWS reserves 1 IP address only in private subnets.",
+        "Subnet size does not affect usable host count."
+      ],
+      "correctAnswers": [1],
+      "explanation": "AWS reserves 5 addresses per subnet, which impacts usable host capacity planning."
+    },
+    {
+      "id": 141,
+      "question": "Which Route 53 feature provides private DNS resolution within a VPC for internal names?",
+      "type": "single",
+      "choices": [
+        "Public hosted zone",
+        "Private hosted zone associated with VPCs",
+        "CloudFront distribution",
+        "Internet Gateway"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Private hosted zones allow internal DNS names resolvable only inside associated VPCs."
+    },
+    {
+      "id": 142,
+      "question": "In hybrid DNS architecture, what are Route 53 Resolver inbound and outbound endpoints used for?",
+      "type": "single",
+      "choices": [
+        "Inbound receives DNS queries from on-premises to resolve AWS private zones; outbound forwards VPC DNS queries to on-prem DNS servers.",
+        "Inbound encrypts HTTP traffic; outbound decrypts it.",
+        "Inbound routes BGP; outbound routes OSPF.",
+        "Both endpoints are used only for public hosted zones."
+      ],
+      "correctAnswers": [0],
+      "explanation": "Resolver endpoints enable bidirectional DNS integration between on-premises and AWS private DNS environments."
+    },
+    {
+      "id": 143,
+      "question": "Which component is used for outbound-only internet access for IPv6 instances in a VPC without allowing unsolicited inbound internet traffic?",
+      "type": "single",
+      "choices": [
+        "NAT Gateway",
+        "Egress-only Internet Gateway",
+        "Transit Gateway",
+        "VPC Peering"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Egress-only Internet Gateway is the IPv6 equivalent pattern for outbound-only internet connectivity."
+    },
+    {
+      "id": 144,
+      "question": "Which statement about endpoint policies is accurate?",
+      "type": "single",
+      "choices": [
+        "Endpoint policies can be used to further restrict which S3 buckets or actions are allowed via a VPC endpoint.",
+        "Endpoint policies replace IAM and bucket policies entirely.",
+        "Endpoint policies apply only to Internet Gateway traffic.",
+        "Endpoint policies cannot restrict actions by service."
+      ],
+      "correctAnswers": [0],
+      "explanation": "Endpoint policies are an extra authorization layer for traffic using the endpoint path."
+    },
+    {
+      "id": 145,
+      "question": "A company needs to send user traffic to endpoints based on user country for legal reasons. Which Route 53 policy is most appropriate?",
+      "type": "single",
+      "choices": [
+        "Latency-based routing",
+        "Geolocation routing",
+        "Weighted routing",
+        "Failover routing"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Geolocation routing returns answers based on user location, useful for legal and content compliance requirements."
+    },
+    {
+      "id": 146,
+      "question": "A DNS record has a very low TTL. What is a likely trade-off?",
+      "type": "single",
+      "choices": [
+        "Faster global failover/change propagation, but potentially higher DNS query volume",
+        "Slower failover with lower DNS lookups",
+        "No impact on DNS behavior",
+        "Disables Route 53 health checks"
+      ],
+      "correctAnswers": [0],
+      "explanation": "Lower TTL improves agility for routing changes but can increase resolver query frequency."
+    },
+    {
+      "id": 147,
+      "question": "Which pattern is best when exposing an internal application privately to multiple consumer VPCs without full network trust?",
+      "type": "single",
+      "choices": [
+        "Full-mesh VPC peering",
+        "AWS PrivateLink with an NLB-backed endpoint service",
+        "Public ALB with open security groups",
+        "One NAT Gateway per consumer VPC"
+      ],
+      "correctAnswers": [1],
+      "explanation": "PrivateLink enables private service consumption with minimal network blast radius compared to full CIDR connectivity."
+    },
+    {
+      "id": 148,
+      "question": "Which architecture is generally preferred to publish a highly available internet-facing web application across multiple AZs?",
+      "type": "single",
+      "choices": [
+        "Single EC2 instance in one AZ with an Elastic IP",
+        "ALB across multiple AZs with targets in at least two AZs",
+        "Bastion host directly serving user traffic",
+        "VGW plus Site-to-Site VPN"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Multi-AZ load-balanced design improves availability and resilience for internet-facing applications."
+    },
+    {
+      "id": 149,
+      "question": "A company needs private connectivity from on-premises to AWS public services (for example S3 public endpoints) without traversing the public internet. Which Direct Connect VIF type is used?",
+      "type": "single",
+      "choices": [
+        "Private VIF",
+        "Public VIF",
+        "Transit VIF",
+        "No VIF required"
+      ],
+      "correctAnswers": [1],
+      "explanation": "Public VIF enables access to AWS public services over Direct Connect private circuits."
+    },
+    {
+      "id": 150,
+      "question": "Which statement best summarizes an SAA networking exam strategy for design questions?",
+      "type": "single",
+      "choices": [
+        "Pick the newest service name in the options.",
+        "Match requirements to scope first (network-level vs service-level), then optimize for availability, security layers, and cost.",
+        "Always choose full mesh for lowest latency.",
+        "Always avoid managed services to reduce cost."
+      ],
+      "correctAnswers": [1],
+      "explanation": "Most SAA networking questions are solved by mapping scope and constraints first, then selecting the simplest architecture meeting HA, security, and cost goals."
+    }
   ]
 }

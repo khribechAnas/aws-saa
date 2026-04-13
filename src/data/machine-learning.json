@@ -1216,7 +1216,7 @@
     "explanation": "If the message is not deleted within the visibility timeout, it becomes visible again and can be retried by another consumer."
   },
   {
-    "id": 89,
+    "id": 93,
     "question": "Which delivery model does Amazon SNS primarily use?",
     "type": "single",
     "choices": [
@@ -1229,7 +1229,7 @@
     "explanation": "SNS uses a push-based pub/sub model where messages are pushed to subscribers."
   },
   {
-    "id": 90,
+    "id": 94,
     "question": "Which protocol is NOT supported natively by Amazon SNS?",
     "type": "single",
     "choices": [
@@ -1242,7 +1242,7 @@
     "explanation": "SNS supports HTTP/S, Email, SMS, Lambda, and SQS, but not FTP."
   },
   {
-    "id": 91,
+    "id": 95,
     "question": "What happens if an SNS message delivery to an HTTP endpoint fails?",
     "type": "single",
     "choices": [
@@ -1255,7 +1255,7 @@
     "explanation": "SNS retries delivery using exponential backoff; DLQ must be configured separately."
   },
   {
-    "id": 92,
+    "id": 96,
     "question": "Which feature allows SNS to filter messages before delivery to subscribers?",
     "type": "single",
     "choices": [
@@ -1268,7 +1268,7 @@
     "explanation": "SNS supports subscription filter policies based on message attributes."
   },
   {
-    "id": 93,
+    "id": 97,
     "question": "What is required for an SQS queue to receive messages from SNS?",
     "type": "single",
     "choices": [
@@ -1281,7 +1281,7 @@
     "explanation": "SQS must have a resource policy allowing SNS to publish messages."
   },
   {
-    "id": 94,
+    "id": 98,
     "question": "Which SNS feature ensures encrypted messages at rest?",
     "type": "single",
     "choices": [
@@ -1294,7 +1294,7 @@
     "explanation": "SNS supports server-side encryption using AWS KMS (SSE-KMS)."
   },
   {
-    "id": 95,
+    "id": 99,
     "question": "What is the maximum message size in Amazon SNS?",
     "type": "single",
     "choices": [
@@ -1307,7 +1307,7 @@
     "explanation": "SNS message size limit is 256 KB."
   },
   {
-    "id": 96,
+    "id": 100,
     "question": "Which SNS delivery retry behavior is correct?",
     "type": "single",
     "choices": [
@@ -1320,7 +1320,7 @@
     "explanation": "SNS uses exponential backoff retry for failed HTTP/S deliveries."
   },
   {
-    "id": 97,
+    "id": 101,
     "question": "Which SNS subscription protocol supports direct invocation of AWS Lambda?",
     "type": "single",
     "choices": [
@@ -1333,7 +1333,7 @@
     "explanation": "SNS can directly trigger Lambda functions as subscribers."
   },
   {
-    "id": 98,
+    "id": 102,
     "question": "What is true about SNS message ordering?",
     "type": "single",
     "choices": [
@@ -1346,7 +1346,7 @@
     "explanation": "SNS does not guarantee message ordering (except FIFO topics)."
   },
   {
-    "id": 99,
+    "id": 103,
     "question": "Which SNS feature allows deduplication in FIFO topics?",
     "type": "single",
     "choices": [
@@ -1359,7 +1359,7 @@
     "explanation": "FIFO SNS uses Deduplication ID for preventing duplicate messages."
   },
   {
-    "id": 100,
+    "id": 104,
     "question": "What is the main purpose of SNS dead-letter queues (DLQ)?",
     "type": "single",
     "choices": [
@@ -1372,7 +1372,7 @@
     "explanation": "DLQs store messages that cannot be delivered after retries."
   },
   {
-    "id": 101,
+    "id": 105,
     "question": "Which statement about SNS and SQS integration is TRUE?",
     "type": "single",
     "choices": [
@@ -1385,7 +1385,7 @@
     "explanation": "SNS supports fan-out architecture by sending messages to multiple SQS queues."
   },
   {
-    "id": 102,
+    "id": 106,
     "question": "Which AWS service is best for decoupling microservices using pub/sub?",
     "type": "single",
     "choices": [
@@ -1398,7 +1398,7 @@
     "explanation": "SNS is designed for pub/sub decoupling."
   },
   {
-    "id": 103,
+    "id": 107,
     "question": "What is required for SMS delivery using SNS?",
     "type": "single",
     "choices": [
@@ -1411,7 +1411,7 @@
     "explanation": "SNS SMS requires verified phone numbers and supported regions."
   },
   {
-    "id": 104,
+    "id": 108,
     "question": "Which SNS feature helps reduce cost by avoiding unnecessary deliveries?",
     "type": "single",
     "choices": [
@@ -1424,7 +1424,7 @@
     "explanation": "Message filtering avoids delivering irrelevant messages to subscribers."
   },
   {
-    "id": 105,
+    "id": 109,
     "question": "What happens if a subscriber is deleted from an SNS topic?",
     "type": "single",
     "choices": [
@@ -1437,7 +1437,7 @@
     "explanation": "Deleted subscriptions stop receiving messages immediately."
   },
   {
-    "id": 106,
+    "id": 110,
     "question": "Which SNS feature improves security for sensitive message delivery?",
     "type": "single",
     "choices": [
@@ -1450,7 +1450,7 @@
     "explanation": "SSE-KMS encrypts SNS messages at rest."
   },
   {
-    "id": 107,
+    "id": 111,
     "question": "What is a limitation of SNS compared to SQS?",
     "type": "single",
     "choices": [
@@ -1464,7 +1464,7 @@
   },
 
   {
-    "id": 108,
+    "id": 112,
     "question": "What is a key difference between SNS and SQS message consumption models?",
     "type": "single",
     "choices": [
@@ -1477,7 +1477,7 @@
     "explanation": "SNS pushes messages; SQS requires polling."
   },
   {
-    "id": 109,
+    "id": 113,
     "question": "Which service guarantees message retention until processed?",
     "type": "single",
     "choices": [
@@ -1490,7 +1490,7 @@
     "explanation": "SQS stores messages until they are deleted after processing."
   },
   {
-    "id": 110,
+    "id": 114,
     "question": "Which service supports multiple subscribers receiving the same message?",
     "type": "single",
     "choices": [
@@ -1503,7 +1503,7 @@
     "explanation": "SNS supports fan-out pub/sub to multiple subscribers."
   },
   {
-    "id": 111,
+    "id": 115,
     "question": "Which service is better suited for decoupling distributed workers processing tasks independently?",
     "type": "single",
     "choices": [
@@ -1516,7 +1516,7 @@
     "explanation": "SQS is ideal for worker-based task processing."
   },
   {
-    "id": 112,
+    "id": 116,
     "question": "Which statement is TRUE about message durability?",
     "type": "single",
     "choices": [
@@ -1529,7 +1529,7 @@
     "explanation": "SQS stores messages durably until they are deleted or expire."
   },
   {
-    "id": 113,
+    "id": 117,
     "question": "What is Amazon MQ primarily used for?",
     "type": "single",
     "choices": [
@@ -1542,7 +1542,7 @@
     "explanation": "Amazon MQ is a managed message broker service for ActiveMQ and RabbitMQ."
   },
   {
-    "id": 114,
+    "id": 118,
     "question": "Which protocols are supported by Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1555,7 +1555,7 @@
     "explanation": "Amazon MQ supports broker protocols like AMQP, MQTT, STOMP, and OpenWire."
   },
   {
-    "id": 115,
+    "id": 119,
     "question": "When should you choose Amazon MQ over SNS or SQS?",
     "type": "single",
     "choices": [
@@ -1568,7 +1568,7 @@
     "explanation": "Amazon MQ is best for migrating existing message broker-based applications like JMS/ActiveMQ."
   },
   {
-    "id": 116,
+    "id": 120,
     "question": "How does Amazon MQ ensure message durability?",
     "type": "single",
     "choices": [
@@ -1581,7 +1581,7 @@
     "explanation": "Amazon MQ uses persistent storage on the broker to ensure durability."
   },
   {
-    "id": 117,
+    "id": 121,
     "question": "What does Amazon MQ Multi-AZ deployment provide?",
     "type": "single",
     "choices": [
@@ -1594,7 +1594,7 @@
     "explanation": "Multi-AZ provides high availability with automatic failover to a standby broker."
   },
   {
-    "id": 118,
+    "id": 122,
     "question": "What is required for message consumption in Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1607,7 +1607,7 @@
     "explanation": "Consumers connect directly to the broker using supported protocols."
   },
   {
-    "id": 119,
+    "id": 123,
     "question": "Which feature makes Amazon MQ suitable for enterprise Java applications?",
     "type": "single",
     "choices": [
@@ -1620,7 +1620,7 @@
     "explanation": "Amazon MQ supports JMS, making it suitable for Java enterprise systems."
   },
   {
-    "id": 120,
+    "id": 124,
     "question": "What is a key difference between Amazon MQ and SQS?",
     "type": "single",
     "choices": [
@@ -1633,7 +1633,7 @@
     "explanation": "Amazon MQ uses traditional broker architecture; SQS is a fully managed queue service without broker management."
   },
   {
-    "id": 121,
+    "id": 125,
     "question": "What is a limitation of Amazon MQ compared to SQS?",
     "type": "single",
     "choices": [
@@ -1646,7 +1646,7 @@
     "explanation": "Amazon MQ requires broker management and has more limited scaling compared to SQS."
   },
   {
-    "id": 122,
+    "id": 126,
     "question": "Which use case best fits Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1659,7 +1659,7 @@
     "explanation": "Amazon MQ is ideal for migrating legacy ActiveMQ or RabbitMQ-based systems."
   },
   {
-    "id": 123,
+    "id": 127,
     "question": "Which broker engines are supported by Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1672,7 +1672,7 @@
     "explanation": "Amazon MQ supports Apache ActiveMQ and RabbitMQ engines."
   },
   {
-    "id": 124,
+    "id": 128,
     "question": "What type of scaling does Amazon MQ primarily support?",
     "type": "single",
     "choices": [
@@ -1685,7 +1685,7 @@
     "explanation": "Amazon MQ mainly supports vertical scaling and limited horizontal scaling depending on broker setup."
   },
   {
-    "id": 125,
+    "id": 129,
     "question": "What happens if an Amazon MQ broker fails in a Multi-AZ setup?",
     "type": "single",
     "choices": [
@@ -1698,7 +1698,7 @@
     "explanation": "Multi-AZ deployments automatically fail over to a standby broker."
   },
   {
-    "id": 126,
+    "id": 130,
     "question": "Which messaging pattern is natively supported by Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1711,7 +1711,7 @@
     "explanation": "Amazon MQ supports both point-to-point and pub/sub messaging models."
   },
   {
-    "id": 127,
+    "id": 131,
     "question": "Does Amazon MQ support message transactions?",
     "type": "single",
     "choices": [
@@ -1724,7 +1724,7 @@
     "explanation": "Amazon MQ supports transactions depending on the broker engine (e.g., JMS transactions in ActiveMQ)."
   },
   {
-    "id": 128,
+    "id": 132,
     "question": "How do consumers typically receive messages in Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1737,7 +1737,7 @@
     "explanation": "Consumers connect persistently to the broker to receive messages."
   },
   {
-    "id": 129,
+    "id": 133,
     "question": "What authentication method is commonly used in Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1750,7 +1750,7 @@
     "explanation": "Amazon MQ typically uses username/password authentication for broker access."
   },
   {
-    "id": 130,
+    "id": 134,
     "question": "What is a Dead Letter Queue (DLQ) in Amazon MQ?",
     "type": "single",
     "choices": [
@@ -1763,7 +1763,7 @@
     "explanation": "DLQs store messages that fail processing after retries."
   },
   {
-    "id": 131,
+    "id": 135,
     "question": "Which statement about Amazon MQ performance scaling is correct?",
     "type": "single",
     "choices": [
@@ -1776,7 +1776,7 @@
     "explanation": "Amazon MQ performance depends on broker instance sizing and configuration."
   },
   {
-    "id": 132,
+    "id": 136,
     "question": "What is a key advantage of Amazon MQ in enterprise environments?",
     "type": "single",
     "choices": [
@@ -1789,7 +1789,7 @@
     "explanation": "Amazon MQ allows enterprises to reuse existing JMS/RabbitMQ-based applications with minimal changes."
   },
   {
-    "id": 133,
+    "id": 137,
     "question": "What does RPO (Recovery Point Objective) define in Disaster Recovery planning?",
     "type": "single",
     "choices": [
@@ -1802,7 +1802,7 @@
     "explanation": "RPO defines how much data loss is acceptable, measured as a time window."
   },
   {
-    "id": 134,
+    "id": 138,
     "question": "What does RTO (Recovery Time Objective) measure?",
     "type": "single",
     "choices": [
@@ -1815,7 +1815,7 @@
     "explanation": "RTO is the maximum acceptable time to restore service after a disaster."
   },
   {
-    "id": 135,
+    "id": 139,
     "question": "Which AWS service is used for cross-region replication of S3 objects?",
     "type": "single",
     "choices": [
@@ -1828,7 +1828,7 @@
     "explanation": "S3 CRR replicates objects asynchronously across regions for DR."
   },
   {
-    "id": 136,
+    "id": 140,
     "question": "What is the best DR strategy for Amazon EBS volumes?",
     "type": "single",
     "choices": [
@@ -1841,7 +1841,7 @@
     "explanation": "EBS snapshots are used to back up and restore volumes in DR scenarios."
   },
   {
-    "id": 137,
+    "id": 141,
     "question": "Which AWS service is used to replicate file system data in disaster recovery scenarios?",
     "type": "single",
     "choices": [
@@ -1854,7 +1854,7 @@
     "explanation": "AWS DataSync is used to transfer and replicate file system data efficiently."
   },
   {
-    "id": 138,
+    "id": 142,
     "question": "How can you ensure EC2 instances can be quickly recreated after a disaster?",
     "type": "single",
     "choices": [
@@ -1867,7 +1867,7 @@
     "explanation": "AMIs allow quick recreation of EC2 instances with identical configurations."
   },
   {
-    "id": 139,
+    "id": 143,
     "question": "Which AWS service can help automate infrastructure recreation using templates?",
     "type": "single",
     "choices": [
@@ -1880,7 +1880,7 @@
     "explanation": "CloudFormation automates infrastructure provisioning using templates."
   },
   {
-    "id": 140,
+    "id": 144,
     "question": "Which DynamoDB feature supports global disaster recovery?",
     "type": "single",
     "choices": [
@@ -1893,7 +1893,7 @@
     "explanation": "Global Tables replicate DynamoDB data across multiple regions."
   },
   {
-    "id": 141,
+    "id": 145,
     "question": "What is the main purpose of RDS Multi-AZ deployment?",
     "type": "single",
     "choices": [
@@ -1906,7 +1906,7 @@
     "explanation": "Multi-AZ provides automatic failover for high availability and disaster recovery."
   },
   {
-    "id": 142,
+    "id": 146,
     "question": "What is the purpose of RDS Read Replicas in DR strategy?",
     "type": "single",
     "choices": [
@@ -1919,7 +1919,7 @@
     "explanation": "Read replicas improve read scaling and can be promoted in DR scenarios."
   },
   {
-    "id": 143,
+    "id": 147,
     "question": "Which AWS service is useful for event-driven DR orchestration?",
     "type": "single",
     "choices": [
@@ -1932,7 +1932,7 @@
     "explanation": "EventBridge can trigger automated workflows during DR events."
   },
   {
-    "id": 144,
+    "id": 148,
     "question": "What is a key principle of Disaster Recovery planning?",
     "type": "single",
     "choices": [
@@ -1945,7 +1945,7 @@
     "explanation": "DR plans must be regularly tested to ensure recovery works as expected."
   },
   {
-    "id": 145,
+    "id": 149,
     "question": "What is the purpose of establishing an emergency access process in DR?",
     "type": "single",
     "choices": [
@@ -1958,7 +1958,7 @@
     "explanation": "Emergency access ensures controlled access when normal systems fail."
   },
   {
-    "id": 146,
+    "id": 150,
     "question": "Which statement best describes a disaster recovery plan in AWS?",
     "type": "single",
     "choices": [
@@ -1971,7 +1971,7 @@
     "explanation": "A DR plan defines procedures to restore systems and data after disruption."
   },
   {
-    "id": 147,
+    "id": 151,
     "question": "What is the relationship between RPO and backup frequency?",
     "type": "single",
     "choices": [
@@ -1984,7 +1984,7 @@
     "explanation": "A lower RPO means less acceptable data loss, requiring more frequent backups."
   },
   {
-    "id": 148,
+    "id": 152,
     "question": "Which AWS concept best supports 'infrastructure can be rebuilt in minutes'?",
     "type": "single",
     "choices": [
@@ -1997,7 +1997,7 @@
     "explanation": "Infrastructure as Code allows fast and consistent recreation of systems."
   },
   {
-    "id": 149,
+    "id": 153,
     "question": "What is the main goal of Disaster Recovery testing?",
     "type": "single",
     "choices": [
@@ -2010,7 +2010,7 @@
     "explanation": "DR testing ensures that recovery plans actually work in real scenarios."
   },
   {
-    "id": 150,
+    "id": 154,
     "question": "Which Disaster Recovery strategy keeps only critical components running in the secondary region and starts other services when needed?",
     "type": "single",
     "choices": [
@@ -2023,7 +2023,7 @@
     "explanation": "Pilot Light keeps minimal critical infrastructure running, and scales up other components during disaster."
   },
   {
-    "id": 151,
+    "id": 155,
     "question": "Which DR strategy involves a fully functional scaled-down version of the production environment always running?",
     "type": "single",
     "choices": [
@@ -2036,7 +2036,7 @@
     "explanation": "Warm Standby runs a small but fully functional version of the production system."
   },
   {
-    "id": 152,
+    "id": 156,
     "question": "Which DR strategy provides the lowest RTO but the highest cost?",
     "type": "single",
     "choices": [
@@ -2049,7 +2049,7 @@
     "explanation": "Multi-Site Active-Active has the lowest RTO because both sites are fully active, but it is the most expensive."
   },
   {
-    "id": 153,
+    "id": 157,
     "question": "Which DR strategy is the most cost-effective but has the highest RTO?",
     "type": "single",
     "choices": [
@@ -2062,7 +2062,7 @@
     "explanation": "Backup and Restore is the cheapest but takes the longest time to recover."
   },
   {
-    "id": 154,
+    "id": 158,
     "question": "What is the main characteristic of the Pilot Light DR strategy?",
     "type": "single",
     "choices": [
@@ -2075,7 +2075,7 @@
     "explanation": "Pilot Light keeps only essential components running in a secondary region."
   },
   {
-    "id": 155,
+    "id": 159,
     "question": "Which DR strategy requires full infrastructure duplication in multiple regions?",
     "type": "single",
     "choices": [
@@ -2088,7 +2088,7 @@
     "explanation": "Multi-Site Active-Active runs full production stacks in multiple regions."
   },
   {
-    "id": 156,
+    "id": 160,
     "question": "In Backup and Restore strategy, what is the typical first step after disaster?",
     "type": "single",
     "choices": [
@@ -2101,7 +2101,7 @@
     "explanation": "Backup and Restore requires rebuilding infrastructure and restoring backups after failure."
   },
   {
-    "id": 157,
+    "id": 161,
     "question": "Which DR pattern is most suitable for non-critical applications with cost constraints?",
     "type": "single",
     "choices": [
@@ -2114,7 +2114,7 @@
     "explanation": "Backup and Restore is cheapest and suitable for non-critical workloads."
   },
   {
-    "id": 158,
+    "id": 162,
     "question": "Which DR strategy provides near-zero downtime and continuous availability?",
     "type": "single",
     "choices": [
@@ -2127,7 +2127,7 @@
     "explanation": "Multi-Site Active-Active provides continuous availability with minimal downtime."
   },
   {
-    "id": 159,
+    "id": 163,
     "question": "Which statement about Warm Standby is TRUE?",
     "type": "single",
     "choices": [
@@ -2138,6 +2138,162 @@
     ],
     "correctAnswers": [1],
     "explanation": "Warm Standby maintains a smaller live version of the full system in another region."
+  },
+  {
+    "id": 164,
+    "question": "When should you choose an Amazon SQS FIFO queue over a Standard queue?",
+    "type": "single",
+    "choices": [
+      "When at-least-once delivery with best-effort ordering is acceptable",
+      "When strict ordering and deduplication are required",
+      "When you need unlimited unordered throughput only",
+      "When messages must be broadcast to many subscribers"
+    ],
+    "correctAnswers": [1],
+    "explanation": "FIFO queues are used for ordered, deduplicated processing scenarios, while Standard queues optimize for scale with relaxed ordering."
+  },
+  {
+    "id": 165,
+    "question": "In an SQS FIFO queue, what is the role of MessageGroupId?",
+    "type": "single",
+    "choices": [
+      "It encrypts messages at rest",
+      "It defines independent ordered streams so ordering is preserved within each group",
+      "It sets visibility timeout globally",
+      "It controls SNS fan-out subscriptions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "FIFO ordering is guaranteed per message group, enabling ordered parallelism across different groups."
+  },
+  {
+    "id": 166,
+    "question": "A distributed consumer reads from Standard SQS and occasionally processes duplicate messages. What is the best architectural response?",
+    "type": "single",
+    "choices": [
+      "Assume duplicates indicate service failure and ignore retries",
+      "Design consumers to be idempotent",
+      "Disable visibility timeout",
+      "Replace all queues with SNS topics"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Standard SQS is at-least-once; idempotent consumers are the correct way to safely handle duplicates."
+  },
+  {
+    "id": 167,
+    "question": "Which service is best when you need rule-based event routing from many AWS services and SaaS sources, without direct producer-consumer coupling?",
+    "type": "single",
+    "choices": [
+      "Amazon EventBridge",
+      "Amazon EBS",
+      "AWS CloudFormation",
+      "Amazon ElastiCache"
+    ],
+    "correctAnswers": [0],
+    "explanation": "EventBridge is an event bus with filtering/routing rules, ideal for event-driven decoupled integrations."
+  },
+  {
+    "id": 168,
+    "question": "A high-traffic application experiences cache stampede on hot keys when entries expire simultaneously. Which mitigation is MOST appropriate?",
+    "type": "single",
+    "choices": [
+      "Set all keys to exactly the same TTL",
+      "Use jittered TTLs and request coalescing/locking on regeneration",
+      "Disable cache and query database directly",
+      "Only increase database instance size"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Jittering expirations and coordinating regeneration reduces synchronized misses and backend overload."
+  },
+  {
+    "id": 169,
+    "question": "In Redis-backed caching, which eviction policy is often useful when memory pressure is high and you want to evict less recently used keys first?",
+    "type": "single",
+    "choices": [
+      "noeviction",
+      "allkeys-lru",
+      "volatile-ttl only for every key",
+      "appendonly"
+    ],
+    "correctAnswers": [1],
+    "explanation": "The LRU family of policies evicts less recently accessed keys to preserve frequently used hot data."
+  },
+  {
+    "id": 170,
+    "question": "What is the primary benefit of Multi-AZ for Amazon ElastiCache for Redis?",
+    "type": "single",
+    "choices": [
+      "Cross-Region writes from all clients",
+      "Automatic failover to a replica in another AZ for higher availability",
+      "Guaranteed strong consistency with no replication lag",
+      "Unlimited horizontal scaling without sharding"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Redis Multi-AZ improves resilience through replica promotion during node/AZ failures."
+  },
+  {
+    "id": 171,
+    "question": "Which statement about CloudFront signed URLs/cookies is TRUE?",
+    "type": "single",
+    "choices": [
+      "They are used to provide time-limited access to protected content",
+      "They automatically enable S3 bucket replication",
+      "They replace TLS certificates",
+      "They are required for all public websites"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Signed URLs/cookies are used for controlled access to private content delivered via CloudFront."
+  },
+  {
+    "id": 172,
+    "question": "A company wants immutable backup retention against accidental deletion or ransomware. Which AWS capability best supports this goal?",
+    "type": "single",
+    "choices": [
+      "AWS Backup Vault Lock",
+      "CloudFront invalidation",
+      "NAT Gateway",
+      "SQS long polling"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Backup Vault Lock helps enforce retention controls that protect backups from premature deletion."
+  },
+  {
+    "id": 173,
+    "question": "Which AWS service is purpose-built to continuously replicate source servers and orchestrate failover/failback for disaster recovery?",
+    "type": "single",
+    "choices": [
+      "AWS Elastic Disaster Recovery (AWS DRS)",
+      "Amazon Route 53 Resolver",
+      "Amazon CloudFront",
+      "AWS Artifact"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AWS DRS is designed for server-level DR with continuous replication and orchestrated recovery workflows."
+  },
+  {
+    "id": 174,
+    "question": "For DNS-based multi-Region DR failover of an application endpoint, which approach is MOST common?",
+    "type": "single",
+    "choices": [
+      "Route 53 failover routing with health checks",
+      "S3 Event Notifications only",
+      "CloudTrail trails",
+      "Security group referencing"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Route 53 health checks and failover records are a standard way to steer users to healthy DR endpoints."
+  },
+  {
+    "id": 175,
+    "question": "Which DR data strategy provides near real-time replication for DynamoDB across Regions with managed conflict handling?",
+    "type": "single",
+    "choices": [
+      "DynamoDB Global Tables",
+      "SQS FIFO deduplication",
+      "EBS snapshots only",
+      "CloudFront edge caching"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DynamoDB Global Tables replicate data across Regions for low-RPO multi-Region architectures."
   }
 ]
 }

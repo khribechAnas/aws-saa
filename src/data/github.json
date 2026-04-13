@@ -5,7 +5,7 @@
     "icon": "Github",
     "questions": [
   {
-    "id": 160,
+    "id": 1,
     "question": "Where does AWS Lambda execute by default?",
     "type": "single",
     "choices": [
@@ -18,7 +18,7 @@
     "explanation": "Lambda runs in an AWS-managed, isolated execution environment by default, not inside a user-controlled VPC unless configured."
   },
   {
-    "id": 161,
+    "id": 2,
     "question": "What is AWS Lambda@Edge primarily used for?",
     "type": "single",
     "choices": [
@@ -31,7 +31,7 @@
     "explanation": "Lambda@Edge runs Lambda functions at CloudFront edge locations to reduce latency."
   },
   {
-    "id": 162,
+    "id": 3,
     "question": "What is a Lambda Function URL?",
     "type": "single",
     "choices": [
@@ -44,7 +44,7 @@
     "explanation": "Function URLs provide a simple HTTPS endpoint to invoke Lambda directly without API Gateway."
   },
   {
-    "id": 163,
+    "id": 4,
     "question": "What is a Lambda Layer?",
     "type": "single",
     "choices": [
@@ -57,7 +57,7 @@
     "explanation": "Lambda Layers are ZIP packages used to share libraries and dependencies across functions."
   },
   {
-    "id": 164,
+    "id": 5,
     "question": "When should you prefer containers over Lambda?",
     "type": "single",
     "choices": [
@@ -70,7 +70,7 @@
     "explanation": "Containers are better for workloads exceeding Lambda limits like long execution time or high memory needs."
   },
   {
-    "id": 165,
+    "id": 6,
     "question": "What is the maximum execution duration of AWS Lambda?",
     "type": "single",
     "choices": [
@@ -83,7 +83,7 @@
     "explanation": "Lambda maximum timeout is 15 minutes per invocation."
   },
   {
-    "id": 166,
+    "id": 7,
     "question": "Which scenario is NOT suitable for AWS Lambda?",
     "type": "single",
     "choices": [
@@ -96,7 +96,7 @@
     "explanation": "Lambda is not suitable for long-running tasks beyond its 15-minute limit."
   },
   {
-    "id": 167,
+    "id": 8,
     "question": "Which advantage do containers have over Lambda?",
     "type": "single",
     "choices": [
@@ -109,7 +109,7 @@
     "explanation": "Containers do not have the strict 15-minute execution limit of Lambda."
   },
   {
-    "id": 168,
+    "id": 9,
     "question": "Which workload is BEST suited for Lambda?",
     "type": "single",
     "choices": [
@@ -122,7 +122,7 @@
     "explanation": "Lambda is ideal for stateless microservices with variable traffic."
   },
   {
-    "id": 169,
+    "id": 10,
     "question": "What is a key cost consideration when using AWS Lambda?",
     "type": "single",
     "choices": [
@@ -135,7 +135,7 @@
     "explanation": "Lambda pricing is based on invocations and duration, so high traffic increases cost."
   },
   {
-    "id": 170,
+    "id": 11,
     "question": "Which service is commonly used for container orchestration in AWS?",
     "type": "single",
     "choices": [
@@ -148,7 +148,7 @@
     "explanation": "ECS and EKS are used for container orchestration."
   },
   {
-    "id": 171,
+    "id": 12,
     "question": "Which statement about Lambda networking is TRUE?",
     "type": "single",
     "choices": [
@@ -161,7 +161,7 @@
     "explanation": "Lambda runs in AWS-managed environment and can optionally be attached to a VPC."
   },
   {
-    "id": 172,
+    "id": 13,
     "question": "What is the main benefit of Lambda@Edge?",
     "type": "single",
     "choices": [
@@ -174,7 +174,7 @@
     "explanation": "Lambda@Edge runs at CloudFront edge locations to reduce latency."
   },
   {
-    "id": 173,
+    "id": 14,
     "question": "Which Lambda feature helps reuse dependencies across multiple functions?",
     "type": "single",
     "choices": [
@@ -187,7 +187,7 @@
     "explanation": "Lambda Layers allow sharing code and dependencies across functions."
   },
   {
-    "id": 174,
+    "id": 15,
     "question": "What is a key disadvantage of Lambda compared to containers?",
     "type": "single",
     "choices": [
@@ -200,7 +200,7 @@
     "explanation": "Lambda has a 15-minute execution limit, unlike containers."
   },
   {
-    "id": 175,
+    "id": 16,
     "question": "Which architecture is best for migrating legacy on-prem applications to AWS?",
     "type": "single",
     "choices": [
@@ -213,7 +213,7 @@
     "explanation": "Containers are best for migrating existing monolithic or on-prem applications."
   },
   {
-    "id": 176,
+    "id": 17,
     "question": "Which feature allows direct HTTPS invocation of Lambda without API Gateway?",
     "type": "single",
     "choices": [
@@ -226,7 +226,7 @@
     "explanation": "Function URLs provide direct HTTPS access to Lambda."
   },
   {
-    "id": 177,
+    "id": 18,
     "question": "Which statement about Lambda cost is TRUE?",
     "type": "single",
     "choices": [
@@ -239,7 +239,7 @@
     "explanation": "Lambda pricing is based on requests and execution duration."
   },
   {
-    "id": 178,
+    "id": 19,
     "question": "Which workload is BEST suited for containers instead of Lambda?",
     "type": "single",
     "choices": [
@@ -252,7 +252,7 @@
     "explanation": "Containers are better for long-running batch processing workloads."
   },
   {
-    "id": 179,
+    "id": 20,
     "question": "What is a key characteristic of serverless computing like Lambda?",
     "type": "single",
     "choices": [
@@ -265,7 +265,7 @@
     "explanation": "Serverless means no server management and automatic scaling."
   },
   {
-    "id": 180,
+    "id": 21,
     "question": "What is an Amazon ECS Cluster?",
     "type": "single",
     "choices": [
@@ -278,7 +278,7 @@
     "explanation": "An ECS cluster is a logical grouping of compute resources (EC2 or Fargate) where containers run."
   },
   {
-    "id": 181,
+    "id": 22,
     "question": "What is an ECS Task Definition?",
     "type": "single",
     "choices": [
@@ -291,7 +291,7 @@
     "explanation": "A task definition is a blueprint describing how containers should run."
   },
   {
-    "id": 182,
+    "id": 23,
     "question": "What is an ECS Task?",
     "type": "single",
     "choices": [
@@ -304,7 +304,7 @@
     "explanation": "A task is a running container based on a task definition."
   },
   {
-    "id": 183,
+    "id": 24,
     "question": "What is an ECS Service?",
     "type": "single",
     "choices": [
@@ -317,7 +317,7 @@
     "explanation": "A service ensures desired task count, handles scaling, and replaces failed tasks."
   },
   {
-    "id": 184,
+    "id": 25,
     "question": "Which ECS launch type requires you to manage EC2 instances?",
     "type": "single",
     "choices": [
@@ -330,7 +330,7 @@
     "explanation": "EC2 launch type requires you to manage the underlying EC2 instances."
   },
   {
-    "id": 185,
+    "id": 26,
     "question": "Which ECS launch type is serverless?",
     "type": "single",
     "choices": [
@@ -343,7 +343,7 @@
     "explanation": "Fargate is serverless and AWS manages the infrastructure."
   },
   {
-    "id": 186,
+    "id": 27,
     "question": "What is the main role of an ECS Service?",
     "type": "single",
     "choices": [
@@ -356,7 +356,7 @@
     "explanation": "Services ensure tasks are running and handle scaling and recovery."
   },
   {
-    "id": 187,
+    "id": 28,
     "question": "What happens if an ECS task fails in a Service?",
     "type": "single",
     "choices": [
@@ -369,7 +369,7 @@
     "explanation": "ECS Service automatically restarts failed tasks."
   },
   {
-    "id": 188,
+    "id": 29,
     "question": "Which ECS component defines CPU, memory, and container configuration?",
     "type": "single",
     "choices": [
@@ -382,7 +382,7 @@
     "explanation": "Task definition defines compute resources and container settings."
   },
   {
-    "id": 189,
+    "id": 30,
     "question": "What is the difference between ECS Task and Task Definition?",
     "type": "single",
     "choices": [
@@ -395,7 +395,7 @@
     "explanation": "Task definition is the template; task is the running instance."
   },
   {
-    "id": 190,
+    "id": 31,
     "question": "Which ECS component is responsible for scaling containers automatically?",
     "type": "single",
     "choices": [
@@ -408,7 +408,7 @@
     "explanation": "ECS Service handles auto scaling based on configuration."
   },
   {
-    "id": 191,
+    "id": 32,
     "question": "Which launch type is best when you want to avoid managing servers?",
     "type": "single",
     "choices": [
@@ -421,7 +421,7 @@
     "explanation": "Fargate is serverless and removes the need to manage EC2 instances."
   },
   {
-    "id": 192,
+    "id": 33,
     "question": "What does ECS Cluster NOT directly manage?",
     "type": "single",
     "choices": [
@@ -434,7 +434,7 @@
     "explanation": "ECS does not build images; that is handled by tools like Docker or CodeBuild."
   },
   {
-    "id": 193,
+    "id": 34,
     "question": "Which ECS component interacts with load balancers?",
     "type": "single",
     "choices": [
@@ -447,7 +447,7 @@
     "explanation": "ECS Service integrates with Elastic Load Balancing."
   },
   {
-    "id": 194,
+    "id": 35,
     "question": "What is a key benefit of ECS Fargate?",
     "type": "single",
     "choices": [
@@ -460,7 +460,7 @@
     "explanation": "Fargate is serverless, so AWS manages the infrastructure."
   },
   {
-    "id": 195,
+    "id": 36,
     "question": "What is a common use case for ECS?",
     "type": "single",
     "choices": [
@@ -473,7 +473,7 @@
     "explanation": "ECS is used to run containerized microservices."
   },
   {
-    "id": 196,
+    "id": 37,
     "question": "Which ECS component defines how many copies of a task should run?",
     "type": "single",
     "choices": [
@@ -486,7 +486,7 @@
     "explanation": "ECS Service defines desired task count."
   },
   {
-    "id": 197,
+    "id": 38,
     "question": "What happens when you update a Task Definition in ECS Service?",
     "type": "single",
     "choices": [
@@ -499,7 +499,7 @@
     "explanation": "Updating service causes new tasks to be deployed with updated task definition."
   },
   {
-    "id": 198,
+    "id": 39,
     "question": "Which ECS concept is closest to a Docker container runtime instance?",
     "type": "single",
     "choices": [
@@ -512,7 +512,7 @@
     "explanation": "A task is a running container instance."
   },
   {
-    "id": 199,
+    "id": 40,
     "question": "What is the relationship between ECS Cluster and Tasks?",
     "type": "single",
     "choices": [
@@ -525,7 +525,7 @@
     "explanation": "Clusters provide the environment where tasks run."
   },
   {
-    "id": 200,
+    "id": 41,
     "question": "What is the primary purpose of AWS Step Functions?",
     "type": "single",
     "choices": [
@@ -538,7 +538,7 @@
     "explanation": "Step Functions is used to orchestrate workflows across multiple AWS services."
   },
   {
-    "id": 201,
+    "id": 42,
     "question": "What happens if a step in AWS Step Functions fails?",
     "type": "single",
     "choices": [
@@ -551,7 +551,7 @@
     "explanation": "Step Functions stops on failure unless retry or catch logic is configured."
   },
   {
-    "id": 202,
+    "id": 43,
     "question": "Which AWS service is best for orchestrating ECS tasks in a workflow?",
     "type": "single",
     "choices": [
@@ -564,7 +564,7 @@
     "explanation": "Step Functions is designed to orchestrate ECS tasks and other AWS services."
   },
   {
-    "id": 203,
+    "id": 44,
     "question": "What is true about ECS Services?",
     "type": "single",
     "choices": [
@@ -577,7 +577,7 @@
     "explanation": "ECS Services ensure the desired number of tasks are always running."
   },
   {
-    "id": 204,
+    "id": 45,
     "question": "Can ECS Services directly coordinate with each other?",
     "type": "single",
     "choices": [
@@ -590,7 +590,7 @@
     "explanation": "ECS Services are independent and do not coordinate with each other."
   },
   {
-    "id": 205,
+    "id": 46,
     "question": "Which AWS service allows waiting for a task to complete before starting another?",
     "type": "single",
     "choices": [
@@ -603,7 +603,7 @@
     "explanation": "Step Functions can wait for task completion before proceeding."
   },
   {
-    "id": 206,
+    "id": 47,
     "question": "What is a key limitation of ECS Services in workflow management?",
     "type": "single",
     "choices": [
@@ -616,7 +616,7 @@
     "explanation": "ECS Services manage tasks but do not orchestrate workflows."
   },
   {
-    "id": 207,
+    "id": 48,
     "question": "What is a Step Function state machine?",
     "type": "single",
     "choices": [
@@ -629,7 +629,7 @@
     "explanation": "A state machine defines workflow steps and transitions in Step Functions."
   },
   {
-    "id": 208,
+    "id": 49,
     "question": "Which feature allows Step Functions to retry failed tasks?",
     "type": "single",
     "choices": [
@@ -642,7 +642,7 @@
     "explanation": "Step Functions supports retry policies for handling transient failures."
   },
   {
-    "id": 209,
+    "id": 50,
     "question": "Which AWS service is responsible for maintaining running ECS tasks but NOT workflow orchestration?",
     "type": "single",
     "choices": [
@@ -655,7 +655,7 @@
     "explanation": "ECS Service manages task lifecycle but does not orchestrate workflows."
   },
   {
-    "id": 210,
+    "id": 51,
     "question": "Which Step Functions capability supports conditional branching?",
     "type": "single",
     "choices": [
@@ -668,7 +668,7 @@
     "explanation": "Choice states allow branching logic in workflows."
   },
   {
-    "id": 211,
+    "id": 52,
     "question": "What happens if Step Functions reaches a timeout?",
     "type": "single",
     "choices": [
@@ -681,7 +681,7 @@
     "explanation": "Step Functions execution fails if timeout is reached."
   },
   {
-    "id": 212,
+    "id": 53,
     "question": "Which combination is most common for workflow orchestration?",
     "type": "single",
     "choices": [
@@ -694,7 +694,7 @@
     "explanation": "Step Functions orchestrates ECS or Lambda tasks in workflows."
   },
   {
-    "id": 213,
+    "id": 54,
     "question": "What is a key difference between ECS Service and Step Functions?",
     "type": "single",
     "choices": [
@@ -707,7 +707,7 @@
     "explanation": "ECS Service maintains tasks; Step Functions orchestrates workflows."
   },
   {
-    "id": 214,
+    "id": 55,
     "question": "Which Step Functions feature helps handle error recovery?",
     "type": "single",
     "choices": [
@@ -720,7 +720,7 @@
     "explanation": "Retry and Catch provide error handling and recovery logic."
   },
   {
-    "id": 215,
+    "id": 56,
     "question": "What is the role of ECS Cluster in Step Functions orchestration?",
     "type": "single",
     "choices": [
@@ -733,7 +733,7 @@
     "explanation": "Cluster provides compute resources where ECS tasks run."
   },
   {
-    "id": 216,
+    "id": 57,
     "question": "Which service is best for coordinating multiple microservices execution order?",
     "type": "single",
     "choices": [
@@ -746,7 +746,7 @@
     "explanation": "Step Functions coordinates execution order across microservices."
   },
   {
-    "id": 217,
+    "id": 58,
     "question": "What is true about ECS Services in a distributed system?",
     "type": "single",
     "choices": [
@@ -759,7 +759,7 @@
     "explanation": "ECS Services are independent and do not coordinate workflows."
   },
   {
-    "id": 218,
+    "id": 59,
     "question": "Which Step Functions feature allows pausing between tasks?",
     "type": "single",
     "choices": [
@@ -772,7 +772,7 @@
     "explanation": "Wait states allow delaying execution in workflows."
   },
   {
-    "id": 219,
+    "id": 60,
     "question": "What is a main benefit of using Step Functions with ECS?",
     "type": "single",
     "choices": [
@@ -785,7 +785,7 @@
     "explanation": "Step Functions orchestrates workflows across ECS services."
   },
   {
-    "id": 220,
+    "id": 61,
     "question": "What are the main stages of a data pipeline?",
     "type": "single",
     "choices": [
@@ -798,7 +798,7 @@
     "explanation": "A typical data pipeline includes ingesting, storing, processing, and analyzing data."
   },
   {
-    "id": 221,
+    "id": 62,
     "question": "What does ETL stand for in data engineering?",
     "type": "single",
     "choices": [
@@ -811,7 +811,7 @@
     "explanation": "ETL means Extract, Transform, Load where data is transformed before loading."
   },
   {
-    "id": 222,
+    "id": 63,
     "question": "What is the main characteristic of ELT?",
     "type": "single",
     "choices": [
@@ -824,7 +824,7 @@
     "explanation": "ELT loads raw data first and transforms it later inside the target system."
   },
   {
-    "id": 223,
+    "id": 64,
     "question": "When is ETL preferred over ELT?",
     "type": "single",
     "choices": [
@@ -837,7 +837,7 @@
     "explanation": "ETL is used when data must be cleaned and transformed before loading."
   },
   {
-    "id": 224,
+    "id": 65,
     "question": "What is batch processing?",
     "type": "single",
     "choices": [
@@ -850,7 +850,7 @@
     "explanation": "Batch processing handles data in scheduled intervals in bulk."
   },
   {
-    "id": 225,
+    "id": 66,
     "question": "What is streaming data processing?",
     "type": "single",
     "choices": [
@@ -863,7 +863,7 @@
     "explanation": "Streaming processes data in real time as it is generated."
   },
   {
-    "id": 226,
+    "id": 67,
     "question": "Which AWS service is commonly used for large-scale distributed batch processing?",
     "type": "single",
     "choices": [
@@ -876,7 +876,7 @@
     "explanation": "Amazon EMR is used for big data processing using frameworks like Hadoop and Spark."
   },
   {
-    "id": 227,
+    "id": 68,
     "question": "What is a key advantage of parallel processing in EMR?",
     "type": "single",
     "choices": [
@@ -889,7 +889,7 @@
     "explanation": "EMR parallel processing distributes computation across multiple nodes for efficiency."
   },
   {
-    "id": 228,
+    "id": 69,
     "question": "Which stage is NOT part of a typical data pipeline?",
     "type": "single",
     "choices": [
@@ -902,7 +902,7 @@
     "explanation": "Container deployment is not a standard data pipeline stage."
   },
   {
-    "id": 229,
+    "id": 70,
     "question": "What is the main goal of the ingest stage in a data pipeline?",
     "type": "single",
     "choices": [
@@ -915,7 +915,7 @@
     "explanation": "Ingestion is the process of collecting data from sources into the pipeline."
   },
   {
-    "id": 230,
+    "id": 71,
     "question": "Which AWS service is commonly used for data storage in pipelines?",
     "type": "single",
     "choices": [
@@ -928,7 +928,7 @@
     "explanation": "Amazon S3 is widely used for scalable data storage in pipelines."
   },
   {
-    "id": 231,
+    "id": 72,
     "question": "What is a key difference between batch and streaming processing?",
     "type": "single",
     "choices": [
@@ -941,7 +941,7 @@
     "explanation": "Batch processes data in chunks; streaming processes continuously."
   },
   {
-    "id": 232,
+    "id": 73,
     "question": "Which type of processing is best for real-time analytics?",
     "type": "single",
     "choices": [
@@ -954,7 +954,7 @@
     "explanation": "Streaming is ideal for real-time analytics use cases."
   },
   {
-    "id": 233,
+    "id": 74,
     "question": "What is ELT commonly used for?",
     "type": "single",
     "choices": [
@@ -967,7 +967,7 @@
     "explanation": "ELT is used in modern data lakes where raw data is loaded first."
   },
   {
-    "id": 234,
+    "id": 75,
     "question": "Which AWS service is often used for real-time streaming ingestion?",
     "type": "single",
     "choices": [
@@ -980,7 +980,7 @@
     "explanation": "Amazon Kinesis is used for real-time streaming data ingestion."
   },
   {
-    "id": 235,
+    "id": 76,
     "question": "What is a key characteristic of a data engineer pattern?",
     "type": "single",
     "choices": [
@@ -993,7 +993,7 @@
     "explanation": "Data engineers design and build scalable data pipelines."
   },
   {
-    "id": 236,
+    "id": 77,
     "question": "Which system is best suited for distributed batch processing of big data?",
     "type": "single",
     "choices": [
@@ -1006,7 +1006,7 @@
     "explanation": "EMR is designed for distributed big data processing."
   },
   {
-    "id": 237,
+    "id": 78,
     "question": "What is stored first in an ELT pipeline?",
     "type": "single",
     "choices": [
@@ -1019,7 +1019,7 @@
     "explanation": "ELT loads raw data first before transformation."
   },
   {
-    "id": 238,
+    "id": 79,
     "question": "Which AWS service is commonly used for data transformation in ETL pipelines?",
     "type": "single",
     "choices": [
@@ -1032,7 +1032,7 @@
     "explanation": "AWS Glue is a serverless ETL service for data transformation."
   },
   {
-    "id": 239,
+    "id": 80,
     "question": "What is a key advantage of batch processing?",
     "type": "single",
     "choices": [
@@ -1043,6 +1043,664 @@
     ],
     "correctAnswers": [1],
     "explanation": "Batch processing is efficient for large-scale data processing workloads."
+  },
+  {
+    "id": 81,
+    "question": "What are the definitions for recovery point objective (RPO) and recovery time objective (RTO)?",
+    "type": "single",
+    "choices": [
+      "RPO is the target time until recovery. RTO is the average amount of time to recover.",
+      "RPO is the maximum acceptable data loss, measured in bytes. RTO is the maximum acceptable data loss, measured in time.",
+      "RPO is the maximum acceptable data loss, measured in time. RTO is the maximum acceptable time until recovery.",
+      "RPO is the maximum acceptable data loss, measured in bytes. RTO is the average amount of time required to recover."
+    ],
+    "correctAnswers": [2],
+    "explanation": "RPO defines the maximum acceptable data loss measured in time, and RTO defines the maximum acceptable time to restore service."
+  },
+  {
+    "id": 82,
+    "question": "What can you do to quickly replicate or redeploy environments in a disaster?",
+    "type": "single",
+    "choices": [
+      "Use AWS OpsWorks to rebuild Amazon RDS instances.",
+      "Use AWS CloudFormation templates to deploy duplicate environments in the same Region.",
+      "Use AWS Elastic Beanstalk to deploy a new virtual private cloud (VPC) and subnets in a different Region.",
+      "Use AWS CodeBuild to deploy application containers in a new virtual private cloud (VPC)."
+    ],
+    "correctAnswers": [1],
+    "explanation": "CloudFormation templates let you recreate infrastructure quickly and consistently."
+  },
+  {
+    "id": 83,
+    "question": "A company stores data in an Amazon S3 bucket. Which solution provides the most efficient way to ensure that all new and existing objects and metadata are copied to another Region for disaster recovery (DR)?",
+    "type": "single",
+    "choices": [
+      "Use an AWS Lambda function to copy objects so that all object create events initiate the function.",
+      "Copy existing objects to the target bucket, and configure clients to write new files to both buckets.",
+      "Create a workflow with AWS Step Functions and AWS Lambda to synchronize the buckets.",
+      "Enable cross-Region replication on the bucket and copy existing objects onto themselves."
+    ],
+    "correctAnswers": [3],
+    "explanation": "S3 cross-Region replication handles new objects automatically, and existing objects can be replicated by copying them to themselves or using a bulk copy process."
+  },
+  {
+    "id": 84,
+    "question": "Which strategy is the most efficient for Amazon EC2 disaster recovery (DR)?",
+    "type": "single",
+    "choices": [
+      "Rebuild instances by using Amazon Machine Images (AMIs) from AWS Marketplace",
+      "Back up instances on a regular schedule",
+      "Synchronize instances with standby instances on nearly a continuous basis",
+      "Store essential data separately from the instance, and develop rapid rebuild processes for compute instances"
+    ],
+    "correctAnswers": [3],
+    "explanation": "For EC2 DR, keep data outside the instance and automate fast rebuilds so compute can be recreated quickly."
+  },
+  {
+    "id": 85,
+    "question": "Which service provides automatic failover between multiple endpoints in support of a geographic disaster recovery (DR) strategy?",
+    "type": "single",
+    "choices": [
+      "Amazon Virtual Private Cloud (Amazon VPC)",
+      "Elastic Load Balancing (ELB)",
+      "AWS Direct Connect",
+      "Amazon Route 53"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Route 53 can fail over traffic between healthy endpoints based on health checks."
+  },
+  {
+    "id": 86,
+    "question": "Which statement about the backup and restore disaster recovery (DR) pattern is true?",
+    "type": "single",
+    "choices": [
+      "Most cost-effective, but highest recovery time objective (RTO)",
+      "Less cost effective, but lowest recovery time objective (RTO)",
+      "Less cost effective, but lowest recovery point objective (RPO)",
+      "Most cost-effective, but highest recovery point objective (RPO)"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Backup and restore is the cheapest DR strategy, but recovery takes the longest because systems must be rebuilt from backups."
+  },
+  {
+    "id": 87,
+    "question": "Which statements accurately describe the infrastructure characteristics of common disaster recovery (DR) patterns? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "Pilot light has a scaled-down version of all infrastructure that runs until a disaster occurs.",
+      "Pilot light has minimal infrastructure that always runs. The rest of the infrastructure does not run until a disaster occurs.",
+      "Warm standby has a scaled-down version of all infrastructure that scales as necessary and within pre-defined limits to meet the load when a disaster occurs.",
+      "Pilot light runs with some infrastructure at full capacity. The rest scales up when a disaster occurs.",
+      "Warm standby has a second fully functional set of infrastructure that runs all the time."
+    ],
+    "correctAnswers": [1, 2],
+    "explanation": "Pilot light keeps minimal core infrastructure running, while warm standby keeps a scaled-down but fully functional environment ready to scale up."
+  },
+  {
+    "id": 88,
+    "question": "What does the multi-site disaster recovery (DR) pattern involve?",
+    "type": "single",
+    "choices": [
+      "It involves failover to another site that is not running until it is needed.",
+      "It involves automatic failover to a second fully functional, constantly operational system that is in another site.",
+      "The load is distributed across multiple geographically separated sites to reduce the impact of disasters.",
+      "Backups are stored in different sites so that they are protected if a disaster occurs"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Multi-site active-active or active-passive architectures keep a second fully operational environment available for failover."
+  },
+  {
+    "id": 89,
+    "question": "A company requires a disaster recovery (DR) solution for a business-critical application that provides a recovery time objective (RTO) and recovery point objective (RPO) in minutes. However, they do not want to pay for more than what they need. Which DR pattern would most likely meet these requirements?",
+    "type": "single",
+    "choices": [
+      "Backup and restore",
+      "Warm standby",
+      "Pilot light",
+      "Multi-site"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Warm standby provides low RTO/RPO without the full cost of running multiple active sites."
+  },
+  {
+    "id": 90,
+    "question": "What does an AWS Storage Gateway enable you to do? (Select THREE.)",
+    "type": "multiple",
+    "choices": [
+      "Transfer backup jobs from tape or Virtual Tape Library (VTL) systems to the cloud",
+      "Present cloud-based internet Small Computer Systems Interface (iSCSI) block storage volumes to on-premises applications",
+      "Provide a fully managed elastic Network File System (NFS) endpoint to systems in a virtual private cloud (VPC) and on-premises",
+      "Connect to Amazon S3 through an API",
+      "Use Server Message Block (SMB) or Network File System (NFS) to connect to Amazon S3",
+      "Give applications in a virtual private cloud (VPC) access to on-premises block storage volumes"
+    ],
+    "correctAnswers": [0, 1, 4],
+    "explanation": "Storage Gateway supports tape gateway, volume gateway, and file gateway use cases for hybrid storage integration."
+  },
+  {
+    "id": 91,
+    "question": "Which scenario describes a challenge to data velocity?",
+    "type": "single",
+    "choices": [
+      "A shopping website collects clickstream to make personalized recommendations while a user is shopping. When the website is very busy, there is a delay in returning results to customers.",
+      "A sales department wants to use a data source but does not have information about its lineage or the quality of the data.",
+      "A pipeline ingests data from regional sales sites, and the overnight batch job fails because it runs out of disk space.",
+      "Regional offices send data in different file formats to an organization’s head office."
+    ],
+    "correctAnswers": [0],
+    "explanation": "Data velocity concerns how quickly data is processed and made available, so delays under heavy load are a velocity challenge."
+  },
+  {
+    "id": 92,
+    "question": "Which statement describes the goal of a modern data architecture?",
+    "type": "single",
+    "choices": [
+      "Give users the ability to access all of an organization’s data by integrating a data lake, a data warehouse, and other purpose-built data stores.",
+      "Select a single ingestion service that can support the data formats, structures, and velocity requirements of all the data sources that will be collected.",
+      "Select purpose-built streaming services to make all of the organization’s data available for real-time analysis.",
+      "Give users the ability to access all of an organization’s data through a highly structured data warehouse that provides for fast SQL queries."
+    ],
+    "correctAnswers": [0],
+    "explanation": "Modern data architecture combines purpose-built stores so users can access data in the best-fit way for each workload."
+  },
+  {
+    "id": 93,
+    "question": "Which analytic workload scenario can be a use case for the batch ingestion process?",
+    "type": "single",
+    "choices": [
+      "Send small bits of clickstream data at a continuous pace from a retailer's website for immediate analysis.",
+      "Produce real-time alerts based on log data to identify potential fraud as soon as it occurs.",
+      "Send sales transaction data from a retailer's website to a central location periodically. Analyze the data overnight, and deliver reports to branches in the morning.",
+      "Populate a dashboard with real-time error rates of sensors in a factory."
+    ],
+    "correctAnswers": [2],
+    "explanation": "Batch ingestion fits periodic transfer and delayed analysis/reporting use cases."
+  },
+  {
+    "id": 94,
+    "question": "A medical research company has a ribonucleic acid (RNA) sequencing machine that stores its private results to the lab’s on-premises network-attached storage. Their data science team wants to ingest these results into their AWS account. How should they ingest this data?",
+    "type": "single",
+    "choices": [
+      "Use Amazon AppFlow to connect to the on-premises data and move the data into the pipeline.",
+      "Use AWS Database Migration Service (AWS DMS) to sync data from the on-premises file store to Amazon S3.",
+      "Use AWS Data Exchange to subscribe to the RNA-sequencing data.",
+      "Use AWS DataSync to transfer data from the on-premises file store to an Amazon S3 bucket in the data lake."
+    ],
+    "correctAnswers": [3],
+    "explanation": "AWS DataSync is designed for moving file data from on-premises storage into AWS storage such as Amazon S3."
+  },
+  {
+    "id": 95,
+    "question": "A data engineer has ingested a new JSON file into an Amazon S3 bucket in their data lake. An AWS Glue Data Catalog maintains metadata about data in the lake. Which feature of AWS Glue can the data engineer use to discover the JSON data schema with the fewest steps in a code-free way?",
+    "type": "single",
+    "choices": [
+      "Run an AWS Glue crawler on the S3 bucket.",
+      "Use AWS Glue Studio to write a script that converts the JSON data to Apache Parquet format.",
+      "Use AWS Glue Studio to transform the data and move it into the data warehouse.",
+      "Set up an AWS Glue workflow to orchestrate a set of jobs that transforms the data into an open columnar format."
+    ],
+    "correctAnswers": [0],
+    "explanation": "Glue crawlers infer schema and populate the Data Catalog with minimal setup."
+  },
+  {
+    "id": 96,
+    "question": "A data pipeline will ingest clickstream data from a shopping website. The data engineer must transform data as it arrives to feed a real-time analytics Amazon OpenSearch Service dashboard. They must also generate a monthly report based on the dashboard. Which configuration meets this need?",
+    "type": "single",
+    "choices": [
+      "Use Amazon Data Firehose to capture the data and send the data to Amazon S3. Run an AWS Glue crawler to support querying the data for the dashboard.",
+      "Use two data pipelines: one to ingest data into Amazon Managed Service for Apache Flink and send it to OpenSearch Service and one to send the streaming data directly from Amazon Kinesis Data Streams to Amazon S3.",
+      "Use Amazon Kinesis Data Streams to capture the data. Use Amazon Managed Service for Apache Flink to consume and transform data from the stream. Use Amazon Data Firehose to deliver transformed data to OpenSearch Service.",
+      "Use Amazon Kinesis Data Streams to capture the data. Use Amazon Managed Service for Apache Flink as a consumer to deliver data to OpenSearch Service. Use Amazon Redshift Spectrum to run SQL queries on the data stream for the monthly report"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Kinesis Data Streams plus Managed Service for Apache Flink supports real-time transformation, and Firehose can deliver the transformed data to OpenSearch Service."
+  },
+  {
+    "id": 97,
+    "question": "Which statement accurately describes a consideration for designing pipeline storage?",
+    "type": "single",
+    "choices": [
+      "Choose the lowest cost storage option regardless of the intended use case.",
+      "Store raw data that will be used for analytics in a data warehouse.",
+      "Archive data out of relational databases into a more cost-efficient storage option.",
+      "Choose the storage option that provides the fastest queries regardless of the use case."
+    ],
+    "correctAnswers": [2],
+    "explanation": "Archiving data to a lower-cost storage layer is a common and efficient storage design choice."
+  },
+  {
+    "id": 98,
+    "question": "Which option meets the data engineer’s need for low-cost storage of structured and unstructured data?",
+    "type": "single",
+    "choices": [
+      "Amazon Quantum Ledger Database (Amazon QLDB)",
+      "AWS Database Migration Service (AWS DMS)",
+      "Amazon Redshift",
+      "Amazon S3"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Amazon S3 is cost-effective and supports both structured and unstructured data."
+  },
+  {
+    "id": 99,
+    "question": "A DevOps engineer is migrating an on-premises Apache Hadoop cluster to AWS. The cluster runs scheduled jobs by using parallel processing. Which AWS service is the MOST appropriate choice?",
+    "type": "single",
+    "choices": [
+      "Amazon EMR",
+      "Amazon Managed Service for Apache Flink",
+      "AWS Glue DataBrew",
+      "AWS Glue"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Amazon EMR is designed for managed Hadoop and Spark workloads."
+  },
+  {
+    "id": 100,
+    "question": "A marketing manager quickly needs one-time insights about the number of leads and closed deals across multiple postal codes. Which service would be the MOST cost-effective method to query daily aggregates of sales data stored in Amazon S3?",
+    "type": "single",
+    "choices": [
+      "Amazon Redshift",
+      "Amazon QuickSight",
+      "Amazon OpenSearch Service",
+      "Amazon Athena"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Athena is ideal for ad hoc SQL queries directly against data stored in S3."
+  },
+  {
+    "id": 101,
+    "question": "A solutions architect wants to propose a microservice architecture on AWS to management. Which serverless computing benefits should they include in the proposal? (Select THREE.)",
+    "type": "multiple",
+    "choices": [
+      "Built-in high availability",
+      "Continuous scaling",
+      "Predictable performance",
+      "Full control over runtime environment",
+      "Lessens amount of server maintenance",
+      "Pay-for-value services"
+    ],
+    "correctAnswers": [0, 1, 5],
+    "explanation": "Serverless services provide high availability, automatic scaling, and pay-for-value pricing, while reducing operational overhead."
+  },
+  {
+    "id": 102,
+    "question": "A developer needs to create and deploy a simple web form to capture employee commute information for the company internal employee website. Which is a serverless solution for creating the simple web form?",
+    "type": "single",
+    "choices": [
+      "Host static assets in an Amazon S3 bucket, use an Amazon RDS database, and use Amazon API Gateway and AWS Lambda functions to interact with the database.",
+      "Host static assets in an Amazon S3 bucket, use an Amazon DynamoDB table, and use Amazon API Gateway and AWS Lambda functions to interact with the database.",
+      "Host website assets in a container in an Amazon Elastic Container Service (Amazon ECS) cluster with EC2 instance nodes, use an Amazon DynamoDB table, and use server-side scripts to interact with the database.",
+      "Host website assets in a container in an Amazon Elastic Container Service (Amazon ECS) cluster with Fargate nodes, use an Amazon RDS database, and use server-side scripts to interact with the database."
+    ],
+    "correctAnswers": [1],
+    "explanation": "S3, API Gateway, Lambda, and DynamoDB form a common serverless web application pattern."
+  },
+  {
+    "id": 103,
+    "question": "Why would a solutions architect recommend to use a microservice architecture? (Select TWO.)",
+    "type": "multiple",
+    "choices": [
+      "Industry-standard interfaces",
+      "HTTP(S) communication",
+      "Independent from other components",
+      "Solves a specific business problem",
+      "Open-source code"
+    ],
+    "correctAnswers": [2, 3],
+    "explanation": "Microservices are independently deployable and typically focused on a specific business capability."
+  },
+  {
+    "id": 104,
+    "question": "Which scaling configuration does a team lead need to apply to accomplish Lambda function scaling?",
+    "type": "single",
+    "choices": [
+      "Configure the auto scaling parameter in the function configuration.",
+      "Provision enough function instances to meet the maximum predicted load.",
+      "Launch functions in Auto Scaling groups.",
+      "None because the AWS Lambda service scales functions automatically."
+    ],
+    "correctAnswers": [3],
+    "explanation": "Lambda scales automatically based on demand without user-managed scaling settings."
+  },
+  {
+    "id": 105,
+    "question": "A solutions architect has to use a custom library in an architecture that uses Lambda functions as the compute option. Which Lambda feature should be used for optimal function deployments?",
+    "type": "single",
+    "choices": [
+      "Lambda destinations",
+      "Lambda layers",
+      "Lambda triggers",
+      "Lambda function URLs"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Lambda layers package reusable code and dependencies separately from the function code."
+  },
+  {
+    "id": 106,
+    "question": "Which set of statements is true for software packaged as a container?",
+    "type": "single",
+    "choices": [
+      "Standardized, portable application code packages that contain code and code dependencies. A container is run by a container engine. A container does not include a guest operating system.",
+      "Standardized, portable application code packages that contain code and code dependencies. A container is run by a container engine. A container includes a guest operating system.",
+      "Portable application code packages that contain code and code dependencies. A container is run by a hypervisor. A container does not include a guest operating system.",
+      "Portable application code packages that contain code and code dependencies. A container is run by a hypervisor. A container includes a guest operating system."
+    ],
+    "correctAnswers": [0],
+    "explanation": "Containers package application code and dependencies but share the host operating system kernel."
+  },
+  {
+    "id": 107,
+    "question": "Which is the most effective container deployment using Amazon Elastic Container Service (Amazon ECS) containers when refactoring a monolithic application to use a microservice architecture?",
+    "type": "single",
+    "choices": [
+      "Refactor the application and centralize common functions to create a smaller code footprint.",
+      "Create services that each provide a distinct function of the application, and run each service in a separate container that Amazon ECS manages.",
+      "Create services that each provide a distinct function of the application, and run multiple services in a single container that Amazon ECS manages.",
+      "Port the application to a new image, and run it in a container that Amazon ECS manages."
+    ],
+    "correctAnswers": [1],
+    "explanation": "A microservice approach isolates each function into its own container-managed service."
+  },
+  {
+    "id": 108,
+    "question": "An environmental science organization wants to provide HTTPS read-only access to its sensor data Amazon DynamoDB database. The user usage pattern is intermittent with 68 percent idle time per month. Which solution is the most cost efficient and secure with the least amount of operational maintenance?",
+    "type": "single",
+    "choices": [
+      "Create web proxy servers on Amazon EC2 instances in an Auto Scaling group connecting to the DynamoDB sensor database, which is served by an Elastic Load Balancing load balancer.",
+      "Create a microservices architecture by using Amazon Elastic Container Service (Amazon ECS) connecting to the DynamoDB sensor database.",
+      "Create user accounts in the organization’s systems to allow direct access to the DynamoDB sensor database.",
+      "Create a public interface by using Amazon API Gateway with Lambda functions accessing the DynamoDB sensor database."
+    ],
+    "correctAnswers": [3],
+    "explanation": "API Gateway plus Lambda provides secure, serverless HTTPS access to DynamoDB with minimal operational overhead."
+  },
+  {
+    "id": 109,
+    "question": "Which workflows are suitable to implement with AWS Step Functions when the goal is to implement the solution to reduce operational overhead? (Select THREE.)",
+    "type": "multiple",
+    "choices": [
+      "Update inventory and run a shipment workflow when a customer purchases an item on an e-commerce site.",
+      "Implement manual approval in a security incident response workflow.",
+      "Deploy different kinds of infrastructure that are based on environment variables.",
+      "Notify a group of email addresses when the costs for an AWS account exceed a threshold.",
+      "Send messages to multiple Amazon EC2 instances when a file is created or modified in an Amazon S3 bucket.",
+      "Coordinate multi-step analytics and machine learning workflows"
+    ],
+    "correctAnswers": [0, 1, 5],
+    "explanation": "Step Functions is suited for orchestrating multi-step workflows, manual approvals, and coordinated processing pipelines."
+  },
+  {
+    "id": 110,
+    "question": "A developer wants to implement a manual approval step using an AWS Step Functions state machine. The manual approval state has to pause until a notification of approval or rejection is received from an approver email. Which should be implemented in the Step Functions state machine?",
+    "type": "single",
+    "choices": [
+      "A task or activity state with an activated wait for callback parameter",
+      "A map state with automated callback parameters",
+      "A map state with an activated wait for callback parameter",
+      "A task or activity state with automated callback parameters"
+    ],
+    "correctAnswers": [0],
+    "explanation": "A callback pattern lets Step Functions pause until the approval response is received."
+  },
+  {
+    "id": 111,
+    "question": "Which API Gateway authorization option is best when users authenticate with an Amazon Cognito user pool?",
+    "type": "single",
+    "choices": [
+      "API key only",
+      "Cognito authorizer",
+      "No authorization",
+      "Route 53 health check"
+    ],
+    "correctAnswers": [1],
+    "explanation": "API Gateway integrates directly with Cognito user pools through a Cognito authorizer for token-based user authentication."
+  },
+  {
+    "id": 112,
+    "question": "A team needs to guarantee a minimum number of warm Lambda execution environments to reduce cold starts for critical synchronous requests. Which feature should they use?",
+    "type": "single",
+    "choices": [
+      "Reserved concurrency only",
+      "Provisioned concurrency",
+      "Lambda layers",
+      "EventBridge schedule"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Provisioned concurrency keeps execution environments initialized and ready to serve requests with lower startup latency."
+  },
+  {
+    "id": 113,
+    "question": "Which statement about reserved concurrency and provisioned concurrency is TRUE?",
+    "type": "single",
+    "choices": [
+      "Both are identical and used only for cost optimization.",
+      "Reserved concurrency sets a concurrency limit/guarantee; provisioned concurrency pre-initializes environments to reduce latency.",
+      "Provisioned concurrency disables scaling.",
+      "Reserved concurrency is only for asynchronous invocations."
+    ],
+    "correctAnswers": [1],
+    "explanation": "Reserved concurrency controls capacity limits and isolation, while provisioned concurrency targets cold-start-sensitive performance."
+  },
+  {
+    "id": 114,
+    "question": "A workload requires buffering and retrying jobs when a Lambda consumer is temporarily overwhelmed. Which pattern is most suitable?",
+    "type": "single",
+    "choices": [
+      "S3 static website + Lambda@Edge",
+      "Amazon SQS queue with Lambda event source mapping",
+      "Route 53 weighted routing",
+      "AWS Glue crawler"
+    ],
+    "correctAnswers": [1],
+    "explanation": "SQS decouples producers and consumers, providing durable buffering and retry behavior for Lambda-driven processing."
+  },
+  {
+    "id": 115,
+    "question": "Which service is best for event bus style routing between AWS services and SaaS integrations with rule-based filtering?",
+    "type": "single",
+    "choices": [
+      "Amazon EventBridge",
+      "Amazon EBS",
+      "AWS Direct Connect",
+      "Amazon ECR"
+    ],
+    "correctAnswers": [0],
+    "explanation": "EventBridge is a serverless event bus designed for routing, filtering, and integrating events across AWS and SaaS sources."
+  },
+  {
+    "id": 116,
+    "question": "Which use case best fits DynamoDB Streams with Lambda?",
+    "type": "single",
+    "choices": [
+      "Running container image vulnerability scans",
+      "Reacting to table item changes in near real time",
+      "Serving static website assets",
+      "Replacing IAM policy evaluation"
+    ],
+    "correctAnswers": [1],
+    "explanation": "DynamoDB Streams captures item-level modifications that Lambda can process for downstream workflows."
+  },
+  {
+    "id": 117,
+    "question": "Which AWS Glue feature helps avoid reprocessing already ingested data in recurring ETL jobs?",
+    "type": "single",
+    "choices": [
+      "Glue job bookmarks",
+      "CloudFront invalidations",
+      "Lambda provisioned concurrency",
+      "Route 53 latency policy"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Glue job bookmarks track processed data state so recurring jobs can process only new data."
+  },
+  {
+    "id": 118,
+    "question": "A data analyst needs to run SQL on data stored in S3 without loading it into a warehouse first. Which option is most cost-effective for ad hoc queries?",
+    "type": "single",
+    "choices": [
+      "Amazon Athena",
+      "Amazon RDS",
+      "Amazon MQ",
+      "AWS Shield"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Athena is serverless and designed for ad hoc SQL queries directly against data in S3."
+  },
+  {
+    "id": 119,
+    "question": "Which feature allows Amazon Redshift to query data directly in Amazon S3 data lakes?",
+    "type": "single",
+    "choices": [
+      "Redshift Spectrum",
+      "DynamoDB Streams",
+      "ElastiCache Global Datastore",
+      "CloudFormation drift detection"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Redshift Spectrum extends Redshift SQL analytics to external data in S3."
+  },
+  {
+    "id": 120,
+    "question": "What is a key benefit of partitioning data in S3 for analytics?",
+    "type": "single",
+    "choices": [
+      "It guarantees ACID transactions across all files",
+      "It reduces scanned data and can improve query performance and cost",
+      "It encrypts all objects automatically",
+      "It removes the need for schema definitions"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Partitioned layouts let query engines read only relevant subsets, reducing scan cost and latency."
+  },
+  {
+    "id": 121,
+    "question": "A company needs fine-grained access control over tables and columns in a central data lake. Which service is designed for this governance need?",
+    "type": "single",
+    "choices": [
+      "AWS Lake Formation",
+      "Amazon Route 53",
+      "AWS Global Accelerator",
+      "Amazon CloudFront"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Lake Formation provides centralized data lake permissions and governance integrated with analytics services."
+  },
+  {
+    "id": 122,
+    "question": "Which disaster recovery strategy generally provides the lowest RTO and RPO but at the highest cost?",
+    "type": "single",
+    "choices": [
+      "Backup and restore",
+      "Pilot light",
+      "Warm standby",
+      "Multi-site active-active"
+    ],
+    "correctAnswers": [3],
+    "explanation": "Multi-site active-active keeps full environments running, minimizing recovery objectives at higher operational cost."
+  },
+  {
+    "id": 123,
+    "question": "Which DR pattern keeps core services always on in the secondary Region but scales up noncritical components during failover?",
+    "type": "single",
+    "choices": [
+      "Pilot light",
+      "Backup and restore",
+      "Cold site",
+      "Archive only"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Pilot light keeps essential components continuously running and expands capacity during a disaster event."
+  },
+  {
+    "id": 124,
+    "question": "Which service is best suited to centrally manage and automate backup policies across multiple AWS services and accounts?",
+    "type": "single",
+    "choices": [
+      "AWS Backup",
+      "AWS WAF",
+      "Amazon API Gateway",
+      "Amazon MQ"
+    ],
+    "correctAnswers": [0],
+    "explanation": "AWS Backup centralizes policy-based backup and restore operations across supported AWS services."
+  },
+  {
+    "id": 125,
+    "question": "A company needs a database DR option with cross-Region replication and rapid failover potential for reads. Which choice is most appropriate?",
+    "type": "single",
+    "choices": [
+      "Amazon RDS cross-Region read replica",
+      "Amazon EBS gp3 volume",
+      "AWS CloudTrail trails",
+      "Amazon S3 Glacier Deep Archive only"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Cross-Region read replicas can support DR by maintaining near-real-time replica data that can be promoted during failover."
+  },
+  {
+    "id": 126,
+    "question": "What is the purpose of regularly running DR game days or recovery drills?",
+    "type": "single",
+    "choices": [
+      "To increase production traffic permanently",
+      "To validate people, process, and automation against RTO/RPO goals",
+      "To replace all backups",
+      "To disable monitoring alarms"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Game days verify that documented recovery procedures actually work under realistic conditions."
+  },
+  {
+    "id": 127,
+    "question": "Which Route 53 capability is commonly used in multi-Region DR to shift users from unhealthy primary endpoints to healthy secondary endpoints?",
+    "type": "single",
+    "choices": [
+      "Failover routing with health checks",
+      "TXT records only",
+      "Private hosted zone association",
+      "MX routing priority"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Failover routing plus health checks is a standard DNS-based DR traffic steering approach."
+  },
+  {
+    "id": 128,
+    "question": "In serverless architecture, which pattern best handles failed asynchronous events for later analysis or replay?",
+    "type": "single",
+    "choices": [
+      "Dead-letter queue (DLQ) or failure destination",
+      "CloudFront cache invalidation",
+      "Security group egress rule",
+      "Route table propagation"
+    ],
+    "correctAnswers": [0],
+    "explanation": "DLQs and failure destinations preserve failed events for troubleshooting and controlled reprocessing."
+  },
+  {
+    "id": 129,
+    "question": "A team wants to orchestrate a long-running multi-step process with retries, branching, and auditing of each state transition. Which service is best?",
+    "type": "single",
+    "choices": [
+      "AWS Step Functions",
+      "Amazon ElastiCache",
+      "Amazon Route 53",
+      "AWS Direct Connect"
+    ],
+    "correctAnswers": [0],
+    "explanation": "Step Functions provides durable workflow orchestration with explicit states, retries, catches, and execution history."
+  },
+  {
+    "id": 130,
+    "question": "Which architecture choice best improves security for a serverless API that must expose only HTTPS endpoints and enforce auth before business logic?",
+    "type": "single",
+    "choices": [
+      "API Gateway with authorizers in front of Lambda",
+      "Direct Lambda Function URL without any auth",
+      "Public S3 bucket with static policy",
+      "Route 53 health check only"
+    ],
+    "correctAnswers": [0],
+    "explanation": "API Gateway centralizes HTTPS exposure, request validation, throttling, and authentication before invoking backend Lambda logic."
   }
 ]
 }
