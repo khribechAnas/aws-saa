@@ -33,6 +33,19 @@ interface Question {
   explanation: string;
 }
 
+interface LegacyQuestion {
+  id?: number;
+  question?: string;
+  type?: "single" | "multiple";
+  choices?: string[];
+  correctAnswers?: number[];
+  options?: Record<string, string>;
+  answer?: string | string[];
+  correctAnswer?: string | string[];
+  explanation?: string;
+  [key: string]: unknown;
+}
+
 interface Category {
   id: string;
   name: string;
@@ -51,6 +64,51 @@ const categoryMap: Record<string, Category> = {
   "other": otherData as Category,
   "youtube": youtubeData as Category,
   "github": githubData as Category
+};
+
+const normalizeQuestion = (raw: LegacyQuestion, fallbackId: number): Question | null => {
+  const choices = Array.isArray(raw.choices)
+    ? raw.choices
+    : raw.options
+    ? Object.keys(raw.options)
+        .sort()
+        .map((key) => raw.options![key])
+    : [];
+
+  if (choices.length === 0) return null;
+
+  const optionKeys = raw.options ? Object.keys(raw.options).sort() : [];
+  const keyToIndex = new Map<string, number>();
+  optionKeys.forEach((key, index) => keyToIndex.set(key.toUpperCase(), index));
+
+  let correctAnswers: number[] = [];
+  if (Array.isArray(raw.correctAnswers) && raw.correctAnswers.every((x) => typeof x === "number")) {
+    correctAnswers = raw.correctAnswers.filter((idx) => idx >= 0 && idx < choices.length);
+  } else {
+    const rawAnswers = raw.correctAnswer ?? raw.answer;
+    const normalizedRawAnswers = Array.isArray(rawAnswers) ? rawAnswers : rawAnswers ? [rawAnswers] : [];
+    correctAnswers = normalizedRawAnswers
+      .map((value) => keyToIndex.get(String(value).trim().toUpperCase()))
+      .filter((idx): idx is number => typeof idx === "number");
+  }
+
+  if (correctAnswers.length === 0) return null;
+
+  return {
+    ...(raw as Question),
+    id: typeof raw.id === "number" ? raw.id : fallbackId,
+    question: typeof raw.question === "string" ? raw.question : "Question unavailable",
+    type: raw.type === "multiple" || correctAnswers.length > 1 ? "multiple" : "single",
+    choices,
+    correctAnswers,
+    explanation: typeof raw.explanation === "string" ? raw.explanation : "",
+  };
+};
+
+const normalizeQuestions = (questions: LegacyQuestion[] = []): Question[] => {
+  return questions
+    .map((question, index) => normalizeQuestion(question, index + 1))
+    .filter((question): question is Question => question !== null);
 };
 
 const Quiz = () => {
@@ -89,14 +147,14 @@ const Quiz = () => {
         const wrongData = JSON.parse(wrongStored);
         const categoryWrong = wrongData[categoryId || ''];
         if (categoryWrong && categoryWrong.length > 0) {
-          return shuffleArray(categoryWrong);
+          return shuffleArray(normalizeQuestions(categoryWrong));
         }
       }
       // If no wrong questions found, use all questions
-      return shuffleArray(category.questions);
+      return shuffleArray(normalizeQuestions(category.questions as LegacyQuestion[]));
     }
     
-    return shuffleArray(category.questions);
+    return shuffleArray(normalizeQuestions(category.questions as LegacyQuestion[]));
   });
 
   if (!category) {
@@ -118,7 +176,27 @@ const Quiz = () => {
 
   const questions = shuffledQuestions;
   const currentQuestion = questions[currentQuestionIndex];
-  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  const progress = questions.length > 0 ? ((currentQuestionIndex + 1) / questions.length) * 100 : 0;
+
+  if (questions.length === 0 || !currentQuestion) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="w-full max-w-md quiz-card text-center">
+          <CardContent className="pt-6 space-y-4">
+            <XCircle className="w-16 h-16 text-destructive mx-auto" />
+            <h2 className="text-xl font-semibold">No valid questions found</h2>
+            <p className="text-sm text-muted-foreground">
+              This category contains questions with unsupported format.
+            </p>
+            <Button onClick={() => navigate("/")} className="gap-2">
+              <Home className="w-4 h-4" />
+              Go Home
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   // Check saved status when question changes
   useEffect(() => {

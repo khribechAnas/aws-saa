@@ -2294,6 +2294,19 @@
     ],
     "correctAnswers": [0],
     "explanation": "DynamoDB Global Tables replicate data across Regions for low-RPO multi-Region architectures."
+  },
+  {
+    "id":176,
+    "question": "Which statement BEST describes the difference between Amazon CloudFront and Amazon ElastiCache?",
+    "type": "single",
+    "choices": [
+      "CloudFront is a content delivery network, while ElastiCache is an in-memory data store",
+      "CloudFront is used for static content delivery, while ElastiCache is used for dynamic data caching",
+      "CloudFront provides global edge locations, while ElastiCache provides low-latency data access",
+      "All of the above plus cloudfront serve user globaly, cache static content use edge location, but elastique cache reduce db load, database reads are slow and expensive under load he is placed in the same vpc as your db"
+    ],
+    "correctAnswers": [3],
+    "explanation": "CloudFront is a content delivery network that caches content at edge locations worldwide, while ElastiCache is an in-memory data store that provides low-latency access to frequently accessed data."
   }
 ]
 }
