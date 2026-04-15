@@ -1701,6 +1701,214 @@
     ],
     "correctAnswers": [0],
     "explanation": "API Gateway centralizes HTTPS exposure, request validation, throttling, and authentication before invoking backend Lambda logic."
+  },
+  {
+    "id": 131,
+    "question": "A global media company hosts video thumbnails in Amazon S3 and serves them through a web application running on EC2 instances behind an Application Load Balancer. Users in different continents report slow loading times for images. The company wants to reduce latency and improve performance globally without modifying the backend application. What is the BEST solution?",
+    "type": "single",
+    "choices": [
+      "Enable S3 Transfer Acceleration",
+      "Deploy Amazon ElastiCache in front of the ALB",
+      "Add Amazon CloudFront distribution in front of S3 and ALB",
+      "Increase the size of EC2 instances behind the ALB"
+    ],
+    "correctAnswers": [2],
+    "explanation": "CloudFront caches content globally at edge locations and can front both S3 and ALB origins, reducing latency worldwide without backend code changes."
+  },
+  {
+    "id": 132,
+    "question": "A high-traffic social media application uses Amazon RDS as its database. The database is experiencing high read pressure due to repeated queries for user profiles and posts. The application can tolerate slightly stale data for a few seconds. The company wants to reduce database load and improve response time with minimal changes to the application. What is the BEST solution?",
+    "type": "single",
+    "choices": [
+      "Enable write-through caching using Amazon ElastiCache",
+      "Use Amazon CloudFront in front of the database",
+      "Use Amazon ElastiCache with cache-aside (lazy loading)",
+      "Increase RDS instance size and storage"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Cache-aside with ElastiCache is a common low-change pattern for reducing repeated read load on RDS while tolerating brief staleness."
+  },
+  {
+    "id": 133,
+    "question": "A company needs to allow an external partner application to upload files to a specific S3 bucket for only 2 hours. The partner should not have AWS credentials, and access should be limited to a single S3 object at a time. What is the BEST solution?",
+    "type": "single",
+    "choices": [
+      "Use AWS STS to assume an IAM role with S3 permissions",
+      "Create an IAM user for the partner with limited permissions",
+      "Generate a presigned URL for the S3 object",
+      "Use CloudFront signed cookies for upload access"
+    ],
+    "correctAnswers": [2],
+    "explanation": "An S3 presigned URL grants time-limited access to a specific object operation without sharing AWS credentials."
+  },
+  {
+    "id": 134,
+    "question": "A company uses Amazon CloudFront to distribute frequently updated content. They need to ensure that critical updates (such as pricing changes) are reflected immediately to all users, even if it increases operational overhead. What is the BEST solution?",
+    "type": "single",
+    "choices": [
+      "Reduce the TTL of CloudFront cache to 1 hour",
+      "Enable ElastiCache in front of CloudFront",
+      "Use CloudFront invalidation to remove cached objects immediately",
+      "Increase the cache size of the Application Load Balancer"
+    ],
+    "correctAnswers": [2],
+    "explanation": "CloudFront invalidation forces immediate cache removal for specific objects, making urgent updates visible right away."
+  },
+  {
+    "id": 135,
+    "question": "A company runs a high-traffic web application with a relational database backend. The application experiences heavy read load on frequently accessed data, causing high database latency. The company wants to reduce database load and improve response times for repeated queries. Which solution should the company implement?",
+    "type": "single",
+    "choices": [
+      "Use Amazon CloudFront in front of the database",
+      "Use Amazon ElastiCache to cache frequently accessed database queries",
+      "Increase the size of the Application Load Balancer",
+      "Enable S3 Transfer Acceleration for the database"
+    ],
+    "correctAnswers": [1],
+    "explanation": "ElastiCache reduces repeated database reads by serving hot data from memory, improving latency and lowering DB load."
+  },
+  {
+    "id": 136,
+    "question": "A company states that it can tolerate up to 10 minutes of data loss but requires the application to be fully operational within 1 hour after a disaster. Which values BEST represent the company’s DR requirements?",
+    "type": "single",
+    "choices": [
+      "RPO = 1 hour, RTO = 10 minutes",
+      "RPO = 10 minutes, RTO = 1 hour",
+      "RPO = 1 hour, RTO = 1 hour",
+      "RPO = 10 minutes, RTO = 10 minutes"
+    ],
+    "correctAnswers": [1],
+    "explanation": "RPO is maximum acceptable data loss (10 minutes), and RTO is maximum acceptable recovery time (1 hour)."
+  },
+  {
+    "id": 137,
+    "question": "A company runs an application on Amazon ECS. They want to ensure that exactly 3 copies of the application are always running. If one fails, it must be automatically replaced. What should they use?",
+    "type": "single",
+    "choices": [
+      "Task Definition",
+      "Task",
+      "Service",
+      "Cluster"
+    ],
+    "correctAnswers": [2],
+    "explanation": "An ECS Service maintains the desired task count and replaces failed tasks automatically."
+  },
+  {
+    "id": 138,
+    "question": "Which ECS component defines CPU, memory, container image, and environment variables?",
+    "type": "single",
+    "choices": [
+      "Task",
+      "Task Definition",
+      "Service",
+      "Cluster"
+    ],
+    "correctAnswers": [1],
+    "explanation": "A Task Definition is the blueprint that specifies resource settings and container configuration."
+  },
+  {
+    "id": 139,
+    "question": "Which statement is correct?",
+    "type": "single",
+    "choices": [
+      "A Task is a single container only",
+      "A Task can contain multiple containers",
+      "A Service runs inside a container",
+      "A Cluster runs inside a Task"
+    ],
+    "correctAnswers": [1],
+    "explanation": "An ECS task can run one or more containers defined together in the same task definition."
+  },
+  {
+    "id": 140,
+    "question": "A company wants to transfer data from Salesforce to Amazon S3 without writing code. What should they use?",
+    "type": "single",
+    "choices": [
+      "AWS DataSync",
+      "Amazon AppFlow",
+      "AWS Data Exchange",
+      "AWS Glue"
+    ],
+    "correctAnswers": [1],
+    "explanation": "Amazon AppFlow is designed for no-code integration between SaaS applications like Salesforce and AWS services such as S3."
+  },
+  {
+    "id": 141,
+    "question": "A company wants to migrate terabytes of on-premises file data to Amazon S3 efficiently. What should they use?",
+    "type": "single",
+    "choices": [
+      "Amazon AppFlow",
+      "AWS Data Exchange",
+      "AWS DataSync",
+      "Amazon Athena"
+    ],
+    "correctAnswers": [2],
+    "explanation": "AWS DataSync is optimized for fast, secure transfer of large on-premises file datasets to AWS storage."
+  },
+  {
+    "id": 142,
+    "question": "A company wants to subscribe to third-party financial datasets and automatically receive updates in AWS. What should they use?",
+    "type": "single",
+    "choices": [
+      "AWS DataSync",
+      "Amazon AppFlow",
+      "AWS Data Exchange",
+      "AWS Glue"
+    ],
+    "correctAnswers": [2],
+    "explanation": "AWS Data Exchange provides subscription-based third-party datasets with managed delivery and updates."
+  },
+  {
+    "id": 143,
+    "question": "A company wants to clean, transform, and prepare raw data stored in Amazon S3 before loading it into a data warehouse. What should they use?",
+    "type": "single",
+    "choices": [
+      "AWS DataSync",
+      "Amazon AppFlow",
+      "AWS Glue",
+      "Amazon SNS"
+    ],
+    "correctAnswers": [2],
+    "explanation": "AWS Glue is a managed ETL service for transforming and preparing data from S3 for analytics targets."
+  },
+  {
+    "id": 144,
+    "question": "A company wants to process credit card transactions in real time for fraud detection. What should they use?",
+    "type": "single",
+    "choices": [
+      "Amazon SQS",
+      "Amazon SNS",
+      "Amazon Kinesis Data Streams",
+      "AWS Glue"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Kinesis Data Streams supports low-latency streaming ingestion and processing for real-time fraud detection use cases."
+  },
+  {
+    "id": 145,
+    "question": "A company wants to store raw logs, images, and JSON files for future analysis. What should they use?",
+    "type": "single",
+    "choices": [
+      "Amazon Redshift",
+      "Amazon RDS",
+      "Amazon S3",
+      "AWS DataSync"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon S3 is durable, scalable object storage suitable for raw files in multiple formats."
+  },
+  {
+    "id": 146,
+    "question": "A company needs to process 10 TB of log data using Apache Spark jobs. What should they use?",
+    "type": "single",
+    "choices": [
+      "Amazon Athena",
+      "AWS Glue",
+      "Amazon EMR",
+      "Amazon Redshift"
+    ],
+    "correctAnswers": [2],
+    "explanation": "Amazon EMR is the best fit for large-scale Apache Spark processing workloads."
   }
 ]
 }

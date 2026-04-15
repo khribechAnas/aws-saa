@@ -8,7 +8,7 @@ import networkData from "@/data/network.json";
 import otherData from "@/data/other.json";
 import youtubeData from "@/data/youtube.json";
 import githubData from "@/data/github.json";
-import { getCustomizedCategory } from "@/lib/customizedQuestions";
+import { getCustomizedCategories } from "@/lib/customizedQuestions";
 import { BookOpen } from "lucide-react";
 
 interface Category {
@@ -30,7 +30,7 @@ interface WrongQuestions {
 const Home = () => {
   const [results, setResults] = useState<Results>({});
   const [wrongQuestions, setWrongQuestions] = useState<WrongQuestions>({});
-  const [customizedCategory, setCustomizedCategory] = useState<Category | null>(null);
+  const [customizedCategories, setCustomizedCategories] = useState<Category[]>([]);
   
   // Static categories
   const staticCategories = [
@@ -54,14 +54,14 @@ const Home = () => {
       setWrongQuestions(JSON.parse(wrongStored));
     }
     
-    // Load customized category
-    const customized = getCustomizedCategory();
-    setCustomizedCategory(customized as Category);
+    // Load customized categories in chunks of 100 questions
+    const customized = getCustomizedCategories();
+    setCustomizedCategories(customized as Category[]);
   }, []);
 
-  // Combine static categories with customized
-  const categories = customizedCategory && customizedCategory.questions.length > 0
-    ? [customizedCategory, ...staticCategories]
+  // Combine static categories with all non-empty customized chunks
+  const categories = customizedCategories.length > 0
+    ? [...customizedCategories, ...staticCategories]
     : staticCategories;
 
   const totalQuestions = categories.reduce((acc, cat) => acc + cat.questions.length, 0);

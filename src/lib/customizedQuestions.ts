@@ -12,6 +12,7 @@ export interface SavedQuestion {
 }
 
 const STORAGE_KEY = "customizedQuestions";
+const CUSTOMIZED_CHUNK_SIZE = 100;
 
 // Get all saved questions
 export const getCustomizedQuestions = (): SavedQuestion[] => {
@@ -66,12 +67,50 @@ export const isQuestionSaved = (questionId: number, categoryId: string): boolean
 
 // Get customized category data (formatted like other categories)
 export const getCustomizedCategory = () => {
-  const questions = getCustomizedQuestions();
-  return {
+  const categories = getCustomizedCategories();
+  return categories[0] || {
     id: "customized",
     name: "Customized",
     description: "Your saved difficult questions",
     icon: "BookMarked",
-    questions: questions
+    questions: []
   };
+};
+
+// Split saved questions into multiple virtual categories of 100 questions each.
+export const getCustomizedCategories = () => {
+  const questions = getCustomizedQuestions();
+  const categories: Array<{
+    id: string;
+    name: string;
+    description: string;
+    icon: string;
+    questions: SavedQuestion[];
+  }> = [];
+
+  for (let i = 0; i < questions.length; i += CUSTOMIZED_CHUNK_SIZE) {
+    const chunkIndex = Math.floor(i / CUSTOMIZED_CHUNK_SIZE);
+    const chunkNumber = chunkIndex + 1;
+    const chunkQuestions = questions.slice(i, i + CUSTOMIZED_CHUNK_SIZE);
+
+    categories.push({
+      id: chunkNumber === 1 ? "customized" : `customized-${chunkNumber}`,
+      name: chunkNumber === 1 ? "Customized" : `Customized ${chunkNumber}`,
+      description: "Your saved difficult questions",
+      icon: "BookMarked",
+      questions: chunkQuestions,
+    });
+  }
+
+  return categories;
+};
+
+// Resolve a specific customized category ID (customized, customized-2, ...).
+export const getCustomizedCategoryById = (categoryId: string) => {
+  if (!categoryId.startsWith("customized")) {
+    return null;
+  }
+
+  const categories = getCustomizedCategories();
+  return categories.find((c) => c.id === categoryId) || null;
 };

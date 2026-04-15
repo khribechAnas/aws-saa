@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Database, Cpu, GitBranch, Brain, Network, Sparkles, Youtube, CheckCircle2, Play } from "lucide-react";
+import { Database, Cpu, GitBranch, Brain, Network, Sparkles, Youtube, CheckCircle2, Play, BookMarked } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 interface CategoryCardProps {
@@ -21,6 +21,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Network,
   Sparkles,
   Youtube,
+  BookMarked,
 };
 
 const CategoryCard = ({ id, name, description, icon, questionCount, result, wrongCount = 0 }: CategoryCardProps) => {

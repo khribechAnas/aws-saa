@@ -12,7 +12,7 @@ import otherData from "@/data/other.json";
 import youtubeData from "@/data/youtube.json";
 import githubData from "@/data/github.json";
 import { cn } from "@/lib/utils";
-import { saveQuestion, removeSavedQuestion, isQuestionSaved, getCustomizedCategory } from "@/lib/customizedQuestions";
+import { saveQuestion, removeSavedQuestion, isQuestionSaved, getCustomizedCategoryById } from "@/lib/customizedQuestions";
 import { useToast } from "@/hooks/use-toast";
 
 // Fisher-Yates shuffle algorithm
@@ -122,9 +122,9 @@ const Quiz = () => {
   const isWrongMode = mode === 'wrong';
   
   // Handle customized category
-  const isCustomizedCategory = categoryId === "customized";
+  const isCustomizedCategory = !!categoryId?.startsWith("customized");
   const category = categoryId 
-    ? (isCustomizedCategory ? getCustomizedCategory() : categoryMap[categoryId])
+    ? (isCustomizedCategory ? getCustomizedCategoryById(categoryId) : categoryMap[categoryId])
     : undefined;
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
