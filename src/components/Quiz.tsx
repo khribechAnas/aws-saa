@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { CheckCircle2, XCircle, ArrowRight, RotateCcw, Home, ArrowLeft, BookMarked, Bookmark } from "lucide-react";
+import { CheckCircle2, XCircle, ArrowRight, RotateCcw, Home, ArrowLeft, BookMarked, Bookmark, Trash2 } from "lucide-react";
 import databaseData from "@/data/database.json";
 import computeData from "@/data/compute.json";
 import devopsData from "@/data/devops.json";
@@ -111,6 +111,32 @@ const normalizeQuestions = (questions: LegacyQuestion[] = []): Question[] => {
     .filter((question): question is Question => question !== null);
 };
 
+const REMOVED_QUESTIONS_STORAGE_KEY = "removedQuestionsByCategory";
+
+const getRemovedQuestionsByCategory = (): Record<string, number[]> => {
+  try {
+    const stored = localStorage.getItem(REMOVED_QUESTIONS_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+  } catch {
+    return {};
+  }
+};
+
+const isQuestionRemovedFromCategory = (categoryId: string, questionId: number): boolean => {
+  const removed = getRemovedQuestionsByCategory();
+  return (removed[categoryId] || []).includes(questionId);
+};
+
+const removeQuestionFromCategoryPermanently = (categoryId: string, questionId: number): void => {
+  const removed = getRemovedQuestionsByCategory();
+  const existing = removed[categoryId] || [];
+
+  if (!existing.includes(questionId)) {
+    removed[categoryId] = [...existing, questionId];
+    localStorage.setItem(REMOVED_QUESTIONS_STORAGE_KEY, JSON.stringify(removed));
+  }
+};
+
 const Quiz = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const navigate = useNavigate();
@@ -137,7 +163,7 @@ const Quiz = () => {
   const [questionSaved, setQuestionSaved] = useState(false);
 
   // Shuffle questions once when component mounts or category changes
-  const [shuffledQuestions] = useState(() => {
+  const [shuffledQuestions, setShuffledQuestions] = useState(() => {
     if (!category) return [];
     
     // If in wrong mode, load wrong questions from localStorage
@@ -147,14 +173,20 @@ const Quiz = () => {
         const wrongData = JSON.parse(wrongStored);
         const categoryWrong = wrongData[categoryId || ''];
         if (categoryWrong && categoryWrong.length > 0) {
-          return shuffleArray(normalizeQuestions(categoryWrong));
+          return shuffleArray(normalizeQuestions(categoryWrong)).filter(
+            (question) => !isQuestionRemovedFromCategory(categoryId || category.id, question.id),
+          );
         }
       }
       // If no wrong questions found, use all questions
-      return shuffleArray(normalizeQuestions(category.questions as LegacyQuestion[]));
+      return shuffleArray(normalizeQuestions(category.questions as LegacyQuestion[])).filter(
+        (question) => !isQuestionRemovedFromCategory(category.id, question.id),
+      );
     }
     
-    return shuffleArray(normalizeQuestions(category.questions as LegacyQuestion[]));
+    return shuffleArray(normalizeQuestions(category.questions as LegacyQuestion[])).filter(
+      (question) => !isQuestionRemovedFromCategory(category.id, question.id),
+    );
   });
 
   if (!category) {
@@ -314,9 +346,7 @@ const Quiz = () => {
     if (wrongQuestions.length > 0) {
       // Restart with only wrong questions
       const shuffled = shuffleArray(wrongQuestions);
-      // @ts-ignore - we're setting a new set of questions
-      shuffledQuestions.length = 0;
-      shuffled.forEach(q => shuffledQuestions.push(q));
+      setShuffledQuestions(shuffled);
       
       setCurrentQuestionIndex(0);
       setSelectedAnswers([]);
@@ -326,6 +356,45 @@ const Quiz = () => {
       setScore(0);
       setWrongQuestions([]);
     }
+  };
+
+  const handleRemoveQuestion = () => {
+    if (!currentQuestion) return;
+
+    const sourceCategoryId = isCustomizedCategory
+      ? String((currentQuestion as any).categoryId || "")
+      : String(categoryId || category.id);
+
+    if (!sourceCategoryId) return;
+
+    removeQuestionFromCategoryPermanently(sourceCategoryId, currentQuestion.id);
+    removeSavedQuestion(currentQuestion.id, sourceCategoryId);
+
+    setShuffledQuestions((prev) => prev.filter((question) => question.id !== currentQuestion.id));
+    setWrongQuestions((prev) => prev.filter((question) => question.id !== currentQuestion.id));
+    setSelectedAnswers([]);
+    setIsSubmitted(false);
+    setIsCorrect(false);
+    setQuestionSaved(false);
+
+    const remainingCount = questions.length - 1;
+    if (remainingCount <= 0) {
+      toast({
+        title: "Question removed",
+        description: "No questions left in this category after removal.",
+      });
+      navigate("/");
+      return;
+    }
+
+    if (currentQuestionIndex >= remainingCount) {
+      setCurrentQuestionIndex(remainingCount - 1);
+    }
+
+    toast({
+      title: "Question removed permanently",
+      description: "This question will no longer appear in this category.",
+    });
   };
 
   if (isQuizComplete) {
@@ -427,24 +496,35 @@ const Quiz = () => {
               )}>
                 {currentQuestion.type === "single" ? "Single Choice" : "Multiple Choice"}
               </span>
-              <Button
-                variant={questionSaved ? "default" : "outline"}
-                size="sm"
-                onClick={handleSaveQuestion}
-                className="gap-2"
-              >
-                {questionSaved ? (
-                  <>
-                    <BookMarked className="w-4 h-4" />
-                    Saved
-                  </>
-                ) : (
-                  <>
-                    <Bookmark className="w-4 h-4" />
-                    Save
-                  </>
-                )}
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={handleRemoveQuestion}
+                  className="gap-2"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Remove
+                </Button>
+                <Button
+                  variant={questionSaved ? "default" : "outline"}
+                  size="sm"
+                  onClick={handleSaveQuestion}
+                  className="gap-2"
+                >
+                  {questionSaved ? (
+                    <>
+                      <BookMarked className="w-4 h-4" />
+                      Saved
+                    </>
+                  ) : (
+                    <>
+                      <Bookmark className="w-4 h-4" />
+                      Save
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
             <h2 className="text-xl md:text-2xl font-semibold text-foreground leading-relaxed">
               {currentQuestion.question}
